@@ -1,5 +1,4 @@
-﻿//Hello I am Tahel and Noa
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,4 +25,3 @@ namespace dotNet5781_00_5153_4372
         }
     }
 }
-//Hi World

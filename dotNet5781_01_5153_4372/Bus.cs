@@ -28,11 +28,12 @@ namespace dotNet5781_01_5153_4372
 
         public string LisNum
         {
-            get { return lisNum;}
-            set {
+            get { return lisNum; }
+            set
+            {
                 int a;
                 bool b = int.TryParse(value, out a);
-                if(b)
+                if (b)
                 {
                     if (value.Length == 7 && dateStart.Year < 2018 || value.Length == 8 && dateStart.Year >= 2018)
                         lisNum = value;
@@ -43,7 +44,14 @@ namespace dotNet5781_01_5153_4372
 
             }
         }
-
+        public bool CanTravel(int km)//the function checks if the bus can go for the ride.
+        {
+            if(totalKm % 20000 +km < 20000 && fuel-km>0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
    // public bool Check()
    // {

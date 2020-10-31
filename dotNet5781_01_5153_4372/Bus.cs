@@ -50,7 +50,9 @@ namespace dotNet5781_01_5153_4372
         public Bus(string licNum, DateTime date)
         {
             int a;
-            dateStart = date;
+            this.dateStart = date;
+            lastTreat = date;
+            kmTreat = 0;
             bool b = int.TryParse(licNum, out a);
             if (b)
             {

@@ -133,7 +133,7 @@ namespace dotNet5781_01_5153_4372
             bool exist = false;
             foreach (Bus bus in buses)
             {
-                if (bus.LicNum == lisNum)
+                if (bus.LicNum == lisNum && exist==false)
                 {
                     exist = true;
                     int km = rand.Next(1, 20000);

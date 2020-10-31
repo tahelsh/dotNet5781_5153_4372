@@ -49,7 +49,6 @@ namespace dotNet5781_01_5153_4372
                             Console.WriteLine("Enter license number");
                             String licNum = Console.ReadLine();
                             bool exist = false;
-                            Bus bus;
                             foreach(Bus b in buses)
                             {
                                 if (b.LicNum == licNum && exist == false)
@@ -72,6 +71,22 @@ namespace dotNet5781_01_5153_4372
                                 Console.WriteLine("ERROR, there is no bus with this license number.");
                             break;
                         }
+                    case Choice.SHOW_KM:
+                        {
+                            int i = 1;
+                            foreach (Bus b in buses)
+                            {
+                                Console.WriteLine("Bus " + i + ": "+ b);
+                                i++;
+                            }
+                            break;
+                        }
+                    case Choice.EXIT:
+                        {
+                            Console.WriteLine("Bye");
+                            break;
+                        }
+
 
                 }
 
@@ -85,7 +100,7 @@ namespace dotNet5781_01_5153_4372
         public static void InsertBus(List<Bus> buses)//the function adds a new bus to the buses list
         {
             Console.WriteLine("Enter license number and date of start operation");
-            String lisNum = Console.ReadLine();
+            String licNum = Console.ReadLine();
             DateTime date;//the final date
             bool success = DateTime.TryParse(Console.ReadLine(), out date);
             if (!success)//checking if the date is valid. otherwise print ERROR
@@ -95,7 +110,7 @@ namespace dotNet5781_01_5153_4372
             }
             try
             {
-                Bus b = new Bus { LicNum = lisNum, dateStart = date, TotalKm=0, fuel=0 };//assuming a new bus's kilometerage and fuel are 0;
+                Bus b = new Bus (licNum, date);//assuming a new bus's kilometerage and fuel are 0;
                 buses.Add(b);
             }
             catch (Exception ex)

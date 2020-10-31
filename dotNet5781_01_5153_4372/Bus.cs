@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,11 +25,11 @@ namespace dotNet5781_01_5153_4372
         }
         public int fuel { get; set; } //Fuel
 
-        private string lisNum; //liscense number
+        private string licNum; //license number
 
-        public string LisNum
+        public string LicNum
         {
-            get { return lisNum; }
+            get { return licNum; }
             set
             {
                 int a;
@@ -36,25 +37,33 @@ namespace dotNet5781_01_5153_4372
                 if (b)
                 {
                     if (value.Length == 7 && dateStart.Year < 2018 || value.Length == 8 && dateStart.Year >= 2018)
-                        lisNum = value;
+                        licNum = value;
 
                 }
                 else
-                    throw new Exception("The liscense number / the year is not valid");
+                    throw new Exception("The license number / the year is not valid");
 
             }
         }
+        public DateTime lastTreat { get; set; }//the date of the last treatment
+        public int kmTreat { get; set; }//The kilometerage at the last treatment
         public bool CanTravel(int km)//the function checks if the bus can go for the ride.
         {
-            if(totalKm % 20000 +km < 20000 && fuel-km>0)
+            if((totalKm % 20000 +km < 20000 && fuel-km>0)&&((DateTime.Now-lastTreat).TotalDays>=365))
             {
                 return true;
             }
             return false;
         }
+        public void Refuel()
+        {
+            fuel = 1200;
+        }
+        public void Treatment()
+        {
+            lastTreat = DateTime.Now;
+            kmTreat = totalKm;
+        }
     }
-   // public bool Check()
-   // {
-
-   // }
+  
 }

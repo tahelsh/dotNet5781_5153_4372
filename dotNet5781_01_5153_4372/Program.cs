@@ -10,7 +10,7 @@ namespace dotNet5781_01_5153_4372
 {
     class Program
     {
-        static Random rand;//rundom number of a ride
+        static Random rand;//random number of a ride
         static void Main(string[] args)
         {
 
@@ -44,6 +44,35 @@ namespace dotNet5781_01_5153_4372
                             Pick(buses);
                             break;
                         }
+                    case Choice.MAINTENACE_BUS:
+                        {
+                            Console.WriteLine("Enter license number");
+                            String licNum = Console.ReadLine();
+                            bool exist = false;
+                            Bus bus;
+                            foreach(Bus b in buses)
+                            {
+                                if (b.LicNum == licNum && exist == false)
+                                {
+                                    exist = true;
+                                    Console.WriteLine("For refuel enter 'r', for a treatment enter 't'");
+                                    Char ans = Console.ReadLine()[0];
+                                    while (ans != 'r' && ans != 't')
+                                    {
+                                        Console.WriteLine("ERROR, please enter your choice again");
+                                        ans = Console.ReadLine()[0];
+                                    }
+                                    if (ans == 'r')
+                                        b.Refuel();
+                                    if (ans == 't')
+                                        b.Treatment();
+                                }
+                            }
+                            if(exist==false)
+                                Console.WriteLine("ERROR, there is no bus with this license number.");
+                            break;
+                        }
+
                 }
 
             } while (choice != Choice.EXIT);
@@ -55,7 +84,7 @@ namespace dotNet5781_01_5153_4372
         }
         public static void InsertBus(List<Bus> buses)//the function adds a new bus to the buses list
         {
-            Console.WriteLine("Enter liscense number and date of start operation");
+            Console.WriteLine("Enter license number and date of start operation");
             String lisNum = Console.ReadLine();
             DateTime date;//the final date
             bool success = DateTime.TryParse(Console.ReadLine(), out date);
@@ -66,7 +95,7 @@ namespace dotNet5781_01_5153_4372
             }
             try
             {
-                Bus b = new Bus { LisNum = lisNum, dateStart = date, TotalKm=0, fuel=0 };//assuming a new bus's kilometerage and fuel are 0;
+                Bus b = new Bus { LicNum = lisNum, dateStart = date, TotalKm=0, fuel=0 };//assuming a new bus's kilometerage and fuel are 0;
                 buses.Add(b);
             }
             catch (Exception ex)
@@ -89,7 +118,7 @@ namespace dotNet5781_01_5153_4372
             bool exist = false;
             foreach (Bus bus in buses)
             {
-                if (bus.LisNum == lisNum)
+                if (bus.LicNum == lisNum)
                 {
                     exist = true;
                     int km = rand.Next(1, 20000);

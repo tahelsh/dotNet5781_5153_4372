@@ -77,7 +77,7 @@ namespace dotNet5781_01_5153_4372
         public DateTime LastTreat
         {
             get { return lastTreat; }
-            set { if(lastTreat <= DateTime.Now)
+            set { if(lastTreat <= DateTime.Now && lastTreat>=dateStart)
                 lastTreat = value; 
             else
                 throw new Exception("The value of last treatment is not valid");

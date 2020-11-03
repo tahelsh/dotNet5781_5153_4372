@@ -87,7 +87,7 @@ namespace dotNet5781_01_5153_4372
             String licNum = Console.ReadLine();//the lic Number
            
             //input the date of start
-            DateTime date;//the final date
+            DateTime date;//the final date of start
             bool success = DateTime.TryParse(Console.ReadLine(), out date);
             //checking if the date is valid. otherwise print ERROR
             if ((!success)|| date>DateTime.Now)
@@ -100,7 +100,7 @@ namespace dotNet5781_01_5153_4372
            
             //input total Kilometerage
             Console.WriteLine("Do you want to enter total Kilometerage- enter 'y' for yes and total km, else 'n'");
-             double totalKm = 0;//the total Kilometerage
+             double totalKm = 0;//the total Kilometerage, defult value is 0
                 if (Console.ReadLine()[0] == 'y')
                 {
                     success = double.TryParse(Console.ReadLine(), out totalKm);
@@ -113,7 +113,7 @@ namespace dotNet5781_01_5153_4372
 
             //input fuel
             Console.WriteLine("Do you want to enter fuel- enter 'y' for yes and fuel, else 'n'");
-                double fuel = 0;//the fuel
+                double fuel = 0;//the fuel, defult value is 0
                 if (Console.ReadLine()[0] == 'y')
                 {
                     success = double.TryParse(Console.ReadLine(), out fuel);
@@ -126,11 +126,11 @@ namespace dotNet5781_01_5153_4372
 
             //input the date of last treatment
             Console.WriteLine("Do you want to enter date of last treatment- enter 'y' for yes and the date, else 'n'");
-            DateTime lastTreat = date;//the date of last treatment
+            DateTime lastTreat = date;//the date of last treatment, defult value is the date of start
             if (Console.ReadLine()[0] == 'y')
             {
                 success = DateTime.TryParse(Console.ReadLine(), out lastTreat);
-                while((!success) || lastTreat > DateTime.Now)//while the date is not valid, enter date again
+                while((!success) || lastTreat > DateTime.Now || lastTreat < date)//while the date is not valid, enter date again
                 {
                     Console.WriteLine("Error, invalid date, enter again");
                     success = DateTime.TryParse(Console.ReadLine(), out lastTreat);
@@ -139,7 +139,7 @@ namespace dotNet5781_01_5153_4372
 
             //input the Kilometrage before the last treatment
             Console.WriteLine("Do you want to enter Kilometrage before the last treatment- enter 'y' for yes and Kilometrage before the last treatment, else 'n'");
-                double kmTreat = 0;//the Kilometrage before the last treatment
+                double kmTreat = 0;//the Kilometrage before the last treatment, defult value is 0
                 if (Console.ReadLine()[0] == 'y')
                 {
                     success = double.TryParse(Console.ReadLine(), out kmTreat);
@@ -150,7 +150,7 @@ namespace dotNet5781_01_5153_4372
                     }
                 }
                 //adding the bus to the list
-                Bus b = new Bus (licNum, date, totalKm, fuel, lastTreat, kmTreat);
+                Bus b = new Bus (licNum, date, totalKm, fuel, lastTreat, kmTreat);//the new bus
                 buses.Add(b);
                 Console.WriteLine("succsess");
             }

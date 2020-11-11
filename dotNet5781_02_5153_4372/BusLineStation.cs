@@ -17,14 +17,14 @@ namespace dotNet5781_02_5153_4372
             set { distance = value; }
         }
         
-        private double timeTravel;
+        private TimeSpan timeTravel;
         public TimeSpan TimeTravel
         {
             get { return timeTravel; }
             set { timeTravel = value; }
         }
 
-        public BusLineStation(string adress =" ", TimeSpan timeTravel):base(adress)
+        public BusLineStation(TimeSpan timeTravel, string adress =" "):base(adress)
         {
             this.distance = rand.NextDouble();
             this.timeTravel = timeTravel;

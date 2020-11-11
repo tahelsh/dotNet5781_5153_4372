@@ -18,7 +18,7 @@ namespace dotNet5781_02_5153_4372
         public int Code
         {
             get { return code; }
-            set { code = value; }
+            private set { code = value; }
         }
 
         private double latitude;

@@ -9,7 +9,7 @@ namespace dotNet5781_02_5153_4372
 {
     class BusLine : IComparable<BusLine>
     {
-        private List<BusLineStation> stations = new List<BusLineStation>();
+        public List<BusLineStation> stations { get; set; }
         private int lineNum;
         public int LineNum
         {

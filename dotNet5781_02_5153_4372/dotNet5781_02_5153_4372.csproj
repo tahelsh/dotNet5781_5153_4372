@@ -48,6 +48,7 @@
     <Compile Include="BusLineStation.cs" />
     <Compile Include="Areas.cs" />
     <Compile Include="BusStationException.cs" />
+    <Compile Include="IEnumerable.cs" />
     <Compile Include="Insert.cs" />
     <Compile Include="LineCollection.cs" />
     <Compile Include="Program.cs" />

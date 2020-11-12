@@ -13,7 +13,7 @@ namespace dotNet5781_02_5153_4372
     {
         static Random rand = new Random();
         private static int numCode = 0;
-        private int code;
+        protected int code;
 
         public int Code
         {
@@ -21,23 +21,33 @@ namespace dotNet5781_02_5153_4372
             private set { code = value; }
         }
 
-        private double latitude;
+       protected double latitude;
 
         public double Latitude
         {
             get { return latitude; }
-            set { latitude = value; }
+            set {
+                if (value >= 31 && value <= 33.3)
+                    latitude = value;
+                else
+                    throw new BusStationException("The latitude is not valid");
+                 }
         }
 
-        private double longitude;
+        protected double longitude;
 
         public double Longitude
         {
             get { return longitude; }
-            set { longitude = value; }
+            set {
+                if (value >= 34.3 && value <= 35.5)
+                    longitude = value;
+                else
+                    throw new BusStationException("The longitude is not valid");
+                }
         }
 
-        private string adress;
+        protected string adress;
 
         public string Adress
         {

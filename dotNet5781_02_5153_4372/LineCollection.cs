@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace dotNet5781_02_5153_4372
+{
+    class LineCollection:IEnumerable
+    {
+       
+        public List<BusLine> Lines { get; set; }
+        public LineCollection(List<BusLine> list)
+        {
+            Lines = list;
+
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return Lines.GetEnumerator();
+        }
+
+    }
+}

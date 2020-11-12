@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_5153_4372
 {
-    class BusLineStation: BusStation
+    class BusLineStation: BusStation, IComparable<BusLineStation>
     {
         static Random rand = new Random();
 
@@ -14,7 +14,13 @@ namespace dotNet5781_02_5153_4372
         public double Distance
         {
             get { return distance; }
-            set { distance = value; }
+            set
+            {
+                if (value > 0)
+                    distance = value;
+                else
+                    throw new BusStationException("the distance is not valid");
+            }
         }
         
         private TimeSpan timeTravel;
@@ -26,8 +32,12 @@ namespace dotNet5781_02_5153_4372
 
         public BusLineStation(TimeSpan timeTravel, string adress =" "):base(adress)
         {
-            this.distance = rand.NextDouble();
+            this.distance = rand.NextDouble()*(500);
             this.timeTravel = timeTravel;
+        }
+        public int CompareTo(BusLineStation other)
+        {
+            return this.Code.CompareTo(other.Code);
         }
         
 

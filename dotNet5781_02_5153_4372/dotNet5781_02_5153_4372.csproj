@@ -44,8 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusLine.cs" />
+    <Compile Include="BusLineException.cs" />
     <Compile Include="BusLineStation.cs" />
     <Compile Include="Areas.cs" />
+    <Compile Include="BusStationException.cs" />
+    <Compile Include="Insert.cs" />
+    <Compile Include="LineCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusStation.cs" />

@@ -10,4 +10,8 @@ namespace dotNet5781_02_5153_4372
     {
         General, North, South, Center, Jerusalem
     }
+    public enum Insert
+    {
+        FIRST, MIDDLE, LAST
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace dotNet5781_02_5153_4372
 {
@@ -16,10 +17,10 @@ namespace dotNet5781_02_5153_4372
 
         }
 
-        //public IEnumerator GetEnumerator()
-        //{
-        //    return Lines.GetEnumerator();
-        //}
+        public IEnumerator GetEnumerator()
+        {
+            return Lines.GetEnumerator();
+        }
 
         public void AddLine(BusLine bus)
         {

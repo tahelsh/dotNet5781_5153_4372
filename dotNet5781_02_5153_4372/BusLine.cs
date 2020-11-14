@@ -54,7 +54,7 @@ namespace dotNet5781_02_5153_4372
             }
             return "bus line:" + lineNum + " in area:" + area + "Line:" + line;
         }
-        private int Search(int code)
+        public int Search(int code)
         {
             int index = 0;
             foreach (BusLineStation stop in stations)
@@ -83,7 +83,21 @@ namespace dotNet5781_02_5153_4372
                 {
                     throw new BusLineException("the previous station entered doesn't exist");
                 }
+                Console.WriteLine("enter distance from the station you want to add to the next one.");
+                double temp;
+                while (!double.TryParse(Console.ReadLine(), out temp))
+                {
+                    Console.WriteLine("ERROR, enter distance again");
+                }
+                Console.WriteLine("enter travel time from the station you want to add to the next one.");
+                TimeSpan time;
+                while (!TimeSpan.TryParse(Console.ReadLine(), out time))
+                {
+                    Console.WriteLine("ERROR, enter time again");
+                }               
                 stations.Insert(++index, other);
+                stations[++index].Distance = temp;
+                stations[++index].TimeTravel = time;
                 return;
 
             }
@@ -95,8 +109,22 @@ namespace dotNet5781_02_5153_4372
             }
             else
             {
+                Console.WriteLine("enter distance from the station you want to add to the next one.");
+                double temp;
+                while (!double.TryParse(Console.ReadLine(), out temp))
+                {
+                    Console.WriteLine("ERROR, enter distance again");
+                }
+                Console.WriteLine("enter travel time from the station you want to add to the next one.");
+                TimeSpan time;
+                while (!TimeSpan.TryParse(Console.ReadLine(), out time))
+                {
+                    Console.WriteLine("ERROR, enter time again");
+                }
                 stations.Insert(0, other);
                 firstStation = other;
+                stations[1].Distance = temp;
+                stations[1].TimeTravel = time;
                 return;
             }
 

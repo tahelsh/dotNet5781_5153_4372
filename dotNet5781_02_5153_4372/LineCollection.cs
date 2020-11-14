@@ -48,7 +48,7 @@ namespace dotNet5781_02_5153_4372
             int counter = 0;
             foreach(BusLine b in Lines)
             {
-                if (b == bus)
+                if (b.LineNum == bus.LineNum && b.FirstStation == bus.FirstStation && b.LastStation == bus.LastStation)
                     counter++;
             }
             return counter;
@@ -58,12 +58,44 @@ namespace dotNet5781_02_5153_4372
             int index = 0;
             foreach (BusLine b in Lines)
             {
-                if (b == bus)
+                if (b.LineNum== bus.LineNum && b.FirstStation==bus.FirstStation && b.LastStation== bus.LastStation)
                     return index;
                  index++;
             }
             return -1;
         }
+        public void RemoveBus(BusLine bus)
+        {
+            int index = IndexOfBus(bus);
+            if (index == -1)
+                throw new BusLineException("the bus does not exist");
+            Lines.RemoveAt(index);
+        }
+        public List<BusLine> BusesInStation(int stationCode)
+        {
+            List<BusLine> lst = new List<BusLine>();
+            foreach(BusLine b in Lines)
+            {
+                if (b.Search(stationCode) != -1)
+                    lst.Add(b);
+            }
+            if (lst.Count == 0)
+                throw new BusStationException("there is no bus that stops in this station.");
+            return lst;
+        }
+        public List<BusLine> SortedList()
+        {
+            List<BusLine> lst = new List<BusLine>(Lines);
+            lst.Sort();
+            return lst;
+        }
+        //public BusLine this[int lineNum]
+        //{
+        //    get { return Lines[IndexOfBus(lineNum); }
+        //    set { arr[i] = value; }
+        
+        //}
+
 
 
 

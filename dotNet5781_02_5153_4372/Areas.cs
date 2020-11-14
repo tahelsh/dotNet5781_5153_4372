@@ -14,4 +14,9 @@ namespace dotNet5781_02_5153_4372
     {
         FIRST, MIDDLE, LAST
     }
+    public enum Menu
+    {
+        ADD, DELETE, SEARCH, PRINT, EXIT
+    }
+
 }

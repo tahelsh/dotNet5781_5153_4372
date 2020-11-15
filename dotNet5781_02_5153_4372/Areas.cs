@@ -8,7 +8,7 @@ namespace dotNet5781_02_5153_4372
 {
     public enum Areas
     {
-        General, North, South, Center, Jerusalem
+        General=1, North, South, Center, Jerusalem
     }
     public enum Insert
     {

@@ -29,8 +29,8 @@ namespace dotNet5781_02_5153_4372
                 throw new BusLineException("This bus is already exists twice");
             if (counter == 1)
             {
-                int index = IndexOfBus(bus);
-                if (bus.FirstStation == Lines[index].LastStation && bus.LastStation == Lines[index].FirstStation)
+                int index = GetIndexByLineNum(bus);
+                if (bus.FirstStation.Code == Lines[index].LastStation.Code && bus.LastStation.Code == Lines[index].FirstStation.Code)
                 {
                     Lines.Add(bus);
                     return;
@@ -48,7 +48,7 @@ namespace dotNet5781_02_5153_4372
             int counter = 0;
             foreach(BusLine b in Lines)
             {
-                if (b.LineNum == bus.LineNum && b.FirstStation == bus.FirstStation && b.LastStation == bus.LastStation)
+                if (b.LineNum == bus.LineNum)
                     counter++;
             }
             return counter;
@@ -64,6 +64,18 @@ namespace dotNet5781_02_5153_4372
             }
             return -1;
         }
+
+        public int GetIndexByLineNum(BusLine bus)
+        {
+            int index = 0;
+            foreach (BusLine b in Lines)
+            {
+                if (b.LineNum == bus.LineNum)
+                    return index;
+                index++;
+            }
+            return -1;
+        }
         public void RemoveBus(BusLine bus)
         {
             int index = IndexOfBus(bus);
@@ -76,7 +88,7 @@ namespace dotNet5781_02_5153_4372
             List<BusLine> lst = new List<BusLine>();
             foreach(BusLine b in Lines)
             {
-                if (b.Search(stationCode) != -1)
+                if (b.Exist(stationCode))
                     lst.Add(b);
             }
             if (lst.Count == 0)
@@ -89,12 +101,12 @@ namespace dotNet5781_02_5153_4372
             lst.Sort();
             return lst;
         }
-        //public BusLine this[int lineNum]
-        //{
-        //    get { return Lines[IndexOfBus(lineNum); }
-        //    set { arr[i] = value; }
-        
-        //}
+        public BusLine this[int lineNum]
+        {
+            get { return Lines[lineNum]; }
+            set { Lines[lineNum] = value; }
+
+        }
 
 
 

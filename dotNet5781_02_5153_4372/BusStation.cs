@@ -67,5 +67,14 @@ namespace dotNet5781_02_5153_4372
 
             return "Bus Station Code: "+code+", "+latitude+"°N "+longitude+ "°E";
         }
+        public BusStation(int code, string adress=" ")
+        {
+            if (code > numCode)
+                throw new BusStationException("There is no station that matches this station code");
+            this.Code = code;
+            this.latitude = rand.NextDouble() * (33.3 - 31) + 31;
+            this.longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
+            this.adress = adress;
+        }
     }
 }

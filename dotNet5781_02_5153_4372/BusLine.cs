@@ -39,6 +39,8 @@ namespace dotNet5781_02_5153_4372
         }
         public BusLine(int lineNum, List<BusLineStation> stations, Areas area)
         {
+            if (stations.Count < 2)
+                throw new BusLineException("There is less than 2 stations");
             this.lineNum = lineNum;
             this.area = area;
             this.stations = stations;
@@ -47,12 +49,12 @@ namespace dotNet5781_02_5153_4372
         }
         public override string ToString()
         {
-            string line = "";
+            string route = "";
             foreach (BusLineStation stop in stations)
             {
-                line += (stop.ToString() + "=>");
+                route += (stop.Code + "=>");
             }
-            return "bus line:" + lineNum + " in area:" + area + "Line:" + line;
+            return "bus line:" + lineNum + " in area:" + area + " Route:" + route;
         }
         public int Search(int code)
         {
@@ -97,7 +99,7 @@ namespace dotNet5781_02_5153_4372
                 }               
                 stations.Insert(++index, other);
                 stations[++index].Distance = temp;
-                stations[++index].TimeTravel = time;
+                stations[index].TimeTravel = time;
                 return;
 
             }
@@ -147,18 +149,18 @@ namespace dotNet5781_02_5153_4372
             stations.RemoveAt(index);
 
         }
-        public bool exist(BusLineStation other)//the function checks if a station
+        public bool Exist(int code)//the function checks if a station
         {
             foreach (BusLineStation s in stations)
             {
-                if (s == other)
+                if (s.Code == code)
                     return true;
             }
             return false;
         }
         public double Distance(BusLineStation b1, BusLineStation b2)
         {
-            if (!(exist(b1) && exist(b2)))
+            if (!(Exist(b1.Code) && Exist(b2.Code)))
             {
                 throw new BusLineException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
@@ -173,7 +175,7 @@ namespace dotNet5781_02_5153_4372
         }
         public TimeSpan travelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
         {
-            if (!(exist(b1) && exist(b2)))
+            if (!(Exist(b1.Code) && Exist(b2.Code)))
             {
                 throw new BusLineException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
@@ -186,15 +188,19 @@ namespace dotNet5781_02_5153_4372
             }
             return time;
         }
-        public BusLine SubRoute(BusLineStation b1, BusLineStation b2)
+        public BusLine SubRoute(int stop1, int stop2)
         {
-            if (!(exist(b1) && exist(b2)))
+            if (!(Exist(stop1) && Exist(stop2)))
             {
                 throw new BusLineException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
             List<BusLineStation> route = new List<BusLineStation>();
-            int index1 = Search(b1.Code);
-            int index2 = Search(b2.Code);
+            int index1 = Search(stop1);
+            int index2 = Search(stop2);
+            if(index1>=index2)
+            {
+                throw new BusStationException("there is no route");
+            }
             for (int i = index1; i <= index2; i++)
             {
                 route.Add(stations[i]);

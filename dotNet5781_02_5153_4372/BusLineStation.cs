@@ -35,6 +35,11 @@ namespace dotNet5781_02_5153_4372
             this.distance = rand.NextDouble()*(500);
             this.timeTravel = timeTravel;
         }
+        public BusLineStation(int code, TimeSpan timeTravel, string adress = " ") : base(code,adress)
+        {
+            this.distance = rand.NextDouble() * (500);
+            this.timeTravel = timeTravel;
+        }
         public int CompareTo(BusLineStation other)
         {
             return this.Code.CompareTo(other.Code);

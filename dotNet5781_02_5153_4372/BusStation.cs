@@ -15,7 +15,7 @@ namespace dotNet5781_02_5153_4372
         private static int counter = 0;
         protected int code;
 
-        public int Code
+        public int Code //station code
         {
             get { return code; }
             set {if (code <= counter)
@@ -25,7 +25,7 @@ namespace dotNet5781_02_5153_4372
             }
         }
 
-       protected double latitude;
+       protected double latitude;//latitude of bus station
 
         public double Latitude
         {
@@ -38,7 +38,7 @@ namespace dotNet5781_02_5153_4372
                  }
         }
 
-        protected double longitude;
+        protected double longitude;//longitude of bus station
 
         public double Longitude
         {
@@ -51,7 +51,7 @@ namespace dotNet5781_02_5153_4372
                 }
         }
 
-        protected string adress;
+        protected string adress;//adress of station (optional)
 
         public string Adress
         {
@@ -59,21 +59,21 @@ namespace dotNet5781_02_5153_4372
             set { adress = value; }
         }
 
-        public BusStation(string adress = " ")
+        public BusStation(string adress = " ")//constructor for abus station (the adress field is optional)
         {
             code = counter++;
             latitude = rand.NextDouble() * (33.3 - 31) + 31;
             longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
             this.adress = adress;
         }
-       public BusStation(BusStation b)
+       public BusStation(BusStation b)//copy constructor
         {
             this.Code = b.Code;
             this.latitude = b.Latitude;
             this.longitude = b.longitude;
             this.adress = b.Adress;
         }
-        public override String ToString()
+        public override String ToString()//preparing an object for print
         {
 
             return "Bus Station Code: " + code + ", " + latitude + "°N " + longitude + "°E";

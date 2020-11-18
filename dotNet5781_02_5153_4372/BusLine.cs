@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_5153_4372
 {
-    class BusLine : IComparable<BusLine>
+    class BusLine : IComparable<BusLine>//inheritting the IComparable interface.
     {
-        public List<BusLineStation> stations { get; set; }
-        private int lineNum;
+        public List<BusLineStation> stations { get; set; }//list of all the stations
+        private int lineNum;//the bus line number
         public int LineNum
         {
             get { return lineNum; }
@@ -22,26 +22,26 @@ namespace dotNet5781_02_5153_4372
         }
 
         private BusLineStation firstStation;
-        public BusLineStation FirstStation
+        public BusLineStation FirstStation//the first station of a bus line's route
         {
             get { return firstStation; }
             set { firstStation = value; }
         }
 
         private BusLineStation lastStation;
-        public BusLineStation LastStation
+        public BusLineStation LastStation//the last station of a busline's route
         {
             get { return lastStation; }
             set { lastStation = value; }
         }
 
         private Areas area;
-        public Areas Area
+        public Areas Area//the bus line route's area
         {
             get { return area; }
             set { area = value; }
         }
-        public BusLine(int lineNum, List<BusLineStation> stations, Areas area)
+        public BusLine(int lineNum, List<BusLineStation> stations, Areas area)//constructor
         {
             if (stations.Count < 2)
                 throw new BusLineException("There is less than 2 stations");
@@ -51,7 +51,7 @@ namespace dotNet5781_02_5153_4372
             this.firstStation = this.stations[0];
             this.lastStation = this.stations[stations.Count - 1];
         }
-        public override string ToString()
+        public override string ToString()//preparing a station for printing
         {
             string route = "";
             foreach (BusLineStation stop in stations)
@@ -60,7 +60,7 @@ namespace dotNet5781_02_5153_4372
             }
             return "bus line:" + lineNum + " in area:" + area + "\nRoute:" + route;
         }
-        public int Search(int code)
+        public int Search(int code)//searching a station by it's code
         {
             int index = 0;
             foreach (BusLineStation stop in stations)
@@ -74,11 +74,11 @@ namespace dotNet5781_02_5153_4372
             }
             return -1;
         }
-        public void AddStation(BusLineStation other, Insert choice)
+        public void AddStation(BusLineStation other, Insert choice)//adding a station to a bus route.
         {
-            if (Exist(other.Code))
+            if (Exist(other.Code))//the new station must exist if the stations list. if it doesn't, throw exception.
                 throw new BusLineException("the station is already exists in this bus line");
-            if (choice == Insert.MIDDLE)
+            if (choice == Insert.MIDDLE)//if the station has to be inserted in the middle of the route
             {
                 Console.WriteLine("enter the code of the station before the station you want to add");
                 int prevStation;
@@ -87,18 +87,18 @@ namespace dotNet5781_02_5153_4372
                     throw new BusLineException("ERROR, invalid input");
                 }
                 int index = Search(prevStation);
-                if (index == -1)
+                if (index == -1)//if the station couldn't be found, index=-1
                 {
                     throw new BusLineException("the previous station entered doesn't exist");
                 }
                 Console.WriteLine("enter distance from the station you want to add to the next one.");
-                double temp;
+                double temp;//the distance from the station has to be added to the next one.
                 while (!double.TryParse(Console.ReadLine(), out temp))
                 {
                     Console.WriteLine("ERROR, enter distance again");
                 }
                 Console.WriteLine("enter travel time from the station you want to add to the next one.");
-                TimeSpan time;
+                TimeSpan time;//the travel time fron the station has to be added to the next one.
                 while (!TimeSpan.TryParse(Console.ReadLine(), out time))
                 {
                     Console.WriteLine("ERROR, enter time again");
@@ -109,13 +109,13 @@ namespace dotNet5781_02_5153_4372
                 return;
 
             }
-            if (choice == Insert.LAST)
+            if (choice == Insert.LAST)//if the station has to be added at the end of the route
             {
                 stations.Add(other);
                 lastStation = other;
                 return;
             }
-            else
+            else//if the station has to be added in the beginning of the route.
             {
                 Console.WriteLine("enter distance from the station you want to add to the next one.");
                 double temp;
@@ -164,9 +164,9 @@ namespace dotNet5781_02_5153_4372
                 stations[index + 1].Distance = distance;
                 stations[index + 1].TimeTravel = time;
             }
-            stations.RemoveAt(index);
+            stations.RemoveAt(index);//removing the station in the place 'index' from the stations list
         }
-        public bool Exist(int code)//the function checks if a station
+        public bool Exist(int code)//checking if the station exists in  the stations list
         {
             foreach (BusLineStation s in stations)
             {
@@ -175,9 +175,9 @@ namespace dotNet5781_02_5153_4372
             }
             return false;
         }
-        public double Distance(BusLineStation b1, BusLineStation b2)
+        public double Distance(BusLineStation b1, BusLineStation b2)//distance between 2 bus stations
         {
-            if (!(Exist(b1.Code) && Exist(b2.Code)))
+            if (!(Exist(b1.Code) && Exist(b2.Code)))//if one of the stations or both dont exist in the stations list, throw exception
             {
                 throw new BusLineException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
@@ -205,7 +205,7 @@ namespace dotNet5781_02_5153_4372
             }
             return time;
         }
-        public BusLine SubRoute(int stop1, int stop2)
+        public BusLine SubRoute(int stop1, int stop2)//creating a sub route presented by a bus line
         {
             if (!(Exist(stop1) && Exist(stop2)))
             {

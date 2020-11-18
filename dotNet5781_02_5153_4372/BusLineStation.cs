@@ -10,7 +10,7 @@ namespace dotNet5781_02_5153_4372
     {
         static Random rand = new Random();
 
-        private double distance;
+        private double distance;//distance from previous station
         public double Distance
         {
             get { return distance; }
@@ -19,11 +19,11 @@ namespace dotNet5781_02_5153_4372
                 if (value >= 0)
                     distance = value;
                 else
-                    throw new BusStationException("the distance is not valid");
+                    throw new BusStationException("the distance is not valid");//throwing an exception while the value entered for distance isn't valid
             }
         }
         
-        private TimeSpan timeTravel;
+        private TimeSpan timeTravel;//the travel time from the last station to the current station.
         public TimeSpan TimeTravel
         {
             get { return timeTravel; }
@@ -31,17 +31,17 @@ namespace dotNet5781_02_5153_4372
         }
 
 
-        public BusLineStation(TimeSpan timeTravel, string adress =" "):base(adress)
+        public BusLineStation(TimeSpan timeTravel, string adress =" "):base(adress)//constructor
         {
             this.distance = rand.NextDouble()*(500);
             this.timeTravel = timeTravel;
         }
-        public BusLineStation(BusStation b, TimeSpan time):base(b)
+        public BusLineStation(BusStation b, TimeSpan time):base(b)//copy constructor
         {
             this.distance = rand.NextDouble() * (500);
             this.timeTravel = time;
         }
-        public int CompareTo(BusLineStation other)
+        public int CompareTo(BusLineStation other)//implementation of IComparable interface. comparing between 2 station by their codes
         {
             return this.Code.CompareTo(other.Code);
         }

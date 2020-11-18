@@ -25,7 +25,7 @@ namespace dotNet5781_02_5153_4372
         public void AddLine(BusLine bus)
         {
             if (IsExist(bus.stations))
-                throw new BusLineException("there is already bus with this route");
+                throw new BusLineException("there is already bus line with this route");
             int counter = Counter(bus);
             if (counter == 2)
                 throw new BusLineException("This bus line number is already exists twice");
@@ -119,10 +119,10 @@ namespace dotNet5781_02_5153_4372
             get 
             {
                 List<BusLine> bsl = Lines.FindAll(item => item.LineNum == lineNum);
-                if (bsl.Count != 0)
+                if (bsl.Count!= 0)
                     return bsl;
                 else
-                    throw new BusLineException("There is no buses with tis line number");
+                    throw new BusLineException("There is no buses with this line number");
             
             
             }

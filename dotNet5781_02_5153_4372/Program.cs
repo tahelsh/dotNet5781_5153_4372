@@ -126,7 +126,6 @@ namespace dotNet5781_02_5153_4372
                     }
                 }
                 BusStation stopTmp = stations[index];
-                //BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) {Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude};
                 BusLineStation stop = new BusLineStation(stopTmp, time);
                 if (route.Count == 0)
                     stop.Distance = 0;
@@ -184,7 +183,6 @@ namespace dotNet5781_02_5153_4372
                         time = TimeSpan.Parse(Console.ReadLine());
                     }
                     BusStation stopTmp = stations[index];
-                    //BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) { Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude };
                     BusLineStation stop = new BusLineStation(stopTmp, time);
                     b.AddStation(stop, c);
                     return;

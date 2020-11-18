@@ -13,13 +13,11 @@ namespace dotNet5781_02_5153_4372
         static void Main(string[] args)
         {
             List<BusStation> stations = new List<BusStation>();
-            for(int i=0; i<40; i++)
-            {
-                stations.Add(new BusStation());
-            }
             List<BusLine> lines = new List<BusLine>();
             LineCollection linesCollection = new LineCollection(lines);
             //intialization of both lists.
+            BuildStationsAndBuses.createStationAndBusesLists(ref stations, linesCollection);
+
             Menu choice;
             do
             {

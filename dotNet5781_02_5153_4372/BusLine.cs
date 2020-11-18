@@ -140,6 +140,8 @@ namespace dotNet5781_02_5153_4372
         }
         public void DeleteStation(int code)//this function gets a station code, looks for the station and deletes it.
         {
+            if (stations.Count <= 2)
+                throw new BusLineException("There is no option to delete the station because there is only 2 stations on this bus line");
             int index = Search(code);
             if (index == -1)
             {

@@ -13,7 +13,7 @@ namespace dotNet5781_02_5153_4372
         public List<BusLine> Lines { get; set; }
         public LineCollection(List<BusLine> list)
         {
-            Lines = list;
+            Lines = new List<BusLine>(list);
 
         }
 
@@ -24,23 +24,32 @@ namespace dotNet5781_02_5153_4372
 
         public void AddLine(BusLine bus)
         {
+            if (IsExist(bus.stations))
+                throw new BusLineException("there is already bus with this route");
             int counter = Counter(bus);
             if (counter == 2)
-                throw new BusLineException("This bus is already exists twice");
-            if (counter == 1)
+                throw new BusLineException("This bus line number is already exists twice");
+            else //counter == 1/0
             {
-                int index = GetIndexByLineNum(bus);
-                if (bus.FirstStation.Code == Lines[index].LastStation.Code && bus.LastStation.Code == Lines[index].FirstStation.Code)
-                {
-                    Lines.Add(bus);
-                    return;
-                }
-                else
-                    throw new BusLineException("The first and last stations of the buses don't match");
-            }
-            else//counter==0
                 Lines.Add(bus);
+                return;
+            }
+        }
 
+        public bool IsExist(List<BusLineStation> list)
+        {
+            foreach (BusLine b in Lines)
+            {
+                int i;
+                for(i=0; i<list.Count && i<b.stations.Count; i++)
+                {
+                    if (list[i].Code != b.stations[i].Code)
+                        break;
+                }
+                if ((i == list.Count) || (i == b.stations.Count))
+                    return true;
+            }
+            return false;
         }
 
         public int Counter(BusLine bus)
@@ -65,7 +74,7 @@ namespace dotNet5781_02_5153_4372
             return -1;
         }
 
-        public int GetIndexByLineNum(BusLine bus)
+        /*public int GetIndexByLineNum(BusLine bus)
         {
             int index = 0;
             foreach (BusLine b in Lines)
@@ -76,6 +85,7 @@ namespace dotNet5781_02_5153_4372
             }
             return -1;
         }
+        */
         public void RemoveBus(BusLine bus)
         {
             int index = IndexOfBus(bus);
@@ -97,14 +107,26 @@ namespace dotNet5781_02_5153_4372
         }
         public List<BusLine> SortedList()
         {
-            List<BusLine> lst = new List<BusLine>(Lines);
-            lst.Sort();
-            return lst;
+            BusLine[] busLineArr = new BusLine[Lines.Count];
+            Lines.CopyTo(busLineArr);
+            List<BusLine> sortedlist = busLineArr.ToList();
+            sortedlist.Sort();
+            return sortedlist;
         }
-        public BusLine this[int lineNum]
+        
+        public List<BusLine> this[int lineNum]
         {
-            get { return Lines[lineNum]; }
-            set { Lines[lineNum] = value; }
+            get 
+            {
+                List<BusLine> bsl = Lines.FindAll(item => item.LineNum == lineNum);
+                if (bsl.Count != 0)
+                    return bsl;
+                else
+                    throw new BusLineException("There is no buses with tis line number");
+            
+            
+            }
+            //set { Lines[lineNum] = value; }
 
         }
 

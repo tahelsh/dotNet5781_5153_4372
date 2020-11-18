@@ -14,7 +14,11 @@ namespace dotNet5781_02_5153_4372
         public int LineNum
         {
             get { return lineNum; }
-            set { lineNum = value; }
+            set { if (lineNum > 0)
+                    lineNum = value;
+                else
+                    throw new BusLineException("The number of the bus line is invalid");
+            }
         }
 
         private BusLineStation firstStation;
@@ -43,18 +47,18 @@ namespace dotNet5781_02_5153_4372
                 throw new BusLineException("There is less than 2 stations");
             this.lineNum = lineNum;
             this.area = area;
-            this.stations = stations;
-            this.firstStation = stations[0];
-            this.lastStation = stations[stations.Count - 1];
+            this.stations = new List<BusLineStation>(stations);
+            this.firstStation = this.stations[0];
+            this.lastStation = this.stations[stations.Count - 1];
         }
         public override string ToString()
         {
             string route = "";
             foreach (BusLineStation stop in stations)
             {
-                route += (stop.Code + "=>");
+                route += ("=>" + stop.Code);
             }
-            return "bus line:" + lineNum + " in area:" + area + " Route:" + route;
+            return "bus line:" + lineNum + " in area:" + area + "\nRoute:" + route;
         }
         public int Search(int code)
         {
@@ -72,6 +76,8 @@ namespace dotNet5781_02_5153_4372
         }
         public void AddStation(BusLineStation other, Insert choice)
         {
+            if (Exist(other.Code))
+                throw new BusLineException("the station is already exists in this bus line");
             if (choice == Insert.MIDDLE)
             {
                 Console.WriteLine("enter the code of the station before the station you want to add");
@@ -125,6 +131,7 @@ namespace dotNet5781_02_5153_4372
                 }
                 stations.Insert(0, other);
                 firstStation = other;
+                stations[0].Distance = 0;//the distance of the first stop is 0
                 stations[1].Distance = temp;
                 stations[1].TimeTravel = time;
                 return;
@@ -138,16 +145,26 @@ namespace dotNet5781_02_5153_4372
             {
                 throw new BusLineException("the previous station entered doesn't exist");
             }
-            if (index == 0)
-            {
-                firstStation = stations[1];
-            }
             if (index == stations.Count - 1)
             {
                 lastStation = stations[stations.Count - 2];
             }
+            else if (index == 0)
+            {
+                firstStation = stations[1];
+                stations[1].TimeTravel = new TimeSpan(0,0,0);
+                stations[1].Distance = 0;
+            }
+            else
+            {
+                Console.WriteLine("enter the time travel from the previous station of the station after that you want to delete");
+                TimeSpan time = TimeSpan.Parse(Console.ReadLine());
+                Console.WriteLine("enter the distance from the previous station of the station after that you want to delete");
+                double distance= double.Parse(Console.ReadLine());
+                stations[index + 1].Distance = distance;
+                stations[index + 1].TimeTravel = time;
+            }
             stations.RemoveAt(index);
-
         }
         public bool Exist(int code)//the function checks if a station
         {
@@ -173,7 +190,7 @@ namespace dotNet5781_02_5153_4372
             }
             return distance;
         }
-        public TimeSpan travelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
+        public TimeSpan TravelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
         {
             if (!(Exist(b1.Code) && Exist(b2.Code)))
             {
@@ -209,8 +226,8 @@ namespace dotNet5781_02_5153_4372
         }
         public int CompareTo(BusLine other)//the function compares between two bus lines
         {
-            TimeSpan t1 = travelTime(this.FirstStation, this.LastStation);
-            TimeSpan t2 = travelTime(other.FirstStation, other.LastStation);
+            TimeSpan t1 = TravelTime(this.FirstStation, this.LastStation);
+            TimeSpan t2 = TravelTime(other.FirstStation, other.LastStation);
             return t1.CompareTo(t2);
         }
 

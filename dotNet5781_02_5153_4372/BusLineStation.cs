@@ -16,7 +16,7 @@ namespace dotNet5781_02_5153_4372
             get { return distance; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                     distance = value;
                 else
                     throw new BusStationException("the distance is not valid");
@@ -30,21 +30,20 @@ namespace dotNet5781_02_5153_4372
             set { timeTravel = value; }
         }
 
+
         public BusLineStation(TimeSpan timeTravel, string adress =" "):base(adress)
         {
             this.distance = rand.NextDouble()*(500);
             this.timeTravel = timeTravel;
         }
-        public BusLineStation(int code, TimeSpan timeTravel, string adress = " ") : base(code,adress)
+        public BusLineStation(BusStation b, TimeSpan time):base(b)
         {
             this.distance = rand.NextDouble() * (500);
-            this.timeTravel = timeTravel;
+            this.timeTravel = time;
         }
         public int CompareTo(BusLineStation other)
         {
             return this.Code.CompareTo(other.Code);
         }
-        
-
     }
 }

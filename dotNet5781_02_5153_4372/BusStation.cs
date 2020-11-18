@@ -12,13 +12,17 @@ namespace dotNet5781_02_5153_4372
     class BusStation
     {
         static Random rand = new Random();
-        private static int numCode = 0;
+        private static int counter = 0;
         protected int code;
 
         public int Code
         {
             get { return code; }
-            set { code = value; }
+            set {if (code <= counter)
+                    code = value;
+                else
+                    throw new BusStationException("the code of the station is invalid");
+            }
         }
 
        protected double latitude;
@@ -57,24 +61,22 @@ namespace dotNet5781_02_5153_4372
 
         public BusStation(string adress = " ")
         {
-            code = numCode++;
+            code = counter++;
             latitude = rand.NextDouble() * (33.3 - 31) + 31;
             longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
             this.adress = adress;
         }
+       public BusStation(BusStation b)
+        {
+            this.Code = b.Code;
+            this.latitude = b.Latitude;
+            this.longitude = b.longitude;
+            this.adress = b.Adress;
+        }
         public override String ToString()
         {
 
-            return "Bus Station Code: "+code+", "+latitude+"°N "+longitude+ "°E";
-        }
-        public BusStation(int code, string adress=" ")
-        {
-            if (code > numCode)
-                throw new BusStationException("There is no station that matches this station code");
-            this.Code = code;
-            this.latitude = rand.NextDouble() * (33.3 - 31) + 31;
-            this.longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
-            this.adress = adress;
+            return "Bus Station Code: " + code + ", " + latitude + "°N " + longitude + "°E";
         }
     }
 }

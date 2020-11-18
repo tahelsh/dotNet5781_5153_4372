@@ -80,7 +80,7 @@ namespace dotNet5781_02_5153_4372
                         {
                             if (ch == 'a')
                                 LinesInStation(linesCollection);
-                            if (ch == 'b')
+                            else if (ch == 'b')
                                 BusesInRoute(linesCollection);
                             else
                                 Console.WriteLine("ERROR, invalid choice");
@@ -116,14 +116,20 @@ namespace dotNet5781_02_5153_4372
                 int index = IndexOfStation(stations, code);
                 if (index == -1)
                     throw new BusStationException("The station does not exist");
-                Console.WriteLine("enter travel time from the previous station.");
-                TimeSpan time;
-                while (!TimeSpan.TryParse(Console.ReadLine(), out time))
+                TimeSpan time = new TimeSpan(0, 0, 0);
+                if (route.Count != 0)
                 {
-                    Console.WriteLine("ERROR, enter time again");
+                    Console.WriteLine("enter travel time from the previous station.");
+                    while (!TimeSpan.TryParse(Console.ReadLine(), out time))
+                    {
+                        Console.WriteLine("ERROR, enter time again");
+                    }
                 }
                 BusStation stopTmp = stations[index];
-                BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) {Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude};
+                //BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) {Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude};
+                BusLineStation stop = new BusLineStation(stopTmp, time);
+                if (route.Count == 0)
+                    stop.Distance = 0;
                 route.Add(stop);
                 Console.WriteLine("enter the codes of stations, for ending enter -1");
                 code = int.Parse(Console.ReadLine());
@@ -137,7 +143,6 @@ namespace dotNet5781_02_5153_4372
             }
             collection.AddLine(new BusLine(lineNum, route, area));
         }
-
         public static int IndexOfStation(List<BusStation> list, int code)
         {
             int index = 0;
@@ -164,16 +169,23 @@ namespace dotNet5781_02_5153_4372
                     int index = IndexOfStation(stations, code);
                     if (index == -1)
                         throw new BusStationException("the station does not exist");
-                    Console.WriteLine("enter travel time from previous station");
-                    TimeSpan time = TimeSpan.Parse(Console.ReadLine());
-                    BusStation stopTmp = stations[index];
-                    BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) { Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude };
+                    if (b.Exist(code))
+                        throw new BusLineException("the station is already exists in this bus line");
                     Console.WriteLine("enter 0: for adding in the begining, 1: for adding in middle, 2: for adding in the end");
                     Insert c;
                     while (!Insert.TryParse(Console.ReadLine(), out c))
                     {
                         Console.WriteLine("ERROR, enter the choice again");
                     }
+                    TimeSpan time = new TimeSpan(0,0,0);
+                    if (c != Insert.FIRST)//if the stop is in the begginig so the time fro the previous stop is 0
+                    {
+                        Console.WriteLine("enter travel time from previous station");
+                        time = TimeSpan.Parse(Console.ReadLine());
+                    }
+                    BusStation stopTmp = stations[index];
+                    //BusLineStation stop = new BusLineStation(stopTmp.Code, time, stopTmp.Adress) { Latitude = stopTmp.Latitude, Longitude = stopTmp.Longitude };
+                    BusLineStation stop = new BusLineStation(stopTmp, time);
                     b.AddStation(stop, c);
                     return;
                 }
@@ -265,7 +277,7 @@ namespace dotNet5781_02_5153_4372
                 foreach (BusLine b in collection)
                 {
                     if (b.Exist(s.Code))
-                        Console.WriteLine(b);
+                        Console.WriteLine(b.LineNum);
                 }
             }
         }

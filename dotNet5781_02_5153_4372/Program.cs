@@ -98,6 +98,7 @@ choose one of the following options:
                 }
             } while (choice != Menu.EXIT);
         }
+        #region AddNewBus
         public static void AddNewBus(LineCollection collection, List<BusStation> stations)
         {
             Console.WriteLine("enter the line number");
@@ -136,6 +137,9 @@ choose one of the following options:
             }
             collection.AddLine(new BusLine(lineNum, route, area));//adding the bus line to the collection
         }
+        #endregion
+
+        #region IndexOfStation
         public static int IndexOfStation(List<BusStation> list, int code)
         {
             int index = 0;//the index of the station
@@ -147,6 +151,9 @@ choose one of the following options:
             }
             return -1;//if the stations does not exist in the route
         }
+        #endregion
+        
+        #region AddNewStation
         public static void AddNewStation(LineCollection collection, List<BusStation> stations)
         {
             Console.WriteLine("enter line number, first station and last station.");
@@ -185,6 +192,9 @@ choose one of the following options:
             throw new BusLineException("the bus line does not exist");
 
         }
+        #endregion
+
+        #region DeleteBus
         public static void DeleteBus(LineCollection collection)
         {
             Console.WriteLine("enter line number, first station and last station of the bus line you want to delete.");
@@ -201,6 +211,9 @@ choose one of the following options:
             }
             throw new BusLineException("the bus line does not exist");
         }
+        #endregion
+
+        #region RemoveStation
         public static void RemoveStation(LineCollection collection)
         {
             Console.WriteLine("enter line number, first station and last station of the bus line.");
@@ -219,16 +232,22 @@ choose one of the following options:
             }
             throw new BusLineException("the bus line does not exist");
         }
+        #endregion
+        
+        #region LinesInStation
         public static void LinesInStation(LineCollection collection)
         {
             Console.WriteLine("enter the code of the station");
-            int code = int.Parse(Console.ReadLine());//the code od the station
+            int code = int.Parse(Console.ReadLine());//the code of the station
             List<BusLine> buses = collection.BusesInStation(code);//list of all the buses that pass in this station
             foreach (BusLine b in buses)//prints all the buses in this station
             {
                 Console.WriteLine(b.LineNum);
             }
         }
+        #endregion
+       
+        #region BusesInRoute
         public static void BusesInRoute(LineCollection collection)
         {
             Console.WriteLine("enter the code of the source station");
@@ -243,17 +262,21 @@ choose one of the following options:
                     BusLine busRoute = b.SubRoute(code1, code2);
                     buses.Add(busRoute);
                 }
-                catch (BusStationException) { }//if the stations do not exist in the bus 
+                catch (BusLineException) { }//if the stations do not exist in the bus 
             }
             if (buses.Count == 0)//if there is no bus that pass on those stations
                 throw new BusLineException("There is no line that matches this route");
             LineCollection sortedByTime = new LineCollection(buses);//sort the buses by their travel time
             buses = sortedByTime.SortedList();
+            Console.WriteLine("The buses by their travel time:");
             foreach (BusLine bus in buses)//print the buses
             {
                 Console.WriteLine(bus.LineNum);
             }
         }
+        #endregion
+
+        #region PrintAllLines
         public static void PrintAllLines(LineCollection collection)//print all the buses
         {
             foreach (BusLine b in collection)
@@ -261,11 +284,14 @@ choose one of the following options:
                 Console.WriteLine(b);
             }
         }
+        #endregion
+
+        #region PrintListStations
         public static void PrintListStations(List<BusStation> stations, LineCollection collection)
         {
             foreach (BusStation s in stations)
             {
-                Console.WriteLine(s);//print each station with all the buses that pass on it
+                Console.WriteLine("In station "+ s+ ":");//print each station with all the buses that pass on it
                 foreach (BusLine b in collection)
                 {
                     if (b.Exist(s.Code))
@@ -273,5 +299,6 @@ choose one of the following options:
                 }
             }
         }
+        #endregion
     }
 }

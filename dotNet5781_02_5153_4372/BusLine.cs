@@ -45,6 +45,8 @@ namespace dotNet5781_02_5153_4372
         {
             if (stations.Count < 2)
                 throw new BusLineException("There is less than 2 stations");
+            if (lineNum < 0)
+                throw new BusLineException("The number of the bus line is invalid");
             this.lineNum = lineNum;
             this.area = area;
             this.stations = new List<BusLineStation>(stations);
@@ -216,7 +218,7 @@ namespace dotNet5781_02_5153_4372
             List<BusLineStation> route = new List<BusLineStation>();
             int index1 = Search(stop1);
             int index2 = Search(stop2);
-            if(index1>=index2)
+            if(index1 >= index2)
             {
                 throw new BusStationException("there is no route");
             }

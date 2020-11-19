@@ -35,7 +35,6 @@ namespace dotNet5781_02_5153_4372
                 return;
             }
         }
-
         public bool IsExist(List<BusLineStation> list)
         {
             foreach (BusLine b in Lines)
@@ -51,7 +50,6 @@ namespace dotNet5781_02_5153_4372
             }
             return false;
         }
-
         public int Counter(BusLine bus)//return how many buses with the line number of the bus that it got there are in the collection
         {
             int counter = 0;

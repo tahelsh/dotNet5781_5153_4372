@@ -231,7 +231,7 @@ namespace dotNet5781_02_5153_4372
         public int CompareTo(BusLine other)//the function compares between two bus lines
         {
             TimeSpan t1 = TravelTime(this.FirstStation, this.LastStation);
-            TimeSpan t2 = TravelTime(other.FirstStation, other.LastStation);
+            TimeSpan t2 = other.TravelTime(other.FirstStation, other.LastStation);
             return t1.CompareTo(t2);
         }
 

@@ -29,12 +29,18 @@ namespace dotNet5781_02_5153_4372
         /// <param name="bus">a bus</param>
         public void AddLine(BusLine bus)
         {
-            if (IsExist(bus.stations))//if there is a route like the bus in the collection
+            if (IsRouteExist(bus.stations))//if there is a route like the bus in the collection
                 throw new BusLineException("there is already bus line with this route");
             int counter = Counter(bus);//how many buses with this line number there are in the collection
             if (counter == 2)//if there is 2 buses
                 throw new BusLineException("This bus line number is already exists twice");
-            else //counter == 1/0
+            else if (counter == 1)//if there is 1 bus line
+            {
+                int index = IndexOfBus(bus.LineNum);
+                if (Lines[index].Area != bus.Area)
+                    throw new BusLineException("the travel area of the two bus lines are not the same");
+            }
+            else //counter=0
             {
                 Lines.Add(bus);
                 return;
@@ -46,7 +52,7 @@ namespace dotNet5781_02_5153_4372
         /// </summary>
         /// <param name="list">a route</param>
         /// <returns>if there is a bus with this route</returns>
-        public bool IsExist(List<BusLineStation> list)
+        public bool IsRouteExist(List<BusLineStation> list)
         {
             foreach (BusLine b in Lines)
             {
@@ -67,7 +73,7 @@ namespace dotNet5781_02_5153_4372
         /// </summary>
         /// <param name="bus">a bus line</param>
         /// <returns></returns>
-        public int Counter(BusLine bus) 
+        private int Counter(BusLine bus) 
         {
             int counter = 0;
             foreach(BusLine b in Lines)
@@ -83,7 +89,7 @@ namespace dotNet5781_02_5153_4372
         /// </summary>
         /// <param name="bus">a bus line</param>
         /// <returns></returns>
-        public int IndexOfBus(BusLine bus)
+        private int IndexOfBus(BusLine bus)
         {
             int index = 0;
             foreach (BusLine b in Lines)
@@ -93,6 +99,23 @@ namespace dotNet5781_02_5153_4372
                  index++;
             }
             return -1;
+        }
+
+        /// <summary>
+        /// return the index of a bus in the collection, if the bus does not exist, the function return -1
+        /// </summary>
+        /// <param name="numLine">a line number a bus</param>
+        /// <returns></returns>
+        private int IndexOfBus(int numLine)
+        {
+            int index = 0;//the index of the bus in the line
+            foreach (BusLine b in Lines)
+            {
+                if (b.LineNum == numLine)
+                    return index;
+                index++;
+            }
+            return -1;//if the bus does not exist in the list of lines
         }
         
         /// <summary>
@@ -152,9 +175,6 @@ namespace dotNet5781_02_5153_4372
             //set { Lines[lineNum] = value; }
 
         }
-
-
-
 
     }
 }

@@ -99,6 +99,11 @@ choose one of the following options:
             } while (choice != Menu.EXIT);
         }
         #region AddNewBus
+        /// <summary>
+        /// adding new bus to the collection
+        /// </summary>
+        /// <param name="collection">a collection of buses</param>
+        /// <param name="stations">a list of all stations that exist</param>
         public static void AddNewBus(LineCollection collection, List<BusStation> stations)
         {
             Console.WriteLine("enter the line number");
@@ -140,6 +145,12 @@ choose one of the following options:
         #endregion
 
         #region IndexOfStation
+        /// <summary>
+        /// search the index of a station in the list of the stations
+        /// </summary>
+        /// <param name="list">a list of stations</param>
+        /// <param name="code">a code of a station</param>
+        /// <returns>the index of the station in the list of the stations</returns>
         public static int IndexOfStation(List<BusStation> list, int code)
         {
             int index = 0;//the index of the station
@@ -152,8 +163,13 @@ choose one of the following options:
             return -1;//if the stations does not exist in the route
         }
         #endregion
-        
+
         #region AddNewStation
+        /// <summary>
+        /// adding new station to a roue of a bus line
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
+        /// <param name="stations">a list of all stations that exist</param>
         public static void AddNewStation(LineCollection collection, List<BusStation> stations)
         {
             Console.WriteLine("enter line number, first station and last station.");
@@ -195,6 +211,10 @@ choose one of the following options:
         #endregion
 
         #region DeleteBus
+        /// <summary>
+        /// deleting a bus line fron the collection
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
         public static void DeleteBus(LineCollection collection)
         {
             Console.WriteLine("enter line number, first station and last station of the bus line you want to delete.");
@@ -214,6 +234,10 @@ choose one of the following options:
         #endregion
 
         #region RemoveStation
+        /// <summary>
+        /// deleting a station from a route of a bus line
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
         public static void RemoveStation(LineCollection collection)
         {
             Console.WriteLine("enter line number, first station and last station of the bus line.");
@@ -233,8 +257,12 @@ choose one of the following options:
             throw new BusLineException("the bus line does not exist");
         }
         #endregion
-        
+
         #region LinesInStation
+        /// <summary>
+        /// prints a station with all the bus lines that pass on it
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
         public static void LinesInStation(LineCollection collection)
         {
             Console.WriteLine("enter the code of the station");
@@ -246,8 +274,12 @@ choose one of the following options:
             }
         }
         #endregion
-       
+
         #region BusesInRoute
+        /// <summary>
+        /// prints all the bus lines that pass on two stations, sort by travel time
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
         public static void BusesInRoute(LineCollection collection)
         {
             Console.WriteLine("enter the code of the source station");
@@ -277,6 +309,10 @@ choose one of the following options:
         #endregion
 
         #region PrintAllLines
+        /// <summary>
+        /// prints all the bus lines in a collection
+        /// </summary>
+        /// <param name="collection">a collection of bus lines</param>
         public static void PrintAllLines(LineCollection collection)//print all the buses
         {
             foreach (BusLine b in collection)
@@ -287,6 +323,11 @@ choose one of the following options:
         #endregion
 
         #region PrintListStations
+        /// <summary>
+        /// prints each stations that exists with all the bus lines that pass on it
+        /// </summary>
+        /// <param name="stations"> a list of all the stations that exist</param>
+        /// <param name="collection">a collection of bus lines</param>
         public static void PrintListStations(List<BusStation> stations, LineCollection collection)
         {
             foreach (BusStation s in stations)

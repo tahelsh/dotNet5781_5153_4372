@@ -11,7 +11,8 @@ namespace dotNet5781_02_5153_4372
     {
        
         public List<BusLine> Lines { get; set; }//list of all the line buses
-        public LineCollection(List<BusLine> list)
+        
+        public LineCollection(List<BusLine> list)//constructor
         {
             Lines = new List<BusLine>(list);
 
@@ -22,7 +23,11 @@ namespace dotNet5781_02_5153_4372
             return Lines.GetEnumerator();
         }
 
-        public void AddLine(BusLine bus)//add bus line to the collection
+        /// <summary>
+        /// adding a bus line to the collection
+        /// </summary>
+        /// <param name="bus">a bus</param>
+        public void AddLine(BusLine bus)
         {
             if (IsExist(bus.stations))//if there is a route like the bus in the collection
                 throw new BusLineException("there is already bus line with this route");
@@ -35,6 +40,12 @@ namespace dotNet5781_02_5153_4372
                 return;
             }
         }
+        
+        /// <summary>
+        /// checking if there is a bus with a specific route
+        /// </summary>
+        /// <param name="list">a route</param>
+        /// <returns>if there is a bus with this route</returns>
         public bool IsExist(List<BusLineStation> list)
         {
             foreach (BusLine b in Lines)
@@ -50,7 +61,13 @@ namespace dotNet5781_02_5153_4372
             }
             return false;
         }
-        public int Counter(BusLine bus)//return how many buses with the line number of the bus that it got there are in the collection
+
+        /// <summary>
+        /// return how many buses with the line number of the bus that it got there are in the collection
+        /// </summary>
+        /// <param name="bus">a bus line</param>
+        /// <returns></returns>
+        public int Counter(BusLine bus) 
         {
             int counter = 0;
             foreach(BusLine b in Lines)
@@ -60,7 +77,13 @@ namespace dotNet5781_02_5153_4372
             }
             return counter;
         }
-        public int IndexOfBus(BusLine bus)//return the index of a bus in the collection, if the bus does not exist, the function return -1
+
+        /// <summary>
+        ///return the index of a bus in the collection, if the bus does not exist, the function return -1
+        /// </summary>
+        /// <param name="bus">a bus line</param>
+        /// <returns></returns>
+        public int IndexOfBus(BusLine bus)
         {
             int index = 0;
             foreach (BusLine b in Lines)
@@ -71,6 +94,11 @@ namespace dotNet5781_02_5153_4372
             }
             return -1;
         }
+        
+        /// <summary>
+        /// romove a bus line from the collection
+        /// </summary>
+        /// <param name="bus"> a bus line</param>
         public void RemoveBus(BusLine bus)
         {
             int index = IndexOfBus(bus);//the index of the bus in the collection
@@ -78,6 +106,12 @@ namespace dotNet5781_02_5153_4372
                 throw new BusLineException("the bus does not exist");
             Lines.RemoveAt(index);//delete the bus
         }
+        
+        /// <summary>
+        /// return a list of all the bus lines that pass on a station
+        /// </summary>
+        /// <param name="stationCode">a code of a station</param>
+        /// <returns></returns>
         public List<BusLine> BusesInStation(int stationCode)
         {
             List<BusLine> lst = new List<BusLine>();//A list of buses that pass the atation
@@ -90,6 +124,11 @@ namespace dotNet5781_02_5153_4372
                 throw new BusStationException("there is no bus that stops in this station.");
             return lst;
         }
+        
+        /// <summary>
+        /// return a sorted list of all the buses in the collection
+        /// </summary>
+        /// <returns></returns>
         public List<BusLine> SortedList()
         {
             BusLine[] busLineArr = new BusLine[Lines.Count];
@@ -98,7 +137,6 @@ namespace dotNet5781_02_5153_4372
             sortedlist.Sort();//sort the list bu the travel time
             return sortedlist;//return the sorted list
         }
-        
         public List<BusLine> this[int lineNum]
         {
             get 

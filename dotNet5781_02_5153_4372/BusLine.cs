@@ -41,6 +41,7 @@ namespace dotNet5781_02_5153_4372
             get { return area; }
             set { area = value; }
         }
+        
         public BusLine(int lineNum, List<BusLineStation> stations, Areas area)//constructor
         {
             if (stations.Count < 2)
@@ -62,6 +63,12 @@ namespace dotNet5781_02_5153_4372
             }
             return "bus line:" + lineNum + " in area:" + area + "\nRoute:" + route;
         }
+        
+        /// <summary>
+        /// searching a station by it's code   
+        /// </summary>
+        /// <param name="code">the code of the station</param>
+        /// <returns>the index of the station in the route list</returns>
         public int Search(int code)//searching a station by it's code
         {
             int index = 0;
@@ -76,6 +83,12 @@ namespace dotNet5781_02_5153_4372
             }
             return -1;
         }
+        
+        /// <summary>
+        /// adding a station to the route list
+        /// </summary>
+        /// <param name="other">a station that wants to add</param>
+        /// <param name="choice">where to add</param>
         public void AddStation(BusLineStation other, Insert choice)//adding a station to a bus route.
         {
             if (Exist(other.Code))//the new station must exist if the stations list. if it doesn't, throw exception.
@@ -140,7 +153,12 @@ namespace dotNet5781_02_5153_4372
             }
 
         }
-        public void DeleteStation(int code)//this function gets a station code, looks for the station and deletes it.
+        
+        /// <summary>
+        /// deleting a station from the route list
+        /// </summary>
+        /// <param name="code">the station code</param>
+        public void DeleteStation(int code)
         {
             if (stations.Count <= 2)
                 throw new BusLineException("There is no option to delete the station because there is only 2 stations on this bus line");
@@ -170,7 +188,13 @@ namespace dotNet5781_02_5153_4372
             }
             stations.RemoveAt(index);//removing the station in the place 'index' from the stations list
         }
-        public bool Exist(int code)//checking if the station exists in  the stations list
+
+        /// <summary>
+        /// checking if a station exists in the route list
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns>if the station exists in the route list</returns>
+        public bool Exist(int code)
         {
             foreach (BusLineStation s in stations)
             {
@@ -179,7 +203,14 @@ namespace dotNet5781_02_5153_4372
             }
             return false;
         }
-        public double Distance(BusLineStation b1, BusLineStation b2)//distance between 2 bus stations
+        
+        /// <summary>
+        /// calculating distance between two stations in the route
+        /// </summary>
+        /// <param name="b1">the first station</param>
+        /// <param name="b2">the second station</param>
+        /// <returns>the distance</returns>
+        public double Distance(BusLineStation b1, BusLineStation b2)
         {
             if (!(Exist(b1.Code) && Exist(b2.Code)))//if one of the stations or both dont exist in the stations list, throw exception
             {
@@ -194,6 +225,13 @@ namespace dotNet5781_02_5153_4372
             }
             return distance;
         }
+
+        /// <summary>
+        /// calculating travel time between two stations in the route
+        /// </summary>
+        /// <param name="b1">the first station</param>
+        /// <param name="b2">the second station</param>
+        /// <returns>the travel time </returns>
         public TimeSpan TravelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
         {
             if (!(Exist(b1.Code) && Exist(b2.Code)))
@@ -209,6 +247,13 @@ namespace dotNet5781_02_5153_4372
             }
             return time;
         }
+
+        /// <summary>
+        /// calculating a sub route between two stations
+        /// </summary>
+        /// <param name="stop1">the first station</param>
+        /// <param name="stop2">the second station</param>
+        /// <returns>bus line with the sub route</returns>
         public BusLine SubRoute(int stop1, int stop2)//creating a sub route presented by a bus line
         {
             if (!(Exist(stop1) && Exist(stop2)))
@@ -228,6 +273,7 @@ namespace dotNet5781_02_5153_4372
             }
             return new BusLine(LineNum, route, area);
         }
+        
         public int CompareTo(BusLine other)//the function compares between two bus lines
         {
             TimeSpan t1 = TravelTime(this.FirstStation, this.LastStation);

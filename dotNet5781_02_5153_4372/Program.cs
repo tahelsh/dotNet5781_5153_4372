@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Noa Timsit 209844372
+//Tahel Sharon 323125153
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -39,9 +41,9 @@ choose one of the following options:
                         ch = Console.ReadLine()[0];
                         try
                         {
-                            if (ch == 'a')//adding a new bus line
+                            if (ch == 'a' || ch=='A')//adding a new bus line
                                 AddNewBus(linesCollection, stations);
-                            else if (ch == 'b')//adding a new station to an existing bus line
+                            else if (ch == 'b' || ch=='B')//adding a new station to an existing bus line
                                 AddNewStation(linesCollection, stations);
                             else
                                 Console.WriteLine("ERROR, invalid choice");
@@ -56,9 +58,9 @@ choose one of the following options:
                         ch = Console.ReadLine()[0];
                         try
                         {
-                            if (ch == 'a')//deleting a bus line
+                            if (ch == 'a' || ch == 'A')//deleting a bus line
                                 DeleteBus(linesCollection);
-                            else if (ch == 'b')//deleting a bus station of an existing bus line
+                            else if (ch == 'b' || ch == 'B')//deleting a bus station of an existing bus line
                                 RemoveStation(linesCollection);
                             else
                                 Console.WriteLine("ERROR, invalid choice");
@@ -72,9 +74,9 @@ choose one of the following options:
                         ch = Console.ReadLine()[0];
                         try
                         {
-                            if (ch == 'a')//searching a bus lines in a station
+                            if (ch == 'a' || ch == 'A')//searching a bus lines in a station
                                 LinesInStation(linesCollection);
-                            else if (ch == 'b')//searching buses matching a route
+                            else if (ch == 'b' || ch == 'B')//searching buses matching a route
                                 BusesInRoute(linesCollection);
                             else
                                 Console.WriteLine("ERROR, invalid choice");
@@ -87,9 +89,9 @@ choose one of the following options:
                         Console.WriteLine("enter a for printing all the bus lines");
                         Console.WriteLine("enter b for printing a list of all stations and line numbers passing through them");
                         ch = Console.ReadLine()[0];
-                        if (ch == 'a')//printing all the bus lines
+                        if (ch == 'a' || ch == 'A')//printing all the bus lines
                             PrintAllLines(linesCollection);
-                        if (ch == 'b')//printing a list of all stations and line numbers passing through them
+                        if (ch == 'b' || ch == 'B')//printing a list of all stations and line numbers passing through them
                             PrintListStations(stations, linesCollection);
                         break;
                     case Menu.EXIT:

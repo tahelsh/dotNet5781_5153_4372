@@ -58,14 +58,17 @@ namespace dotNet5781_02_5153_4372
         {
             foreach (BusLine b in Lines)
             {
-                int i;
-                for(i=0; i<list.Count && i<b.stations.Count; i++)
+                int i;//index to for
+                if (list.Count == b.stations.Count)
                 {
-                    if (list[i].Code != b.stations[i].Code)
-                        break;
+                    for (i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].Code != b.stations[i].Code)
+                            break;
+                    }
+                    if (i == list.Count)//if there is a route like the route that the function got
+                        return true;
                 }
-                if ((i == list.Count) || (i == b.stations.Count))//if there is a route like the route that the function got
-                    return true;
             }
             return false;
         }

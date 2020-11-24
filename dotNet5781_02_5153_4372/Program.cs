@@ -38,7 +38,7 @@ choose one of the following options:
                     case Menu.ADD:
                         Console.WriteLine("enter a for adding a new bus line");
                         Console.WriteLine("enter b for adding a new station to an existing bus line");
-                        ch = Console.ReadLine()[0];
+                        ch = Console.ReadLine()[0];//choice
                         try
                         {
                             if (ch == 'a' || ch=='A')//adding a new bus line
@@ -48,14 +48,15 @@ choose one of the following options:
                             else
                                 Console.WriteLine("ERROR, invalid choice");
                         }
-                        catch (FormatException) { Console.WriteLine("the value that entered invalid"); }
                         catch (BusLineException ex) { Console.WriteLine(ex.Message); }
                         catch (BusStationException ex) { Console.WriteLine(ex.Message); }
+                        catch (FormatException) { Console.WriteLine("the value that entered invalid"); }
+                        catch (Exception ex) { Console.WriteLine(ex.Message); }
                         break;
                     case Menu.DELETE:
                         Console.WriteLine("enter a for deleting a bus line");
                         Console.WriteLine("enter b for deleting a bus station of an existing bus line");
-                        ch = Console.ReadLine()[0];
+                        ch = Console.ReadLine()[0];//choice
                         try
                         {
                             if (ch == 'a' || ch == 'A')//deleting a bus line
@@ -66,12 +67,14 @@ choose one of the following options:
                                 Console.WriteLine("ERROR, invalid choice");
                         }
                         catch (BusLineException ex) { Console.WriteLine(ex.Message); }
+                        catch (BusStationException ex) { Console.WriteLine(ex.Message); }
                         catch (FormatException) { Console.WriteLine("the value that entered invalid"); }
+                        catch (Exception ex) { Console.WriteLine(ex.Message); }
                         break;
                     case Menu.SEARCH:
                         Console.WriteLine("enter a for searching a bus lines in a station");
                         Console.WriteLine("enter b for searching buses matching a route");
-                        ch = Console.ReadLine()[0];
+                        ch = Console.ReadLine()[0];//choice
                         try
                         {
                             if (ch == 'a' || ch == 'A')//searching a bus lines in a station
@@ -82,13 +85,15 @@ choose one of the following options:
                                 Console.WriteLine("ERROR, invalid choice");
 
                         }
-                        catch (FormatException) { Console.WriteLine("the value that entered invalid"); }
                         catch (BusStationException ex) { Console.WriteLine(ex.Message); }
+                        catch (BusLineException ex) { Console.WriteLine(ex.Message); }
+                        catch (FormatException) { Console.WriteLine("the value that entered invalid"); }
+                        catch (Exception ex) { Console.WriteLine(ex.Message); }
                         break;
                     case Menu.PRINT:
                         Console.WriteLine("enter a for printing all the bus lines");
                         Console.WriteLine("enter b for printing a list of all stations and line numbers passing through them");
-                        ch = Console.ReadLine()[0];
+                        ch = Console.ReadLine()[0];//choice
                         if (ch == 'a' || ch == 'A')//printing all the bus lines
                             PrintAllLines(linesCollection);
                         if (ch == 'b' || ch == 'B')//printing a list of all stations and line numbers passing through them

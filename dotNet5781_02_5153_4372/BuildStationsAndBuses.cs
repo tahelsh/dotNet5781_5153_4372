@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_5153_4372
 {
-    static class BuildStationsAndBuses
+    public static class BuildStationsAndBuses
     {
         static public void createStationAndBusesLists(ref List<BusStation> stations,LineCollection lines)
         {

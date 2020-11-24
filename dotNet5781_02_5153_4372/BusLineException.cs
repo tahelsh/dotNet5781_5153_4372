@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 
 namespace dotNet5781_02_5153_4372
 {
-    class BusLineException:Exception
+    public class BusLineException:Exception
     {
 
         public BusLineException() : base() { }

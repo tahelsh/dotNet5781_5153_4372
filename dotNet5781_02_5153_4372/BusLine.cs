@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_5153_4372
 {
-    class BusLine : IComparable<BusLine>//inheritting the IComparable interface.
+    public class BusLine : IComparable<BusLine>//inheritting the IComparable interface.
     {
         public List<BusLineStation> stations { get; set; }//list of all the stations
         private int lineNum;//the bus line number

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_5153_4372
 {
-    class BusLineStation: BusStation, IComparable<BusLineStation>
+    public class BusLineStation: BusStation, IComparable<BusLineStation>
     {
         static Random rand = new Random();
 
@@ -46,6 +46,11 @@ namespace dotNet5781_02_5153_4372
         public int CompareTo(BusLineStation other)//implementation of IComparable interface. comparing between 2 station by their codes
         {
             return this.Code.CompareTo(other.Code);
+        }
+
+        public override String ToString()
+        {
+            return string.Format($"{Code,-10}{latitude + "°N",-20}{longitude + "°E",-20}{TimeTravel,-20}");
         }
     }
 }

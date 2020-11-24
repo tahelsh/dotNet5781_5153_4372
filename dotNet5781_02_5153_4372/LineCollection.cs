@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace dotNet5781_02_5153_4372
 {
-    class LineCollection: IEnumerable
+    public class LineCollection: IEnumerable
     {
        
         public List<BusLine> Lines { get; set; }//list of all the line buses

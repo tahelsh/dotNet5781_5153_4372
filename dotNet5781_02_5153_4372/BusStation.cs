@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_5153_4372
 {
    
-    class BusStation
+    public class BusStation
     {
         static Random rand = new Random();
         private static int counter = 0;
@@ -77,8 +77,7 @@ namespace dotNet5781_02_5153_4372
         }
         public override String ToString()//preparing an object for print
         {
-
-            return "Bus Station Code: " + code + ", " + latitude + "°N " + longitude + "°E";
+            return string.Format($"{Code,-10}{latitude + "°N",-10}{longitude + "°E",-10}");
         }
     }
 }

@@ -7,14 +7,17 @@
         mc:Ignorable="d"
         Title="Welcome" Height="640" Width="800">
     <Grid Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="bus.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto"  Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
-            <Label Content="Bus Line&#xD;&#xA; Number:" VerticalAlignment="Center" RenderTransformOrigin="-1.267,-0.27" Height="68" Width="198" FontFamily="SimSun-ExtB" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="#FF9AE5EA" Margin="0,0,0.4,0"/>
-            <ComboBox x:Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" Margin="127.6,0,198.2,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" Grid.ColumnSpan="3"/>
-            <Label Content="Area:" Grid.Column="3" HorizontalAlignment="Left" Margin="0.2,-2,0,0" VerticalAlignment="Top" Height="70" Width="198" FontFamily="SimSun-ExtB" FontSize="22" FontWeight="ExtraBlack" Background="#FF8CEAF0" FontStyle="Oblique"/>
+            <Label Content="Bus Line Number:" VerticalAlignment="Center" RenderTransformOrigin="-1.267,-0.27" Height="68" Width="330" FontFamily="Viner Hand ITC" FontSize="36" FontWeight="Bold" Grid.ColumnSpan="3" HorizontalAlignment="Center" Background="{x:Null}" Margin="0,0,66.8,0" Foreground="Black"/>
+            <ComboBox x:Name="cbBusLines" Grid.Column="2" HorizontalAlignment="Stretch" Margin="131.6,0,161.2,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" Grid.ColumnSpan="2"/>
+            <Label Content="Area:" Grid.Column="3" HorizontalAlignment="Left" Margin="37.2,-2,0,0" VerticalAlignment="Top" Height="70" Width="161" FontFamily="Viner Hand ITC" FontSize="36" FontWeight="ExtraBlack" Background="{x:Null}" FontStyle="Oblique"/>
             <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="198.2,0,-0.4,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" FontFamily="SimSun-ExtB" FontSize="22" Grid.ColumnSpan="2"/>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35*"/>
@@ -24,7 +27,7 @@
                 <ColumnDefinition Width="99*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="174" Margin="25,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="499"  ItemsSource="{Binding}"/>
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="288" Margin="25,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="511"  ItemsSource="{Binding}"/>
 
     </Grid>
 </Window>

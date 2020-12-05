@@ -41,7 +41,7 @@ namespace dotNet5781_03B_5153_4372
             FrameworkElement fxElt = sender as FrameworkElement;
             Bus b = fxElt.DataContext as Bus;
             b.Refuel();
-            //MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxImage.OK, MessageBoxImage.Information);
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Start_Driving_Button_Click(object sender, RoutedEventArgs e)

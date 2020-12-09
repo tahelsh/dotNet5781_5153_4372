@@ -55,9 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusException.cs" />
+    <Compile Include="KeyPressEventArgs.cs" />
     <Compile Include="RestartBuses.cs" />
     <Compile Include="StartDrive.xaml.cs">
       <DependentUpon>StartDrive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewBus.xaml.cs">
+      <DependentUpon>ViewBus.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNewBus.xaml">
       <SubType>Designer</SubType>
@@ -81,6 +86,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="StartDrive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewBus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

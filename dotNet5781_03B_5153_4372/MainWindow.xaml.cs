@@ -46,8 +46,20 @@ namespace dotNet5781_03B_5153_4372
 
         private void Start_Driving_Button_Click(object sender, RoutedEventArgs e)
         {
+            Bus b = (sender as Button).DataContext as Bus;
             StartDrive win = new StartDrive();
+            win.Bus = b;
             win.ShowDialog();
+            lbBuses.Items.Refresh();
+        }
+
+        private void ListBoxDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Bus b = (sender as ListBox).SelectedItem as Bus;
+            if (b == null)
+                return;
+            ViewBus win = new ViewBus(b);
+           win.ShowDialog();
         }
     }
 }

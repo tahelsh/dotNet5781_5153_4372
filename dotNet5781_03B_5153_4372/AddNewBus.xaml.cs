@@ -38,7 +38,18 @@ namespace dotNet5781_03B_5153_4372
 
         private void bSubmit_Click(object sender, RoutedEventArgs e)
         {
-            Buses.Add(new Bus(licNumTextBox.Text, dateStartDatePicker.DisplayDate, double.Parse(totalKmTextBox.Text), double.Parse(fuelTextBox.Text), lastTreatDatePicker.DisplayDate, double.Parse(kmTreatTextBox.Text)));
+            try
+            {
+                Buses.Add(new Bus(licNumTextBox.Text, dateStartDatePicker.DisplayDate, double.Parse(totalKmTextBox.Text), double.Parse(fuelTextBox.Text), lastTreatDatePicker.DisplayDate, double.Parse(kmTreatTextBox.Text)));
+            }
+            catch (BusException ex)
+            {
+                MessageBox.Show("ERROR, " + ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Close();
         }
     }

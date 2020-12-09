@@ -29,15 +29,26 @@ namespace dotNet5781_03B_5153_4372
 
         private void Refuel_Button(object sender, RoutedEventArgs e)
         {
+            if(BusCurrent.Fuel==1200)
+            {
+                MessageBox.Show("The fuel tank of the bus is already full", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             BusCurrent.Refuel();
             MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            BusTextBlock.Text = BusCurrent.ToString();
         }
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
         {
+            if(BusCurrent.LastTreat == DateTime.Now && BusCurrent.KmTreat== BusCurrent.TotalKm)
+            {
+                MessageBox.Show("The bus was already treatmented", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             BusCurrent.Treatment();
             MessageBox.Show("Treatment was added successfully.", "Treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
-            
+            BusTextBlock.Text = BusCurrent.ToString();
         }
     }
 }

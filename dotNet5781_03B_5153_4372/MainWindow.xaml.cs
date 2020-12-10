@@ -24,18 +24,18 @@ namespace dotNet5781_03B_5153_4372
     public partial class MainWindow : Window
     {
         public ObservableCollection<Bus> buses;
-        BackgroundWorker workerRefuel;
+        //BackgroundWorker workerRefuel;
         public MainWindow()
         {
             InitializeComponent();
             buses = new ObservableCollection<Bus>();
             RestartBuses.Restart10Buses(buses);
             lbBuses.ItemsSource = buses;
-            workerRefuel = new BackgroundWorker();
-            workerRefuel.DoWork += Worker_DoWork;
-            workerRefuel.ProgressChanged += Worker_ProgressChanged;
-            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            workerRefuel.WorkerReportsProgress = true;
+            //workerRefuel = new BackgroundWorker();
+            //workerRefuel.DoWork += Worker_DoWork;
+            //workerRefuel.ProgressChanged += Worker_ProgressChanged;
+            //workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            //workerRefuel.WorkerReportsProgress = true;
        
         }
 
@@ -49,6 +49,11 @@ namespace dotNet5781_03B_5153_4372
         {
             Bus b = (sender as Button).DataContext as Bus;
             b.BusStatus = Status.Refueling;
+            BackgroundWorker workerRefuel= new BackgroundWorker(); 
+            workerRefuel.DoWork += Worker_DoWork;
+            workerRefuel.ProgressChanged += Worker_ProgressChanged;
+            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            workerRefuel.WorkerReportsProgress = true;
             DataRefuelTread thread = new DataRefuelTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), 12, b);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
@@ -80,7 +85,7 @@ namespace dotNet5781_03B_5153_4372
             for (int i = 1; i <= length; i++)
             {
                 System.Threading.Thread.Sleep(1000);
-                workerRefuel.ReportProgress(i , data);
+                (sender as BackgroundWorker).ReportProgress(i , data);
             }
             e.Result = data;
         }

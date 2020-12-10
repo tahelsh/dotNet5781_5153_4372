@@ -20,6 +20,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
@@ -31,9 +33,13 @@
                 <TextBlock Grid.Column="3"
                    Text="{Binding Path=TotalKm}" />
                 <Button Grid.Column="4"
-                   Content="Start driving" Click="Start_Driving_Button_Click" />
+                   Content="Start driving" Click="Start_Driving_Button_Click" Name="StartDrivingButton" />
                 <Button Grid.Column="5"
-                   Content="Refuel" Click="Refuel" />
+                   Content="Refuel" Click="Refuel" Name="ButtonRefuel"/>
+                <ProgressBar Grid.Column="6"
+                    Name="pbTread" Visibility="Hidden"/>
+                <Label Grid.Column="7"
+                   Content="seconds" Name="seconds" Visibility="Hidden"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

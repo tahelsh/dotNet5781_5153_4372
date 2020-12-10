@@ -10,5 +10,6 @@
         <TextBlock Name="BusTextBlock"  HorizontalAlignment="Left" Height="225" Text="{Binding}" Margin="34,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="574"/>
         <Button Content="Treatment" HorizontalAlignment="Left" Height="62" Margin="159,306,0,0" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button"/>
         <Button Content="Refuel" HorizontalAlignment="Left" Height="58" Margin="383,310,0,0" VerticalAlignment="Top" Width="169" Click="Refuel_Button"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="172,-82,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

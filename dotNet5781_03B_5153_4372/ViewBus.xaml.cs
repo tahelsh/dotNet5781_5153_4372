@@ -40,8 +40,17 @@ namespace dotNet5781_03B_5153_4372
                 return;
             }
             BusCurrent.Refuel();
-            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             BusTextBlock.Text = BusCurrent.ToString();
+            BackgroundWorker workerRefuel = new BackgroundWorker();
+            workerRefuel.DoWork += Worker_DoWork;
+            workerRefuel.ProgressChanged += Worker_ProgressChanged;
+            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
+            workerRefuel.WorkerReportsProgress = true;
+            DataTread thread = new DataTread(ProgressBar, Lable, 12, BusCurrent);
+            thread.ProgressBar.Visibility = Visibility.Visible;
+            thread.Label.Visibility = Visibility.Visible;
+            workerRefuel.RunWorkerAsync(thread);
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Treatment_Button(object sender, RoutedEventArgs e)

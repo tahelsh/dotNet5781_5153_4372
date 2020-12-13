@@ -21,6 +21,7 @@ namespace dotNet5781_03B_5153_4372
     public partial class StartDrive : Window
     {
         public Bus Bus { get; set; }
+        public double Distance { get; set; }
         public StartDrive()
         {
             InitializeComponent();
@@ -37,7 +38,9 @@ namespace dotNet5781_03B_5153_4372
             {
                 try
                 {
-                    Bus.DoRide(Double.Parse((sender as TextBox).Text));
+                    this.Distance = Double.Parse((sender as TextBox).Text);
+                    Bus.DoRide(Distance);
+                    Bus.BusStatus = Status.Refueling;
                 }
                 catch (BusException ex)
                 {
@@ -50,13 +53,7 @@ namespace dotNet5781_03B_5153_4372
                 Close();
             }
         }
-        //private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        //{
-        ////text box get only numbers
-        //Regex regex = new Regex("[^0-9]+");
-        //e.Handled = regex.IsMatch(e.Text);
-
-        //}
+       
         private void TextBox_OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;

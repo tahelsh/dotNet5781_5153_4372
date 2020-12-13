@@ -17,7 +17,7 @@ namespace dotNet5781_03B_5153_4372
     /// <summary>
     /// Interaction logic for DataRefuelTread.xaml
     /// </summary>
-    public partial class DataRefuelTread : Window
+    public partial class DataTread : Window
     {
         public ProgressBar ProgressBar { get; set; }
         public Label Label { get; set; }
@@ -25,11 +25,16 @@ namespace dotNet5781_03B_5153_4372
         public int Seconds { get; set; }
         public Bus Bus { get; set; }
 
-        public DataRefuelTread(ProgressBar pb, Label l, int sec, Bus b)
+        public DataTread(ProgressBar pb, Label l, int sec, Bus b)
         {
             InitializeComponent();
             ProgressBar = pb;
             Label = l;
+            Seconds = sec;
+            Bus = b;
+        }
+        public DataTread(int sec, Bus b)
+        {
             Seconds = sec;
             Bus = b;
         }

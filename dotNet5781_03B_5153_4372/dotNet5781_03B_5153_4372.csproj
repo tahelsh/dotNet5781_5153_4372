@@ -60,8 +60,8 @@
     </ApplicationDefinition>
     <Compile Include="BackGroundWorker.cs" />
     <Compile Include="BusException.cs" />
-    <Compile Include="DataRefuelTread.xaml.cs">
-      <DependentUpon>DataRefuelTread.xaml</DependentUpon>
+    <Compile Include="DataTread.xaml.cs">
+      <DependentUpon>DataTread.xaml</DependentUpon>
     </Compile>
     <Compile Include="KeyPressEventArgs.cs" />
     <Compile Include="RestartBuses.cs" />
@@ -75,7 +75,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DataRefuelTread.xaml">
+    <Page Include="DataTread.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

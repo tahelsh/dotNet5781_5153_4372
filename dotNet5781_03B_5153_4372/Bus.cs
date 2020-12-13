@@ -6,10 +6,11 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace dotNet5781_03B_5153_4372
 {
-    public class Bus
+    public class Bus:DependencyObject
     {
         private DateTime dateStart;//date of start operation
 
@@ -100,6 +101,7 @@ namespace dotNet5781_03B_5153_4372
 
         public Status BusStatus { get; set; }
 
+        public double ProgressBarTime { get; set; }
 
 
         public Bus(string licNum, DateTime date, double totalKm, double fuel, DateTime lastTreat, double kmTreat)
@@ -112,13 +114,8 @@ namespace dotNet5781_03B_5153_4372
             this.totalKm = totalKm;
             this.Fuel = fuel;
             this.KmTreat = kmTreat;
-            if (this.NeedTreatment())//if the bus need treatment
-                this.BusStatus = Status.Treatment;
-            else if (this.NeedFuel())//if the bus need refuel
-                this.BusStatus = Status.Refueling;
-            else//the bus ready to go
-                this.BusStatus = Status.ReadyToGo;
-
+            this.BusStatus = Status.Available;
+            ProgressBarTime = 0;
 
         }
         public string OrderLicenseNumber()

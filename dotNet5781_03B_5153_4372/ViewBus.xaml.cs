@@ -41,14 +41,21 @@ namespace dotNet5781_03B_5153_4372
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
         {
+            if(BusCurrent.BusStatus!=Status.Available)
+            {
+                MessageBox.Show("The bus can not be treated right now, its not avaliable", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if(BusCurrent.LastTreat == DateTime.Now && BusCurrent.KmTreat== BusCurrent.TotalKm)
             {
                 MessageBox.Show("The bus was already treatmented", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             BusCurrent.Treatment();
-            MessageBox.Show("Treatment was added successfully.", "Treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("Treatment was added successfully.", "Treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
             BusTextBlock.Text = BusCurrent.ToString();
+            ((MainWindow)Application.Current.MainWindow).Treatment(BusCurrent);
+
         }
     }
 }

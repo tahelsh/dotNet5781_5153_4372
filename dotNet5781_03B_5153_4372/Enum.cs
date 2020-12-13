@@ -8,6 +8,6 @@ namespace dotNet5781_03B_5153_4372
 {
    public enum Status
     {
-        ReadyToGo, InTravel, Refueling, Treatment
+        Available, InTravel, Refueling, Treatment
     }
 }

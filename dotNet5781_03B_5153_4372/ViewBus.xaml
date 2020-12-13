@@ -8,7 +8,8 @@
         Title="ViewBus" Height="276.488" Width="541.986">
     <Grid Margin="0,0,3.2,2.2">
         <TextBlock Name="BusTextBlock"  HorizontalAlignment="Left" Height="155" Text="{Binding}" Margin="34,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292"/>
-        <Button Content="Treatment" HorizontalAlignment="Left" Height="62" Margin="363,34,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button"/>
-        <Button Content="Refuel" HorizontalAlignment="Left" Height="59" Margin="363,116,0,0" VerticalAlignment="Top" Width="106" Click="Refuel_Button" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Treatment" HorizontalAlignment="Left" Height="42" Margin="363,23,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button"/>
+        <Button Content="Refuel" HorizontalAlignment="Left" Height="49" Margin="365,154,0,0" VerticalAlignment="Top" Width="106" Click="Refuel_Button" RenderTransformOrigin="0.5,0.5"/>
+        <ProgressBar Name="ProgressBarTreatment" HorizontalAlignment="Left" Height="28" Margin="365,85,0,0" VerticalAlignment="Top" Width="106" ValueChanged="progressBarTreatment_ValueChanged"/>
     </Grid>
 </Window>

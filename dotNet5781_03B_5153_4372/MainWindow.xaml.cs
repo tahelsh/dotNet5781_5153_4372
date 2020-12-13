@@ -60,7 +60,7 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
             workerRefuel.WorkerReportsProgress = true;
-            DataTread thread = new DataTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), 12,b);
+            DataTread thread = new DataTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), 12, b);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
             workerRefuel.RunWorkerAsync(thread);
@@ -99,22 +99,24 @@ namespace dotNet5781_03B_5153_4372
             Bus b = (sender as ListBox).SelectedItem as Bus;
             if (b == null)
                 return;
-            ViewBus win = new ViewBus(b);
-           win.ShowDialog();
+            ProgressBar bar = Finditem<ProgressBar>((sender as ListBox).SelectedItem, "pbTread");
+            Label l = Finditem<Label>((sender as ListBox).SelectedItem, "seconds");
+            ViewBus win = new ViewBus(b, bar,l);
+            win.ShowDialog();
         }
 
-       public void Treatment(Bus b)
-       {
-            BackgroundWorker workerRefuel = new BackgroundWorker();
-            workerRefuel.DoWork += Worker_DoWork;
-            workerRefuel.ProgressChanged += Worker_ProgressChanged_Treatment;
-            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
-            workerRefuel.WorkerReportsProgress = true;
-            b.BusStatus = Status.Treatment;
-            DataTread thread = new DataTread(144,b);
-            workerRefuel.RunWorkerAsync(thread);
-            lbBuses.Items.Refresh();
-        }
+       //public void Treatment(Bus b)
+       //{
+       //     BackgroundWorker workerRefuel = new BackgroundWorker();
+       //     workerRefuel.DoWork += Worker_DoWork;
+       //     workerRefuel.ProgressChanged += Worker_ProgressChanged_Treatment;
+       //     workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
+       //     workerRefuel.WorkerReportsProgress = true;
+       //     b.BusStatus = Status.Treatment;
+       //     DataTread thread = new DataTread(144,b);
+       //     workerRefuel.RunWorkerAsync(thread);
+       //     lbBuses.Items.Refresh();
+       // }
 
 
         
@@ -155,6 +157,44 @@ namespace dotNet5781_03B_5153_4372
             data.Label.Visibility = Visibility.Hidden;
             data.Bus.BusStatus = Status.Available;
         }
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+        public A Finditem<A>(object item, string str)
+        {
+
+            ListBoxItem myListBoxItem = (ListBoxItem)(lbBuses.ItemContainerGenerator.ContainerFromItem(item));
+
+            // Getting the ContentPresenter of myListBoxItem
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+
+            // Finding textBlock from the DataTemplate that is set on that ContentPresenter
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            A myLabel = (A)myDataTemplate.FindName(str, myContentPresenter);
+            return myLabel;
+        }
+
+
+
+
+
+
+
 
 
 
@@ -162,23 +202,23 @@ namespace dotNet5781_03B_5153_4372
 
         //את כל זה סתם עשיתי בשביל הטיפול
 
-        private void Worker_ProgressChanged_Treatment(object sender, ProgressChangedEventArgs e)
-        {
-            int progress = (int)e.ProgressPercentage;//i
-            DataTread data = (DataTread)e.UserState;
-            data.Bus.ProgressBarTime = (progress * 100) / data.Seconds;
-            lbBuses.Items.Refresh();
-        }
+        //private void Worker_ProgressChanged_Treatment(object sender, ProgressChangedEventArgs e)
+        //{
+        //    int progress = (int)e.ProgressPercentage;//i
+        //    DataTread data = (DataTread)e.UserState;
+        //    data.Bus.ProgressBarTime = (progress * 100) / data.Seconds;
+        //    lbBuses.Items.Refresh();
+        //}
 
-        private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("The bus was treated successfully.", "Finished a treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
-            DataTread data = ((DataTread)(e.Result));
-            //data.ProgressBar.Visibility = Visibility.Hidden;
-            //data.Label.Visibility = Visibility.Hidden;
-            data.Bus.BusStatus = Status.Available;
-            data.Bus.ProgressBarTime = 0;
-        }
+        //private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    MessageBox.Show("The bus was treated successfully.", "Finished a treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    DataTread data = ((DataTread)(e.Result));
+        //    //data.ProgressBar.Visibility = Visibility.Hidden;
+        //    //data.Label.Visibility = Visibility.Hidden;
+        //    data.Bus.BusStatus = Status.Available;
+        //    data.Bus.ProgressBarTime = 0;
+        //}
 
         //public void func()
         //{

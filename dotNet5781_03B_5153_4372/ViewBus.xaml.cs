@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Media.Brush;
 
 namespace dotNet5781_03B_5153_4372
 {
@@ -53,8 +54,11 @@ namespace dotNet5781_03B_5153_4372
             DataTread thread = new DataTread(ProgressBar, Lable, 12, BusCurrent);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
+            ProgressBarTreatment.Visibility= Visibility.Visible;
             workerRefuel.RunWorkerAsync(thread);
-           
+            thread.ProgressBar.Foreground = Brushes.Yellow;
+            ProgressBarTreatment.Foreground = Brushes.Yellow;
+
         }
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
@@ -75,9 +79,12 @@ namespace dotNet5781_03B_5153_4372
             workerTreatment.ProgressChanged += Worker_ProgressChanged;
             workerTreatment.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
             workerTreatment.WorkerReportsProgress = true;
-            DataTread thread = new DataTread(ProgressBar, Lable, 144, BusCurrent);
-            thread.ProgressBar.Visibility = Visibility.Visible;
+            DataTread thread = new DataTread(ProgressBar, Lable, 144, BusCurrent);           
             thread.Label.Visibility = Visibility.Visible;
+            thread.ProgressBar.Visibility = Visibility.Visible;
+            ProgressBarTreatment.Visibility = Visibility.Visible;
+            thread.ProgressBar.Foreground = Brushes.DeepPink;
+            ProgressBarTreatment.Foreground = Brushes.DeepPink;
             workerTreatment.RunWorkerAsync(thread);
 
         }

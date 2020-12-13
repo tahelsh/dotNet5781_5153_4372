@@ -64,7 +64,9 @@ namespace dotNet5781_03B_5153_4372
             DataTread thread = new DataTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), 12, b);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
+            thread.ProgressBar.Foreground = Brushes.Yellow;
             workerRefuel.RunWorkerAsync(thread);
+
         }
 
         private void Start_Driving_Button_Click(object sender, RoutedEventArgs e)
@@ -86,12 +88,13 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
             workerRefuel.WorkerReportsProgress = true;
             int speedTravel = rand.Next(20, 50);//rand speed travel
-            int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in seconds
-            DataTread thread = new DataTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), timeTravel, b);//thread of driving
+            int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in 
+            DataTread thread = new DataTread(lbBuses.GetControl<ProgressBar>(sender as Button, "pbTread"), lbBuses.GetControl<Label>(sender as Button, "seconds"), timeTravel, b , Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));//thread of driving
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
+            thread.ProgressBar.Foreground = Brushes.Aqua;
             workerRefuel.RunWorkerAsync(thread); 
-            //lbBuses.Items.Refresh();
+           
         }
 
         private void ListBoxDoubleClick(object sender, MouseButtonEventArgs e)
@@ -106,21 +109,7 @@ namespace dotNet5781_03B_5153_4372
             win.ShowDialog();
         }
 
-       //public void Treatment(Bus b)
-       //{
-       //     BackgroundWorker workerRefuel = new BackgroundWorker();
-       //     workerRefuel.DoWork += Worker_DoWork;
-       //     workerRefuel.ProgressChanged += Worker_ProgressChanged_Treatment;
-       //     workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
-       //     workerRefuel.WorkerReportsProgress = true;
-       //     b.BusStatus = Status.Treatment;
-       //     DataTread thread = new DataTread(144,b);
-       //     workerRefuel.RunWorkerAsync(thread);
-       //     lbBuses.Items.Refresh();
-       // }
-
-
-        
+    
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -157,6 +146,7 @@ namespace dotNet5781_03B_5153_4372
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.Bus.BusStatus = Status.Available;
+            data.TBTotalKm.Text = (data.Bus.TotalKm).ToString();
         }
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {
@@ -188,6 +178,16 @@ namespace dotNet5781_03B_5153_4372
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             A myLabel = (A)myDataTemplate.FindName(str, myContentPresenter);
             return myLabel;
+        }
+
+        private void lbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lbBuses_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
 

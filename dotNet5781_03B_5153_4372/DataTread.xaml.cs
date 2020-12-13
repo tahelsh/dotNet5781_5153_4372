@@ -24,6 +24,7 @@ namespace dotNet5781_03B_5153_4372
 
         public int Seconds { get; set; }
         public Bus Bus { get; set; }
+        public TextBlock TBTotalKm{ get; set; }
 
         public DataTread(ProgressBar pb, Label l, int sec, Bus b)
         {
@@ -33,10 +34,15 @@ namespace dotNet5781_03B_5153_4372
             Seconds = sec;
             Bus = b;
         }
-        public DataTread(int sec, Bus b)
+
+        public DataTread(ProgressBar pb, Label label, int sec, Bus b, TextBlock TotalKm)
         {
+            InitializeComponent();
+            ProgressBar = pb;
+            Label = label;
             Seconds = sec;
             Bus = b;
+            TBTotalKm = TotalKm;
         }
     }
 }

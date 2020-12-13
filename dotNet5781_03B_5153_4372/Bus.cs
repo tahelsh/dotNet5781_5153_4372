@@ -101,8 +101,6 @@ namespace dotNet5781_03B_5153_4372
 
         public Status BusStatus { get; set; }
 
-        public double ProgressBarTime { get; set; }
-
 
         public Bus(string licNum, DateTime date, double totalKm, double fuel, DateTime lastTreat, double kmTreat)
         {//constructor
@@ -114,8 +112,7 @@ namespace dotNet5781_03B_5153_4372
             this.totalKm = totalKm;
             this.Fuel = fuel;
             this.KmTreat = kmTreat;
-            this.BusStatus = Status.Available;
-            ProgressBarTime = 0;
+            this.BusStatus = Status.Available;  
 
         }
         public string OrderLicenseNumber()

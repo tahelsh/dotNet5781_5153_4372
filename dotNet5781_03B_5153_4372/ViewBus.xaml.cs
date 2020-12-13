@@ -34,23 +34,27 @@ namespace dotNet5781_03B_5153_4372
 
         private void Refuel_Button(object sender, RoutedEventArgs e)
         {
+            if(BusCurrent.BusStatus!=Status.Available)
+            {
+                MessageBox.Show("The bus can't be refueled right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if(BusCurrent.Fuel==1200)
             {
                 MessageBox.Show("The fuel tank of the bus is already full", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            BusCurrent.Refuel();
-            BusTextBlock.Text = BusCurrent.ToString();
+            BusCurrent.BusStatus = Status.Refueling;
             BackgroundWorker workerRefuel = new BackgroundWorker();
             workerRefuel.DoWork += Worker_DoWork;
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
-            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
+            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Fuel;
             workerRefuel.WorkerReportsProgress = true;
             DataTread thread = new DataTread(ProgressBar, Lable, 12, BusCurrent);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
             workerRefuel.RunWorkerAsync(thread);
-            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
+           
         }
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
@@ -65,15 +69,16 @@ namespace dotNet5781_03B_5153_4372
                 MessageBox.Show("The bus was already treatmented", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            BackgroundWorker workerRefuel = new BackgroundWorker();
-            workerRefuel.DoWork += Worker_DoWork;
-            workerRefuel.ProgressChanged += Worker_ProgressChanged;
-            workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
-            workerRefuel.WorkerReportsProgress = true;
+            BusCurrent.BusStatus = Status.Treatment;
+            BackgroundWorker workerTreatment = new BackgroundWorker();
+            workerTreatment.DoWork += Worker_DoWork;
+            workerTreatment.ProgressChanged += Worker_ProgressChanged;
+            workerTreatment.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
+            workerTreatment.WorkerReportsProgress = true;
             DataTread thread = new DataTread(ProgressBar, Lable, 144, BusCurrent);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
-            workerRefuel.RunWorkerAsync(thread);
+            workerTreatment.RunWorkerAsync(thread);
 
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -86,6 +91,7 @@ namespace dotNet5781_03B_5153_4372
                 (sender as BackgroundWorker).ReportProgress(i, data);
             }
             e.Result = data;
+           
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -94,6 +100,9 @@ namespace dotNet5781_03B_5153_4372
             int result = data.Seconds - progress;
             data.Label.Content = result;
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
+            ProgressBarTreatment.Value = data.ProgressBar.Value;
+            ProgressBarTreatment.Visibility = Visibility.Visible;
+
         }
         private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -105,5 +114,21 @@ namespace dotNet5781_03B_5153_4372
             data.Bus.BusStatus = Status.Available;
             MessageBox.Show("The bus was treated successfully.", "Finished a treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        private void Worker_RunWorkerCompleted_Fuel(object sender, RunWorkerCompletedEventArgs e)
+        {
+            BusCurrent.Refuel();
+            BusTextBlock.Text = BusCurrent.ToString();
+            DataTread data = ((DataTread)(e.Result));
+            data.ProgressBar.Visibility = Visibility.Hidden;
+            data.Label.Visibility = Visibility.Hidden;
+            data.Bus.BusStatus = Status.Available;
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            ProgressBarTreatment.Visibility = Visibility.Hidden;
+        }
+        private void func()
+        {
+            ProgressBarTreatment.Value = ProgressBar.Value;
+        }
     }
+    
 }

@@ -23,6 +23,7 @@ namespace dotNet5781_03B_5153_4372
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// cikdhnkncd
     public partial class MainWindow : Window
     {
         static Random rand = new Random();

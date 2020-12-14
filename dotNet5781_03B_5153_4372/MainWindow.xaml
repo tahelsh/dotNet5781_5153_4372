@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_5153_4372"
         mc:Ignorable="d"
-        Title="MainWindow" Height="464.4" Width="795.2" Foreground="#FFFFFFFF" Background="#FFFFFFFF">
+        Title="MainWindow" Height="464.4" Width="795.2" Foreground="#FFFFFFFF" Background="#FFFFFFFF" Icon="logo.png">
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus" x:Name="bus">
@@ -51,13 +51,14 @@
             <ColumnDefinition Width="98*"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="lbBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="333" Margin="0,10,-3.6,0" VerticalAlignment="Top" Width="794" MouseDoubleClick="ListBoxDoubleClick" Background="#FFABD5FD" Grid.ColumnSpan="3"/>
-        <Button x:Name="bAddBus" Content="Add new bus" HorizontalAlignment="Left" Height="49" Margin="86.1,355,0,0" VerticalAlignment="Top" Width="170" Click="bAddBus_Click" FontFamily="Segoe UI" FontSize="26 px" Background="White" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="bAddBus" Content="Add new bus" HorizontalAlignment="Left" Height="60" Margin="304,353,0,0" VerticalAlignment="Top" Width="183" Click="bAddBus_Click" FontFamily="Yu Gothic UI Semibold" FontSize="26 px" Background="White" Grid.ColumnSpan="2" RenderTransformOrigin="0.721,0.639"/>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="46,351,0,0" VerticalAlignment="Top" Width="10" Background="#FFFF1493"/>
         <Label Content="In Treatment" HorizontalAlignment="Left" Height="28" Margin="63,341,0,0" VerticalAlignment="Top" Width="93" FontSize="14"/>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="44,375,0,0" VerticalAlignment="Top" Width="10" Background="#FFF1F14E"/>
         <Label Content="Refueling" HorizontalAlignment="Left" Height="30" Margin="65,367,0,0" VerticalAlignment="Top" Width="91" FontSize="14"/>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="44,402,0,0" VerticalAlignment="Top" Width="10" Background="#FF00FFFF"/>
         <Label Content="In driving" HorizontalAlignment="Left" Margin="66,392,0,-4" VerticalAlignment="Top" FontSize="14" Height="30"/>
+        <Image Margin="192.2,348,14.6,0.4" Source="logo.png" Stretch="Fill" Grid.Column="1" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

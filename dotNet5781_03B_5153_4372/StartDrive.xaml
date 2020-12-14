@@ -13,7 +13,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Enter driving distance:" HorizontalAlignment="Left" Height="41" Margin="62,42,0,0" VerticalAlignment="Top" Width="226" FontFamily="Sylfaen" FontWeight="Bold" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" KeyDown="Enter_Distance" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Height="28" Margin="87,2.663,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" TextChanged="TextBox_TextChanged" Grid.Row="1" FontWeight="Bold" FontFamily="Sitka Banner" FontSize="16" />
+        <TextBox HorizontalAlignment="Left" KeyDown="Enter_Distance" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Height="28" Margin="87,2.663,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"  Grid.Row="1" FontWeight="Bold" FontFamily="Sitka Banner" FontSize="16" />
         <Viewbox HorizontalAlignment="Left" Height="5" Margin="366,83,-41.6,0" VerticalAlignment="Top" Width="2" Grid.RowSpan="2"/>
 
     </Grid>

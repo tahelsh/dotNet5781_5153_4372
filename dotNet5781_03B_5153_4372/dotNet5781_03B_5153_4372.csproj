@@ -46,9 +46,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ToolsForPublish">
-      <HintPath>..\..\..\..\Desktop\ToolsForPublish.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -60,9 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="BackGroundWorker.cs" />
     <Compile Include="BusException.cs" />
-    <Compile Include="DataTread.xaml.cs">
-      <DependentUpon>DataTread.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="DataThread.cs" />
     <Compile Include="KeyPressEventArgs.cs" />
     <Compile Include="RestartBuses.cs" />
     <Compile Include="StartDrive.xaml.cs">
@@ -72,10 +67,6 @@
       <DependentUpon>ViewBus.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNewBus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DataTread.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

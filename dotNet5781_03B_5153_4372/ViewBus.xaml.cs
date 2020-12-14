@@ -51,14 +51,14 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Fuel;
             workerRefuel.WorkerReportsProgress = true;
-            DataTread thread = new DataTread(ProgressBar, Lable, 12, BusCurrent);
+            DataThread thread = new DataThread(ProgressBar, Lable, 12, BusCurrent);
             thread.ProgressBar.Visibility = Visibility.Visible;
             thread.Label.Visibility = Visibility.Visible;
             ProgressBarTreatment.Visibility= Visibility.Visible;
-            workerRefuel.RunWorkerAsync(thread);
             thread.ProgressBar.Foreground = Brushes.Yellow;
             ProgressBarTreatment.Foreground = Brushes.Yellow;
-
+            BusTextBlock.Text = BusCurrent.ToString();
+            workerRefuel.RunWorkerAsync(thread);
         }
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
@@ -79,18 +79,19 @@ namespace dotNet5781_03B_5153_4372
             workerTreatment.ProgressChanged += Worker_ProgressChanged;
             workerTreatment.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
             workerTreatment.WorkerReportsProgress = true;
-            DataTread thread = new DataTread(ProgressBar, Lable, 144, BusCurrent);           
+            DataThread thread = new DataThread(ProgressBar, Lable, 144, BusCurrent);           
             thread.Label.Visibility = Visibility.Visible;
             thread.ProgressBar.Visibility = Visibility.Visible;
             ProgressBarTreatment.Visibility = Visibility.Visible;
             thread.ProgressBar.Foreground = Brushes.DeepPink;
             ProgressBarTreatment.Foreground = Brushes.DeepPink;
+            BusTextBlock.Text = BusCurrent.ToString();
             workerTreatment.RunWorkerAsync(thread);
 
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            DataTread data = (DataTread)e.Argument;
+            DataThread data = (DataThread)e.Argument;
             int length = data.Seconds;
             for (int i = 1; i <= length; i++)
             {
@@ -103,7 +104,7 @@ namespace dotNet5781_03B_5153_4372
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int progress = (int)e.ProgressPercentage;//i
-            DataTread data = (DataTread)e.UserState;
+            DataThread data = (DataThread)e.UserState;
             int result = data.Seconds - progress;
             data.Label.Content = result;
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
@@ -113,28 +114,27 @@ namespace dotNet5781_03B_5153_4372
         }
         private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)
         {
-            BusCurrent.Treatment();
-            BusTextBlock.Text = BusCurrent.ToString();
-            DataTread data = ((DataTread)(e.Result));
+            DataThread data = ((DataThread)(e.Result));
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.Bus.BusStatus = Status.Available;
+            BusCurrent.Treatment();
+            BusCurrent.Refuel();
+            BusTextBlock.Text = BusCurrent.ToString();
             MessageBox.Show("The bus was treated successfully.", "Finished a treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void Worker_RunWorkerCompleted_Fuel(object sender, RunWorkerCompletedEventArgs e)
         {
-            BusCurrent.Refuel();
-            BusTextBlock.Text = BusCurrent.ToString();
-            DataTread data = ((DataTread)(e.Result));
+            
+            DataThread data = ((DataThread)(e.Result));
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
-            data.Bus.BusStatus = Status.Available;
-            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             ProgressBarTreatment.Visibility = Visibility.Hidden;
-        }
-        private void func()
-        {
-            ProgressBarTreatment.Value = ProgressBar.Value;
+            data.Bus.BusStatus = Status.Available;
+            BusCurrent.Refuel();
+            BusTextBlock.Text = BusCurrent.ToString();
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
     }
     

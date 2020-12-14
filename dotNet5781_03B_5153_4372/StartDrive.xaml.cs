@@ -27,11 +27,6 @@ namespace dotNet5781_03B_5153_4372
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Enter_Distance(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -40,7 +35,7 @@ namespace dotNet5781_03B_5153_4372
                 {
                     this.Distance = Double.Parse((sender as TextBox).Text);
                     Bus.DoRide(Distance);
-                    Bus.BusStatus = Status.Refueling;
+                    Bus.BusStatus = Status.InTravel;
                 }
                 catch (BusException ex)
                 {

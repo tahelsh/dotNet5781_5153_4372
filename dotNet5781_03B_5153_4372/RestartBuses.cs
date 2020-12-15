@@ -9,6 +9,10 @@ namespace dotNet5781_03B_5153_4372
 {
     public static class RestartBuses
     {
+        /// <summary>
+        /// the constructor of this class initializes 10 buses
+        /// </summary>
+        /// <param name="buses">the constructor gets a collection of buses and updates it with the buses it initializes</param>
         public static void Restart10Buses(ObservableCollection<Bus> buses)
         {
             buses.Add(new Bus("12345678", new DateTime(2018, 12, 1), 10000, 1200, new DateTime(2020, 12,1 ), 8001));

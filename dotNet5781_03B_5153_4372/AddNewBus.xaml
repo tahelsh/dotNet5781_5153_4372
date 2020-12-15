@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_5153_4372"
         mc:Ignorable="d"
-        Title="AddNewBus" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="AddNewBus" Height="455.6" Width="594.4" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="addNewBus.png">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource busViewSource}" Background="#FFABD5FD">
+    <Grid DataContext="{StaticResource busViewSource}" Background="#FFABD5FD" Margin="3,2,4,59.6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="310" Width="573">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="39,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="304" Width="509">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="256"/>
-                <ColumnDefinition Width="Auto" MinWidth="132.8"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="46*"/>
+                <ColumnDefinition Width="Auto" MinWidth="168.8"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="61*"/>
@@ -31,20 +31,27 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,20,0,10.2" Grid.Row="0" VerticalAlignment="Center" Width="133" Height="29" FontSize="14 px"/>
-            <TextBox x:Name="licNumTextBox" Grid.Column="1" Height="24" Margin="5,23,0,12.2" Grid.Row="0" Text="license number" VerticalAlignment="Center" HorizontalAlignment="Left" Width="154" Grid.ColumnSpan="2"/>
-            <Label Content="Date Start:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,10.8,0,12.6" Grid.Row="1" VerticalAlignment="Center" Height="35" Width="91" FontSize="14 px"/>
-            <DatePicker x:Name="dateStartDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,14.2,0,12.6" Grid.Row="1" SelectedDate="{Binding DateStart, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="30" Width="154" Grid.ColumnSpan="2"/>
-            <Label Content="Total Kilometerage:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,6.4,0,13" Grid.Row="2" VerticalAlignment="Center" Height="31" Width="169" FontSize="14 px"/>
-            <TextBox x:Name="totalKmTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,12.4,0,13" Grid.Row="2" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154" Grid.ColumnSpan="2"/>
-            <Label Content="Kilometerage from the last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,9,0,0.8" Grid.Row="3" VerticalAlignment="Center" Height="35" Width="247" FontSize="14 px"/>
-            <TextBox x:Name="kmTreatTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,9,0,10.8" Grid.Row="3" Text="{Binding KmTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154" Grid.ColumnSpan="2"/>
-            <Label Content="Date from last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,10.2,0,13.4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="227" FontSize="14 px"/>
-            <DatePicker x:Name="lastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,12.2,0,12.4" Grid.Row="4" SelectedDate="{Binding LastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="25" Width="154" Grid.ColumnSpan="2"/>
-            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,10.6,0,11.4" Grid.Row="6" VerticalAlignment="Center" Height="26" Width="73" FontSize="14 px"/>
-            <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,11.6,0,11.4" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154" Grid.ColumnSpan="2"/>
+            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,18,0,9" Grid.Row="0" VerticalAlignment="Center" Width="133" Height="29" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <TextBox x:Name="licNumTextBox" Grid.Column="1" Height="24" Margin="5,21,0,11" Grid.Row="0" Text="license number" VerticalAlignment="Center" HorizontalAlignment="Left" Width="154"/>
+            <Label Content="Date Start:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,9,0,11.2" Grid.Row="1" VerticalAlignment="Center" Height="35" Width="91" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <DatePicker x:Name="dateStartDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,13,0,12.2" Grid.Row="1" SelectedDate="{Binding DateStart, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="30" Width="154"/>
+            <Label Content="Total Kilometerage:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,6.8,0,12.6" Grid.Row="2" VerticalAlignment="Center" Height="31" Width="169" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <TextBox x:Name="totalKmTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,12.8,0,12.6" Grid.Row="2" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154"/>
+            <Label Content="Kilometerage from the last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,9.4,0,0.4" Grid.Row="3" VerticalAlignment="Center" Height="35" Width="247" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <TextBox x:Name="kmTreatTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,9.4,0,10.4" Grid.Row="3" Text="{Binding KmTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154"/>
+            <Label Content="Date from last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,10.6,0,13" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="227" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <DatePicker x:Name="lastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5,12.6,0,12" Grid.Row="4" SelectedDate="{Binding LastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="25" Width="154"/>
+            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,11" Grid.Row="6" VerticalAlignment="Center" Height="26" Width="73" FontSize="14 px" FontFamily="SimSun" FontWeight="Bold"/>
+            <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="5,12,0,11" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="154"/>
         </Grid>
-        <Button x:Name="bSubmit" Content="Submit" Grid.Column="1" HorizontalAlignment="Left" Height="43" Margin="0,367,0,0" VerticalAlignment="Top" Width="240" Click="bSubmit_Click"/>
+        <Button x:Name="bSubmit" Content="Submit" Height="43" Margin="159,373,196.8,-51.2" VerticalAlignment="Top" Click="bSubmit_Click" Background="#FFF4F5F6" BorderThickness="3" FontFamily="Wide Latin" FontSize="22" Grid.ColumnSpan="2">
+            <Button.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF90E4F0" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.BorderBrush>
+        </Button>
 
     </Grid>
 </Window>

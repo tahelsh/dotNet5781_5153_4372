@@ -141,6 +141,11 @@ namespace dotNet5781_03B_5153_4372
             return "License Number: " + LicNum + "\nTotal Kilometrage: " + totalKm + "\nDate Start: " + dateStart + "\nFuel: " + fuel + "\nDate of last Treatment: " + lastTreat + "\nKilometrage from last treatment: " + kmTreat + "\nStatus: " + BusStatus;
         }
 
+        /// <summary> 
+        /// checks if the bus need treatment
+        /// </summary>
+        /// <param name="km">kilometers that it need to travel</param>
+        /// <returns></returns>
         public Boolean NeedTreatment(double km=0)
         {
             if (((totalKm - kmTreat) + km >= 20000) || ((DateTime.Now - lastTreat).TotalDays >= 365))
@@ -187,6 +192,11 @@ namespace dotNet5781_03B_5153_4372
                 totalKm += km;
                 fuel -= km;
             }
+        }
+
+        public Boolean IsBusy()
+        {
+            return (BusStatus != Status.Available);
         }
     }
   

@@ -63,7 +63,7 @@ namespace dotNet5781_03B_5153_4372
 
         private void Treatment_Button(object sender, RoutedEventArgs e)
         {
-            if(BusCurrent.BusStatus!=Status.Available)
+            if(BusCurrent.IsBusy())
             {
                 MessageBox.Show("The bus can not be treated right now, its not avaliable", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

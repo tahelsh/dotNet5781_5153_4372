@@ -48,7 +48,7 @@ namespace dotNet5781_03B_5153_4372
 
         {
             Bus b = (sender as Button).DataContext as Bus;
-            if (b.BusStatus!=Status.Available)
+            if (b.IsBusy())
             {
                 MessageBox.Show("The bus can't be refueled right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -77,7 +77,7 @@ namespace dotNet5781_03B_5153_4372
         private void Start_Driving_Button_Click(object sender, RoutedEventArgs e)
         {
             Bus b = (sender as Button).DataContext as Bus;//the bus
-            if(b.BusStatus != Status.Available)//if the bus is in thread
+            if(b.IsBusy())//if the bus is in thread
             {
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

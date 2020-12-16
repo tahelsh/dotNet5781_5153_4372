@@ -99,11 +99,19 @@ namespace dotNet5781_03B_5153_4372
             }
         }
 
-        public Status BusStatus { get; set; }
+        public Status BusStatus { get; set; }//Availability status of a bus
 
-
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="licNum">license number</param>
+        /// <param name="date">date of start operation</param>
+        /// <param name="totalKm">total kilometerage</param>
+        /// <param name="fuel">fuel in bus</param>
+        /// <param name="lastTreat">date of last treatment</param>
+        /// <param name="kmTreat">the kilometerage the bus had when treatment was done</param>
         public Bus(string licNum, DateTime date, double totalKm, double fuel, DateTime lastTreat, double kmTreat)
-        {//constructor
+        {
             this.DateStart = date;
             this.LicNum = licNum;
             this.LastTreat = lastTreat;
@@ -114,7 +122,10 @@ namespace dotNet5781_03B_5153_4372
             this.KmTreat = kmTreat;
             this.BusStatus = Status.Available;  
 
-        }
+        }/// <summary>
+        /// the function arranges the license number digit the right format
+        /// </summary>
+        /// <returns>returns the license number in the right format</returns>
         public string OrderLicenseNumber()
         {
             string prefix, middle, suffix;
@@ -135,7 +146,10 @@ namespace dotNet5781_03B_5153_4372
         }
 
 
-
+        /// <summary>
+        /// the function prepares the bus object for printing
+        /// </summary>
+        /// <returns>returns bus object prepared for print</returns>
         public override string ToString()
         {//to string
             return "License Number: " + LicNum + "\nTotal Kilometrage: " + totalKm + "\nDate Start: " + dateStart + "\nFuel: " + fuel + "\nDate of last Treatment: " + lastTreat + "\nKilometrage from last treatment: " + kmTreat + "\nStatus: " + BusStatus;
@@ -154,6 +168,11 @@ namespace dotNet5781_03B_5153_4372
             }
             return false;
         }
+        /// <summary>
+        /// checks if the bus has to get refueled
+        /// </summary>
+        /// <param name="km"></param>
+        /// <returns>returns true if the bus has to get refueled. otherwise, returns false</returns>
         public Boolean NeedFuel(double km=0)
         {
             if (fuel - km < 0)
@@ -163,7 +182,11 @@ namespace dotNet5781_03B_5153_4372
             return false;
         }
 
-
+        /// <summary>
+        /// checs if a bus can fo for a ride
+        /// </summary>
+        /// <param name="km"></param>
+        /// <returns>if it can, it returns true. otherwise, false.</returns>
         public bool CanTravel(double km)//the function checks if the bus can go for the ride.
         {
             if(NeedTreatment(km))
@@ -176,15 +199,25 @@ namespace dotNet5781_03B_5153_4372
             }
             return true;
         }
-        public void Refuel()//the function refuel the bus
+        /// <summary>
+        /// the function refuels the bus
+        /// </summary>
+        public void Refuel()
         {
             fuel = 1200;
         }
-        public void Treatment()//the function update the suitable fields after a treatment
+        /// <summary>
+        /// the function adds a treatment by updating the suitable bus field.
+        /// </summary>
+        public void Treatment()
         {
             lastTreat = DateTime.Now;
             kmTreat = totalKm;
         }
+        /// <summary>
+        /// taking the bus for a ride by updating the suitable fields
+        /// </summary>
+        /// <param name="km">the distance of the ride</param>
         public void DoRide(double km)
         {
             if (CanTravel(km))
@@ -193,7 +226,10 @@ namespace dotNet5781_03B_5153_4372
                 fuel -= km;
             }
         }
-
+        /// <summary>
+        /// checks if the bus is busy
+        /// </summary>
+        /// <returns>if it is busy, it returns true. otherwise, false</returns>
         public Boolean IsBusy()
         {
             return (BusStatus != Status.Available);

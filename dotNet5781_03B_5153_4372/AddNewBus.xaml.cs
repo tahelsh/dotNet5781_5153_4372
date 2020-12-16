@@ -17,10 +17,11 @@ namespace dotNet5781_03B_5153_4372
 {
     /// <summary>
     /// Interaction logic for AddNewBus.xaml
+    /// Tje class builds a window which enables to add a new bus to the existing buses list.
     /// </summary>
     public partial class AddNewBus : Window
     {
-        public ObservableCollection<Bus> Buses { get; set; }
+        public ObservableCollection<Bus> Buses { get; set; }//a collection of the buses.
         public AddNewBus()
         {
             InitializeComponent();

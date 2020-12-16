@@ -10,11 +10,12 @@
         <TextBlock Name="BusTextBlock"  HorizontalAlignment="Left" Height="182" Text="{Binding}" Margin="28,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" FontSize="16 px" FontFamily="Sylfaen" />
         <Button Content="Treatment" HorizontalAlignment="Left" Height="58" Margin="363,22,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
         <Button Content="Refuel" HorizontalAlignment="Left" Height="54" Margin="363,115,0,0" VerticalAlignment="Top" Width="130" Click="Refuel_Button" RenderTransformOrigin="0.5,0.5" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
-        <ProgressBar Name="ProgressBarTreatment" Visibility="Hidden"  HorizontalAlignment="Left" Height="29" Margin="363,213,0,0" VerticalAlignment="Top" Width="130" />
+        <ProgressBar Name="ProgressBarView" Visibility="Hidden"  HorizontalAlignment="Left" Height="29" Margin="363,213,0,0" VerticalAlignment="Top" Width="130" />
         <Label Content="" HorizontalAlignment="Left" Margin="114,226,0,0" VerticalAlignment="Top" Height="10" Width="10" Background="#FFFF1493"/>
         <Label Content="In Treatment" HorizontalAlignment="Left" Margin="128,218,0,0" VerticalAlignment="Top" Height="24" Width="78"/>
         <Label Content="" HorizontalAlignment="Left" Margin="217,226,0,0" VerticalAlignment="Top" Background="#FFF1F14E" Height="10" Width="10"/>
         <Label Content="Refueling" HorizontalAlignment="Left" Margin="230,218,0,0" VerticalAlignment="Top"/>
+        <Image Margin="506,10,10.4,10.6" Source="slil.png" Stretch="Fill"/>
 
 
     </Grid>

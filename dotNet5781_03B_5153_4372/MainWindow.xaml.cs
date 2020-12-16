@@ -64,13 +64,8 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
             workerRefuel.WorkerReportsProgress = true;
-            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), 12, b);
-            UpdateProgressBar(thread.ProgressBar, b.BusStatus);
-            UpdateLabel(thread.Label, b.BusStatus);
-
-            //thread.ProgressBar.Visibility = Visibility.Visible;
-            //thread.Label.Visibility = Visibility.Visible;
-            //thread.ProgressBar.Foreground = Brushes.Yellow;
+            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), Finditem<Button>((sender as Button).DataContext, "StartDrivingButton"), 12, b);
+            thread.UpdateDetails(b.BusStatus);
             workerRefuel.RunWorkerAsync(thread);
 
         }
@@ -94,12 +89,8 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.WorkerReportsProgress = true;
             int speedTravel = rand.Next(20, 50);//rand speed travel
             int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in 
-            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), timeTravel, b , Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));//thread of driving
-            UpdateProgressBar(thread.ProgressBar, b.BusStatus);
-            UpdateLabel(thread.Label, b.BusStatus);
-            //thread.ProgressBar.Visibility = Visibility.Visible;
-            //thread.Label.Visibility = Visibility.Visible;
-            //thread.ProgressBar.Foreground = Brushes.Aqua;
+            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));//thread of driving
+            thread.UpdateDetails(win.Bus.BusStatus);
             workerRefuel.RunWorkerAsync(thread); 
            
         }
@@ -111,7 +102,8 @@ namespace dotNet5781_03B_5153_4372
                 return;
             ProgressBar bar = Finditem<ProgressBar>((sender as ListBox).SelectedItem, "pbTread");
             Label l = Finditem<Label>((sender as ListBox).SelectedItem, "seconds");
-            ViewBus win = new ViewBus(b, bar,l);
+            Button button= Finditem<Button>((sender as ListBox).SelectedItem, "StartDrivingButton");
+            ViewBus win = new ViewBus(b, bar, l, button);
             win.ShowDialog();
         }
 
@@ -138,22 +130,16 @@ namespace dotNet5781_03B_5153_4372
         {
             MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            //data.ProgressBar.Visibility = Visibility.Hidden;
-            //data.Label.Visibility = Visibility.Hidden;
             data.Bus.BusStatus = Status.Available;
-            UpdateProgressBar(data.ProgressBar, data.Bus.BusStatus);
-            UpdateLabel(data.Label, data.Bus.BusStatus);
+            data.UpdateDetails(data.Bus.BusStatus);
             data.Bus.Refuel();
         }
         private void Worker_RunWorkerCompleted_Driving(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            //data.ProgressBar.Visibility = Visibility.Hidden;
-            //data.Label.Visibility = Visibility.Hidden;
             data.Bus.BusStatus = Status.Available;
-            UpdateProgressBar(data.ProgressBar, data.Bus.BusStatus);
-            UpdateLabel(data.Label, data.Bus.BusStatus);
+            data.UpdateDetails(data.Bus.BusStatus);
             data.TBTotalKm.Text = (data.Bus.TotalKm).ToString();   
         }
 
@@ -192,44 +178,5 @@ namespace dotNet5781_03B_5153_4372
             return myLabel;
         }
 
-        public void UpdateProgressBar(ProgressBar pb, Status st)
-        {
-            if (pb.Visibility == Visibility.Hidden)
-            {
-                pb.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                pb.Visibility = Visibility.Hidden;
-            }
-            switch (st)
-            {
-                case Status.Refueling:
-                    pb.Foreground = Brushes.Yellow;
-                    break;
-                case Status.InTravel:
-                    pb.Foreground = Brushes.Aqua;
-                    break;
-                case Status.Treatment:
-                    pb.Foreground = Brushes.DeepPink;
-                    break;
-                case Status.Available:
-                    pb.Value = 0;
-                    break;
-            }
-            
-        }
-        public void UpdateLabel(Label l, Status st)
-        {
-            if (l.Visibility == Visibility.Hidden)
-            {
-                l.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                l.Visibility = Visibility.Hidden;
-            }
-
-        }
     }
 }

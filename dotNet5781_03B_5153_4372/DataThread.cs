@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace dotNet5781_03B_5153_4372
 {
-     public class DataThread
+     public class DataThread//struct
     {
         public ProgressBar ProgressBar { get; set; }
         public Label Label { get; set; }

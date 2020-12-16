@@ -33,13 +33,13 @@
                 <TextBlock Grid.Column="3"
                    Text="{Binding Path=TotalKm}" Name="TBTotalKm" FontSize="14 px"/>
                 <Button Grid.Column="4"
-                   Content="Start driving" Click="Start_Driving_Button_Click" Name="StartDrivingButton" IsEnabled="True"  Background="White" />
+                   Content="Start driving" Click="Start_Driving_Button_Click" Name="StartDrivingButton" IsEnabled="True"  Background="White" FontFamily="Sylfaen" />
                 <Button Grid.Column="5"
-                   Content="Refuel" Click="Refuel" Name="ButtonRefuel" IsEnabled="{Binding ElementName=StartDrivingButton, Path=IsEnabled, Mode=TwoWay}" Background="White"/>
+                   Content="Refuel" Click="Refuel" Name="ButtonRefuel" IsEnabled="{Binding ElementName=StartDrivingButton, Path=IsEnabled, Mode=TwoWay}" Background="White" FontFamily="Sylfaen"/>
                 <ProgressBar Grid.Column="6"
                     Name="pbTread"  Visibility="Hidden"/>
                 <Label Grid.Column="7"
-                   Name="seconds" Visibility="Hidden" />
+                   Name="seconds" Visibility="Hidden" FontFamily="Sylfaen" FontSize="14 px"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

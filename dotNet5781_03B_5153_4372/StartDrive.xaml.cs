@@ -34,8 +34,8 @@ namespace dotNet5781_03B_5153_4372
                 try
                 {
                     this.Distance = Double.Parse((sender as TextBox).Text);
-                    Bus.DoRide(Distance);
-                    Bus.BusStatus = Status.InTravel;
+                    if (Bus.CanTravel(Distance))
+                        Bus.BusStatus = Status.InTravel;
                 }
                 catch (BusException ex)
                 {

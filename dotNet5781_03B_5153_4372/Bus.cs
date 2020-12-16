@@ -2,6 +2,7 @@
 //Tahel Sharon 323125153
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Permissions;
 using System.Text;
@@ -10,10 +11,11 @@ using System.Windows;
 
 namespace dotNet5781_03B_5153_4372
 {
-    public class Bus:DependencyObject
+    public class Bus:INotifyPropertyChanged
     {
-        private DateTime dateStart;//date of start operation
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private DateTime dateStart;//date of start operation
         public DateTime DateStart
         {
             get { return dateStart; }
@@ -24,14 +26,18 @@ namespace dotNet5781_03B_5153_4372
             }
         }
 
-
         private double totalKm;  //Total Kilometrage
-
         public double TotalKm
         {
             get { return totalKm;}
             set {if (totalKm <= value)
+                {
                     totalKm = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("TotalKm"));
+                    }
+                }
                 else
                     throw new BusException("the value for total Kilometrage is not valid");// "Error Total Kilometerage"
 
@@ -39,7 +45,6 @@ namespace dotNet5781_03B_5153_4372
         }
 
         private double fuel;//Fuel
-
         public double Fuel
         {
             get { return fuel; }
@@ -50,9 +55,7 @@ namespace dotNet5781_03B_5153_4372
             }
         }
 
-
         private string licNum; //license number
-
         public string LicNum
         {
             get { return this.OrderLicenseNumber(); }
@@ -74,7 +77,6 @@ namespace dotNet5781_03B_5153_4372
         }
         
         private DateTime lastTreat;//the date of the last treatment
-
         public DateTime LastTreat
         {
             get { return lastTreat; }
@@ -85,10 +87,7 @@ namespace dotNet5781_03B_5153_4372
             }
         }
 
-
-
         private double kmTreat;//The kilometerage when the last treatment was done
-
         public double KmTreat
         {
             get { return kmTreat; }
@@ -100,6 +99,7 @@ namespace dotNet5781_03B_5153_4372
         }
 
         public Status BusStatus { get; set; }//Availability status of a bus
+
 
         /// <summary>
         /// constructor
@@ -144,7 +144,6 @@ namespace dotNet5781_03B_5153_4372
             string finalLicNum = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
             return finalLicNum;
         }
-
 
         /// <summary>
         /// the function prepares the bus object for printing
@@ -204,15 +203,15 @@ namespace dotNet5781_03B_5153_4372
         /// </summary>
         public void Refuel()
         {
-            fuel = 1200;
+            Fuel = 1200;
         }
         /// <summary>
         /// the function adds a treatment by updating the suitable bus field.
         /// </summary>
         public void Treatment()
         {
-            lastTreat = DateTime.Now;
-            kmTreat = totalKm;
+            LastTreat = DateTime.Now;
+            KmTreat = totalKm;
         }
         /// <summary>
         /// taking the bus for a ride by updating the suitable fields
@@ -222,8 +221,8 @@ namespace dotNet5781_03B_5153_4372
         {
             if (CanTravel(km))
             {
-                totalKm += km;
-                fuel -= km;
+                TotalKm += km;
+                Fuel -= km;
             }
         }
         /// <summary>

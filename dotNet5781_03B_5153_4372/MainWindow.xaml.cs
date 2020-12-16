@@ -89,7 +89,7 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.WorkerReportsProgress = true;
             int speedTravel = rand.Next(20, 50);//rand speed travel
             int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in 
-            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));//thread of driving
+            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , win.Distance);//thread of driving
             thread.UpdateDetails(win.Bus.BusStatus);
             workerRefuel.RunWorkerAsync(thread); 
            
@@ -106,7 +106,6 @@ namespace dotNet5781_03B_5153_4372
             ViewBus win = new ViewBus(b, bar, l, button);
             win.ShowDialog();
         }
-
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             DataThread data = (DataThread)e.Argument;
@@ -138,12 +137,10 @@ namespace dotNet5781_03B_5153_4372
         {
             MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
+            data.Bus.DoRide(data.DistanceDriving);
             data.Bus.BusStatus = Status.Available;
             data.UpdateDetails(data.Bus.BusStatus);
-            data.TBTotalKm.Text = (data.Bus.TotalKm).ToString();   
         }
-
-
 
         //hlep functions
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject

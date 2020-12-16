@@ -16,7 +16,7 @@ namespace dotNet5781_03B_5153_4372
         public Button ButtonStartDriving { get; set; }
         public int Seconds { get; set; }
         public Bus Bus { get; set; }
-        public TextBlock TBTotalKm { get; set; }
+        public double DistanceDriving { get; set; }
 
         public DataThread(ProgressBar pb, Label l, Button button, int sec, Bus b)
         {
@@ -27,14 +27,14 @@ namespace dotNet5781_03B_5153_4372
             Bus = b;
         }
 
-        public DataThread(ProgressBar pb, Label label, Button button, int sec, Bus b, TextBlock TotalKm)
+        public DataThread(ProgressBar pb, Label label, Button button, int sec, Bus b, double dis)
         {
             ProgressBar = pb;
             Label = label;
             ButtonStartDriving = button;
             Seconds = sec;
             Bus = b;
-            TBTotalKm = TotalKm;
+            DistanceDriving = dis;
         }
 
         public void UpdateDetails(Status st)

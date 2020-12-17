@@ -116,6 +116,7 @@ namespace dotNet5781_03B_5153_4372
             BusCurrent.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
             ProgressBarView.Visibility = Visibility.Hidden;
+            ProgressBarView.Value = 0;
             BusCurrent.Treatment();//update details after treatment
             BusCurrent.Refuel();//update details after refuel
             BusTextBlock.Text = BusCurrent.ToString();//update the display
@@ -126,6 +127,7 @@ namespace dotNet5781_03B_5153_4372
             
             DataThread data = ((DataThread)(e.Result));
             ProgressBarView.Visibility = Visibility.Hidden;
+            ProgressBarView.Value = 0;
             data.Bus.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
             BusCurrent.Refuel();//update details after refuel

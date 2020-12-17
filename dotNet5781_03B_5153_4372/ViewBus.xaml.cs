@@ -79,7 +79,7 @@ namespace dotNet5781_03B_5153_4372
             workerTreatment.ProgressChanged += Worker_ProgressChanged;
             workerTreatment.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
             workerTreatment.WorkerReportsProgress = true;
-            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 5, BusCurrent);//details to the thread
+            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 144, BusCurrent);//details to the thread
             thread.UpdateDetails(BusCurrent.BusStatus);
             ProgressBarView.Visibility = Visibility.Visible;//update the progress bar in this window
             ProgressBarView.Foreground = Brushes.DeepPink;//update the diaplay

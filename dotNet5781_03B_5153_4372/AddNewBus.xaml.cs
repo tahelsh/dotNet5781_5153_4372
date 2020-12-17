@@ -41,7 +41,13 @@ namespace dotNet5781_03B_5153_4372
         {
             try
             {
-                Buses.Add(new Bus(licNumTextBox.Text, dateStartDatePicker.DisplayDate, double.Parse(totalKmTextBox.Text), double.Parse(fuelTextBox.Text), lastTreatDatePicker.DisplayDate, double.Parse(kmTreatTextBox.Text)));
+                Bus b = new Bus(licNumTextBox.Text, dateStartDatePicker.DisplayDate, double.Parse(totalKmTextBox.Text), double.Parse(fuelTextBox.Text), lastTreatDatePicker.DisplayDate, double.Parse(kmTreatTextBox.Text));
+                if (IsExist(b.LicNum))
+                {
+                    MessageBox.Show("ERROR, there is already bus with this License Number ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    Buses.Add(b);
             }
             catch (BusException ex)
             {
@@ -52,6 +58,16 @@ namespace dotNet5781_03B_5153_4372
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             Close();
+        }
+
+        private bool IsExist(string licNum)
+        {
+            foreach(Bus b in Buses)
+            {
+                if (b.LicNum == licNum)
+                    return true;
+            }
+            return false;
         }
     }
 }

@@ -38,35 +38,35 @@ namespace dotNet5781_03B_5153_4372
             lbBuses.ItemsSource = buses;
         }
 
-        private void bAddBus_Click(object sender, RoutedEventArgs e)
+        private void bAddBus_Click(object sender, RoutedEventArgs e)//adding new bus
         {
-            AddNewBus win = new AddNewBus();
-            win.Buses = buses;
+            AddNewBus win = new AddNewBus();//new window
+            win.Buses = buses;//send the list of buses to the new window
             win.ShowDialog();
         }
         private void Refuel(object sender, RoutedEventArgs e)
 
         {
-            Bus b = (sender as Button).DataContext as Bus;
-            if (b.IsBusy())
+            Bus b = (sender as Button).DataContext as Bus;//the bus that in the line of the button
+            if (b.IsBusy())//if the bus does not avaliable
             {
                 MessageBox.Show("The bus can't be refueled right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (b.Fuel == 1200)
+            if (b.Fuel == 1200)//if the tank of fuel is already full
             {
                 MessageBox.Show("The fuel tank of the bus is already full", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            b.BusStatus = Status.Refueling;
-            BackgroundWorker workerRefuel= new BackgroundWorker(); 
+            b.BusStatus = Status.Refueling;//change the status of the bus
+            BackgroundWorker workerRefuel= new BackgroundWorker(); //new thread
             workerRefuel.DoWork += Worker_DoWork;
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
             workerRefuel.WorkerReportsProgress = true;
-            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), Finditem<Button>((sender as Button).DataContext, "StartDrivingButton"), 12, b);
-            thread.UpdateDetails(b.BusStatus);
-            workerRefuel.RunWorkerAsync(thread);
+            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), Finditem<Button>((sender as Button).DataContext, "StartDrivingButton"), 12, b);//datialsto send to the thread
+            thread.UpdateDetails(b.BusStatus);//update the details before the thread
+            workerRefuel.RunWorkerAsync(thread);//start the thread
 
         }
         private void Start_Driving_Button_Click(object sender, RoutedEventArgs e)
@@ -77,33 +77,32 @@ namespace dotNet5781_03B_5153_4372
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            StartDrive win = new StartDrive();
+            StartDrive win = new StartDrive();//new window for enter the distance to travel
             win.Bus = b;
             win.ShowDialog();
             if (win.Bus.BusStatus == Status.Available)//if it cannot drive the ride
                 return;
-            BackgroundWorker workerRefuel= new BackgroundWorker(); 
+            BackgroundWorker workerRefuel= new BackgroundWorker(); //new thread
             workerRefuel.DoWork += Worker_DoWork;
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
             workerRefuel.WorkerReportsProgress = true;
             int speedTravel = rand.Next(20, 50);//rand speed travel
             int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in 
-            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , win.Distance);//thread of driving
-            thread.UpdateDetails(win.Bus.BusStatus);
-            workerRefuel.RunWorkerAsync(thread); 
-           
+            DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , win.Distance);//details for the thread
+            thread.UpdateDetails(win.Bus.BusStatus);//update the details before the thread
+            workerRefuel.RunWorkerAsync(thread); //start the thread
+
         }
         private void ListBoxDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //MainWindow.add progressbar
             Bus b = (sender as ListBox).SelectedItem as Bus;
             if (b == null)
                 return;
-            ProgressBar bar = Finditem<ProgressBar>((sender as ListBox).SelectedItem, "pbTread");
-            Label l = Finditem<Label>((sender as ListBox).SelectedItem, "seconds");
-            Button button= Finditem<Button>((sender as ListBox).SelectedItem, "StartDrivingButton");
-            ViewBus win = new ViewBus(b, bar, l, button);
+            ProgressBar bar = Finditem<ProgressBar>((sender as ListBox).SelectedItem, "pbTread");//the progress bar of the line in the list box that the user did double click
+            Label l = Finditem<Label>((sender as ListBox).SelectedItem, "seconds");//the label of time of the line in the list box that the user did double click
+            Button button= Finditem<Button>((sender as ListBox).SelectedItem, "StartDrivingButton");//the button of start driving of the line in the list box that the user did double click
+            ViewBus win = new ViewBus(b, bar, l, button);//send them to the view bus window
             win.ShowDialog();
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -113,7 +112,7 @@ namespace dotNet5781_03B_5153_4372
             for (int i = 1; i <= length; i++)
             {
                 System.Threading.Thread.Sleep(1000);
-                (sender as BackgroundWorker).ReportProgress(i , data);
+                (sender as BackgroundWorker).ReportProgress(i , data);//update the display every a second
             }
             e.Result = data;
         }
@@ -121,28 +120,29 @@ namespace dotNet5781_03B_5153_4372
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
-            int result = data.Seconds -progress;
-            data.Label.Content = result;
-            data.ProgressBar.Value = (progress*100)/data.Seconds;
+            int result = data.Seconds -progress;//the time in seconds that stay till the thread will end
+            data.Label.Content = result;//update the label
+            data.ProgressBar.Value = (progress*100)/data.Seconds;//update the progress bar
         }
-        private void Worker_RunWorkerCompleted_Refuel(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted_Refuel(object sender, RunWorkerCompletedEventArgs e)//complete thread for refuel
         {
-            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            data.Bus.BusStatus = Status.Available;
-            data.UpdateDetails(data.Bus.BusStatus);
-            data.Bus.Refuel();
+            data.Bus.BusStatus = Status.Available;//update the status of the bus
+            data.UpdateDetails(data.Bus.BusStatus);//update details after the thread
+            data.Bus.Refuel();//update the details of the bus after the refuel
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void Worker_RunWorkerCompleted_Driving(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            data.Bus.DoRide(data.DistanceDriving);
-            data.Bus.BusStatus = Status.Available;
-            data.UpdateDetails(data.Bus.BusStatus);
+            data.Bus.DoRide(data.DistanceDriving);//update the details of the bus after the driving
+            data.Bus.BusStatus = Status.Available;//update the status of the bus
+            data.UpdateDetails(data.Bus.BusStatus);//update details after the thread
+            MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        //hlep functions
+        //hlep functions for find controls in a specific line of the list box
+        //the target is to send something in the line and the name of the item that we want in this line and the fuction will return it
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)

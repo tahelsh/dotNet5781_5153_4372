@@ -97,7 +97,6 @@ namespace dotNet5781_03B_5153_4372
                  throw new BusException("the value of the kilometerage at the last treatment is not valid");
             }
         }
-
         public Status BusStatus { get; set; }//Availability status of a bus
 
 
@@ -122,7 +121,9 @@ namespace dotNet5781_03B_5153_4372
             this.KmTreat = kmTreat;
             this.BusStatus = Status.Available;  
 
-        }/// <summary>
+        }
+
+        /// <summary>
         /// the function arranges the license number digit the right format
         /// </summary>
         /// <returns>returns the license number in the right format</returns>
@@ -151,7 +152,7 @@ namespace dotNet5781_03B_5153_4372
         /// <returns>returns bus object prepared for print</returns>
         public override string ToString()
         {//to string
-            return "License Number: " + LicNum + "\nTotal Kilometrage: " + totalKm + "\nDate Start: " + dateStart + "\nFuel: " + fuel + "\nDate of last Treatment: " + lastTreat + "\nKilometrage from last treatment: " + kmTreat + "\nStatus: " + BusStatus;
+            return "License Number: " + LicNum + "\nTotal Kilometrage: " + totalKm + "\nDate Start: " + dateStart.ToShortDateString() + "\nFuel: " + fuel + "\nDate of last Treatment: " + lastTreat.ToShortDateString() + "\nKilometrage from last treatment: " + kmTreat + "\nStatus: " + BusStatus;
         }
 
         /// <summary> 
@@ -182,17 +183,17 @@ namespace dotNet5781_03B_5153_4372
         }
 
         /// <summary>
-        /// checs if a bus can fo for a ride
+        /// checks if the bus can go for the ride.
         /// </summary>
         /// <param name="km"></param>
         /// <returns>if it can, it returns true. otherwise, false.</returns>
-        public bool CanTravel(double km)//the function checks if the bus can go for the ride.
+        public bool CanTravel(double km)
         {
-            if(NeedTreatment(km))
+            if(NeedTreatment(km))//if the bus needs treatment
             {
                 throw new BusException("The bus "+LicNum+" can not start the driving, it needs tratment");
             }
-            if(NeedFuel(km))
+            if(NeedFuel(km))//if the bus need fuel
             {
                 throw new BusException("The bus "+LicNum+ " can not start the driving, it is missing fuel");
             }
@@ -205,6 +206,7 @@ namespace dotNet5781_03B_5153_4372
         {
             Fuel = 1200;
         }
+
         /// <summary>
         /// the function adds a treatment by updating the suitable bus field.
         /// </summary>
@@ -213,6 +215,7 @@ namespace dotNet5781_03B_5153_4372
             LastTreat = DateTime.Now;
             KmTreat = totalKm;
         }
+
         /// <summary>
         /// taking the bus for a ride by updating the suitable fields
         /// </summary>
@@ -225,6 +228,7 @@ namespace dotNet5781_03B_5153_4372
                 Fuel -= km;
             }
         }
+
         /// <summary>
         /// checks if the bus is busy
         /// </summary>

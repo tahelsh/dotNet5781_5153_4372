@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_5153_4372"
         mc:Ignorable="d"
-        Title="ViewBus" Height="294.729" Width="595.748" Background="White" WindowStartupLocation="CenterScreen" Icon="busView.png">
+        Title="Details" Height="294.729" Width="595.748" Background="White" WindowStartupLocation="CenterScreen" Icon="busView.png">
     <Grid Margin="0,0,3.2,2.2" Background="White">
         <TextBlock Name="BusTextBlock"  HorizontalAlignment="Left" Height="182" Text="{Binding}" Margin="28,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" FontSize="16 px" FontFamily="Sylfaen" />
         <Button Content="Treatment" HorizontalAlignment="Left" Height="58" Margin="363,22,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
         <Button Content="Refuel" HorizontalAlignment="Left" Height="54" Margin="363,115,0,0" VerticalAlignment="Top" Width="130" Click="Refuel_Button" RenderTransformOrigin="0.5,0.5" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
         <ProgressBar Name="ProgressBarView" Visibility="Hidden"  HorizontalAlignment="Left" Height="29" Margin="363,213,0,0" VerticalAlignment="Top" Width="130" />
         <Label Content="" HorizontalAlignment="Left" Margin="114,226,0,0" VerticalAlignment="Top" Height="10" Width="10" Background="#FFFF1493"/>
-        <Label Content="In Treatment" HorizontalAlignment="Left" Margin="128,218,0,0" VerticalAlignment="Top" Height="24" Width="78"/>
+        <Label Content="In Treatment" HorizontalAlignment="Left" Margin="128,218,0,0" VerticalAlignment="Top" Height="34" Width="84" FontFamily="SimSun" FontWeight="Bold"/>
         <Label Content="" HorizontalAlignment="Left" Margin="217,226,0,0" VerticalAlignment="Top" Background="#FFF1F14E" Height="10" Width="10"/>
-        <Label Content="Refueling" HorizontalAlignment="Left" Margin="230,218,0,0" VerticalAlignment="Top"/>
+        <Label Content="Refueling" HorizontalAlignment="Left" Margin="230,218,0,0" VerticalAlignment="Top" FontFamily="SimSun" FontWeight="Bold"/>
         <Image Margin="506,10,10.4,10.6" Source="slil.png" Stretch="Fill"/>
 
 

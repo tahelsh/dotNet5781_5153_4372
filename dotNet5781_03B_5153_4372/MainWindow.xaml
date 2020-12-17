@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_5153_4372"
         mc:Ignorable="d"
-        Title="MainWindow" Height="464.4" Width="795.2" Foreground="#FFFFFFFF" Background="#FFFFFFFF" Icon="logo.png" WindowStartupLocation="CenterScreen">
+        Title="Welcome" Height="464.4" Width="795.2" Foreground="#FFFFFFFF" Background="#FFFFFFFF" Icon="logo.png" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus" x:Name="bus">
@@ -60,11 +60,11 @@
             </Button.BorderBrush>
         </Button>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="46,351,0,0" VerticalAlignment="Top" Width="10" Background="#FFFF1493"/>
-        <Label Content="In Treatment" HorizontalAlignment="Left" Height="28" Margin="63,341,0,0" VerticalAlignment="Top" Width="93" FontSize="14"/>
+        <Label Content="In Treatment" HorizontalAlignment="Left" Height="26" Margin="63,341,0,0" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="44,375,0,0" VerticalAlignment="Top" Width="10" Background="#FFF1F14E"/>
-        <Label Content="Refueling" HorizontalAlignment="Left" Height="30" Margin="65,367,0,0" VerticalAlignment="Top" Width="91" FontSize="14"/>
+        <Label Content="Refueling" HorizontalAlignment="Left" Height="30" Margin="65,367,0,0" VerticalAlignment="Top" Width="91" FontSize="16" FontFamily="SimSun" FontWeight="Bold"/>
         <Label Content="Label" HorizontalAlignment="Left" Height="10" Margin="44,402,0,0" VerticalAlignment="Top" Width="10" Background="#FF00FFFF"/>
-        <Label Content="In driving" HorizontalAlignment="Left" Margin="66,392,0,-4" VerticalAlignment="Top" FontSize="14" Height="30"/>
+        <Label Content="In driving" HorizontalAlignment="Left" Margin="66,392,0,-4" VerticalAlignment="Top" FontSize="16" Height="30" FontFamily="SimSun" FontWeight="Bold"/>
         <Image Margin="192.2,348,14.6,0.4" Source="logo.png" Stretch="Fill" Grid.Column="1" Grid.ColumnSpan="2"/>
 
     </Grid>

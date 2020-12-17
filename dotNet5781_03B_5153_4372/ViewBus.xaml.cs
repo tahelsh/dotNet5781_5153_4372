@@ -21,71 +21,70 @@ namespace dotNet5781_03B_5153_4372
     /// </summary>
     public partial class ViewBus : Window
     {
-        public Bus BusCurrent { get; set; }
-        public ProgressBar ProgressBar { get; set; }
-        public Label Lable { get; set; }
-        public Button ButtonDriving { get; set; }
+        public Bus BusCurrent { get; set; }//the bus
+        public ProgressBar ProgressBar { get; set; }//the progress bar in the line of the bus in the list box in the main window
+        public Label Lable { get; set; }//the label in the line of the bus in the list box in the main window
+        public Button ButtonDriving { get; set; }//the button of start driving in the line of the bus in the list box in the main window
 
         public ViewBus(Bus b, ProgressBar pd, Label l, Button button)
         {
             InitializeComponent();
             BusCurrent = b;
-            BusTextBlock.Text = BusCurrent.ToString();
             ProgressBar = pd;
             Lable = l;
             ButtonDriving = button;
+            BusTextBlock.Text = BusCurrent.ToString();
         }
 
         private void Refuel_Button(object sender, RoutedEventArgs e)
         {
-            if(BusCurrent.BusStatus!=Status.Available)
+            if(BusCurrent.IsBusy())//if the bus does not avaliable
             {
                 MessageBox.Show("The bus can't be refueled right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if(BusCurrent.Fuel==1200)
+            if(BusCurrent.Fuel==1200)//if the tank of the fuel is already full
             {
                 MessageBox.Show("The fuel tank of the bus is already full", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            BusCurrent.BusStatus = Status.Refueling;
-            BackgroundWorker workerRefuel = new BackgroundWorker();
+            BusCurrent.BusStatus = Status.Refueling;//change the status
+            BackgroundWorker workerRefuel = new BackgroundWorker();//new thread
             workerRefuel.DoWork += Worker_DoWork;
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Fuel;
             workerRefuel.WorkerReportsProgress = true;
-            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 12, BusCurrent);
+            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 12, BusCurrent);//details to the thread
             thread.UpdateDetails(BusCurrent.BusStatus);
-            ProgressBarView.Visibility= Visibility.Visible;
-            ProgressBarView.Foreground = Brushes.Yellow;
-            BusTextBlock.Text = BusCurrent.ToString();
-            workerRefuel.RunWorkerAsync(thread);
+            ProgressBarView.Visibility= Visibility.Visible;//update the progress bar in this window
+            ProgressBarView.Foreground = Brushes.Yellow;//update the color of the progress bar in this window
+            BusTextBlock.Text = BusCurrent.ToString();//update the display
+            workerRefuel.RunWorkerAsync(thread);//start the thread
         }
-
         private void Treatment_Button(object sender, RoutedEventArgs e)
         {
-            if(BusCurrent.IsBusy())
+            if(BusCurrent.IsBusy())//if the bus does not avaliable
             {
                 MessageBox.Show("The bus can not be treated right now, its not avaliable", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (BusCurrent.LastTreat == DateTime.Now && BusCurrent.KmTreat == BusCurrent.TotalKm)
+            if (BusCurrent.LastTreat.ToShortDateString() == DateTime.Now.ToShortDateString() && BusCurrent.KmTreat == BusCurrent.TotalKm)//if the treatment already done
             {
                 MessageBox.Show("The bus was already treatmented", "Worning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            BusCurrent.BusStatus = Status.Treatment;
-            BackgroundWorker workerTreatment = new BackgroundWorker();
+            BusCurrent.BusStatus = Status.Treatment;//change status of the bus
+            BackgroundWorker workerTreatment = new BackgroundWorker();//new thread
             workerTreatment.DoWork += Worker_DoWork;
             workerTreatment.ProgressChanged += Worker_ProgressChanged;
             workerTreatment.RunWorkerCompleted += Worker_RunWorkerCompleted_Treatment;
             workerTreatment.WorkerReportsProgress = true;
-            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 144, BusCurrent);
+            DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 5, BusCurrent);//details to the thread
             thread.UpdateDetails(BusCurrent.BusStatus);
-            ProgressBarView.Visibility = Visibility.Visible;
-            ProgressBarView.Foreground = Brushes.DeepPink;
-            BusTextBlock.Text = BusCurrent.ToString();
-            workerTreatment.RunWorkerAsync(thread);
+            ProgressBarView.Visibility = Visibility.Visible;//update the progress bar in this window
+            ProgressBarView.Foreground = Brushes.DeepPink;//update the diaplay
+            BusTextBlock.Text = BusCurrent.ToString();//update the display
+            workerTreatment.RunWorkerAsync(thread);//start the thread
 
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -95,7 +94,7 @@ namespace dotNet5781_03B_5153_4372
             for (int i = 1; i <= length; i++)
             {
                 System.Threading.Thread.Sleep(1000);
-                (sender as BackgroundWorker).ReportProgress(i, data);
+                (sender as BackgroundWorker).ReportProgress(i, data);//update the display every a second
             }
             e.Result = data;
            
@@ -111,15 +110,15 @@ namespace dotNet5781_03B_5153_4372
             ProgressBarView.Visibility = Visibility.Visible;
 
         }
-        private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)//complete the treatment
         {
             DataThread data = ((DataThread)(e.Result));
-            BusCurrent.BusStatus = Status.Available;
-            data.UpdateDetails(BusCurrent.BusStatus);
+            BusCurrent.BusStatus = Status.Available;//change the status
+            data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
             ProgressBarView.Visibility = Visibility.Hidden;
-            BusCurrent.Treatment();
-            BusCurrent.Refuel();
-            BusTextBlock.Text = BusCurrent.ToString();
+            BusCurrent.Treatment();//update details after treatment
+            BusCurrent.Refuel();//update details after refuel
+            BusTextBlock.Text = BusCurrent.ToString();//update the display
             MessageBox.Show("The bus was treated successfully.", "Finished a treatment  ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void Worker_RunWorkerCompleted_Fuel(object sender, RunWorkerCompletedEventArgs e)
@@ -127,10 +126,10 @@ namespace dotNet5781_03B_5153_4372
             
             DataThread data = ((DataThread)(e.Result));
             ProgressBarView.Visibility = Visibility.Hidden;
-            data.Bus.BusStatus = Status.Available;
-            data.UpdateDetails(BusCurrent.BusStatus);
-            BusCurrent.Refuel();
-            BusTextBlock.Text = BusCurrent.ToString();
+            data.Bus.BusStatus = Status.Available;//change the status
+            data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
+            BusCurrent.Refuel();//update details after refuel
+            BusTextBlock.Text = BusCurrent.ToString();//update the display
             MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }

@@ -14,7 +14,7 @@
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="304" Width="528">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="20,32,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="297" Width="504">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="286.4"/>
                 <ColumnDefinition Width="Auto" MinWidth="144"/>

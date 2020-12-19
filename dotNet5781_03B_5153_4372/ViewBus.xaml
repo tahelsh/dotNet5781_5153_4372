@@ -15,7 +15,7 @@
         <Label Content="In Treatment" HorizontalAlignment="Left" Margin="112,238,0,0" VerticalAlignment="Top" Height="32" Width="100" FontFamily="SimSun" FontWeight="Bold" FontSize="14 px"/>
         <Label Content="" HorizontalAlignment="Left" Margin="217,245,0,0" VerticalAlignment="Top" Background="#FFF1F14E" Height="12" Width="12"/>
         <Label Content="Refueling" HorizontalAlignment="Left" Margin="231,238,0,0" VerticalAlignment="Top" FontFamily="SimSun" FontWeight="Bold" FontSize="14 px"/>
-        <Image Margin="512,10,4.6,11.2" Source="slil.png" Stretch="Fill"/>
+        <Image Margin="534,10,4.6,11.2" Source="slil.png" Stretch="Fill"/>
 
 
     </Grid>

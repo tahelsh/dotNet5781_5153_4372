@@ -24,17 +24,17 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
-                   Text="{Binding Path=LicNum}" FontSize="18 px" />
+                   Text="{Binding Path=LicNum}" FontSize="20 px" />
                 <TextBlock Grid.Column="1"
-                   Text="{Binding Path=TotalKm}" Name="TBTotalKm" FontSize="18 px"/>
+                   Text="{Binding Path=TotalKm}" Name="TBTotalKm" FontSize="20 px"/>
                 <Button Grid.Column="2"
-                   Content="Start driving" Click="Start_Driving_Button_Click" Name="StartDrivingButton" IsEnabled="True"  Background="White" FontFamily="Sylfaen" FontSize="18 px"/>
+                   Content="Start driving" Click="Start_Driving_Button_Click" Name="StartDrivingButton" IsEnabled="True"  Background="White" FontFamily="Sylfaen" FontSize="20 px"/>
                 <Button Grid.Column="3"
-                   Content="Refuel" Click="Refuel" Name="ButtonRefuel" IsEnabled="{Binding ElementName=StartDrivingButton, Path=IsEnabled, Mode=TwoWay}" Background="White" FontFamily="Sylfaen" Margin="13,0,0,0" FontSize="18 px"/>
+                   Content="Refuel" Click="Refuel" Name="ButtonRefuel" IsEnabled="{Binding ElementName=StartDrivingButton, Path=IsEnabled, Mode=TwoWay}" Background="White" FontFamily="Sylfaen" Margin="13,0,0,0" FontSize="20 px"/>
                 <ProgressBar Grid.Column="4"
                     Name="pbTread"  Visibility="Hidden" Margin="13,0,0,0"/>
                 <Label Grid.Column="5"
-                   Name="seconds" Visibility="Hidden" FontFamily="Sylfaen" FontSize="22 px"/>
+                   Name="seconds" Visibility="Hidden" FontFamily="Sylfaen" FontSize="22 px" Content="time"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -57,9 +57,9 @@
         </Button>
         <Image Margin="26,456,256.2,10" Source="logo.png" Stretch="Fill"/>
         <Image Margin="147.2,452,-0.2,2" Source="Nenu.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Column="2"/>
-        <Label Content="License&#xD;&#xA;Number" HorizontalAlignment="Right" Height="79" Margin="0,7,282.2,0" VerticalAlignment="Top" Width="174" FontFamily="Castellar" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Total Km" HorizontalAlignment="Left" Height="54" Margin="169,13,0,0" VerticalAlignment="Top" Width="173" FontFamily="Castellar" FontSize="20" FontWeight="Bold"/>
-        <Label Grid.ColumnSpan="2" Content="Options" HorizontalAlignment="Left" Height="54" Margin="37.2,12,0,0" VerticalAlignment="Top" Width="190" FontFamily="Castellar" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
+        <Label Content="License&#xA;Number:" HorizontalAlignment="Right" Height="79" Margin="0,7,282.2,0" VerticalAlignment="Top" Width="174" FontFamily="Castellar" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Total Km:" HorizontalAlignment="Left" Height="54" Margin="169,13,0,0" VerticalAlignment="Top" Width="173" FontFamily="Castellar" FontSize="20" FontWeight="Bold"/>
+        <Label Grid.ColumnSpan="2" Content="Options:" HorizontalAlignment="Left" Height="54" Margin="37.2,12,0,0" VerticalAlignment="Top" Width="190" FontFamily="Castellar" FontSize="22" FontWeight="Bold" Grid.Column="1"/>
 
     </Grid>
 </Window>

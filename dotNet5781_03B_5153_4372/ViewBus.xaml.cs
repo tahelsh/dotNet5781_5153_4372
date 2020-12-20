@@ -58,6 +58,7 @@ namespace dotNet5781_03B_5153_4372
             thread.UpdateDetails(BusCurrent.BusStatus);
             ProgressBarView.Visibility= Visibility.Visible;//update the progress bar in this window
             ProgressBarView.Foreground = Brushes.Yellow;//update the color of the progress bar in this window
+            LabelView.Visibility = Visibility.Visible;
             BusTextBlock.Text = BusCurrent.ToString();//update the display
             workerRefuel.RunWorkerAsync(thread);//start the thread
         }
@@ -83,6 +84,7 @@ namespace dotNet5781_03B_5153_4372
             thread.UpdateDetails(BusCurrent.BusStatus);
             ProgressBarView.Visibility = Visibility.Visible;//update the progress bar in this window
             ProgressBarView.Foreground = Brushes.DeepPink;//update the diaplay
+            LabelView.Visibility = Visibility.Visible;
             BusTextBlock.Text = BusCurrent.ToString();//update the display
             workerTreatment.RunWorkerAsync(thread);//start the thread
 
@@ -105,9 +107,11 @@ namespace dotNet5781_03B_5153_4372
             DataThread data = (DataThread)e.UserState;
             int result = data.Seconds - progress;
             data.Label.Content = result;
+            LabelView.Content = data.Label.Content;
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
             ProgressBarView.Value = data.ProgressBar.Value;
-            ProgressBarView.Visibility = Visibility.Visible;
+           
+            //ProgressBarView.Visibility = Visibility.Visible;
 
         }
         private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)//complete the treatment
@@ -116,7 +120,9 @@ namespace dotNet5781_03B_5153_4372
             BusCurrent.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
             ProgressBarView.Visibility = Visibility.Hidden;
+            LabelView.Visibility = Visibility.Hidden;
             ProgressBarView.Value = 0;
+            LabelView.Content = "time";
             BusCurrent.Treatment();//update details after treatment
             BusCurrent.Refuel();//update details after refuel
             BusTextBlock.Text = BusCurrent.ToString();//update the display
@@ -127,7 +133,9 @@ namespace dotNet5781_03B_5153_4372
             
             DataThread data = ((DataThread)(e.Result));
             ProgressBarView.Visibility = Visibility.Hidden;
+            LabelView.Visibility = Visibility.Hidden;
             ProgressBarView.Value = 0;
+            LabelView.Content = "time";
             data.Bus.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
             BusCurrent.Refuel();//update details after refuel

@@ -10,12 +10,13 @@
         <TextBlock Name="BusTextBlock"  HorizontalAlignment="Left" Height="211" Text="{Binding}" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="348" FontSize="20 px" FontFamily="Sylfaen" />
         <Button Content="Treatment" HorizontalAlignment="Left" Height="58" Margin="382,22,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.724,0.785" Click="Treatment_Button" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
         <Button Content="Refuel" HorizontalAlignment="Left" Height="54" Margin="382,130,0,0" VerticalAlignment="Top" Width="130" Click="Refuel_Button" RenderTransformOrigin="0.5,0.5" Background="#FFABD5FD" FontFamily="Wide Latin" FontSize="14" BorderThickness="2"/>
-        <ProgressBar Name="ProgressBarView"  Visibility="Hidden" HorizontalAlignment="Left" Height="29" Margin="382,233,0,0" VerticalAlignment="Top" Width="130" />
+        <ProgressBar Name="ProgressBarView" Visibility="Hidden"  HorizontalAlignment="Left" Height="29" Margin="355,236,0,0" VerticalAlignment="Top" Width="130" />
         <Label Content="" HorizontalAlignment="Left" Margin="99,245,0,0" VerticalAlignment="Top" Height="12" Width="12" Background="#FFFF1493"/>
         <Label Content="In Treatment" HorizontalAlignment="Left" Margin="112,238,0,0" VerticalAlignment="Top" Height="32" Width="100" FontFamily="SimSun" FontWeight="Bold" FontSize="14 px"/>
         <Label Content="" HorizontalAlignment="Left" Margin="217,245,0,0" VerticalAlignment="Top" Background="#FFF1F14E" Height="12" Width="12"/>
         <Label Content="Refueling" HorizontalAlignment="Left" Margin="231,238,0,0" VerticalAlignment="Top" FontFamily="SimSun" FontWeight="Bold" FontSize="14 px"/>
-        <Image Margin="534,10,4.6,11.2" Source="slil.png" Stretch="Fill"/>
+        <Image Margin="537,4,1.6,17.2" Source="slil.png" Stretch="Fill"/>
+        <Label Content="time" Name="LabelView" Visibility="Hidden" HorizontalAlignment="Left" Height="32" Margin="492,233,0,0" VerticalAlignment="Top" Width="52" FontFamily="Sylfaen" FontSize="18 px"/>
 
 
     </Grid>

@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace dotNet5781_03B_5153_4372
 {
-     public class DataThread//struct
+     public class DataThread
     {
         public ProgressBar ProgressBar { get; set; }
         public Label Label { get; set; }
@@ -37,6 +37,11 @@ namespace dotNet5781_03B_5153_4372
             DistanceDriving = dis;
         }
 
+
+        /// <summary>
+        /// update the details that sent to the thread according to a status of a bus
+        /// </summary>
+        /// <param name="st">status of a bus</param>
         public void UpdateDetails(Status st)
         {
             switch (st)
@@ -64,6 +69,7 @@ namespace dotNet5781_03B_5153_4372
                     ProgressBar.Visibility = Visibility.Hidden;
                     Label.Visibility = Visibility.Hidden;
                     ProgressBar.Value = 0;
+                    Label.Content = "time";
                     break;
             }
         }

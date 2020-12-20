@@ -34,7 +34,7 @@
                 <ProgressBar Grid.Column="4"
                     Name="pbTread"  Visibility="Hidden" Margin="13,0,0,0"/>
                 <Label Grid.Column="5"
-                   Name="seconds" Visibility="Hidden" FontFamily="Sylfaen" FontSize="14 px"/>
+                   Name="seconds" Visibility="Hidden" FontFamily="Sylfaen" FontSize="22 px"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

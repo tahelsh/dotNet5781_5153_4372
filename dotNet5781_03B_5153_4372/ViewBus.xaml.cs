@@ -55,10 +55,10 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Fuel;
             workerRefuel.WorkerReportsProgress = true;
             DataThread thread = new DataThread(ProgressBar, Lable, ButtonDriving, 12, BusCurrent);//details to the thread
-            thread.UpdateDetails(BusCurrent.BusStatus);
+            thread.UpdateDetails(BusCurrent.BusStatus);//update details by the status
             ProgressBarView.Visibility= Visibility.Visible;//update the progress bar in this window
             ProgressBarView.Foreground = Brushes.Yellow;//update the color of the progress bar in this window
-            LabelView.Visibility = Visibility.Visible;
+            LabelView.Visibility = Visibility.Visible;//update the label of time in this window
             BusTextBlock.Text = BusCurrent.ToString();//update the display
             workerRefuel.RunWorkerAsync(thread);//start the thread
         }
@@ -84,7 +84,7 @@ namespace dotNet5781_03B_5153_4372
             thread.UpdateDetails(BusCurrent.BusStatus);
             ProgressBarView.Visibility = Visibility.Visible;//update the progress bar in this window
             ProgressBarView.Foreground = Brushes.DeepPink;//update the diaplay
-            LabelView.Visibility = Visibility.Visible;
+            LabelView.Visibility = Visibility.Visible;//update the label of time in this window
             BusTextBlock.Text = BusCurrent.ToString();//update the display
             workerTreatment.RunWorkerAsync(thread);//start the thread
 
@@ -105,23 +105,20 @@ namespace dotNet5781_03B_5153_4372
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
-            int result = data.Seconds - progress;
-            data.Label.Content = result;
-            LabelView.Content = data.Label.Content;
-            data.ProgressBar.Value = (progress * 100) / data.Seconds;
-            ProgressBarView.Value = data.ProgressBar.Value;
-           
-            //ProgressBarView.Visibility = Visibility.Visible;
-
+            int result = data.Seconds - progress;//the seconds that stay till the thread will end
+            data.Label.Content = result;//content of label of the main window
+            LabelView.Content = data.Label.Content;//content of label of the this window
+            data.ProgressBar.Value = (progress * 100) / data.Seconds;//content of ProgressBar of the main window
+            ProgressBarView.Value = data.ProgressBar.Value;//content of ProgressBar of the this window
         }
         private void Worker_RunWorkerCompleted_Treatment(object sender, RunWorkerCompletedEventArgs e)//complete the treatment
         {
             DataThread data = ((DataThread)(e.Result));
             BusCurrent.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread
-            ProgressBarView.Visibility = Visibility.Hidden;
-            LabelView.Visibility = Visibility.Hidden;
+            ProgressBarView.Visibility = Visibility.Hidden;//update the ProgressBar of this window
             ProgressBarView.Value = 0;
+            LabelView.Visibility = Visibility.Hidden;//update the label of this window
             LabelView.Content = "time";
             BusCurrent.Treatment();//update details after treatment
             BusCurrent.Refuel();//update details after refuel
@@ -132,9 +129,9 @@ namespace dotNet5781_03B_5153_4372
         {
             
             DataThread data = ((DataThread)(e.Result));
-            ProgressBarView.Visibility = Visibility.Hidden;
-            LabelView.Visibility = Visibility.Hidden;
+            ProgressBarView.Visibility = Visibility.Hidden;//update the ProgressBar of this window
             ProgressBarView.Value = 0;
+            LabelView.Visibility = Visibility.Hidden;//update the label of this window
             LabelView.Content = "time";
             data.Bus.BusStatus = Status.Available;//change the status
             data.UpdateDetails(BusCurrent.BusStatus);//update the details of the thread in the main window after the thread

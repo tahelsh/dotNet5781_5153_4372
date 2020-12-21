@@ -8,6 +8,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace dotNet5781_03B_5153_4372
 {
@@ -97,9 +98,38 @@ namespace dotNet5781_03B_5153_4372
                  throw new BusException("the value of the kilometerage at the last treatment is not valid");
             }
         }
-        public Status BusStatus { get; set; }//Availability status of a bus
+        
+        private Status busStatus;//Availability status of a bus
+        public Status BusStatus
+        {
+            get { return busStatus; }
+            set { busStatus = value;
+                switch (busStatus)
+                {
+                    case Status.Available:
+                        StatusColor = Brushes.Green;
+                        break;
+                    default:
+                        StatusColor = Brushes.Red;
+                        break;
+                }
+            }
+        }
 
+        private SolidColorBrush statusColor;
 
+        public SolidColorBrush StatusColor
+        {
+            get { return statusColor; }
+            set {
+                statusColor = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("StatusColor"));
+                }
+            }
+        }
+        
         /// <summary>
         /// constructor
         /// </summary>
@@ -119,8 +149,8 @@ namespace dotNet5781_03B_5153_4372
             this.totalKm = totalKm;
             this.Fuel = fuel;
             this.KmTreat = kmTreat;
-            this.BusStatus = Status.Available;  
-
+            this.BusStatus = Status.Available;
+            StatusColor = Brushes.Green;
         }
 
         /// <summary>

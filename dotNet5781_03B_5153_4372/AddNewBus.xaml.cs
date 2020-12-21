@@ -35,8 +35,6 @@ namespace dotNet5781_03B_5153_4372
             // busViewSource.Source = [generic data source]
         }
 
-    
-
         private void bSubmit_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -47,7 +45,10 @@ namespace dotNet5781_03B_5153_4372
                     MessageBox.Show("ERROR, there is already bus with this License Number ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
+                {
                     Buses.Add(b);
+                    Close();
+                }
             }
             catch (BusException ex)
             {
@@ -56,10 +57,14 @@ namespace dotNet5781_03B_5153_4372
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            Close();
+            }   
         }
 
+        /// <summary>
+        /// checks if the bus that the user want to add is already exists
+        /// </summary>
+        /// <param name="licNum">the license Number of the bus</param>
+        /// <returns></returns>
         private bool IsExist(string licNum)
         {
             foreach(Bus b in Buses)

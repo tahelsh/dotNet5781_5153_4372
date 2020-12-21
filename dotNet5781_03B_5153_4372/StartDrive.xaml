@@ -7,15 +7,19 @@
         mc:Ignorable="d"
         Title="Start Driving" Height="230.331" Width="459.142" Background="#FFABD5FD" WindowStartupLocation="CenterScreen" Icon="fastBusFinal.jpg">
     <Grid Margin="0,1,3.2,1.6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="61*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Enter driving distance:" HorizontalAlignment="Left" Height="53" Margin="87,40,0,0" VerticalAlignment="Top" Width="317" FontFamily="Sylfaen" FontWeight="Bold" FontSize="30"/>
-        <TextBox HorizontalAlignment="Left" Text="enter here" KeyDown="Enter_Distance" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Height="43" Margin="126,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontWeight="Bold" FontFamily="Sitka Banner" FontSize="14" Grid.RowSpan="2" />
-        <Viewbox HorizontalAlignment="Left" Height="5" Margin="366,83,-41.6,0" VerticalAlignment="Top" Width="2" Grid.RowSpan="2"/>
-        <Image Margin="27,44,367.6,30.8" Source="enterBus.png" Stretch="Fill" RenderTransformOrigin="-3.804,-1.239"/>
+        <Label Content="Enter driving distance:" HorizontalAlignment="Left" Height="53" Margin="3.078,40,0,0" VerticalAlignment="Top" Width="317" FontFamily="Sylfaen" FontWeight="Bold" FontSize="30" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Text="enter here" KeyDown="Enter_Distance" PreviewKeyDown="TextBox_OnlyNumbers_PreviewKeyDown" Height="43" Margin="42.078,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontWeight="Bold" FontFamily="Sitka Banner" FontSize="20" Grid.RowSpan="2" Grid.Column="1" />
+        <Viewbox HorizontalAlignment="Left" Height="5" Margin="282.078,83,0,0" VerticalAlignment="Top" Width="2" Grid.Column="1"/>
+        <Image Margin="27,44,1.922,30" Source="enterBus.png" RenderTransformOrigin="-3.804,-1.239"/>
 
     </Grid>
 </Window>

@@ -87,6 +87,7 @@ namespace dotNet5781_03B_5153_4372
             workerRefuel.ProgressChanged += Worker_ProgressChanged;
             workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
             workerRefuel.WorkerReportsProgress = true;
+            //b.StatusColor = Brushes.Red;
             int speedTravel = rand.Next(20, 50);//rand speed travel
             int timeTravel = (int)((win.Distance / speedTravel) * 6);//time travel in 
             DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext, "pbTread"), Finditem<Label>((sender as Button).DataContext, "seconds"), sender as Button, timeTravel, b , win.Distance);//details for the thread

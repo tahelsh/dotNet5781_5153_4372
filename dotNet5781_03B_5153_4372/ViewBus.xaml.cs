@@ -17,7 +17,7 @@ using static System.Windows.Media.Brush;
 namespace dotNet5781_03B_5153_4372
 {
     /// <summary>
-    /// Interaction logic for ViewBus.xamlllll
+    /// Interaction logic for ViewBus.xaml
     /// </summary>
     public partial class ViewBus : Window
     {
@@ -33,9 +33,8 @@ namespace dotNet5781_03B_5153_4372
             ProgressBar = pd;
             Lable = l;
             ButtonDriving = button;
-            BusTextBlock.Text = BusCurrent.ToString();
+            BusTextBlock.DataContext = BusCurrent;
         }
-
         private void Refuel_Button(object sender, RoutedEventArgs e)
         {
             if(BusCurrent.IsBusy())//if the bus does not avaliable

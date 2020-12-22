@@ -113,6 +113,10 @@ namespace dotNet5781_03B_5153_4372
                         StatusColor = Brushes.Red;
                         break;
                 }
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("BusStatus"));
+                }
             }
         }
 

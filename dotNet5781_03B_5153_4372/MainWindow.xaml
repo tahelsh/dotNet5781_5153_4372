@@ -10,7 +10,7 @@
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus" x:Name="bus">
-            <Grid>
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
@@ -50,8 +50,8 @@
             <ColumnDefinition Width="322*"/>
             <ColumnDefinition Width="138*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lbBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="385" Margin="0,71,-0.2,0" VerticalAlignment="Top" Width="1113" MouseDoubleClick="ListBoxDoubleClick" Background="#FFABD5FD" Grid.ColumnSpan="5" />
-        <Button x:Name="bAddBus" Content="Add new bus" HorizontalAlignment="Left" Height="98" Margin="0.8,476,0,0" VerticalAlignment="Top" Width="318" Click="bAddBus_Click" FontFamily="Wide Latin" FontSize="26 px" Background="White" Grid.ColumnSpan="2" RenderTransformOrigin="0.721,0.639" BorderThickness="3" Grid.Column="2">
+        <ListBox x:Name="lbBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Height="385" Margin="0,77,-0.2,134" VerticalAlignment="Stretch" Width="1113" MouseDoubleClick="ListBoxDoubleClick" Background="#FFABD5FD" Grid.ColumnSpan="5" />
+        <Button x:Name="bAddBus" Content="Add new bus" Margin="147.8,0,321.4,18" Click="bAddBus_Click" FontFamily="Wide Latin" FontSize="26 px" Background="White" Grid.ColumnSpan="3" RenderTransformOrigin="0.721,0.639" BorderThickness="3" Grid.Column="1" Height="98" VerticalAlignment="Bottom">
             <Button.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -59,12 +59,12 @@
                 </LinearGradientBrush>
             </Button.BorderBrush>
         </Button>
-        <Image Margin="26,466,12.2,10" Source="logo.png" Stretch="Fill"/>
-        <Image Margin="157.2,466,5.8,10" Source="Nenu.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Column="3" />
-        <Label Content="License&#xA;Number:" HorizontalAlignment="Right" Height="79" Margin="0,6,59.2,0" VerticalAlignment="Top" Width="114" FontFamily="Castellar" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="1"/>
-        <Label Content="Total Km:" HorizontalAlignment="Left" Height="35" Margin="2.8,19,0,0" VerticalAlignment="Top" Width="136" FontFamily="Castellar" FontSize="20" FontWeight="Bold" Grid.Column="1"/>
-        <Label Content="Options:" HorizontalAlignment="Left" Height="42" Margin="141.8,18,0,0" VerticalAlignment="Top" Width="135" FontFamily="Castellar" FontSize="22" FontWeight="Bold" Grid.Column="2"/>
-        <Label Content="Welcome, have nice ride!" Grid.Column="3" HorizontalAlignment="Left" Height="53" Margin="94.2,11,0,0" VerticalAlignment="Top" Width="337" FontFamily="Snap ITC" FontSize="22" Grid.ColumnSpan="2" Background="#00000000" Foreground="#FFF63B3B" FontStyle="Italic" RenderTransformOrigin="0.25,0.5">
+        <Image Margin="26,0,12.2,10" Source="logo.png" Stretch="Fill" Height="120" VerticalAlignment="Bottom"/>
+        <Image Margin="157.2,0,5.8,10" Source="Nenu.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.Column="3" Height="120" VerticalAlignment="Bottom" />
+        <Label Content="License&#xA;Number:" Margin="14,6,59.2,0" FontFamily="Castellar" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="1" Height="79" VerticalAlignment="Top"/>
+        <Label Content="Total Km:" Margin="2.8,19,25.2,0" FontFamily="Castellar" FontSize="20" FontWeight="Bold" Grid.Column="1" Height="35" VerticalAlignment="Top"/>
+        <Label Content="Options:" Margin="141.8,18,24.8,0" FontFamily="Castellar" FontSize="22" FontWeight="Bold" Grid.Column="2" Height="42" VerticalAlignment="Top"/>
+        <Label Content="Welcome, have nice ride!" Grid.Column="3" Height="53" Margin="94.2,11,28.8,0" VerticalAlignment="Top" FontFamily="Snap ITC" FontSize="22" Grid.ColumnSpan="2" Background="#00000000" Foreground="#FFF63B3B" FontStyle="Italic" RenderTransformOrigin="0.25,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="1"/>

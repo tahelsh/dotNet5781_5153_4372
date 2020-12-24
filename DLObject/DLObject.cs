@@ -146,6 +146,7 @@ namespace DL
         }
 
         #endregion
+
         #region LineStation
         public IEnumerable<DO.LineStation> GetAllLineStations()
         {
@@ -188,6 +189,135 @@ namespace DL
         }
 
 
+
+        #endregion
+
+        #region LineTrip
+        public IEnumerable<DO.LineTrip> GetAllLineTrips()
+        {
+
+        }
+        public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
+        {
+
+        }
+         public DO.LineTrip GetLineTrip(int lineTripId)
+        {
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId);
+
+            if (lineTrip != null)
+                return lineTrip.Clone();
+            else
+                throw new Exception();
+        }
+        public void AddLineTrip(DO.LineTrip lineTrip)
+        {
+            if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineTripId == lineTrip.LineTripId) != null)
+                throw new Exception();
+            DataSource.ListLineTrips.Add(lineTrip.Clone());
+        }
+        public void UpdateLineTrip(DO.LineTrip lineTrip)
+        {
+            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTrip.LineTripId);
+            if (lTripFind == null)
+                throw new Exception();
+            DO.LineTrip newLTrip = lineTrip.Clone();//copy of the bus that the function got
+            lTripFind = newLTrip;//update
+        }
+        public void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update)
+        {
+
+        }
+        public void DeleteLineTrip(int lineTripId)
+        {
+
+        }
+
+        #endregion
+
+        #region User
+        public IEnumerable<DO.User> GetAllUsers()
+        {
+            
+        }
+        public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate)
+        {
+
+        }
+        public DO.User GetUser(string userName)
+        {
+            DO.User user = DataSource.ListUsers.Find(b => b.UserName == userName);
+
+            if (user != null)
+                return user.Clone();
+            else
+                throw new Exception();
+        }
+        public void AddUser(DO.User user)
+        {
+            if (DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName) != null)
+                throw new Exception();
+            DataSource.ListUsers.Add(user.Clone());
+        }
+        public void UpdateUser(DO.User user)
+        {
+            DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == user.UserName);
+            if (userFind == null)
+                throw new Exception();
+            DO.User newUser = user.Clone();//copy of the bus that the function got
+            userFind = newUser;//update
+        }
+        public void UpdateUser(string userName, Action<DO.User> update)
+        {
+
+        }
+        public void DeleteUser(string userName)
+        {
+
+        }
+
+        #endregion
+
+        #region Station
+        public IEnumerable<DO.Station> GetAllStations()
+        {
+
+        }
+        public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
+        {
+
+        }
+        public DO.Station GetStation(int code)
+        {
+            DO.Station station = DataSource.ListStations.Find(s => s.Code == code);
+
+            if (station != null)
+                return station.Clone();
+            else
+                throw new Exception();
+        }
+        public void AddStation(DO.Station station)
+        {
+            if (DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
+                throw new Exception();
+            DataSource.ListStations.Add(station.Clone());
+        }
+        public void UpdateStation(DO.Station station)
+        {
+            DO.Station statFind = DataSource.ListStations.Find(s => s.Code == station.Code);
+            if (statFind == null)
+                throw new Exception();
+            DO.Station newStation = station.Clone();//copy of the bus that the function got
+            statFind = newStation;//update
+        }
+        public void UpdateStation(int code, Action<DO.Station> update)
+        {
+
+        }
+        public void DeleteStation(int code)
+        {
+
+        }
 
         #endregion
 

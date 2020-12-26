@@ -321,5 +321,48 @@ namespace DL
 
         #endregion
 
+        #region Trip
+        public IEnumerable<DO.Trip> GetAllBuses()
+        {
+
+        }
+        public IEnumerable<DO.Trip> GetAllBusesBy(Predicate<DO.Trip> predicate)
+        {
+
+        }
+        public DO.Trip GetTrip(int tripId)
+        {
+            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId);
+
+            if (trip != null)
+                return trip.Clone();
+            else
+                throw new Exception();
+        }
+        public void AddTrip(DO.Trip trip)
+        {
+            if (DataSource.ListTrips.FirstOrDefault(t => t.TripId == trip.TripId) != null)
+                throw new Exception();
+            DataSource.ListTrips.Add(trip.Clone());
+        }
+        public void UpdateTrip(DO.Trip trip)
+        {
+            DO.Trip tripFind = DataSource.ListTrips.Find(t => t.TripId == trip.TripId);
+            if (tripFind == null)
+                throw new Exception();
+            DO.Trip newTrip = trip.Clone();//copy of the bus that the function got
+            tripFind = newTrip;//update
+        }
+        public void UpdateTrip(int tripId, Action<DO.Trip> update)
+        {
+
+        }
+        public void DeleteTrip(int tripId)
+        {
+
+        }
+
+        #endregion
+
     }
 }

@@ -322,11 +322,11 @@ namespace DL
         #endregion
 
         #region Trip
-        public IEnumerable<DO.Trip> GetAllBuses()
+        public IEnumerable<DO.Trip> GetAllTrips()
         {
 
         }
-        public IEnumerable<DO.Trip> GetAllBusesBy(Predicate<DO.Trip> predicate)
+        public IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate)
         {
 
         }

@@ -22,5 +22,6 @@ namespace DLAPI
         void UpdateBus(int licenseNum, Action<Bus> update); //method that knows to updt specific fields in Bus
         void DeleteBus(int licenseNum);
         #endregion
+
     }
 }

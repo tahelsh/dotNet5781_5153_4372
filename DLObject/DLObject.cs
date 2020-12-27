@@ -274,6 +274,11 @@ namespace DL
         public void DeleteLineTrip(int lineTripId)
         {
 
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId);
+
+            if (lineTrip == null)
+                throw new Exception();
+            lineTrip.IsDeleted = true;
         }
 
         #endregion
@@ -316,7 +321,11 @@ namespace DL
         }
         public void DeleteUser(string userName)
         {
+            DO.User user = DataSource.ListUsers.Find(b => b.UserName == userName);
 
+            if (user == null)
+                throw new Exception();
+            user.IsDeleted = true;
         }
 
         #endregion
@@ -376,7 +385,6 @@ namespace DL
         public DO.Trip GetTrip(int tripId)
         {
             DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId);
-
             if (trip != null)
                 return trip.Clone();
             else
@@ -402,7 +410,10 @@ namespace DL
         }
         public void DeleteTrip(int tripId)
         {
-
+            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId);
+            if (trip == null)
+                throw new Exception();
+            trip.IsDeleted = true;
         }
 
         #endregion

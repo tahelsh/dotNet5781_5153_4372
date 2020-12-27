@@ -14,5 +14,6 @@ namespace DO
         public double Latitude { get; set; }
         public string Address { get; set; }
         public bool DisabledAccess { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

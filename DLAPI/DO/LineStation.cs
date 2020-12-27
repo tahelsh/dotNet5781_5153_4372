@@ -12,6 +12,7 @@ namespace DO
         public int StationCode { get; set; }
         public int LineStationIndex { get; set; }
         public int PrevStationCode { get; set; }
-        public int LastStationCode { get; set; }
+        public int NextStationCode { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

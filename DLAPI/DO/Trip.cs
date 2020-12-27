@@ -15,5 +15,6 @@ namespace DO
         public TimeSpan GetOnTime { get; set; }
         public int GetOutStation { get; set; }
         public TimeSpan GetOutTime { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

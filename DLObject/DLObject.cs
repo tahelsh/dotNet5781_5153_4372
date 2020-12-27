@@ -30,7 +30,7 @@ namespace DL
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum);
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted==false);
 
             if (bus != null)
                 return bus.Clone();
@@ -38,14 +38,14 @@ namespace DL
                 throw new Exception();
         }
         public void AddBus(DO.Bus bus)
-        {
-            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+        { 
+            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListBuses.Add(bus.Clone());
         }
         public void UpdateBus(DO.Bus bus)
         {
-            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum);
+            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false);
             if (busFind == null)
                 throw new Exception();
             DO.Bus newBus = bus.Clone();//copy of the bus that the function got
@@ -57,6 +57,10 @@ namespace DL
         }
         public void DeleteBus(int licenseNum)
         {
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
+            if(bus==null)
+                throw new Exception();
+            bus.IsDeleted = true;//delete
 
         }
         #endregion
@@ -72,7 +76,7 @@ namespace DL
         }
         public DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2)
         {
-            DO.AdjacentStations adjStations = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1&& adj.StationCode2 == stationCode2));
+            DO.AdjacentStations adjStations = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted==false));
 
             if (adjStations != null)
                 return adjStations.Clone();
@@ -81,13 +85,13 @@ namespace DL
         }
         public void AddAdjacentStations(DO.AdjacentStations adjStations)
         {
-            if (DataSource.ListAdjacentStations.FirstOrDefault(adj => (adj.StationCode1 == adjStations.StationCode1&&adj.StationCode2==adjStations.StationCode2)) != null)//if those adjacent stations already exist in the list
+            if (DataSource.ListAdjacentStations.FirstOrDefault(adj => (adj.StationCode1 == adjStations.StationCode1 && adj.StationCode2==adjStations.StationCode2 && adj.IsDeleted == false)) != null)//if those adjacent stations already exist in the list
                 throw new Exception();
             DataSource.ListAdjacentStations.Add(adjStations.Clone());
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjStations)
         {
-            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == adjStations.StationCode1 && adj.StationCode2 == adjStations.StationCode2));
+            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == adjStations.StationCode1 && adj.StationCode2 == adjStations.StationCode2 && adj.IsDeleted == false || adj.StationCode1 == adjStations.StationCode2 && adj.StationCode2 == adjStations.StationCode1 && adj.IsDeleted == false));
             if (adjFind == null)
                 throw new Exception();
             DO.AdjacentStations newAdj = adjStations.Clone();//copy of the bus that the function got
@@ -99,7 +103,10 @@ namespace DL
         }
         public void DeleteAdjacentStations(int stationCode1, int stationCode2)
         {
-
+            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false || adj.StationCode1 == stationCode2 && adj.StationCode2 == stationCode1 && adj.IsDeleted == false));
+            if (adjFind == null)
+                throw new Exception();
+            adjFind.IsDeleted = true;
         }
 
         #endregion
@@ -142,7 +149,20 @@ namespace DL
         }
         public void DeleteLine(int lineId)
         {
-
+            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId);
+            if (lineFind == null)
+                throw new Exception();
+            lineFind.IsDeleted = true;
+            foreach(DO.LineStation s in DataSource.ListLineStations)
+            {
+                if (s.LineId == lineId)
+                    s.IsDeleted = true;
+            }
+            foreach(DO.LineTrip l in DataSource.ListLineTrips)
+            {
+                if(l.LineId==lineId)
+                    l.IsDeleted = true;
+            }
         }
 
         #endregion
@@ -167,13 +187,13 @@ namespace DL
         }
         public void AddLineStation(DO.LineStation lineStation)
         {
-            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode)) != null)//if this line station already exists in the list
+            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
                 throw new Exception();
             DataSource.ListLineStations.Add(lineStation.Clone());
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode));
+            DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false));
             if (lStatFind == null)
                 throw new Exception();
             DO.LineStation newAdj = lineStation.Clone();//copy of the bus that the function got
@@ -185,7 +205,30 @@ namespace DL
         }
         public void DeleteLineStation(int lineId, int stationCode)
         {
-
+            DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted==false));
+            if (lStatFind == null)
+                throw new Exception();
+            lStatFind.IsDeleted = true;
+            DO.LineStation NextFind;
+            if (lStatFind.LineStationIndex>1)
+            {
+                DO.LineStation PrevFind= DataSource.ListLineStations.Find(prev => (prev.LineId == lineId && prev.LineStationIndex == lStatFind.LineStationIndex - 1 && prev.IsDeleted == false));
+                NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId  && next.LineStationIndex == lStatFind.LineStationIndex+1 && next.IsDeleted == false));
+                PrevFind.NextStationCode = NextFind.StationCode;
+                NextFind.PrevStationCode = PrevFind.StationCode;
+            }
+            else
+            {
+                NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == lStatFind.LineStationIndex + 1 && next.IsDeleted == false));
+                //NextFind.PrevStationCode= לשנות!!!
+            }
+            int index;
+            while (NextFind != null)
+            {
+                index = NextFind.LineStationIndex;
+                NextFind.LineStationIndex--;
+                NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == index + 1 && next.IsDeleted == false));
+            }
         }
 
 

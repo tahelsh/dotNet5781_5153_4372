@@ -11,5 +11,6 @@ namespace DO
         public  string UserName { get; set; }//unique username
         public string Password { get; set; }
         public bool AdminAccess { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace DL
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted==false);
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum /*&& b.IsDeleted==false*/);
 
             if (bus != null)
                 return bus.Clone();
@@ -122,7 +122,7 @@ namespace DL
         }
         public DO.Line GetLine(int lineId)
         {
-            DO.Line line = DataSource.ListLines.Find(l => l.LineId == lineId);
+            DO.Line line = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
 
             if (line != null)
                 return line.Clone();
@@ -131,17 +131,19 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId) != null)
+            if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line)
         {
-            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == line.LineId);
+            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == line.LineId && l.IsDeleted == false);
             if (lineFind == null)
                 throw new Exception();
             DO.Line newLine = line.Clone();//copy of the bus that the function got
-            lineFind = newLine;//update
+            lineFind.IsDeleted = true;
+            DataSource.ListLines.Add(newLine);
+            //lineFind = newLine;//update
         }
         public void UpdateLine(int lineId, Action<DO.Line> update)
         {
@@ -149,18 +151,18 @@ namespace DL
         }
         public void DeleteLine(int lineId)
         {
-            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId);
+            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
                 throw new Exception();
             lineFind.IsDeleted = true;
             foreach(DO.LineStation s in DataSource.ListLineStations)
             {
-                if (s.LineId == lineId)
+                if (s.LineId == lineId && s.IsDeleted == false)
                     s.IsDeleted = true;
             }
             foreach(DO.LineTrip l in DataSource.ListLineTrips)
             {
-                if(l.LineId==lineId)
+                if(l.LineId==lineId && l.IsDeleted == false)
                     l.IsDeleted = true;
             }
         }
@@ -246,7 +248,7 @@ namespace DL
         }
          public DO.LineTrip GetLineTrip(int lineTripId)
         {
-            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId);
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
 
             if (lineTrip != null)
                 return lineTrip.Clone();
@@ -255,13 +257,13 @@ namespace DL
         }
         public void AddLineTrip(DO.LineTrip lineTrip)
         {
-            if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineTripId == lineTrip.LineTripId) != null)
+            if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineTripId == lineTrip.LineTripId && l.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListLineTrips.Add(lineTrip.Clone());
         }
         public void UpdateLineTrip(DO.LineTrip lineTrip)
         {
-            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTrip.LineTripId);
+            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTrip.LineTripId && l.IsDeleted == false);
             if (lTripFind == null)
                 throw new Exception();
             DO.LineTrip newLTrip = lineTrip.Clone();//copy of the bus that the function got
@@ -274,8 +276,7 @@ namespace DL
         public void DeleteLineTrip(int lineTripId)
         {
 
-            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId);
-
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
             if (lineTrip == null)
                 throw new Exception();
             lineTrip.IsDeleted = true;
@@ -294,7 +295,7 @@ namespace DL
         }
         public DO.User GetUser(string userName)
         {
-            DO.User user = DataSource.ListUsers.Find(b => b.UserName == userName);
+            DO.User user = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted==false);
 
             if (user != null)
                 return user.Clone();
@@ -303,13 +304,13 @@ namespace DL
         }
         public void AddUser(DO.User user)
         {
-            if (DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName) != null)
+            if (DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName && u.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListUsers.Add(user.Clone());
         }
         public void UpdateUser(DO.User user)
         {
-            DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == user.UserName);
+            DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == user.UserName && u.IsDeleted == false);
             if (userFind == null)
                 throw new Exception();
             DO.User newUser = user.Clone();//copy of the bus that the function got
@@ -321,7 +322,7 @@ namespace DL
         }
         public void DeleteUser(string userName)
         {
-            DO.User user = DataSource.ListUsers.Find(b => b.UserName == userName);
+            DO.User user = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
 
             if (user == null)
                 throw new Exception();
@@ -341,7 +342,7 @@ namespace DL
         }
         public DO.Station GetStation(int code)
         {
-            DO.Station station = DataSource.ListStations.Find(s => s.Code == code);
+            DO.Station station = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
 
             if (station != null)
                 return station.Clone();
@@ -350,13 +351,13 @@ namespace DL
         }
         public void AddStation(DO.Station station)
         {
-            if (DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
+            if (DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code && s.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(DO.Station station)
         {
-            DO.Station statFind = DataSource.ListStations.Find(s => s.Code == station.Code);
+            DO.Station statFind = DataSource.ListStations.Find(s => s.Code == station.Code && s.IsDeleted == false);
             if (statFind == null)
                 throw new Exception();
             DO.Station newStation = station.Clone();//copy of the bus that the function got
@@ -384,7 +385,7 @@ namespace DL
         }
         public DO.Trip GetTrip(int tripId)
         {
-            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId);
+            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId && t.IsDeleted == false);
             if (trip != null)
                 return trip.Clone();
             else
@@ -392,13 +393,13 @@ namespace DL
         }
         public void AddTrip(DO.Trip trip)
         {
-            if (DataSource.ListTrips.FirstOrDefault(t => t.TripId == trip.TripId) != null)
+            if (DataSource.ListTrips.FirstOrDefault(t => t.TripId == trip.TripId && t.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListTrips.Add(trip.Clone());
         }
         public void UpdateTrip(DO.Trip trip)
         {
-            DO.Trip tripFind = DataSource.ListTrips.Find(t => t.TripId == trip.TripId);
+            DO.Trip tripFind = DataSource.ListTrips.Find(t => t.TripId == trip.TripId && t.IsDeleted == false);
             if (tripFind == null)
                 throw new Exception();
             DO.Trip newTrip = trip.Clone();//copy of the bus that the function got
@@ -410,7 +411,7 @@ namespace DL
         }
         public void DeleteTrip(int tripId)
         {
-            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId);
+            DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId && t.IsDeleted == false);
             if (trip == null)
                 throw new Exception();
             trip.IsDeleted = true;

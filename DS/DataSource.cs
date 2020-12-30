@@ -22,7 +22,7 @@ namespace DS
         }
         static void InitAllLists()
         {
-            #region Boot stations 
+            #region ListStations 
             ListStations = new List<Station>
             {
                 new Station
@@ -31,7 +31,9 @@ namespace DS
                     Name = "שדרות גולדה מאיר/המשורר אצ''ג",
                     Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
                     Latitude = 31.825302,
-                    Longitude = 35.188624
+                    Longitude = 35.188624,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -39,7 +41,9 @@ namespace DS
                     Name = "בית ספר צור באהר בנות/אלמדינה אלמונוורה",
                     Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",
                     Latitude = 31.738425,
-                    Longitude = 35.228765
+                    Longitude = 35.228765,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -47,7 +51,9 @@ namespace DS
                     Name = "בית ספר אבן רשד/אלמדינה אלמונוורה",
                     Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים ",
                     Latitude = 31.738676,
-                    Longitude = 35.226704
+                    Longitude = 35.226704,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -55,7 +61,9 @@ namespace DS
                     Name = "שרי ישראל/יפו",
                     Address = "רחוב:שדרות שרי ישראל 15 עיר: ירושלים",
                     Latitude = 31.789128,
-                    Longitude = 35.206146
+                    Longitude = 35.206146,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -63,7 +71,9 @@ namespace DS
                     Name = "בטן אלהווא/חוש אל מרג",
                     Address = "רחוב:בטן אל הווא  עיר: ירושלים",
                     Latitude = 31.766358,
-                    Longitude = 35.240417
+                    Longitude = 35.240417,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -71,7 +81,9 @@ namespace DS
                     Name = "מלכי ישראל/הטורים",
                     Address = " רחוב:מלכי ישראל 77 עיר: ירושלים ",
                     Latitude = 31.790758,
-                    Longitude = 35.209791
+                    Longitude = 35.209791,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -79,7 +91,9 @@ namespace DS
                     Name = "בית ספר לבנים/אלמדארס",
                     Address = "רחוב:אלמדארס  עיר: ירושלים",
                     Latitude = 31.768643,
-                    Longitude = 35.238509
+                    Longitude = 35.238509,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -87,7 +101,9 @@ namespace DS
                     Name = "מגרש כדורגל/אלמדארס",
                     Address = "רחוב:אלמדארס  עיר: ירושלים",
                     Latitude = 31.769899,
-                    Longitude = 35.23973
+                    Longitude = 35.23973,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -95,7 +111,9 @@ namespace DS
                     Name = "בית ספר לבנות/בטן אלהוא",
                     Address = " רחוב:בטן אל הווא  עיר: ירושלים",
                     Latitude = 31.767064,
-                    Longitude = 35.238443
+                    Longitude = 35.238443,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -103,7 +121,9 @@ namespace DS
                     Name = "דרך בית לחם הישה/ואדי קדום",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
                     Latitude = 31.765863,
-                    Longitude = 35.247198
+                    Longitude = 35.247198,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -111,7 +131,9 @@ namespace DS
                     Name = "גולדה/הרטום",
                     Address = "רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                     Latitude = 31.799804,
-                    Longitude = 35.213021
+                    Longitude = 35.213021,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -119,7 +141,9 @@ namespace DS
                     Name = "דרך בית לחם הישה/ואדי קדום",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
                     Latitude = 31.765717,
-                    Longitude = 35.247102
+                    Longitude = 35.247102,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -127,7 +151,9 @@ namespace DS
                     Name = "חוש סלימה 1",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                     Latitude = 31.767265,
-                    Longitude = 35.246594
+                    Longitude = 35.246594,
+                    DisabledAccess = false,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -135,7 +161,9 @@ namespace DS
                     Name = "דרך בית לחם הישנה ב",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                     Latitude = 31.767084,
-                    Longitude = 35.246655
+                    Longitude = 35.246655,
+                    DisabledAccess = false,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -143,7 +171,9 @@ namespace DS
                     Name = "דרך בית לחם הישנה א",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                     Latitude = 31.768759,
-                    Longitude = 31.768759
+                    Longitude = 31.768759,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -151,7 +181,9 @@ namespace DS
                     Name = "שכונת בזבז 2",
                     Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים",
                     Latitude = 31.77002,
-                    Longitude = 35.24348
+                    Longitude = 35.24348,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -159,7 +191,9 @@ namespace DS
                     Name = "גולדה/שלמה הלוי",
                     Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
                     Latitude = 31.8003,
-                    Longitude = 35.208257
+                    Longitude = 35.208257,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -167,7 +201,9 @@ namespace DS
                     Name = "גולדה/הרטום",
                     Address = " רחוב:שדרות גולדה מאיר  עיר: ירושלים",
                     Latitude = 31.8,
-                    Longitude = 35.214106
+                    Longitude = 35.214106,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -175,7 +211,9 @@ namespace DS
                     Name = "גבעת משה",
                     Address = " רחוב:גבעת משה 2 עיר: ירושלים",
                     Latitude = 31.797708,
-                    Longitude = 35.217133
+                    Longitude = 35.217133,
+                    DisabledAccess = false,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -183,7 +221,9 @@ namespace DS
                     Name = "גבעת משה",
                     Address = " רחוב:גבעת משה 3 עיר: ירושלים",
                     Latitude = 31.797535,
-                    Longitude = 35.217057
+                    Longitude = 35.217057,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 //20
                 new Station
@@ -192,7 +232,9 @@ namespace DS
                     Name = "עזרת תורה/עלי הכהן",
                     Address = "  רחוב:עזרת תורה 25 עיר: ירושלים",
                     Latitude = 31.797535,
-                    Longitude = 35.213728
+                    Longitude = 35.213728,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -200,7 +242,9 @@ namespace DS
                     Name = "עזרת תורה/דורש טוב",
                     Address = "  רחוב:עזרת תורה 21 עיר: ירושלים ",
                     Latitude = 31.796818,
-                    Longitude = 35.212936
+                    Longitude = 35.212936,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -208,7 +252,9 @@ namespace DS
                     Name = "עזרת תורה/דורש טוב",
                     Address = " רחוב:עזרת תורה 12 עיר: ירושלים",
                     Latitude = 31.796129,
-                    Longitude = 35.212698
+                    Longitude = 35.212698,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -216,7 +262,9 @@ namespace DS
                     Name = "יעקובזון/עזרת תורה",
                     Address = "  רחוב:יעקובזון 1 עיר: ירושלים",
                     Latitude = 31.794631,
-                    Longitude = 35.21161
+                    Longitude = 35.21161,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -224,7 +272,9 @@ namespace DS
                     Name = "יעקובזון/עזרת תורה",
                     Address = " רחוב:יעקובזון  עיר: ירושלים",
                     Latitude = 31.79508,
-                    Longitude = 35.211684
+                    Longitude = 35.211684,
+                    DisabledAccess = false,
+                    IsDeleted = false
                 },
                 //25
                 new Station
@@ -233,7 +283,9 @@ namespace DS
                     Name = "זית רענן/אוהל יהושע",
                     Address = "  רחוב:זית רענן 1 עיר: ירושלים",
                     Latitude = 31.796255,
-                    Longitude = 35.211065
+                    Longitude = 35.211065,
+                    DisabledAccess = false,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -241,7 +293,9 @@ namespace DS
                     Name = "זית רענן/תורת חסד",
                     Address = " רחוב:זית רענן  עיר: ירושלים",
                     Latitude = 31.798423,
-                    Longitude = 35.209575
+                    Longitude = 35.209575,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -249,7 +303,9 @@ namespace DS
                     Name = "זית רענן/תורת חסד",
                     Address = "  רחוב:הרב סורוצקין 48 עיר: ירושלים ",
                     Latitude = 31.798689,
-                    Longitude = 35.208878
+                    Longitude = 35.208878,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -265,7 +321,9 @@ namespace DS
                     Name = "סורוצקין/שנירר",
                     Address = "  רחוב:הרב סורוצקין 31 עיר: ירושלים",
                     Latitude = 31.797829,
-                    Longitude = 35.205601
+                    Longitude = 35.205601,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 //30
                 new Station
@@ -274,7 +332,9 @@ namespace DS
                     Name = "שדרות נווה יעקוב/הרב פרדס ",
                     Address = "רחוב: שדרות נווה יעקוב  עיר:ירושלים ",
                     Latitude = 31.840063,
-                    Longitude = 35.240062
+                    Longitude = 35.240062,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -282,7 +342,9 @@ namespace DS
                     Name = "מרכז קהילתי /שדרות נווה יעקוב",
                     Address = "רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים ",
                     Latitude = 31.838481,
-                    Longitude = 35.23972
+                    Longitude = 35.23972,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -290,7 +352,9 @@ namespace DS
                     Name = " מסוף 700 /שדרות נווה יעקוב ",
                     Address = "חוב:שדרות נווה יעקב 7 עיר: ירושלים  ",
                     Latitude = 31.837748,
-                    Longitude = 35.231598
+                    Longitude = 35.231598,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -298,7 +362,9 @@ namespace DS
                     Name = " הרב פרדס/אסטורהב ",
                     Address = "רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  ",
                     Latitude = 31.840279,
-                    Longitude = 35.246272
+                    Longitude = 35.246272,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -306,7 +372,9 @@ namespace DS
                     Name = "הרב פרדס/צוקרמן ",
                     Address = "רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   ",
                     Latitude = 31.843598,
-                    Longitude = 35.243639
+                    Longitude = 35.243639,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -314,7 +382,9 @@ namespace DS
                     Name = "ברזיל ",
                     Address = "רחוב:ברזיל 14 עיר: ירושלים",
                     Latitude = 31.766256,
-                    Longitude = 35.173
+                    Longitude = 35.173,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -322,7 +392,9 @@ namespace DS
                     Name = "בית וגן/הרב שאג ",
                     Address = "רחוב:בית וגן 61 עיר: ירושלים ",
                     Latitude = 31.76736,
-                    Longitude = 35.184771
+                    Longitude = 35.184771,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -330,7 +402,9 @@ namespace DS
                     Name = "בית וגן/עוזיאל ",
                     Address = "רחוב:בית וגן 21 עיר: ירושלים    ",
                     Latitude = 31.770543,
-                    Longitude = 35.183999
+                    Longitude = 35.183999,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -338,7 +412,9 @@ namespace DS
                     Name = " קרית יובל/שמריהו לוין ",
                     Address = "רחוב:ארתור הנטקה  עיר: ירושלים    ",
                     Latitude = 31.768465,
-                    Longitude = 35.178701
+                    Longitude = 35.178701,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -346,7 +422,9 @@ namespace DS
                     Name = " קורצ'אק / רינגלבלום ",
                     Address = "רחוב:יאנוש קורצ'אק 7 עיר: ירושלים",
                     Latitude = 31.759534,
-                    Longitude = 35.173688
+                    Longitude = 35.173688,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -354,7 +432,9 @@ namespace DS
                     Name = " טהון/גולומב ",
                     Address = "רחוב:יעקב טהון  עיר: ירושלים     ",
                     Latitude = 31.761447,
-                    Longitude = 35.175929
+                    Longitude = 35.175929,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -362,7 +442,9 @@ namespace DS
                     Name = "הרב הרצוג/שח''ל ",
                     Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
                     Latitude = 31.761447,
-                    Longitude = 35.199936
+                    Longitude = 35.199936,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -370,7 +452,9 @@ namespace DS
                     Name = "פרץ ברנשטיין/נזר דוד ",
                     Address = "רחוב:הרב הרצוג  עיר: ירושלים רציף",
                     Latitude = 31.759186,
-                    Longitude = 35.189336
+                    Longitude = 35.189336,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -378,7 +462,9 @@ namespace DS
                     Name = "פרץ ברנשטיין/נזר דוד",
                     Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
                     Latitude = 31.759121,
-                    Longitude = 35.189178
+                    Longitude = 35.189178,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -386,7 +472,9 @@ namespace DS
                     Name = "מוזיאון ישראל/רופין",
                     Address = "  רחוב:דרך רופין  עיר: ירושלים ",
                     Latitude = 31.774484,
-                    Longitude = 35.204882
+                    Longitude = 35.204882,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -394,7 +482,9 @@ namespace DS
                     Name = "הרצוג/טשרניחובסקי",
                     Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
                     Latitude = 31.769652,
-                    Longitude = 35.208248
+                    Longitude = 35.208248,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -403,6 +493,8 @@ namespace DS
                     Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
                     Latitude = 31.769652,
                     Longitude = 35.208248,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -410,7 +502,9 @@ namespace DS
                     Name = "מרכז סולם/סורוצקין ",
                     Address = " רחוב:הרב סורוצקין 13 עיר: ירושלים",
                     Latitude = 31.796033,
-                    Longitude =35.206094
+                    Longitude =35.206094,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -418,7 +512,9 @@ namespace DS
                     Name = "אוהל דוד/סורוצקין ",
                     Address = "  רחוב:הרב סורוצקין 9 עיר: ירושלים",
                     Latitude = 31.794958,
-                    Longitude =35.205216
+                    Longitude =35.205216,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 },
                 new Station
                 {
@@ -426,15 +522,17 @@ namespace DS
                     Name = "מרכז סולם/סורוצקין ",
                     Address = "  רחוב:הרב סורוצקין 28 עיר: ירושלים",
                     Latitude = 31.79617,
-                    Longitude =35.206158
+                    Longitude =35.206158,
+                    DisabledAccess = true,
+                    IsDeleted = false
                 }
             };
             #endregion
 
-            #region Bus
+            #region ListBuses
             ListBuses = new List<Bus>
             {
-                new Bus
+                new Bus//1
                 {
                     LicenseNum= 12345678,
                     FromDate= new DateTime(2018, 12, 1),
@@ -443,6 +541,105 @@ namespace DS
                     Status=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=8001,
+                    IsDeleted=false
+                },
+                new Bus//2
+                {
+                    LicenseNum= 1524897,
+                    FromDate= new DateTime(2017, 12, 1),
+                    TotalTrip=10000,
+                    FuelRemain=900,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 12,1 ),
+                    KmLastTreat=9500,
+                    IsDeleted=false
+                },
+                new Bus//3
+                {
+                    LicenseNum= 45698725,
+                    FromDate= new DateTime(2019, 12, 11),
+                    TotalTrip=10000,
+                    FuelRemain=1000,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 12,1 ),
+                    KmLastTreat=9700,
+                    IsDeleted=false
+                },
+                 new Bus//4
+                {
+                    LicenseNum= 47589646,
+                    FromDate= new DateTime(2019, 11, 11),
+                    TotalTrip=10000,
+                    FuelRemain=800,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 9,2),
+                    KmLastTreat=9600,
+                    IsDeleted=false
+                },
+                 new Bus//5
+                {
+                    LicenseNum= 1456982,
+                    FromDate= new DateTime(2016, 11, 2),
+                    TotalTrip=10000,
+                    FuelRemain=800,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 12,2),
+                    KmLastTreat=9600,
+                    IsDeleted=false
+                },
+                  new Bus//6
+                {
+                    LicenseNum= 1458795,
+                    FromDate= new DateTime(2015, 11,3),
+                    TotalTrip=20000,
+                    FuelRemain=1200,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 8,21),
+                    KmLastTreat=19600,
+                    IsDeleted=false
+                },
+                    new Bus//7
+                {
+                    LicenseNum= 65984758,
+                    FromDate= new DateTime(2019, 8,2),
+                    TotalTrip=30000,
+                    FuelRemain=800,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020, 5,15),
+                    KmLastTreat=20000,
+                    IsDeleted=false
+                },
+                  new Bus//8
+                {
+                    LicenseNum= 4569821,
+                    FromDate= new DateTime(2014, 11,20),
+                    TotalTrip=10000,
+                    FuelRemain=800,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020,6,10),
+                    KmLastTreat=9600,
+                    IsDeleted=false
+                },
+                   new Bus//9
+                {
+                    LicenseNum= 2564875,
+                    FromDate= new DateTime(2013, 11,2),
+                    TotalTrip=50000,
+                    FuelRemain=800,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020,10,1),
+                    KmLastTreat=49700,
+                    IsDeleted=false
+                },
+                   new Bus//9
+                {
+                    LicenseNum= 42650314,
+                    FromDate= new DateTime(2019, 1,20),
+                    TotalTrip=10000,
+                    FuelRemain=1200,
+                    Status=BusStatus.Available,
+                    DateLastTreat=new DateTime(2020,7,1),
+                    KmLastTreat=9900,
                     IsDeleted=false
                 },
             };

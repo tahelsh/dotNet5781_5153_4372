@@ -22,11 +22,14 @@ namespace DL
         #region Bus
         public IEnumerable<DO.Bus> GetAllBuses()
         {
-
+            return from bus in DataSource.ListBuses
+                   select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
         {
-
+            return from bus in DataSource.ListBuses
+                   where predicate(bus)
+                   select bus.Clone();
         }
         public DO.Bus GetBus(int licenseNum)
         {
@@ -68,11 +71,14 @@ namespace DL
         #region AdjacentStations
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
-
+            return from adj in DataSource.ListAdjacentStations
+                   select adj.Clone();
         }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
         {
-
+            return from adj in DataSource.ListAdjacentStations
+                   where predicate(adj)
+                   select adj.Clone();
         }
         public DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2)
         {
@@ -114,10 +120,15 @@ namespace DL
         #region Line
         public IEnumerable<DO.Line> GetAllLines()
         {
+            return from line in DataSource.ListLines
+                   select line.Clone();
 
         }
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
+            return from line in DataSource.ListLines
+                   where predicate(line)
+                   select line.Clone();
 
         }
         public DO.Line GetLine(int lineId)
@@ -172,11 +183,14 @@ namespace DL
         #region LineStation
         public IEnumerable<DO.LineStation> GetAllLineStations()
         {
-
+            return from lStat in DataSource.ListLineStations
+                   select lStat.Clone();
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
-
+            return from lStat in DataSource.ListLineStations
+                   where predicate(lStat)
+                   select lStat.Clone();
         }
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
@@ -240,11 +254,14 @@ namespace DL
         #region LineTrip
         public IEnumerable<DO.LineTrip> GetAllLineTrips()
         {
-
+            return from lTrip in DataSource.ListLineTrips
+                   select lTrip.Clone();
         }
         public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
         {
-
+            return from lTrip in DataSource.ListLineTrips
+                   where predicate(lTrip)
+                   select lTrip.Clone();
         }
          public DO.LineTrip GetLineTrip(int lineTripId)
         {
@@ -287,11 +304,14 @@ namespace DL
         #region User
         public IEnumerable<DO.User> GetAllUsers()
         {
-            
+            return from user in DataSource.ListUsers
+                   select user.Clone();
         }
         public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate)
         {
-
+            return from user in DataSource.ListUsers
+                   where predicate(user)
+                   select user.Clone();
         }
         public DO.User GetUser(string userName)
         {
@@ -334,11 +354,14 @@ namespace DL
         #region Station
         public IEnumerable<DO.Station> GetAllStations()
         {
-
+            return from stat in DataSource.ListStations
+                   select stat.Clone();
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
         {
-
+            return from stat in DataSource.ListStations
+                   where predicate(stat)
+                   select stat.Clone();
         }
         public DO.Station GetStation(int code)
         {
@@ -377,10 +400,14 @@ namespace DL
         #region Trip
         public IEnumerable<DO.Trip> GetAllTrips()
         {
-
+            return from trip in DataSource.ListTrips
+                   select trip.Clone();
         }
         public IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate)
         {
+            return from trip in DataSource.ListTrips
+                   where predicate(trip)
+                   select trip.Clone();
 
         }
         public DO.Trip GetTrip(int tripId)

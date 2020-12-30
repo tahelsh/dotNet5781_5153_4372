@@ -141,9 +141,9 @@ namespace DL
             if (lineFind == null)
                 throw new Exception();
             DO.Line newLine = line.Clone();//copy of the bus that the function got
-            lineFind.IsDeleted = true;
-            DataSource.ListLines.Add(newLine);
-            //lineFind = newLine;//update
+            //lineFind.IsDeleted = true;
+            //DataSource.ListLines.Add(newLine);
+            lineFind = newLine;
         }
         public void UpdateLine(int lineId, Action<DO.Line> update)
         {

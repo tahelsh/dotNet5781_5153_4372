@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class LineStation
+    public class LineInStation
     {
-        public int StationCode { get; set; }
+        public int LineId { get; set; }
+        public int LineNum { get; set; }
         public int LineStationIndex { get; set; }
-        public string Name { get; set; }
-        public bool DisabledAccess { get; set; }
-
     }
 }

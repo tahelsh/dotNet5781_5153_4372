@@ -11,8 +11,8 @@ namespace BO
        public int LineId { get; set; }
        public int LineNum { get; set; }
        public Area Area { get; set; }
-       public IEnumerable<LineStation> Stations { get; set; }
-       public bool IsDeleted { get; set; }
+       public IEnumerable<StationInLine> Stations { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

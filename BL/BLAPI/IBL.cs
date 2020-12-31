@@ -13,10 +13,25 @@ namespace BLAPI
         //Add Person to Course
         //get all courses for student
         //etc...
-        BO.Student GetStudent(int id);
-        IEnumerable<BO.Student> GetAllStudents();
-        IEnumerable<BO.ListedPerson> GetStudentIDNameList();
+        #region Bus
+        BO.Bus GetBus(int licenseNum);
+        IEnumerable<BO.Bus> GetAllSBuses();
+        IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
+        void UpdateBusDetails(BO.Bus bus);
+        void DeleteBus(int licenseNum);
+        #endregion
 
-        IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate);
+        #region Line
+        BO.Line GetLine(int lineId);
+        IEnumerable<BO.Line> GetAllSLines();
+        //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
+        IEnumerable<BO.Line> LinesBy(Predicate<BO.Line> predicate);
+        void UpdateLineDetails(BO.Line line);
+        void DeleteLine(int LineId);
+        #endregion
+
+
+
+
     }
 }

@@ -56,7 +56,10 @@ namespace DL
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
-
+            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
+            if (busFind == null)
+                throw new Exception();
+            update(busFind);
         }
         public void DeleteBus(int licenseNum)
         {
@@ -105,7 +108,10 @@ namespace DL
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
-
+            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => ((adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false || adj.StationCode1 == stationCode2 && adj.StationCode2 == stationCode1) && adj.IsDeleted == false));
+            if (adjFind == null)
+                throw new Exception();
+            update(adjFind);
         }
         public void DeleteAdjacentStations(int stationCode1, int stationCode2)
         {
@@ -158,7 +164,10 @@ namespace DL
         }
         public void UpdateLine(int lineId, Action<DO.Line> update)
         {
-
+            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
+            if (lineFind == null)
+                throw new Exception();
+            update(lineFind);
         }
         public void DeleteLine(int lineId)
         {
@@ -217,7 +226,10 @@ namespace DL
         }
         public void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update)
         {
-
+            DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
+            if (lStatFind == null)
+                throw new Exception();
+            update(lStatFind);
         }
         public void DeleteLineStation(int lineId, int stationCode)
         {
@@ -288,7 +300,10 @@ namespace DL
         }
         public void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update)
         {
-
+            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
+            if (lTripFind == null)
+                throw new Exception();
+            update(lTripFind);
         }
         public void DeleteLineTrip(int lineTripId)
         {
@@ -338,7 +353,10 @@ namespace DL
         }
         public void UpdateUser(string userName, Action<DO.User> update)
         {
-
+            DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
+            if (userFind == null)
+                throw new Exception();
+            update(userFind);
         }
         public void DeleteUser(string userName)
         {
@@ -388,7 +406,10 @@ namespace DL
         }
         public void UpdateStation(int code, Action<DO.Station> update)
         {
-
+            DO.Station statFind = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
+            if (statFind == null)
+                throw new Exception();
+            update(statFind);
         }
         public void DeleteStation(int code)
         {
@@ -434,7 +455,10 @@ namespace DL
         }
         public void UpdateTrip(int tripId, Action<DO.Trip> update)
         {
-
+            DO.Trip tripFind = DataSource.ListTrips.Find(t => t.TripId == tripId && t.IsDeleted == false);
+            if (tripFind == null)
+                throw new Exception();
+            update(tripFind);
         }
         public void DeleteTrip(int tripId)
         {

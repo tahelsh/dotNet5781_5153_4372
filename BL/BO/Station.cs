@@ -12,7 +12,7 @@ namespace BO
         public string Name { get; set; }
         public string Address { get; set; }
         public bool DisabledAccess { get; set; }
-        public IEnumerable<Line> Lines { get; set; }
+        public IEnumerable<LineInStation> Lines { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

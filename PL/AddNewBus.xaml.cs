@@ -25,6 +25,13 @@ namespace PL
             InitializeComponent();
             bl = _bl;
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // busViewSource.Source = [generic data source]
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +46,9 @@ namespace PL
                 double totalKm = double.Parse(totalTripTextBox.Text);
                 BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
             }
-            catch {  }
+            catch(Exception ex)
+            { 
+            }
             Close();
         }
     }

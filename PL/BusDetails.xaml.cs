@@ -26,12 +26,12 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             bus = _bus;
-            licenseNumTextBox.Text = bus.LicenseNum.ToString();
+            licenseNumTextBlock.Text = bus.LicenseNum.ToString();
             totalTripTextBox.Text = bus.TotalTrip.ToString();
             fuelRemainTextBox.Text = bus.FuelRemain.ToString();
             kmLastTreatTextBox.Text = bus.KmLastTreat.ToString();
             dateLastTreatDatePicker.Text = bus.DateLastTreat.ToShortDateString();
-            fromDateDatePicker.Text = bus.FromDate.ToShortDateString();
+            fromDateTextBlock.Text = bus.FromDate.ToShortDateString();
             //statusComboBox.
         }
 
@@ -57,16 +57,17 @@ namespace PL
                 BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
                 bl.UpdateBusDetails(b);
             }
-            catch { }
+            catch(Exception ex) { }
             
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
             try
-            { bl.DeleteBus(bus.LicenseNum);
+            {
+                bl.DeleteBus(bus.LicenseNum);
             }
-            catch { }
+            catch(Exception ex) { }
             Close();
         }
     }

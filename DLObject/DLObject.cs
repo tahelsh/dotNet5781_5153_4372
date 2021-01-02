@@ -23,6 +23,7 @@ namespace DL
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
+                   where bus.IsDeleted==false
                    select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)

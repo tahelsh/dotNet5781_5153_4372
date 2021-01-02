@@ -16,24 +16,39 @@ namespace BL
         BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
             BO.Bus busBO = new BO.Bus();
-           
             busDO.CopyPropertiesTo(busBO);
-         
             return busBO;
         }
         public void DeleteBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            try
+            {
+                dl.DeleteBus(licenseNum);
+            }
+            catch
+            {
+                throw new Exception();
+            }
         }
 
         public IEnumerable<Bus> GetAllSBuses()
         {
-            throw new NotImplementedException();
+            return from item in dl.GetAllBuses()
+                   select busDoBoAdapter(item);
         }
 
         public Bus GetBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            DO.Bus busDO;
+            try
+            {
+                busDO = dl.GetBus(licenseNum);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+            return busDoBoAdapter(busDO);
         }
 
         public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)
@@ -43,7 +58,30 @@ namespace BL
 
         public void UpdateBusDetails(Bus bus)
         {
-            throw new NotImplementedException();
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);
+            try
+            {
+                dl.UpdateBus(busDO);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
+        public void AddBus(BO.Bus bus)
+        {
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);
+            try
+            {
+                dl.AddBus(busDO);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+
         }
         #endregion
 
@@ -78,24 +116,42 @@ namespace BL
             return lineDoBoAdapter(lineDO);
         }
 
-        public IEnumerable<Line> GetAllSLines()
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            return from item in dl.GetAllLines()
+                   select lineDoBoAdapter(item);
+        }
+
+        public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Line> LinesBy(Predicate<Line> predicate)
-        {
-            throw new NotImplementedException();
+        public void UpdateLineDetails(BO.Line line)
+        {            
+            DO.Line lineDO = new DO.Line();
+            line.CopyPropertiesTo(lineDO);
+            try
+            {
+                dl.UpdateLine(lineDO);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
         }
 
-        public void UpdateLineDetails(Line line)
+        public void DeleteLine(int lineId)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteLine(int LineId)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                dl.DeleteLine(lineId);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+            
         }
         #endregion
 

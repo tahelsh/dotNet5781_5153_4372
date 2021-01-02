@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BLAPI;
 namespace PL
 {
     /// <summary>
@@ -19,9 +19,28 @@ namespace PL
     /// </summary>
     public partial class AddNewBus : Window
     {
-        public AddNewBus()
+        IBL bl;
+        public AddNewBus(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int licenum = int.Parse(licenseNumTextBox.Text);
+                double fuel = double.Parse(fuelRemainTextBox.Text);
+                DateTime fromDate = DateTime.Parse(fromDateDatePicker.Text);
+                DateTime lastDate = DateTime.Parse(dateLastTreatDatePicker.Text);
+                double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
+                BO.BusStatus st = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), statusComboBox.SelectedItem.ToString());
+                double totalKm = double.Parse(totalTripTextBox.Text);
+                BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
+            }
+            catch {  }
+            Close();
         }
     }
 }

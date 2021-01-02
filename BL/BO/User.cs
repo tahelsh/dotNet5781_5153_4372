@@ -10,6 +10,6 @@ namespace BO
     {
         public string UserName { get; set; }//unique username
         public bool AdminAccess { get; set; }
-        public bool IsDeleted { get; set; }
+       
     }
 }

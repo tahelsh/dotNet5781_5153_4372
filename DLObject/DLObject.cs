@@ -44,8 +44,32 @@ namespace DL
         { 
             if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false) != null)
                 throw new Exception();
+            if (bus.FromDate > DateTime.Now)
+                throw new Exception();
+            if(bus.TotalTrip<0)
+                throw new Exception();
+            if(bus.FuelRemain<0 || bus.FuelRemain>1200)
+                throw new Exception();
+            int lengthLicNum = LengthLicenseNum(bus.LicenseNum);
+            if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && bus.FromDate.Year >= 2018)))
+                throw new Exception();
+            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.FromDate)
+                throw new Exception();
+            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalTrip)
+                throw new Exception();
             DataSource.ListBuses.Add(bus.Clone());
         }
+        private int LengthLicenseNum(int licenseNum)
+        {
+            int counter = 0;
+            while(licenseNum!=0)
+            {
+                licenseNum = licenseNum / 10;
+                counter++;
+            }
+            return counter;
+        }
+       
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false);

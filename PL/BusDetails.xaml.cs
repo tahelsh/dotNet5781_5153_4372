@@ -26,13 +26,10 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             bus = _bus;
-            licenseNumTextBlock.Text = bus.LicenseNum.ToString();
-            totalTripTextBox.Text = bus.TotalTrip.ToString();
-            fuelRemainTextBox.Text = bus.FuelRemain.ToString();
-            kmLastTreatTextBox.Text = bus.KmLastTreat.ToString();
-            dateLastTreatDatePicker.Text = bus.DateLastTreat.ToShortDateString();
-            fromDateTextBlock.Text = bus.FromDate.ToShortDateString();
-            //statusComboBox.
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.BusStatus));
+            //statusComboBox.SelectedIndex = 0;
+            grid2.DataContext = bl.GetBus(bus.LicenseNum);
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -57,18 +54,28 @@ namespace PL
                 BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
                 bl.UpdateBusDetails(b);
             }
-            catch(Exception ex) { }
+            catch(Exception ex) { MessageBox.Show("errorrrrrrr", "", MessageBoxButton.OK, MessageBoxImage.Error); }
+            Close();
             
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult res = MessageBox.Show("Do you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
             try
             {
-                bl.DeleteBus(bus.LicenseNum);
+                if (bus != null)
+                {
+                    bl.DeleteBus(bus.LicenseNum);
+                    Close();
+                }
             }
-            catch(Exception ex) { }
-            Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

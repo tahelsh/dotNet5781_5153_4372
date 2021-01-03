@@ -29,7 +29,7 @@ namespace PL
         }
         public void RefreshAllBusesList()
         {
-            List<BO.Bus> buses = bl.GetAllSBuses().ToList();
+            List<BO.Bus> buses = bl.GetAllBuses().ToList();
             LBBuses.DataContext = buses;
         }
 
@@ -47,6 +47,8 @@ namespace PL
         private void Bus_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BO.Bus b = (sender as ListBox).SelectedItem as BO.Bus;
+            if (b == null)
+                return;
             BusDetails win = new BusDetails(bl,b);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();

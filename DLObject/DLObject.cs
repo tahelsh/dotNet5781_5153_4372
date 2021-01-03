@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DLAPI;
-//using DO;
+using DO;
 using DS;
 
 
@@ -23,7 +23,7 @@ namespace DL
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
-                   where bus.IsDeleted==false
+                   where bus.IsDeleted == false
                    select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
@@ -34,30 +34,30 @@ namespace DL
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum /*&& b.IsDeleted==false*/);
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted==false);
 
             if (bus != null)
                 return bus.Clone();
             else
-                throw new Exception();
+                throw new BadLicenseNumException(licenseNum,"The bus does not exist");
         }
         public void AddBus(DO.Bus bus)
         { 
             if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false) != null)
-                throw new Exception();
+                throw new BadInputException("The bus is already exists");
             if (bus.FromDate > DateTime.Now)
-                throw new Exception();
+                throw new BadInputException("The date of start operation is not valid");
             if(bus.TotalTrip<0)
-                throw new Exception();
+                throw new BadInputException("The total trip is not valid");
             if(bus.FuelRemain<0 || bus.FuelRemain>1200)
-                throw new Exception();
+                throw new BadInputException("The fuel remain is not valid");
             int lengthLicNum = LengthLicenseNum(bus.LicenseNum);
             if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && bus.FromDate.Year >= 2018)))
-                throw new Exception();
+                throw new BadInputException("The license number and the date of start operation do not match");
             if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.FromDate)
-                throw new Exception();
+                throw new BadInputException("The date of last treatment is not valid");
             if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalTrip)
-                throw new Exception();
+                throw new BadInputException("The kilometrage of last treatment is not valid");
             DataSource.ListBuses.Add(bus.Clone());
         }
         private int LengthLicenseNum(int licenseNum)
@@ -75,22 +75,26 @@ namespace DL
         {
             DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false);
             if (busFind == null)
-                throw new Exception();
-            DO.Bus newBus = bus.Clone();//copy of the bus that the function got
-            busFind = newBus;//update
+                throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
+            DO.Bus newBus = bus.Clone();
+            busFind.IsDeleted = true;
+            DataSource.ListBuses.Add(newBus);
+
+            //DO.Bus newBus = bus.Clone();//copy of the bus that the function got
+            //busFind = newBus;//update
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
             if (busFind == null)
-                throw new Exception();
+                throw new BadLicenseNumException(licenseNum, "The bus does not exist");
             update(busFind);
         }
         public void DeleteBus(int licenseNum)
         {
             DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
             if(bus==null)
-                throw new Exception();
+                throw new BadLicenseNumException(licenseNum, "The bus does not exist");
             bus.IsDeleted = true;//delete
 
         }
@@ -169,19 +173,19 @@ namespace DL
             if (line != null)
                 return line.Clone();
             else
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
         }
         public void AddLine(DO.Line line)
         {
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
-                throw new Exception();
+                throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == line.LineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(line.LineId, "The Line ID does not exist");
             DO.Line newLine = line.Clone();//copy of the bus that the function got
             //lineFind.IsDeleted = true;
             //DataSource.ListLines.Add(newLine);
@@ -191,21 +195,21 @@ namespace DL
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
             update(lineFind);
         }
         public void DeleteLine(int lineId)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            foreach(DO.LineStation s in DataSource.ListLineStations)
+            foreach(DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
             {
                 if (s.LineId == lineId && s.IsDeleted == false)
                     s.IsDeleted = true;
             }
-            foreach(DO.LineTrip l in DataSource.ListLineTrips)
+            foreach(DO.LineTrip l in DataSource.ListLineTrips)//delete fron line trip list
             {
                 if(l.LineId==lineId && l.IsDeleted == false)
                     l.IsDeleted = true;
@@ -413,19 +417,19 @@ namespace DL
             if (station != null)
                 return station.Clone();
             else
-                throw new Exception();
+                throw new BadStationCodeException(code,"The station does not exist");
         }
         public void AddStation(DO.Station station)
         {
             if (DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code && s.IsDeleted == false) != null)
-                throw new Exception();
+                throw new BadStationCodeException(station.Code, "The station is already exist");
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(DO.Station station)
         {
             DO.Station statFind = DataSource.ListStations.Find(s => s.Code == station.Code && s.IsDeleted == false);
             if (statFind == null)
-                throw new Exception();
+                throw new BadStationCodeException(statFind.Code, "The station does not exist");
             DO.Station newStation = station.Clone();//copy of the bus that the function got
             statFind = newStation;//update
         }
@@ -433,11 +437,25 @@ namespace DL
         {
             DO.Station statFind = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
             if (statFind == null)
-                throw new Exception();
+                throw new BadStationCodeException(code, "The station does not exist");
             update(statFind);
         }
         public void DeleteStation(int code)
         {
+            DO.Station statFind = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
+            if (statFind == null)
+                throw new BadStationCodeException(code, "The station does not exist");
+            statFind.IsDeleted = true;
+            foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
+            {
+                if (s.StationCode == code && s.IsDeleted == false)
+                    s.IsDeleted = true;
+            }
+            foreach(DO.AdjacentStations s in DataSource.ListAdjacentStations)//delete from adjacent Station list
+            {
+                if ((s.StationCode1 == code || s.StationCode2 == code) && s.IsDeleted == false)
+                    s.IsDeleted = true;
+            }
 
         }
 

@@ -6,6 +6,7 @@ using BLAPI;
 using System.Threading;
 using BO;
 
+
 namespace BL
 {
     class BLImp : IBL
@@ -25,13 +26,13 @@ namespace BL
             {
                 dl.DeleteBus(licenseNum);
             }
-            catch
+            catch(DO.BadLicenseNumException ex)
             {
-                throw new Exception();
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
 
-        public IEnumerable<Bus> GetAllSBuses()
+        public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
@@ -44,9 +45,9 @@ namespace BL
             {
                 busDO = dl.GetBus(licenseNum);
             }
-            catch (Exception ex)
+            catch (DO.BadLicenseNumException ex)
             {
-                throw new Exception();
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
             return busDoBoAdapter(busDO);
         }
@@ -64,9 +65,13 @@ namespace BL
             {
                 dl.UpdateBus(busDO);
             }
-            catch (Exception ex)
+            catch (DO.BadLicenseNumException ex)
             {
-                throw new Exception();
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
             }
         }
         public void AddBus(BO.Bus bus)
@@ -77,11 +82,14 @@ namespace BL
             {
                 dl.AddBus(busDO);
             }
-            catch
+            catch(DO.BadLicenseNumException ex)
             {
-                throw new Exception();
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
-
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
         }
         #endregion
 
@@ -95,7 +103,6 @@ namespace BL
                                       let station = dl.GetStation(stat.StationCode)
                                       //select station.CopyToStudentCourse(stat);
                                       select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-
             return lineBO;
         }
         public Line GetLine(int lineId)
@@ -105,14 +112,10 @@ namespace BL
             {
                 lineDO = dl.GetLine(lineId);
             }
-            catch(Exception ex)
+            catch(DO.BadLineIdException ex)
             {
-                throw new Exception();
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
-            //catch (DO.BadPersonIdException ex)
-            //{
-            //    throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
-            //}
             return lineDoBoAdapter(lineDO);
         }
 
@@ -135,9 +138,9 @@ namespace BL
             {
                 dl.UpdateLine(lineDO);
             }
-            catch (Exception ex)
+            catch (DO.BadLineIdException ex)
             {
-                throw new Exception();
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
         }
 
@@ -147,9 +150,9 @@ namespace BL
             {
                 dl.DeleteLine(lineId);
             }
-            catch
+            catch(DO.BadLineIdException ex)
             {
-                throw new Exception();
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
             
         }

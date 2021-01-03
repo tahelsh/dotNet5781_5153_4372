@@ -15,6 +15,11 @@ namespace BO
         public BusStatus Status { get; set; }//status
         public DateTime DateLastTreat { get; set; }
         public double KmLastTreat { get; set; }
-        
+        public bool IsDeleted { get; set; }
+        public override string ToString()
+        {
+            return "License Number: " + LicenseNum + " Total KM: " + TotalTrip;
+        }
+
     }
 }

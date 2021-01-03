@@ -23,6 +23,8 @@ namespace PL
         public AddNewBus(IBL _bl)
         {
             InitializeComponent();
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.BusStatus));
+            statusComboBox.SelectedIndex = 0;
             bl = _bl;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,11 +47,22 @@ namespace PL
                 BO.BusStatus st = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), statusComboBox.SelectedItem.ToString());
                 double totalKm = double.Parse(totalTripTextBox.Text);
                 BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
+                bl.AddBus(b);
+                Close();
             }
-            catch(Exception ex)
-            { 
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message+": "+ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            Close();
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message , "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+             
         }
     }
 }

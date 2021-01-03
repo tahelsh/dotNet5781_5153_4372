@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DLAPI;
 //using BO;
 
 
@@ -15,7 +16,7 @@ namespace BLAPI
         //etc...
         #region Bus
         BO.Bus GetBus(int licenseNum);
-        IEnumerable<BO.Bus> GetAllSBuses();
+        IEnumerable<BO.Bus> GetAllBuses();
         IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
         void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);

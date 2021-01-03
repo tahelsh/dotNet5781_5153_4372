@@ -645,9 +645,190 @@ namespace DS
             };
 
             #endregion
+
+            #region ListUsers
+            ListUsers = new List<User>
+            {
+                new User //1
+                {
+                    UserName= "shira123",
+                    Password="sh123",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //2
+                {
+                    UserName= "ayala6521",
+                    Password= "abc33",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //3
+                {
+                    UserName= "tahel87",
+                    Password= "df456",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //4
+                {
+                    UserName= "dav983",
+                    Password= "pro865",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //5
+                {
+                    UserName= "duc4569",
+                    Password= "xzxz",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //6
+                {
+                    UserName= "cut765",
+                    Password= "fuyfuy",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //7
+                {
+                    UserName= "dog555",
+                    Password= "digdig",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //8
+                {
+                    UserName= "fug897",
+                    Password= "strstr",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //9
+                {
+                    UserName= "noa8642",
+                    Password= "ttt456",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //10
+                {
+                    UserName= "classb",
+                    Password= "shalom4",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+            };
+            #endregion
+
+            #region ListLines
+            ListLines = new List<Line>
+            {
+                new Line //1
+                {
+                    //LineId= DO.Config.LineId++,
+                    LineNum=33,
+                    Area= Area.Jerusalem,
+                    FirstStation=91, //גולדה/הרטום
+                    LastStation=119, //קרית הילד/סורוצקין
+                    IsDeleted=false
+                },
+                new Line //2
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=12,
+                    Area= Area.Jerusalem,
+                    FirstStation=84, //מלכי ישראל/הטורים
+                    LastStation=1492, //בית וגן/הרב שאג
+                    IsDeleted=false
+                },
+                   new Line //3
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=53,
+                    Area= Area.Jerusalem,
+                    FirstStation=78, //שרי ישראל/יפו
+                    LastStation=1511, //טהון/גולומב
+                    IsDeleted=false
+                },
+                new Line //4
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=240,
+                    Area= Area.Jerusalem,
+                    FirstStation=102,//גולדה/שלמה הלוי
+                    LastStation=122, //מרכז סולם/סורוצקין
+                    IsDeleted=false
+                },
+                new Line //5
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=74,
+                    Area= Area.Jerusalem,
+                    FirstStation=105, //גבעת משה
+                    LastStation=1490, //הרב פרדס/צוקרמן
+                    IsDeleted=false
+                },
+                new Line //6
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=9,
+                    Area= Area.Jerusalem,
+                    FirstStation=123, //אוהל דוד/סורוצקין
+                    LastStation=1491, //ברזיל
+                    IsDeleted=false
+                },
+                new Line //7
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=139,
+                    Area= Area.Jerusalem,
+                    FirstStation=1518, //פרץ ברנשטיין/נזר דוד
+                    LastStation=116, //זית רענן/תורת חסד
+                    IsDeleted=false
+                },
+                 new Line //8
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=68,
+                    Area= Area.Jerusalem,
+                    FirstStation=108, //עזרת תורה/עלי הכהן
+                    LastStation=97, //שכונת בזבז 2
+                    IsDeleted=false
+                },
+                  new Line //9
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=82,
+                    Area= Area.Jerusalem,
+                    FirstStation=111, //יעקובזון/עזרת תורה
+                    LastStation=1493, //בית וגן/עוזיאל
+                    IsDeleted=false
+                },
+                   new Line //10
+                {
+                    //LineId=Config.LineId++,
+                    LineNum=67,
+                    Area= Area.Jerusalem,
+                    FirstStation=1512, //הרב הרצוג/ שח"ל
+                    LastStation=113, //זית רענן/אוהל יהושע
+                    IsDeleted=false
+                },
+            };
+            #endregion
         }
-  
-        
+
+
     }
 }
    

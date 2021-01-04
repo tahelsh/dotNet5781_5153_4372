@@ -28,6 +28,22 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
+
+        public static BO.StationInLine CopyToStationInLine(this DO.Station st, DO.LineStation s)
+        {
+            BO.StationInLine stationInLine = new BO.StationInLine();
+            st.CopyPropertiesTo(stationInLine);
+            stationInLine.LineStationIndex = s.LineStationIndex;
+            stationInLine.StationCode = s.StationCode;
+            return stationInLine;
+        }
+        public static BO.LineInStation CopyToLineInStation(this DO.Line l, DO.LineStation s)
+        {
+            BO.LineInStation lineInStation = new BO.LineInStation();
+            l.CopyPropertiesTo(lineInStation);
+            lineInStation.LineStationIndex = s.LineStationIndex;
+            return lineInStation;
+        }
         //public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
         //{
         //    BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));

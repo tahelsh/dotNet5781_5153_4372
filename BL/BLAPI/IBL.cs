@@ -32,7 +32,15 @@ namespace BLAPI
         void AddBus(BO.Bus bus);
         #endregion
 
+        #region Station
+        BO.Station stationDoBoAdapter(DO.Station stationDO);
+        IEnumerable<BO.Station> GetAllStations();
 
+        #endregion
+
+        #region LineStation
+        void AddLineStation(BO.LineStation s);
+        #endregion
 
 
     }

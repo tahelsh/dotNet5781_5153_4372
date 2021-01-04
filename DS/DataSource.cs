@@ -736,7 +736,8 @@ namespace DS
             {
                 new Line //1
                 {
-                    //LineId= DO.Config.LineId++,
+                    LineId= Config.LineId++,
+                    //LineId=0,
                     LineNum=33,
                     Area= Area.Jerusalem,
                     FirstStation=91, //גולדה/הרטום
@@ -745,7 +746,8 @@ namespace DS
                 },
                 new Line //2
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=1,
                     LineNum=12,
                     Area= Area.Jerusalem,
                     FirstStation=84, //מלכי ישראל/הטורים
@@ -754,7 +756,8 @@ namespace DS
                 },
                    new Line //3
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=2,
                     LineNum=53,
                     Area= Area.Jerusalem,
                     FirstStation=78, //שרי ישראל/יפו
@@ -763,7 +766,8 @@ namespace DS
                 },
                 new Line //4
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=3,
                     LineNum=240,
                     Area= Area.Jerusalem,
                     FirstStation=102,//גולדה/שלמה הלוי
@@ -772,7 +776,8 @@ namespace DS
                 },
                 new Line //5
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=4,
                     LineNum=74,
                     Area= Area.Jerusalem,
                     FirstStation=105, //גבעת משה
@@ -781,7 +786,8 @@ namespace DS
                 },
                 new Line //6
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=5,
                     LineNum=9,
                     Area= Area.Jerusalem,
                     FirstStation=123, //אוהל דוד/סורוצקין
@@ -790,7 +796,8 @@ namespace DS
                 },
                 new Line //7
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=6,
                     LineNum=139,
                     Area= Area.Jerusalem,
                     FirstStation=1518, //פרץ ברנשטיין/נזר דוד
@@ -799,7 +806,8 @@ namespace DS
                 },
                  new Line //8
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=7,
                     LineNum=68,
                     Area= Area.Jerusalem,
                     FirstStation=108, //עזרת תורה/עלי הכהן
@@ -808,7 +816,8 @@ namespace DS
                 },
                   new Line //9
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=8,
                     LineNum=82,
                     Area= Area.Jerusalem,
                     FirstStation=111, //יעקובזון/עזרת תורה
@@ -817,13 +826,70 @@ namespace DS
                 },
                    new Line //10
                 {
-                    //LineId=Config.LineId++,
+                    LineId=Config.LineId++,
+                    //LineId=9,
                     LineNum=67,
                     Area= Area.Jerusalem,
                     FirstStation=1512, //הרב הרצוג/ שח"ל
                     LastStation=113, //זית רענן/אוהל יהושע
                     IsDeleted=false
                 },
+            };
+            #endregion
+
+            #region ListLineStation
+            ListLineStations = new List<LineStation>
+            {
+                //line Id=0
+                
+                 new LineStation
+                {
+                    LineId=0,
+                    StationCode=73,
+                    LineStationIndex=2,
+                    PrevStationCode=91,
+                    NextStationCode=76,
+                    IsDeleted=false,
+
+                },
+                 new LineStation
+                {
+                    LineId=0,
+                    StationCode=91,
+                    LineStationIndex=1,
+                    PrevStationCode=0,
+                    NextStationCode=73,
+                    IsDeleted=false,
+
+                },
+                new LineStation
+                {
+                    LineId=0,
+                    StationCode=76,
+                    LineStationIndex=3,
+                    PrevStationCode=73,
+                    NextStationCode=77,
+                    IsDeleted=false,
+                },
+                new LineStation
+                {
+                    LineId=0,
+                    StationCode=119,
+                    LineStationIndex=4,
+                    PrevStationCode=76,
+                    NextStationCode=0,
+                    IsDeleted=false,
+                },
+                //line Id=1
+                new LineStation
+                {
+                    LineId=1,
+                    StationCode=84,
+                    LineStationIndex=0,
+                    PrevStationCode=76,
+                    NextStationCode=0,
+                    IsDeleted=false,
+                }
             };
             #endregion
         }

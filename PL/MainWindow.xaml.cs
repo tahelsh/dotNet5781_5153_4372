@@ -27,10 +27,17 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Buses(object sender, RoutedEventArgs e)
         {
             Buses win = new Buses(bl);
             win.Show();
+        }
+
+        private void Button_Click_Lines(object sender, RoutedEventArgs e)
+        {
+            Lines win = new Lines(bl);
+            win.Show();
+
         }
     }
 }

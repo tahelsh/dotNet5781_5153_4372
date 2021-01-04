@@ -57,7 +57,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void UpdateBusDetails(Bus bus)
+        public void UpdateBusDetails(BO.Bus bus)
         {
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
@@ -99,10 +99,14 @@ namespace BL
             BO.Line lineBO = new BO.Line();
             int lineId = lineDO.LineId;
             lineDO.CopyPropertiesTo(lineBO);
-            lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)
-                                      let station = dl.GetStation(stat.StationCode)
-                                      //select station.CopyToStudentCourse(stat);
-                                      select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+            //                                         let station = dl.GetStation(stat.StationCode)//station
+            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            IEnumerable<BO.StationInLine> stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+                                                     let station = dl.GetStation(stat.StationCode)//station
+                                                     select station.CopyToStationInLine(stat);
+            //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            lineBO.Stations = stations.OrderBy(s => s.LineStationIndex);
             return lineBO;
         }
         public Line GetLine(int lineId)
@@ -155,6 +159,52 @@ namespace BL
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
             
+        }
+        #endregion
+
+        #region Station
+        public BO.Station stationDoBoAdapter(DO.Station stationDO)
+        {
+            BO.Station stationBO = new BO.Station();
+            int stationCode = stationDO.Code;
+            stationDO.CopyPropertiesTo(stationBO);
+            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+            //                                         let station = dl.GetStation(stat.StationCode)//station
+            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+           stationBO.Lines = from stat  in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
+                                                     let line = dl.GetLine(stat.LineId)//station
+                                                     select line.CopyToLineInStation(stat);
+            //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            //stationBO. = stations.OrderBy(s => s.LineStationIndex);
+            return stationBO;
+        }
+        public IEnumerable<BO.Station> GetAllStations()
+        {
+            return from item in dl.GetAllStations()
+                   select stationDoBoAdapter(item);
+        }
+        #endregion
+
+        #region StationInLine
+        //public void AddStationInLine(BO.StationInLine s)
+        //{
+        //    DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
+
+        //}
+        #endregion
+
+        #region LineStation
+        public void AddLineStation(BO.LineStation s)
+        {
+            DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
+            try
+            {
+                dl.AddLineStation(sDO);
+            }
+            catch(Exception)
+            {
+                throw new Exception();
+            }
         }
         #endregion
 

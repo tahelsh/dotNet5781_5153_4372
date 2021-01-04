@@ -29,7 +29,7 @@ namespace PL
             statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.BusStatus));
             //statusComboBox.SelectedIndex = 0;
             grid2.DataContext = bl.GetBus(bus.LicenseNum);
-            
+            statusComboBox.Text = bus.Status.ToString();//to show the current bus status
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace PL
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show("Do you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
                 return;
             try

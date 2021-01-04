@@ -59,11 +59,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddNewLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStationToLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BusDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Buses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lines.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,6 +90,12 @@
     <Compile Include="AddNewBus.xaml.cs">
       <DependentUpon>AddNewBus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewLine.xaml.cs">
+      <DependentUpon>AddNewLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStationToLine.xaml.cs">
+      <DependentUpon>AddStationToLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -83,6 +105,12 @@
     </Compile>
     <Compile Include="Buses.xaml.cs">
       <DependentUpon>Buses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineDetails.xaml.cs">
+      <DependentUpon>LineDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lines.xaml.cs">
+      <DependentUpon>Lines.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -115,6 +143,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.Bus.datasource" />
+    <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

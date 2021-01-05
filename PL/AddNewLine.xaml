@@ -42,7 +42,7 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,10.2" HorizontalAlignment="Left" Grid.Column="0" Content="Line Num:" Height="25" Width="64"/>
             <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="2.4,5,0,11.2" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,9.6,0,9.2" HorizontalAlignment="Left" Grid.Column="0" Content="last Station:" Height="26" Width="70"/>
-            <ComboBox x:Name="LastStationComboBox" Width="120" VerticalAlignment="Center" Grid.Row="3" Margin="2.4,11.6,0,11.2" ItemsSource="{Binding}" Height="22" HorizontalAlignment="Left" DisplayMemberPath="Area" Grid.Column="1">
+            <ComboBox x:Name="lastStationComboBox" Width="120" VerticalAlignment="Center" Grid.Row="3" Margin="2.4,11.6,0,11.2" ItemsSource="{Binding}" Height="22" HorizontalAlignment="Left" DisplayMemberPath="Area" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -50,6 +50,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </Grid>
+        <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="158,288,0,0" Height="53" Click="Button_Click_Submit"/>
+        <TextBox Name="travelTimeTextBox" Visibility="{Binding ElementName=saveAllbutton, Path=Visibility}" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="130" Margin="463,119,0,0"/>
+        <Label Name="enterTimeLabel"  Visibility="{Binding ElementName=saveAllbutton, Path=Visibility}" Content="Enter time between tha stations:" HorizontalAlignment="Left" Height="29" Margin="443,85,0,0" VerticalAlignment="Top" Width="215"/>
+        <Button Name="saveAllbutton" Visibility="Hidden" Content="Save Time"  HorizontalAlignment="Left" Height="42" Margin="472,288,0,0" VerticalAlignment="Top" Width="105" Click="Button_Click_Finish"/>
+        <Label Content="Enter distance beetween the stations:" Visibility="{Binding ElementName=saveAllbutton, Path=Visibility}" HorizontalAlignment="Left" Height="36" Margin="425,172,0,0" VerticalAlignment="Top" Width="223"/>
+        <TextBox Name="travelDistanceTextBox" HorizontalAlignment="Left" Visibility="{Binding ElementName=saveAllbutton, Path=Visibility}" Height="26" Margin="463,218,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="130"/>
 
     </Grid>
 </Window>

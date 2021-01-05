@@ -102,7 +102,7 @@ namespace BL
             //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            IEnumerable<BO.StationInLine> stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+            IEnumerable<BO.StationInLine> stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted==false)//Linestation
                                                      let station = dl.GetStation(stat.StationCode)//station
                                                      select station.CopyToStationInLine(stat);
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
@@ -121,6 +121,22 @@ namespace BL
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
             return lineDoBoAdapter(lineDO);
+        }
+        public void AddNewLine(BO.Line lineBo)
+        {
+            DO.Line lineDo = new DO.Line();
+            lineBo.CopyPropertiesTo(lineDo);
+            lineDo.FirstStation = lineBo.Stations.ToList()[0].StationCode;
+            lineDo.FirstStation = lineBo.Stations.ToList()[0].StationCode;
+            try
+            {
+                dl.AddLine(lineDo);
+            }
+            catch(BO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+
         }
 
         public IEnumerable<BO.Line> GetAllLines()
@@ -206,6 +222,41 @@ namespace BL
                 throw new Exception();
             }
         }
+        public void DeleteLineStation(int lineId, int stationCode)
+        {
+            try
+            {
+                dl.DeleteLineStation(lineId, stationCode);
+            }
+            catch(Exception)
+            {
+
+            }
+        }
+        #endregion
+
+        #region AdjacentStations
+        public bool IsExistAdjacentStations(int stationCode1, int stationCode2)
+        {
+            if (dl.IsExistAdjacentStations(stationCode1, stationCode2))
+                return true;
+            return false;
+        }
+        public void AddAdjacentStations(BO.AdjacentStation adjBO)
+        {
+            try
+            {
+                DO.AdjacentStations adjDO = new DO.AdjacentStations();
+                adjBO.CopyPropertiesTo(adjDO);
+                dl.AddAdjacentStations(adjDO);
+            }
+            catch (Exception)
+            {
+
+            }
+        
+        }
+
         #endregion
 
 

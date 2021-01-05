@@ -97,5 +97,19 @@ namespace PL
             }
             Close();
         }
+        private void Delete_Station_Button_Click(object sender, RoutedEventArgs e)
+        {
+            BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
+            try
+            {
+                bl.DeleteLineStation(line.LineId, station.StationCode);
+                line = bl.GetLine(line.LineId);
+                LBStations.DataContext = line.Stations;//refresh
+            }
+            catch(Exception)
+            {
+
+            }
+        }
     }
 }

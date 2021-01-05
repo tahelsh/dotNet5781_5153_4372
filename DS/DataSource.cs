@@ -32,7 +32,7 @@ namespace DS
                     Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
                     Latitude = 31.825302,
                     Longitude = 35.188624,
-                    DisabledAccess = true,
+                    DisabledAccess = false,
                     IsDeleted = false
                 },
                 new Station
@@ -892,6 +892,11 @@ namespace DS
                 }
             };
             #endregion
+
+            #region ListAdjacentStations
+            ListAdjacentStations = new List<AdjacentStations>();
+            #endregion
+
         }
 
 

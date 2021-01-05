@@ -44,6 +44,7 @@
     <Compile Include="BLAPI\BLFactory.cs" />
     <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="BLImp.cs" />
+    <Compile Include="BO\AdjacentStation.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Exceptions.cs" />
@@ -56,7 +57,9 @@
     <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\DataSources\BO.Line.datasource" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{43d2514a-6521-4966-9f1d-ac816599ee58}</Project>

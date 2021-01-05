@@ -24,6 +24,7 @@ namespace DLAPI
         #endregion
 
         #region AdjacentStations
+        bool IsExistAdjacentStations(int stationCode1, int stationCode2);
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate);
         DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2);

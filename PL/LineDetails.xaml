@@ -9,7 +9,36 @@
         Title="LineDetails" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
+        <DataTemplate x:Key="stationInLineTemplate"
+                  DataType="local:StationInLine" x:Name="stationInLine">
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
+                   Background="{Binding Path=StationCode}"  />
+                <TextBlock Grid.Column="1"
+                   Text="{Binding Path=LineStationIndex}" />
+                <TextBlock Grid.Column="2"
+                   Text="{Binding Path=Name}" Name="TBName" />
+                <CheckBox Grid.Column="3"
+                   Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" />
+                <Button Grid.Column="4"
+                   Content="Delete" Click="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
+
     <Grid>
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="147" Width="203">
@@ -35,7 +64,7 @@
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Line Num:"/>
             <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
-        <ListBox Name="LBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="162" Margin="241,46,0,0" VerticalAlignment="Top" Width="543"/>
+        <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="571"/>
         <Button Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="177,285,0,0" Height="45" Click="Button_Click_Add_Station"/>
         <Button Content="Update" HorizontalAlignment="Left" Height="45" Margin="332,285,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click_Update"/>
         <Button Content="Delete" HorizontalAlignment="Left" Height="45" Margin="545,285,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click_Delete"/>

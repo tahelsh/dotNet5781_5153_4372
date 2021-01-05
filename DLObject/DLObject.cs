@@ -101,6 +101,13 @@ namespace DL
         #endregion
 
         #region AdjacentStations
+        public bool IsExistAdjacentStations(int stationCode1, int stationCode2)
+        {
+            DO.AdjacentStations adjStations = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false));
+            if (adjStations != null)
+                return true;
+            return false;
+        }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from adj in DataSource.ListAdjacentStations
@@ -137,14 +144,14 @@ namespace DL
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
-            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => ((adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false || adj.StationCode1 == stationCode2 && adj.StationCode2 == stationCode1) && adj.IsDeleted == false));
+            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2  && adj.IsDeleted == false));
             if (adjFind == null)
                 throw new Exception();
             update(adjFind);
         }
         public void DeleteAdjacentStations(int stationCode1, int stationCode2)
         {
-            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false || adj.StationCode1 == stationCode2 && adj.StationCode2 == stationCode1 && adj.IsDeleted == false));
+            DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false ));
             if (adjFind == null)
                 throw new Exception();
             adjFind.IsDeleted = true;
@@ -178,6 +185,7 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
+            line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
                 throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
             DataSource.ListLines.Add(line.Clone());
@@ -297,19 +305,25 @@ namespace DL
             {
                 DO.LineStation PrevFind= DataSource.ListLineStations.Find(prev => (prev.LineId == lineId && prev.LineStationIndex == lStatFind.LineStationIndex - 1 && prev.IsDeleted == false));
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId  && next.LineStationIndex == lStatFind.LineStationIndex+1 && next.IsDeleted == false));
-                PrevFind.NextStationCode = NextFind.StationCode;
-                NextFind.PrevStationCode = PrevFind.StationCode;
+                if (NextFind != null)//if its not the last station
+                {
+                    PrevFind.NextStationCode = NextFind.StationCode;
+                    NextFind.PrevStationCode = PrevFind.StationCode;
+                }
             }
             else
             {
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == lStatFind.LineStationIndex + 1 && next.IsDeleted == false));
-                //NextFind.PrevStationCode= לשנות!!!
+                if (NextFind != null)
+                {
+                    NextFind.PrevStationCode = 0;
+                }
             }
             int index;
             while (NextFind != null)
             {
                 index = NextFind.LineStationIndex;
-                NextFind.LineStationIndex--;
+                NextFind.LineStationIndex = NextFind.LineStationIndex - 1;
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == index + 1 && next.IsDeleted == false));
             }
         }

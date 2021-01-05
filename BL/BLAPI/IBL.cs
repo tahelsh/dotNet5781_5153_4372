@@ -23,6 +23,7 @@ namespace BLAPI
         #endregion
 
         #region Line
+        void AddNewLine(BO.Line lineBo);
         BO.Line GetLine(int lineId);
         IEnumerable<BO.Line> GetAllLines();
         //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
@@ -40,8 +41,13 @@ namespace BLAPI
 
         #region LineStation
         void AddLineStation(BO.LineStation s);
+        void DeleteLineStation(int lineId, int stationCode);
         #endregion
 
+        #region AdjacentStations
+        bool IsExistAdjacentStations(int stationCode1, int stationCode2);
+        void AddAdjacentStations(BO.AdjacentStation adjBO);
+        #endregion
 
     }
 }

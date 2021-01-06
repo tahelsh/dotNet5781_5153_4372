@@ -123,10 +123,10 @@ namespace DL
         {
             DO.AdjacentStations adjStations = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted==false));
 
-            if (adjStations != null)
-                return adjStations.Clone();
-            else
+            if (adjStations == null)
                 throw new Exception();
+            return adjStations.Clone();
+   
         }
         public void AddAdjacentStations(DO.AdjacentStations adjStations)
         {
@@ -140,7 +140,8 @@ namespace DL
             if (adjFind == null)
                 throw new Exception();
             DO.AdjacentStations newAdj = adjStations.Clone();//copy of the bus that the function got
-            adjFind = newAdj;//update
+            DataSource.ListAdjacentStations.Remove(adjFind);
+            DataSource.ListAdjacentStations.Add(newAdj);
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
@@ -252,16 +253,17 @@ namespace DL
            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
                 throw new Exception();
             //update the line station index of all the next station
-            DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex+1 && lStat.IsDeleted == false));
+            DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex && lStat.IsDeleted == false));
             DO.LineStation temp;
             int i;
             while (next != null)
             {
                 
-                temp = next;
-                i = temp.LineStationIndex + 1;
-                next = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex == i && lStat.IsDeleted == false));
-                temp.LineStationIndex++;
+                //temp = next;
+                i = next.LineStationIndex + 1;
+                temp = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex == i && lStat.IsDeleted == false));
+                ++next.LineStationIndex;
+                next = temp;
             }
           
             //update prev and next

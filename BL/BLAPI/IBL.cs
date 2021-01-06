@@ -46,7 +46,11 @@ namespace BLAPI
 
         #region AdjacentStations
         bool IsExistAdjacentStations(int stationCode1, int stationCode2);
-        void AddAdjacentStations(BO.AdjacentStation adjBO);
+        //void AddAdjacentStations(BO.AdjacentStation adjBO);
+        #endregion
+
+        #region StationInLine
+        void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
         #endregion
 
     }

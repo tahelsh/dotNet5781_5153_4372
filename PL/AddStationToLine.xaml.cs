@@ -64,7 +64,7 @@ namespace PL
                     return;
                 }
                 BO.Station sNew = (CBNewStation.SelectedItem) as BO.Station;
-                BO.LineStation newS = new BO.LineStation() { LineId = line.LineId, LineStationIndex= sPrev.LineStationIndex+1, StationCode=sNew.Code };
+                BO.LineStation newS = new BO.LineStation() { LineId = line.LineId, LineStationIndex = sPrev.LineStationIndex + 1, StationCode = sNew.Code };
                 try
                 {
                     bl.AddLineStation(newS);

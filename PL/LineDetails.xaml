@@ -24,6 +24,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0"
@@ -38,6 +41,8 @@
                    Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" />
                 <Button Grid.Column="5"
                    Content="Delete" Click="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
+                <Button Grid.Column="6"
+                   Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True"  />
             </Grid>
         </DataTemplate>
     </Window.Resources>

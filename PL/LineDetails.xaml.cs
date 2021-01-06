@@ -91,12 +91,13 @@ namespace PL
             {
                 bl.DeleteLine(line.LineId);
             }
-            catch(BO.BadLineIdException ex)
+            catch (BO.BadLineIdException ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             Close();
         }
+
         private void Delete_Station_Button_Click(object sender, RoutedEventArgs e)
         {
             BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
@@ -111,5 +112,21 @@ namespace PL
 
             }
         }
+        private void UpdateTimeDis_Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            BO.StationInLine st = (sender as Button).DataContext as BO.StationInLine;
+            if(st.StationCode==line.Stations[line.Stations.Count-1].StationCode)
+            {
+                MessageBox.Show("travel distance/time from Last station cant be updated.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            BO.StationInLine next = line.Stations[st.LineStationIndex];
+            UpdateTimeAndDistance win = new UpdateTimeAndDistance(bl, st, next);
+            win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+
+        }
+      
     }
 }

@@ -58,6 +58,11 @@ namespace PL
             else
             {
                 BO.StationInLine sPrev = (CBPrevStation.SelectedItem) as BO.StationInLine;
+                if (sPrev == null)
+                {
+                    MessageBox.Show("Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
+                    return;
+                }
                 BO.Station sNew = (CBNewStation.SelectedItem) as BO.Station;
                 BO.LineStation newS = new BO.LineStation() { LineId = line.LineId, LineStationIndex= sPrev.LineStationIndex+1, StationCode=sNew.Code };
                 try

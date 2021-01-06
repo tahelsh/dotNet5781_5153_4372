@@ -185,7 +185,7 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            line.LineId = Config.LineId++;
+            //line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
                 throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
             DataSource.ListLines.Add(line.Clone());
@@ -249,10 +249,10 @@ namespace DL
         }
         public void AddLineStation(DO.LineStation lineStation)
         {
-            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
+           if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
                 throw new Exception();
             //update the line station index of all the next station
-            DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex && lStat.IsDeleted == false));
+            DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex+1 && lStat.IsDeleted == false));
             DO.LineStation temp;
             int i;
             while (next != null)

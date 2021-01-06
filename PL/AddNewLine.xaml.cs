@@ -54,8 +54,9 @@ namespace PL
                     BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), areaComboBox.SelectedItem.ToString());
                     BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area };
                     BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
-                    newline.Stations.ToList().Add(temp1);
+                    newline.Stations.Add(temp1);
                     BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
+                    newline.Stations.Add(temp2);
                     bl.AddNewLine(newline);
                     MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
@@ -85,21 +86,17 @@ namespace PL
                 int lineNum = int.Parse(lineNumTextBox.Text);
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), areaComboBox.SelectedItem.ToString());
                 BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area };
-                BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
-                List<BO.StationInLine> list = new List<BO.StationInLine>();
-                list.Add(temp1);
-                BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
-                list.Add(temp2);
-                list.Add(temp2);
-                newline.Stations = from stat in list
-                                   select stat;
-                bl.AddNewLine(newline);
                 TimeSpan time = TimeSpan.Parse(travelTimeTextBox.Text);
                 double distance = double.Parse(travelDistanceTextBox.Text);
-                BO.AdjacentStation adj = new BO.AdjacentStation() { StationCode1 = firstStation.Code, StationCode2 = lastStation.Code, Distance = distance, Time = time };
-                bl.AddAdjacentStations(adj);
+                BO.StationInLine temp1 = new BO.StationInLine() { Distance = distance, Time = time, DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
+                newline.Stations = new List<BO.StationInLine>();
+                newline.Stations.Add(temp1);
+                BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
+                newline.Stations.Add(temp2);
+                bl.AddNewLine(newline);
                 MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
+                //good
             }
             catch (BO.BadLineIdException ex)
             {

@@ -12,6 +12,8 @@ namespace BO
         public int LineStationIndex { get; set; }
         public string Name { get; set; }
         public bool DisabledAccess { get; set; }
+        public double Distance { get; set; }
+        public TimeSpan Time { get; set; }
         public override string ToString()
         {
             return "Station code: " + StationCode + "  Line station index: " + LineStationIndex +"  Name: "+ Name;

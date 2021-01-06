@@ -868,7 +868,7 @@ namespace DS
                     StationCode=76,
                     LineStationIndex=3,
                     PrevStationCode=73,
-                    NextStationCode=77,
+                    NextStationCode=119,
                     IsDeleted=false,
                 },
                 new LineStation
@@ -881,20 +881,46 @@ namespace DS
                     IsDeleted=false,
                 },
                 //line Id=1
-                new LineStation
-                {
-                    LineId=1,
-                    StationCode=84,
-                    LineStationIndex=0,
-                    PrevStationCode=76,
-                    NextStationCode=0,
-                    IsDeleted=false,
-                }
+                //new LineStation
+                //{
+                //    LineId=1,
+                //    StationCode=84,
+                //    LineStationIndex=0,
+                //    PrevStationCode=76,
+                //    NextStationCode=0,
+                //    IsDeleted=false,
+                //}
             };
             #endregion
 
             #region ListAdjacentStations
-            ListAdjacentStations = new List<AdjacentStations>();
+            ListAdjacentStations = new List<AdjacentStations>()
+            {
+                new AdjacentStations
+                {
+                    StationCode1=91,
+                    StationCode2 = 73,
+                    Distance=4.5,
+                    Time=new TimeSpan(0,5,0),
+                    IsDeleted=false,
+                },
+                new AdjacentStations
+                {
+                    StationCode1=73,
+                    StationCode2 = 76,
+                    Distance=3.5,
+                    Time=new TimeSpan(0,3,0),
+                    IsDeleted=false,
+                },
+                new AdjacentStations
+                {
+                    StationCode1=76,
+                    StationCode2 =119,
+                    Distance=6.5,
+                    Time=new TimeSpan(0,2,0),
+                    IsDeleted=false,
+                },
+            };
             #endregion
 
         }

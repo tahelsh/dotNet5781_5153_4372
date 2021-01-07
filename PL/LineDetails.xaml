@@ -13,35 +13,34 @@
                   DataType="local:StationInLine" x:Name="stationInLine">
             <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="230" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0"
-                   Background="{Binding Path=StationCode}"  />
-                <TextBlock Grid.Column="1"
-                   Text="{Binding Path=LineStationIndex}" />
+                <TextBlock Grid.Column="0"
+                   Text="{Binding Path=StationCode}"  />
                 <TextBlock Grid.Column="2"
+                   Text="{Binding Path=LineStationIndex}" />
+                <TextBlock Grid.Column="4"
                    Text="{Binding Path=Name}" Name="TBName" />
-                <TextBlock Grid.Column="3"
+                <TextBlock Grid.Column="6"
                    Text="{Binding Path=Distance}" Name="TBDistance" />
-                <CheckBox Grid.Column="4"
+                <CheckBox Grid.Column="7"
                    Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" />
-                <Button Grid.Column="5"
+                <Button Grid.Column="8"
                    Content="Delete" Click="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
-                <Button Grid.Column="6"
+                <Button Grid.Column="9"
                    Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True"  />
             </Grid>
         </DataTemplate>

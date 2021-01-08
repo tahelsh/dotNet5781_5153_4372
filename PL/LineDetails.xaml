@@ -47,8 +47,12 @@
     </Window.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="147" Width="203">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="147" Width="203" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -71,10 +75,10 @@
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Line Num:"/>
             <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
-        <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="571"/>
-        <Button Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="177,285,0,0" Height="45" Click="Button_Click_Add_Station"/>
-        <Button Content="Update" HorizontalAlignment="Left" Height="45" Margin="332,285,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click_Update"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="45" Margin="545,285,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click_Delete"/>
+        <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="571" Grid.ColumnSpan="2"/>
+        <Button Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="177,285,0,0" Height="45" Click="Button_Click_Add_Station" Grid.ColumnSpan="2"/>
+        <Button Content="Update" HorizontalAlignment="Left" Height="45" Margin="332,285,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click_Update" Grid.ColumnSpan="2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="45" Margin="545,285,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click_Delete" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

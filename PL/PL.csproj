@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Stations.xaml.cs">
+      <DependentUpon>Stations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateTimeAndDistance.xaml.cs">
       <DependentUpon>UpdateTimeAndDistance.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Stations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateTimeAndDistance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +158,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.Bus.datasource" />
     <None Include="Properties\DataSources\BO.Line.datasource" />
+    <None Include="Properties\DataSources\BO.Station.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

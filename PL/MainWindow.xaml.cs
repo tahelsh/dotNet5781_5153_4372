@@ -39,5 +39,11 @@ namespace PL
             win.Show();
 
         }
+
+        private void Button_Click_Stations(object sender, RoutedEventArgs e)
+        {
+            Stations win = new Stations(bl);
+            win.Show();
+        }
     }
 }

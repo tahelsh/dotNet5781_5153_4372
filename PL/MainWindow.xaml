@@ -6,9 +6,18 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="10,0,-0.4,-30" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="0.581"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
         <Button Content="Buses" HorizontalAlignment="Left" Height="61" Margin="223,336,0,0" VerticalAlignment="Top" Width="245" Click="Button_Click_Buses"/>
         <Button Content="Lines" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Margin="223,230,0,0" Height="66" Click="Button_Click_Lines"/>
+        <Button Content="Station" HorizontalAlignment="Left" Height="72" Margin="223,129,0,0" VerticalAlignment="Top" Width="245" Click="Button_Click_Stations"/>
 
     </Grid>
 </Window>

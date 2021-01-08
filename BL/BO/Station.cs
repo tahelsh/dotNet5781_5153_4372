@@ -13,6 +13,10 @@ namespace BO
         public string Address { get; set; }
         public bool DisabledAccess { get; set; }
         public List<LineInStation> Lines { get; set; }
-       
+        public override string ToString()
+        {
+            return "Code: "+Code;
+        }
+
     }
 }

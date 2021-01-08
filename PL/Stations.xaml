@@ -1,0 +1,39 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.Stations"
+        mc:Ignorable="d"
+        Title="Stations" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid Margin="0,0,-0.4,7">
+        <ListBox Name="LBStations" HorizontalAlignment="Left" Height="376" Margin="21,10,0,0" VerticalAlignment="Top" Width="135" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"/>
+        <Grid x:Name="gridDetailsStation" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="342,73,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding Address}" VerticalAlignment="Center"/>
+            <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="codeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Code}" VerticalAlignment="Center"/>
+            <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+        </Grid>
+        <DataGrid Name="DGLinesInStation" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="230" Margin="342,206,0,0" ItemsSource="{Binding}"/>
+
+    </Grid>
+</Window>

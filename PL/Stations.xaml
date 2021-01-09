@@ -11,7 +11,7 @@
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
     </Window.Resources>
     <Grid Margin="0,0,-0.4,7">
-        <ListBox Name="LBStations" HorizontalAlignment="Left" Height="376" Margin="21,10,0,0" VerticalAlignment="Top" Width="135" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"/>
+        <ListBox Name="LBStations" HorizontalAlignment="Left" Height="376" Margin="85,10,0,0" VerticalAlignment="Top" Width="135" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"/>
         <Grid x:Name="gridDetailsStation" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="342,73,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

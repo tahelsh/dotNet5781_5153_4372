@@ -45,6 +45,16 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station code number: {stationCode}";
     }
+    public class BadUserNameException : Exception
+    {
+        public string userName;
+        public BadUserNameException(string name) : base() => userName = name;
+        public BadUserNameException(string name, string message) :
+            base(message) => userName = name;
+        public BadUserNameException(string name, string message, Exception innerException) :
+            base(message, innerException) => userName = name;
 
+        public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+    }
 
 }

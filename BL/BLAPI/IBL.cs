@@ -34,14 +34,18 @@ namespace BLAPI
         #endregion
 
         #region Station
-        BO.Station stationDoBoAdapter(DO.Station stationDO);
+        BO.Station StationDoBoAdapter(DO.Station stationDO);
         IEnumerable<BO.Station> GetAllStations();
+        void AddStation(BO.Station stat);
+        void DeleteStation(int code);
+        void UpdateStation(BO.Station stationBO);
 
         #endregion
 
         #region LineStation
         void AddLineStation(BO.LineStation s);
         void DeleteLineStation(int lineId, int stationCode);
+        
         #endregion
 
         #region AdjacentStations
@@ -51,6 +55,11 @@ namespace BLAPI
 
         #region StationInLine
         void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
+        #endregion
+
+        #region User
+        void AddUser(BO.User userBO);
+        BO.User SignIn(string username, int passcode);
         #endregion
 
     }

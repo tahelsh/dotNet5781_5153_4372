@@ -27,23 +27,63 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click_Buses(object sender, RoutedEventArgs e)
+ 
+
+     
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Buses win = new Buses(bl);
-            win.Show();
+
+            System.Windows.Data.CollectionViewSource userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // userViewSource.Source = [generic data source]
         }
 
-        private void Button_Click_Lines(object sender, RoutedEventArgs e)
+        private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            Lines win = new Lines(bl);
-            win.Show();
+            try
+            {
+                string name = nameTextBox.Text;
+                string userName = userNameTextBox.Text;
+                //Check if the username doesnt already exist, only if it doesnt, continue input
+                int passcode = int.Parse(passcodeTextBox.Text);
+                bool isAdmin = (adminAccessCheckBox.IsChecked == true);
+                BO.User user = new BO.User() { AdminAccess = isAdmin, Name = name, Passcode = passcode, UserName = userName };
+                bl.AddUser(user);
+            }
+            catch(BO.BadUserNameException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.userName, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
-        private void Button_Click_Stations(object sender, RoutedEventArgs e)
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            Stations win = new Stations(bl);
-            win.Show();
+            try
+            {
+                string userName = userNameSignTextBox.Text;
+                int passcode = int.Parse(PasscodeSignTextBox.Text);
+                BO.User user = bl.SignIn(userName, passcode);
+                if (user.AdminAccess)
+                {
+                    MenuAdmin winAdmin = new MenuAdmin(bl, user);
+                    winAdmin.ShowDialog();
+                }
+                else
+                {
+                    MenuUser winUser = new MenuUser(bl, user);
+                    winUser.ShowDialog();
+                }
+                
+            }
+            catch(BO.BadUserNameException )
+            {
+                MessageBox.Show("The user name or the passcode is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

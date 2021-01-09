@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,30 @@ namespace PL
     /// </summary>
     public partial class MenuAdmin : Window
     {
-        public MenuAdmin()
+        IBL bl;
+        BO.User user;
+        public MenuAdmin(IBL _bl, BO.User _user)
         {
             InitializeComponent();
+            bl = _bl;
+            user = _user;
+        }
+        private void Button_Click_Buses(object sender, RoutedEventArgs e)
+        {
+            Buses win = new Buses(bl);
+            win.Show();
+        }
+
+        private void Button_Click_Lines(object sender, RoutedEventArgs e)
+        {
+            Lines win = new Lines(bl);
+            win.Show();
+        }
+
+        private void Button_Click_Stations(object sender, RoutedEventArgs e)
+        {
+            Stations win = new Stations(bl);
+            win.Show();
         }
     }
 }

@@ -207,7 +207,7 @@ namespace BL
         #endregion
 
         #region Station
-        public BO.Station stationDoBoAdapter(DO.Station stationDO)
+        public BO.Station StationDoBoAdapter(DO.Station stationDO)
         {
             BO.Station stationBO = new BO.Station();
             int stationCode = stationDO.Code;
@@ -225,7 +225,52 @@ namespace BL
         public IEnumerable<BO.Station> GetAllStations()
         {
             return from item in dl.GetAllStations()
-                   select stationDoBoAdapter(item);
+                   select StationDoBoAdapter(item);
+        }
+        public void AddStation(BO.Station stat)
+        {
+            DO.Station statDO = new DO.Station();
+            stat.CopyPropertiesTo(statDO);
+            statDO.IsDeleted = false;
+            try
+            {
+                dl.AddStation(statDO);
+            }
+            catch (DO.BadStationCodeException ex) 
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
+           
+        }
+        public void DeleteStation(int code)
+        {
+            try
+            {
+                DO.Station statDO = dl.GetStation(code);
+                BO.Station statBO = StationDoBoAdapter(statDO);
+                if (statBO.Lines.Count != 0)
+                    throw new BO.BadStationCodeException(code, "station cant be deleted because other buses stop there");
+                dl.DeleteStation(code);
+
+            }
+            catch(DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
+        }
+        public void UpdateStation(BO.Station statBO)
+        {
+            try
+            {
+                DO.Station statDO = new DO.Station();
+                statBO.CopyPropertiesTo(statDO);
+                statDO.IsDeleted = false;
+                dl.UpdateStation(statDO);
+            }
+            catch(BO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
         }
 
         #endregion
@@ -317,6 +362,41 @@ namespace BL
         //    }
 
         //}
+
+        #endregion
+
+        #region User
+        public void AddUser(BO.User userBO)
+        {
+            try
+            {
+                DO.User userDO = new DO.User();
+                userBO.CopyPropertiesTo(userDO);
+                userDO.IsDeleted = false;
+                dl.AddUser(userDO);
+            }
+            catch(DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(ex.userName, ex.Message);
+            }
+        }
+        public BO.User SignIn(string username, int passcode)
+        {
+            try
+            {
+                DO.User userDO = dl.GetUser(username);
+                if (passcode != userDO.Passcode)
+                    throw new BO.BadUserNameException(username, "The passcode is wrong");
+                BO.User userBO = new BO.User();
+                userDO.CopyPropertiesTo(userBO);
+                return userBO;
+            }
+            catch(DO.BadUserNameException ex)
+            {
+                throw new BO.BadUserNameException(ex.userName, ex.Message);
+            }
+        }
+
 
         #endregion
 

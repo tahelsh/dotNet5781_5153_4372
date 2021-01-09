@@ -10,6 +10,8 @@ namespace BO
     {
         public string UserName { get; set; }//unique username
         public bool AdminAccess { get; set; }
-       
+        public string Name { get; set; }
+        public int Passcode { get; set; }
+
     }
 }

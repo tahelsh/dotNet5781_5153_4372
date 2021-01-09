@@ -6,11 +6,6 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="Station" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <Children>
-      <GenericObjectDataSource DisplayName="Lines" Version="1.0">
-         <TypeInfo>BO.LineInStation, BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-      </GenericObjectDataSource>
-   </Children>
    <TypeInfo>BO.Station, BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
    <TypeUISetting>
       <PropertyUISettings>
@@ -29,6 +24,20 @@
             </ControlSettings>
          </PropertyUISetting>
          <PropertyUISetting Name="Address">
+            <ControlSettings>
+               <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
+                  <BindableControlInfo Name="TextBox" Type="System.Windows.Controls.TextBox" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+               </ControlSetting>
+            </ControlSettings>
+         </PropertyUISetting>
+         <PropertyUISetting Name="Latitude">
+            <ControlSettings>
+               <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
+                  <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+               </ControlSetting>
+            </ControlSettings>
+         </PropertyUISetting>
+         <PropertyUISetting Name="Longitude">
             <ControlSettings>
                <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
                   <BindableControlInfo Name="TextBlock" Type="System.Windows.Controls.TextBlock" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />

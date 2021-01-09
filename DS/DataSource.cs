@@ -651,16 +651,16 @@ namespace DS
             {
                 new User //1
                 {
-                    UserName= "shira123",
-                    Password="sh123",
-                    AdminAccess=true,
+                    UserName= "Shira123",
+                    Passcode=123,
+                    AdminAccess=false,
                     IsDeleted= false
                 },
 
                 new User //2
                 {
                     UserName= "ayala6521",
-                    Password= "abc33",
+                    Passcode= 54333,
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -668,7 +668,7 @@ namespace DS
                 new User //3
                 {
                     UserName= "tahel87",
-                    Password= "df456",
+                    Passcode= 8765456,
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -676,15 +676,15 @@ namespace DS
                 new User //4
                 {
                     UserName= "dav983",
-                    Password= "pro865",
+                    Passcode= 876865,
                     AdminAccess=false,
                     IsDeleted= false
                 },
 
                 new User //5
                 {
-                    UserName= "duc4569",
-                    Password= "xzxz",
+                    UserName= "duc45",
+                    Passcode= 765,
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -692,7 +692,7 @@ namespace DS
                 new User //6
                 {
                     UserName= "cut765",
-                    Password= "fuyfuy",
+                    Passcode= 678,
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -700,7 +700,7 @@ namespace DS
                 new User //7
                 {
                     UserName= "dog555",
-                    Password= "digdig",
+                    Passcode= 567,
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -708,7 +708,7 @@ namespace DS
                 new User //8
                 {
                     UserName= "fug897",
-                    Password= "strstr",
+                    Passcode= 567,
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -716,7 +716,7 @@ namespace DS
                 new User //9
                 {
                     UserName= "noa8642",
-                    Password= "ttt456",
+                    Passcode= 345,
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -724,7 +724,7 @@ namespace DS
                 new User //10
                 {
                     UserName= "classb",
-                    Password= "shalom4",
+                    Passcode= 45656,
                     AdminAccess=false,
                     IsDeleted= false
                 },

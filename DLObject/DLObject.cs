@@ -218,11 +218,6 @@ namespace DL
                 if (s.LineId == lineId && s.IsDeleted == false)
                     s.IsDeleted = true;
             }
-            //foreach(DO.LineTrip l in DataSource.ListLineTrips)//delete fron line trip list
-            //{
-            //    if(l.LineId==lineId && l.IsDeleted == false)
-            //        l.IsDeleted = true;
-            //}
         }
 
         #endregion
@@ -251,21 +246,19 @@ namespace DL
         public void AddLineStation(DO.LineStation lineStation)
         {
            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
-                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The station line does not exist");
+                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The new line station is already exist");
             //update the line station index of all the next station
             DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex && lStat.IsDeleted == false));
             DO.LineStation temp;
             int i;
             while (next != null)
             {
-                
                 //temp = next;
                 i = next.LineStationIndex + 1;
                 temp = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex == i && lStat.IsDeleted == false));
                 ++next.LineStationIndex;
                 next = temp;
             }
-          
             //update prev and next
             DO.LineStation prev = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex == lineStation.LineStationIndex-1 && lStat.IsDeleted == false));
             next = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex == lineStation.LineStationIndex+1 && lStat.IsDeleted == false));
@@ -471,8 +464,6 @@ namespace DL
             DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == station.Code && s.IsDeleted == false);
             if (statFind == null)
                 throw new BadStationCodeException(statFind.Code, "The station does not exist");
-            //DO.Station newStation = station.Clone();//copy of the bus that the function got
-            //statFind = newStation;//update
             DO.Station newStat = station.Clone();
             DataSource.ListStations.Remove(statFind);
             DataSource.ListStations.Add(newStat);
@@ -490,11 +481,6 @@ namespace DL
             if (statFind == null)
                 throw new BadStationCodeException(code, "The station does not exist");
             statFind.IsDeleted = true;
-            //foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
-            //{
-            //    if (s.StationCode == code && s.IsDeleted == false)
-            //        s.IsDeleted = true;
-            //}
             foreach(DO.AdjacentStations s in DataSource.ListAdjacentStations)//delete from adjacent Station list
             {
                 if ((s.StationCode1 == code || s.StationCode2 == code) && s.IsDeleted == false)

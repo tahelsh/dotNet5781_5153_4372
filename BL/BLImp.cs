@@ -304,7 +304,6 @@ namespace BL
         public void AddLineStation(BO.LineStation s)
         {
             DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
-            //sDO.IsDeleted = false;
             try
             {
                 dl.AddLineStation(sDO);

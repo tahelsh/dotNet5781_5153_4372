@@ -7,7 +7,7 @@ using DLAPI;
 using DO;
 using DS;
 
-
+//Dal
 namespace DL
 {
     public class DLObject:IDL

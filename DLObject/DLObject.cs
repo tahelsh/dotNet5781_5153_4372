@@ -442,6 +442,7 @@ namespace DL
         public IEnumerable<DO.Station> GetAllStations()
         {
             return from stat in DataSource.ListStations
+                   where stat.IsDeleted==false
                    select stat.Clone();
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)

@@ -85,6 +85,10 @@ namespace PL
             {
                 MessageBox.Show("The user name or the passcode is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

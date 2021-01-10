@@ -121,7 +121,6 @@ namespace BL
             lineBO.Stations = stations;
             return lineBO;
 
-
         }
         public Line GetLine(int lineId)
         {
@@ -215,7 +214,7 @@ namespace BL
             //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
+            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted==false)//Linestation
                                let line = dl.GetLine(stat.LineId)//line
                                select line.CopyToLineInStation(stat)).ToList();
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
@@ -240,7 +239,11 @@ namespace BL
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
-           
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+
         }
         public void DeleteStation(int code)
         {
@@ -257,6 +260,10 @@ namespace BL
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
         public void UpdateStation(BO.Station statBO)
         {
@@ -283,7 +290,10 @@ namespace BL
                 DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.Distance, Time = first.Time, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
-            catch (Exception ex)
+            catch(DO.BadAdjacentStationsException ex)
+            {
+                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
+            }
             {
                 throw new Exception("Error, it cannot be update");
             }
@@ -322,6 +332,10 @@ namespace BL
             catch (DO.BadLineStationException ex)
             {
                 throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
+            }
+            catch(DO.BadAdjacentStationsException ex)
+            {
+                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
             }
         }
         public void DeleteLineStation(int lineId, int stationCode)
@@ -369,21 +383,7 @@ namespace BL
                 return true;
             return false;
         }
-        //public void AddAdjacentStations(BO.AdjacentStation adjBO)
-        //{
-        //    try
-        //    {
-        //        DO.AdjacentStations adjDO = new DO.AdjacentStations();
-        //        adjBO.CopyPropertiesTo(adjDO);
-        //        dl.AddAdjacentStations(adjDO);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-
-        //}
-
+   
         #endregion
 
         #region User

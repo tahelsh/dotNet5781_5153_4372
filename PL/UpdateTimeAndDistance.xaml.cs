@@ -47,7 +47,11 @@ namespace PL
                 bl.UpdateTimeAndDistance(first,second);
                 Close();
             }
-            catch(Exception ex)
+            catch (BO.BadAdjacentStationsException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.stationCode1 + " " + ex.stationCode2, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

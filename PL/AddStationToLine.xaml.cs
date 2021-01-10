@@ -53,6 +53,10 @@ namespace PL
                 {
                     MessageBox.Show(ex.Message+": "+ex.lineId+" "+ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
                 }
+                catch (BO.BadAdjacentStationsException ex)
+                {
+                    MessageBox.Show(ex.Message + ": " + ex.stationCode1 + " " + ex.stationCode2, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
+                }
             }
             else
             {
@@ -71,6 +75,10 @@ namespace PL
                 catch (BO.BadLineStationException ex)
                 {
                     MessageBox.Show(ex.Message + ": " + ex.lineId + " " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
+                }
+                catch (BO.BadAdjacentStationsException ex)
+                {
+                    MessageBox.Show(ex.Message + ": " + ex.stationCode1 + " " + ex.stationCode2, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
                 }
             }
             Close();

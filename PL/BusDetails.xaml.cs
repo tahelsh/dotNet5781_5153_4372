@@ -54,7 +54,15 @@ namespace PL
                 BO.Bus b = new BO.Bus() { LicenseNum = licenum, FuelRemain = fuel, FromDate = fromDate, DateLastTreat = lastDate, Status = st, TotalTrip = totalKm, KmLastTreat = kmLastTreat };
                 bl.UpdateBusDetails(b);
             }
-            catch(Exception ex) { MessageBox.Show("errorrrrrrr", "", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message+": "+ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error); }
             Close();
             
         }
@@ -71,6 +79,10 @@ namespace PL
                     bl.DeleteBus(bus.LicenseNum);
                     Close();
                 }
+            }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {

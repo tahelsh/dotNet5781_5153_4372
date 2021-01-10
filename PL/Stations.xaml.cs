@@ -22,18 +22,12 @@ namespace PL
     public partial class Stations : Window
     {
         IBL bl;
-        ObservableCollection<BO.Station> stations;
         public Stations(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
-            //List<BO.Station> listStations = bl.GetAllStations().ToList();
-            //stations = new ObservableCollection<BO.Station>();
-            //foreach (var item in listStations)
-            //    stations.Add(item);
-            //RefreshAllStationsList();
-            stations = new ObservableCollection<BO.Station>(bl.GetAllStations());
-            LBStations.DataContext = stations;
+            List<BO.Station> listStations = bl.GetAllStations().ToList();
+            LBStations.DataContext = listStations;
 
         }
 
@@ -47,10 +41,6 @@ namespace PL
 
         public void RefreshAllStationsList()
         {
-            //stations = new ObservableCollection<BO.Station>(bl.GetAllStations());
-            //List<BO.Station> listStations = bl.GetAllStations().ToList();
-            //foreach (var item in listStations)
-            //    stations.Add(item);
             List<BO.Station> stations = bl.GetAllStations().ToList();
             LBStations.DataContext = stations;
         }
@@ -78,12 +68,7 @@ namespace PL
             {
                 int code = int.Parse(codeTextBlock.Text);
                 bl.DeleteStation(code);
-                foreach (BO.Station item in stations)
-                {
-                    if (item.Code == code)
-                        stations.Remove(item);
-                }
-                //RefreshAllStationsList();
+                RefreshAllStationsList();
                 MessageBox.Show("station was deleted successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BadStationCodeException ex)
@@ -109,6 +94,7 @@ namespace PL
                 double latitude = double.Parse(latitudeTextBlock.Text);
                 BO.Station stat = new BO.Station() { Address = address, Code = code, Latitude = latitude, Longitude = longitude, Name = name, DisabledAccess = disAccess };
                 bl.UpdateStation(stat);
+                RefreshAllStationsList();
                 MessageBox.Show("The bus was updated successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BadStationCodeException ex)

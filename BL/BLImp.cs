@@ -331,7 +331,24 @@ namespace BL
         public void DeleteLineStation(int lineId, int stationCode)
         {
             try
-            {
+            {    //AdjacentStation
+                DO.LineStation stat = dl.GetLineStation(lineId, stationCode);
+                if (stat == null)
+                    throw new Exception("The station does not exist in this line");
+                BO.Line line = GetLine(lineId);
+                if (line == null)
+                    throw new Exception("The line does not exist");
+                if(line.Stations[0].StationCode!=stationCode && line.Stations[line.Stations.Count-1].StationCode!=stationCode)//if its not the first or the last station
+                {
+                    BO.StationInLine prev = line.Stations[stat.LineStationIndex - 2];
+                    BO.StationInLine next = line.Stations[stat.LineStationIndex];
+                    if(!dl.IsExistAdjacentStations(prev.StationCode, next.StationCode))
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = next.StationCode, IsDeleted = false };
+                        dl.AddAdjacentStations(adj);
+                    }
+                }
+                //delete the line station
                 dl.DeleteLineStation(lineId, stationCode);
             }
             catch (Exception)
@@ -382,19 +399,24 @@ namespace BL
         }
         public BO.User SignIn(string username, int passcode)
         {
+            BO.User userBO;
             try
             {
                 DO.User userDO = dl.GetUser(username);
                 if (passcode != userDO.Passcode)
                     throw new BO.BadUserNameException(username, "The passcode is wrong");
-                BO.User userBO = new BO.User();
+                userBO = new BO.User();
                 userDO.CopyPropertiesTo(userBO);
-                return userBO;
             }
-            catch(DO.BadUserNameException ex)
+            catch (DO.BadUserNameException ex)
             {
                 throw new BO.BadUserNameException(ex.userName, ex.Message);
             }
+            catch (Exception ex)
+            {
+                throw new Exception("ERROR");
+            }
+            return userBO;
         }
 
 

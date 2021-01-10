@@ -58,9 +58,6 @@
     <Compile Include="AddNewStation.xaml.cs">
       <DependentUpon>AddNewStation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MenuUser.xaml.cs">
-      <DependentUpon>MenuUser.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Stations.xaml.cs">
       <DependentUpon>Stations.xaml</DependentUpon>
     </Compile>
@@ -133,10 +130,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuAdmin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MenuUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

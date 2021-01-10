@@ -49,6 +49,7 @@ namespace PL
                 bool isAdmin = (adminAccessCheckBox.IsChecked == true);
                 BO.User user = new BO.User() { AdminAccess = isAdmin, Name = name, Passcode = passcode, UserName = userName };
                 bl.AddUser(user);
+                MessageBox.Show("The user was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(BO.BadUserNameException ex)
             {

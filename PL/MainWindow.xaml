@@ -23,8 +23,8 @@
         <Label Content="register" HorizontalAlignment="Left" Height="26" Margin="64,33,0,0" VerticalAlignment="Top" Width="104"/>
         <Label Content="user name" HorizontalAlignment="Left" Height="26" Margin="484,78,0,0" VerticalAlignment="Top" Width="69"/>
         <Label Content="passcode" HorizontalAlignment="Left" Height="28" Margin="484,109,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox Name="userNameSignTextBox" HorizontalAlignment="Left" Height="26" Margin="583,78,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="PasscodeSignTextBox" HorizontalAlignment="Left" Height="23" Margin="583,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="userNameSignTextBox" HorizontalAlignment="Left" Height="26" Margin="583,78,0,0" TextWrapping="Wrap" Text="Shira123" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="PasscodeSignTextBox" HorizontalAlignment="Left" Height="23" Margin="583,118,0,0" TextWrapping="Wrap" Text="123" VerticalAlignment="Top" Width="120"/>
 
         <Grid x:Name="grid1" DataContext="{StaticResource userViewSource}" HorizontalAlignment="Left" Margin="64,75,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Admin Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <Label Content="Admin Access:" Grid.Column="0" Margin="3,3,3.8,3" Grid.Row="0" VerticalAlignment="Center"/>
             <CheckBox x:Name="adminAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AdminAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>

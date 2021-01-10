@@ -401,12 +401,10 @@ namespace DL
         }
         public DO.User GetUser(string userName)
         {
-            DO.User user = DataSource.ListUsers.FirstOrDefault(u => u.UserName == userName && u.IsDeleted==false);
-
-            if (user != null)
-                return user.Clone();
-            else
-                throw new BadUserNameException(user.UserName, "This user name does not exist"); ;
+            DO.User user = DataSource.ListUsers.FirstOrDefault(u => u.UserName == userName && u.IsDeleted == false);
+            if (user == null)
+                throw new DO.BadUserNameException(userName, "This user name does not exist");
+            return user.Clone();
         }
         public void AddUser(DO.User user)
         {

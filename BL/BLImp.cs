@@ -299,10 +299,6 @@ namespace BL
             {
                 dl.AddLineStation(sDO);
                 List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
-                //lst.Order
-                
-                //DO.LineStation prev = lst[s.LineStationIndex - 2];
-                //DO.LineStation next = lst[s.LineStationIndex + 1];
                 if (s.LineStationIndex != 1)//if its the first station- it doesnt have prev
                 {
                     DO.LineStation prev = lst[s.LineStationIndex - 2];
@@ -323,9 +319,9 @@ namespace BL
                 }
 
             }
-            catch (Exception)
+            catch (DO.BadLineStationException ex)
             {
-                throw new Exception();
+                throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
             }
         }
         public void DeleteLineStation(int lineId, int stationCode)
@@ -333,11 +329,11 @@ namespace BL
             try
             {    //AdjacentStation
                 DO.LineStation stat = dl.GetLineStation(lineId, stationCode);
-                if (stat == null)
-                    throw new Exception("The station does not exist in this line");
+                //if (stat == null)
+                //    throw new BO.BadLineStationException(lineId, stationCode, "The station does not exist in this line");
                 BO.Line line = GetLine(lineId);
-                if (line == null)
-                    throw new Exception("The line does not exist");
+                //if (line == null)
+                //    //throw new BO.B("The line does not exist");
                 if(line.Stations[0].StationCode!=stationCode && line.Stations[line.Stations.Count-1].StationCode!=stationCode)//if its not the first or the last station
                 {
                     BO.StationInLine prev = line.Stations[stat.LineStationIndex - 2];
@@ -351,9 +347,17 @@ namespace BL
                 //delete the line station
                 dl.DeleteLineStation(lineId, stationCode);
             }
-            catch (Exception)
+            catch (DO.BadLineStationException ex)
             {
-
+                throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
+            }
+            catch(BO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+            catch(DO.BadAdjacentStationsException ex)
+            {
+                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2);
             }
         }
         #endregion

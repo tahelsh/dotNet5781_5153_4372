@@ -124,21 +124,21 @@ namespace DL
             DO.AdjacentStations adjStations = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted==false));
 
             if (adjStations == null)
-                throw new Exception();
+                throw new DO.BadAdjacentStationsException(stationCode1,stationCode2, "The adjacent stations does not exist");
             return adjStations.Clone();
    
         }
         public void AddAdjacentStations(DO.AdjacentStations adjStations)
         {
             if (DataSource.ListAdjacentStations.FirstOrDefault(adj => (adj.StationCode1 == adjStations.StationCode1 && adj.StationCode2==adjStations.StationCode2 && adj.IsDeleted == false)) != null)//if those adjacent stations already exist in the list
-                throw new Exception();
+                throw new BadAdjacentStationsException(adjStations.StationCode1, adjStations.StationCode2,"The adjacent stations are already exist");
             DataSource.ListAdjacentStations.Add(adjStations.Clone());
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjStations)
         {
             DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == adjStations.StationCode1 && adj.StationCode2 == adjStations.StationCode2 && adj.IsDeleted == false || adj.StationCode1 == adjStations.StationCode2 && adj.StationCode2 == adjStations.StationCode1 && adj.IsDeleted == false));
             if (adjFind == null)
-                throw new Exception();
+                throw new BadAdjacentStationsException(adjStations.StationCode1, adjStations.StationCode2, "The adjacent stations does not exist");
             DO.AdjacentStations newAdj = adjStations.Clone();//copy of the bus that the function got
             DataSource.ListAdjacentStations.Remove(adjFind);
             DataSource.ListAdjacentStations.Add(newAdj);
@@ -147,14 +147,14 @@ namespace DL
         {
             DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2  && adj.IsDeleted == false));
             if (adjFind == null)
-                throw new Exception();
+                throw new BadAdjacentStationsException(stationCode1, stationCode2, "The adjacent stations does not exist");
             update(adjFind);
         }
         public void DeleteAdjacentStations(int stationCode1, int stationCode2)
         {
             DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false ));
             if (adjFind == null)
-                throw new Exception();
+                throw new BadAdjacentStationsException(stationCode1, stationCode2, "The adjacent stations does not exist");
             adjFind.IsDeleted = true;
         }
 
@@ -246,12 +246,12 @@ namespace DL
             if (lineStation != null)
                 return lineStation.Clone();
             else
-                throw new Exception();
+                throw new DO.BadLineStationException(lineId, stationCode,"The station line does not exist");
         }
         public void AddLineStation(DO.LineStation lineStation)
         {
            if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted==false)) != null)//if this line station already exists in the list
-                throw new Exception();
+                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The station line does not exist");
             //update the line station index of all the next station
             DO.LineStation next= DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.LineStationIndex== lineStation.LineStationIndex && lStat.IsDeleted == false));
             DO.LineStation temp;
@@ -285,7 +285,7 @@ namespace DL
         {
             DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false));
             if (lStatFind == null)
-                throw new Exception();
+                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The station line does not exist");
             DO.LineStation newAdj = lineStation.Clone();//copy of the bus that the function got
             lStatFind = newAdj;//update
         }
@@ -293,14 +293,14 @@ namespace DL
         {
             DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
             if (lStatFind == null)
-                throw new Exception();
+                throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
             update(lStatFind);
         }
         public void DeleteLineStation(int lineId, int stationCode)
         {
             DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted==false));
             if (lStatFind == null)
-                throw new Exception();
+                throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
             lStatFind.IsDeleted = true;
             DO.LineStation NextFind;
             if (lStatFind.LineStationIndex>1)

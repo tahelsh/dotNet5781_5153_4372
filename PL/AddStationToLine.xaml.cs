@@ -47,12 +47,11 @@ namespace PL
                 BO.LineStation newS = new BO.LineStation() { LineId = line.LineId, LineStationIndex = 1, StationCode = s.Code };
                 try
                 {
-
                     bl.AddLineStation(newS);
                 }
-                catch (Exception)
+                catch (BO.BadLineStationException ex)
                 {
-
+                    MessageBox.Show(ex.Message+": "+ex.lineId+" "+ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
                 }
             }
             else
@@ -69,9 +68,9 @@ namespace PL
                 {
                     bl.AddLineStation(newS);
                 }
-                catch (Exception)
+                catch (BO.BadLineStationException ex)
                 {
-
+                    MessageBox.Show(ex.Message + ": " + ex.lineId + " " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
                 }
             }
             Close();

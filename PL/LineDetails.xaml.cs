@@ -107,9 +107,17 @@ namespace PL
                 line = bl.GetLine(line.LineId);
                 LBStations.DataContext = line.Stations;//refresh
             }
-            catch(Exception)
+            catch (BO.BadLineIdException ex)
             {
-
+                MessageBox.Show(ex.Message + ": " + ex.ID, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadAdjacentStationsException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.stationCode1 + " " + ex.stationCode2, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadLineStationException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.lineId + " " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void UpdateTimeDis_Button_Click(object sender, RoutedEventArgs e)

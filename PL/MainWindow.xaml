@@ -48,6 +48,7 @@
         </Grid>
         <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="64,268,0,0" VerticalAlignment="Top" Width="158" Click="Submit_Click" Height="69"/>
         <Button Name="SignInButton" Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="550,219,0,0" Height="39" Click="SignInButton_Click"/>
+        <PasswordBox HorizontalAlignment="Left" Margin="354,241,0,0" VerticalAlignment="Top" Width="113" Height="45"/>
 
     </Grid>
 </Window>

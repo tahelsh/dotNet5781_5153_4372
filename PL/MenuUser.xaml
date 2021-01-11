@@ -16,7 +16,7 @@
         <Button Content="Stations" x:Name="StationButton" HorizontalAlignment="Left" Height="51" Margin="613,107,0,0" VerticalAlignment="Top" Width="132" Click="StationButton_Click"/>
         <Button Content="Lines" x:Name="LinesButton" HorizontalAlignment="Left" Height="46" Margin="613,31,0,0" VerticalAlignment="Top" Width="132" Click="LinesButton_Click"/>
         <Grid Name="linesGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="306" Margin="25,31,0,0" VerticalAlignment="Top" Width="583">
-            <Grid x:Name="linesDetailsGrid"  VerticalAlignment="Top" Margin="179,24,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="117" Width="147">
+            <Grid x:Name="linesDetailsGrid" VerticalAlignment="Top" Margin="179,24,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="117" Width="147">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

@@ -653,7 +653,7 @@ namespace DS
                 {
                     UserName= "Shira123",
                     Passcode=123,
-                    AdminAccess=true,
+                    AdminAccess=false,
                     IsDeleted= false
                 },
 

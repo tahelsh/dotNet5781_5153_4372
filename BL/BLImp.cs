@@ -79,17 +79,36 @@ namespace BL
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
             try
-            {
+            { 
+                if (busDO.FromDate > DateTime.Now)
+                    throw new BO.BadInputException("The date of start operation is not valid");
+                if (busDO.TotalTrip < 0)
+                    throw new BO.BadInputException("The total trip is not valid");
+                if (busDO.FuelRemain < 0 || bus.FuelRemain > 1200)
+                    throw new BO.BadInputException("The fuel remain is not valid");
+                int lengthLicNum = LengthLicenseNum(busDO.LicenseNum);
+                if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && busDO.FromDate.Year >= 2018)))
+                    throw new BO.BadInputException("The license number and the date of start operation do not match");
+                if (busDO.DateLastTreat > DateTime.Now || busDO.DateLastTreat < busDO.FromDate)
+                    throw new BO.BadInputException("The date of last treatment is not valid");
+                if (busDO.KmLastTreat < 0 || busDO.KmLastTreat > busDO.TotalTrip)
+                    throw new BO.BadInputException("The kilometrage of last treatment is not valid");
                 dl.AddBus(busDO);
             }
             catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
-            catch (DO.BadInputException ex)
+        }
+        private int LengthLicenseNum(int licenseNum)
+        {
+            int counter = 0;
+            while (licenseNum != 0)
             {
-                throw new BO.BadInputException(ex.Message);
+                licenseNum = licenseNum / 10;
+                counter++;
             }
+            return counter;
         }
         #endregion
 
@@ -196,6 +215,12 @@ namespace BL
             try
             {
                 dl.DeleteLine(lineId);
+                //delete fron the line station list
+                List<DO.LineStation> listLineStations = dl.GetAllLineStationsBy(s => s.LineId == lineId).ToList();
+                foreach (DO.LineStation s in listLineStations)
+                {
+                    dl.DeleteLineStation(s.LineId, s.StationCode);
+                }
             }
             catch (DO.BadLineIdException ex)
             {
@@ -214,7 +239,7 @@ namespace BL
             //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted==false)//Linestation
+            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
                                let line = dl.GetLine(stat.LineId)//line
                                select line.CopyToLineInStation(stat)).ToList();
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
@@ -235,7 +260,7 @@ namespace BL
             {
                 dl.AddStation(statDO);
             }
-            catch (DO.BadStationCodeException ex) 
+            catch (DO.BadStationCodeException ex)
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
@@ -251,12 +276,18 @@ namespace BL
             {
                 DO.Station statDO = dl.GetStation(code);
                 BO.Station statBO = StationDoBoAdapter(statDO);
-                if (statBO.Lines.Count != 0)
+                if (statBO.Lines.Count != 0)//if there are lines that stop in the station
                     throw new BO.BadStationCodeException(code, "station cant be deleted because other buses stop there");
                 dl.DeleteStation(code);
+                List<DO.AdjacentStations> listAdj = dl.GetAllAdjacentStations().ToList();
+                foreach (DO.AdjacentStations s in listAdj)//delete from adjacent Station list
+                {
+                    if (s.StationCode1 == code || s.StationCode2 == code)
+                        dl.DeleteAdjacentStations(s.StationCode1, s.StationCode2);
+                }
 
             }
-            catch(DO.BadStationCodeException ex)
+            catch (DO.BadStationCodeException ex)
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
@@ -274,7 +305,7 @@ namespace BL
                 statDO.IsDeleted = false;
                 dl.UpdateStation(statDO);
             }
-            catch(BO.BadStationCodeException ex)
+            catch (BO.BadStationCodeException ex)
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
@@ -290,7 +321,7 @@ namespace BL
                 DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.Distance, Time = first.Time, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
-            catch(DO.BadAdjacentStationsException ex)
+            catch (DO.BadAdjacentStationsException ex)
             {
                 throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
             }
@@ -301,16 +332,62 @@ namespace BL
         #endregion
 
         #region LineStation
+        public bool IsExistLineStation(DO.LineStation s)
+        {
+            try
+            {
+                DO.LineStation linestation = dl.GetLineStation(s.LineId, s.StationCode);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
         public void AddLineStation(BO.LineStation s)
         {
             DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
             try
             {
+                if (IsExistLineStation(sDO))
+                    throw new BO.BadLineStationException(sDO.LineId, sDO.StationCode, "The station is already exist in the line");
+                List<DO.LineStation> lSList = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
+                int indexlast = lSList[lSList.Count - 1].LineStationIndex;
+                if (sDO.LineStationIndex != indexlast+1)//if we didnt add a last station
+                {
+                    for (int i = sDO.LineStationIndex; i < indexlast+1; i++)
+                    {
+                        lSList[i - 1].LineStationIndex++;
+                    }
+                }
+                //update prev and next
+                DO.LineStation prev;
+                DO.LineStation next;
+                if (sDO.LineStationIndex > 1)//its not the first station
+                {
+                    prev = lSList[sDO.LineStationIndex - 2];
+                    prev.NextStationCode = sDO.StationCode;
+                    sDO.PrevStationCode = prev.StationCode;
+                }
+                if (sDO.LineStationIndex != indexlast+1)//if its not the last station
+                {
+                    next = lSList[sDO.LineStationIndex];
+                    next.PrevStationCode = sDO.StationCode;
+                    sDO.NextStationCode = next.StationCode;
+                }
+                foreach (DO.LineStation item in lSList)
+                {
+                    dl.UpdateLineStation(item);
+                }
+
                 dl.AddLineStation(sDO);
+
+                //טיפול בתחנות עוקבות לאחר ההוספה
                 List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
                 if (s.LineStationIndex != 1)//if its the first station- it doesnt have prev
                 {
-                    DO.LineStation prev = lst[s.LineStationIndex - 2];
+                    prev = lst[s.LineStationIndex - 2];
                     if (!IsExistAdjacentStations(prev.StationCode, s.StationCode))
                     {
                         DO.AdjacentStations adjPrev = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = s.StationCode };
@@ -319,7 +396,7 @@ namespace BL
                 }
                 if (s.LineStationIndex != lst[lst.Count - 1].LineStationIndex)//if its the last station- it doesnt have next
                 {
-                    DO.LineStation next = lst[s.LineStationIndex];
+                    next = lst[s.LineStationIndex];
                     if (!IsExistAdjacentStations(s.StationCode, next.StationCode))
                     {
                         DO.AdjacentStations adjNext = new DO.AdjacentStations() { StationCode1 = s.StationCode, StationCode2 = next.StationCode };
@@ -332,7 +409,7 @@ namespace BL
             {
                 throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
             }
-            catch(DO.BadAdjacentStationsException ex)
+            catch (DO.BadAdjacentStationsException ex)
             {
                 throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
             }
@@ -340,31 +417,71 @@ namespace BL
         public void DeleteLineStation(int lineId, int stationCode)
         {
             try
-            {    //AdjacentStation
-                DO.LineStation stat = dl.GetLineStation(lineId, stationCode);
+            {  
+                //AdjacentStation
+                DO.LineStation statDel = dl.GetLineStation(lineId, stationCode);//the station that we want to delete
                 BO.Line line = GetLine(lineId);
-                if(line.Stations[0].StationCode!=stationCode && line.Stations[line.Stations.Count-1].StationCode!=stationCode)//if its not the first or the last station
+                if (line.Stations.Count <= 2)
+                    throw new BO.BadInputException("The Station cannot be deleted, there is only 2 stations in the line route");
+                if (line.Stations[0].StationCode != stationCode && line.Stations[line.Stations.Count - 1].StationCode != stationCode)//if its not the first or the last station
                 {
-                    BO.StationInLine prev = line.Stations[stat.LineStationIndex - 2];
-                    BO.StationInLine next = line.Stations[stat.LineStationIndex];
-                    if(!dl.IsExistAdjacentStations(prev.StationCode, next.StationCode))
+                    BO.StationInLine prev = line.Stations[statDel.LineStationIndex - 2];
+                    BO.StationInLine next = line.Stations[statDel.LineStationIndex];
+                    if (!dl.IsExistAdjacentStations(prev.StationCode, next.StationCode))
                     {
                         DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = next.StationCode, IsDeleted = false };
                         dl.AddAdjacentStations(adj);
                     }
                 }
                 //delete the line station
+                List<DO.LineStation> lSList = ((dl.GetAllLineStationsBy(stat => stat.LineId == statDel.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
+                DO.LineStation NextFind;
+                if (statDel.LineStationIndex > 1)//if its not the first station
+                {
+                    DO.LineStation PrevFind = lSList[statDel.LineStationIndex - 2];
+                    if(statDel.LineStationIndex!=lSList[lSList.Count-1].LineStationIndex)//if its not the last station
+                    {
+                        NextFind = lSList[statDel.LineStationIndex];
+                        PrevFind.NextStationCode = NextFind.StationCode;
+                        NextFind.PrevStationCode = PrevFind.StationCode;
+                    }
+                    else
+                    {
+                        PrevFind.NextStationCode = 0;
+                    }
+                }
+                else//if its the first station
+                {
+                    if (statDel.LineStationIndex != lSList[lSList.Count - 1].LineStationIndex)
+                    {
+                        NextFind = lSList[statDel.LineStationIndex];
+                        NextFind.PrevStationCode = 0;
+                    }
+                }
+                //update index;
+                if (statDel.LineStationIndex != lSList[lSList.Count - 1].LineStationIndex)//update all the indexes of all the next stations if its not the last station
+                {
+                    for(int i=statDel.LineStationIndex; i< lSList.Count; i++)
+                    {
+                        lSList[i].LineStationIndex--;
+                    }
+                }
+                foreach(DO.LineStation item in lSList)
+                {
+                    dl.UpdateLineStation(item);
+                }
+
                 dl.DeleteLineStation(lineId, stationCode);
             }
             catch (DO.BadLineStationException ex)
             {
                 throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
             }
-            catch(BO.BadLineIdException ex)
+            catch (BO.BadLineIdException ex)
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
-            catch(DO.BadAdjacentStationsException ex)
+            catch (DO.BadAdjacentStationsException ex)
             {
                 throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2);
             }
@@ -378,7 +495,7 @@ namespace BL
                 return true;
             return false;
         }
-   
+
         #endregion
 
         #region User
@@ -391,7 +508,7 @@ namespace BL
                 userDO.IsDeleted = false;
                 dl.AddUser(userDO);
             }
-            catch(DO.BadUserNameException ex)
+            catch (DO.BadUserNameException ex)
             {
                 throw new BO.BadUserNameException(ex.userName, ex.Message);
             }

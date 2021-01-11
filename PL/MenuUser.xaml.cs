@@ -27,6 +27,22 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             user = _user;
+            //לשונית של תחנות
+            CBStations.SelectedIndex = 0;
+            CBStations.DisplayMemberPath = "Name";
+            CBStations.DataContext = bl.GetAllStations();
+            //לשונית של קווים
+            CBLines.SelectedIndex = 0;
+            CBLines.DisplayMemberPath = "LineNum";
+            CBLines.DataContext = bl.GetAllLines();
+        }
+
+
+        private void CBStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BO.Station station = CBStations.SelectedItem as BO.Station;
+            StationDetailsGrid.DataContext = station;
+            linesInStationDataGrid.DataContext = station.Lines;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -40,32 +56,23 @@ namespace PL
             // stationViewSource.Source = [generic data source]
         }
 
-        private void StationButton_Click(object sender, RoutedEventArgs e)
+        private void CBLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StationsGrid.Visibility = Visibility.Visible;
-            linesGrid.Visibility = Visibility.Hidden;
-           LBStations.DataContext = bl.GetAllStations().ToList();
-        }
-
-        private void LinesButton_Click(object sender, RoutedEventArgs e)
-        {
-            linesGrid.Visibility = Visibility.Visible;
-            StationsGrid.Visibility = Visibility.Hidden;
-            LBLines.DataContext = bl.GetAllLines().ToList();
-        }
-
-        private void LBLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
-            linesDetailsGrid.DataContext = line;
+            BO.Line line = CBLines.SelectedItem as BO.Line;
+            LineDetailsGrid.DataContext = line;
             DGstationsInLine.DataContext = line.Stations;
         }
 
-        private void Stations_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            BO.Station station = (sender as ListBox).SelectedItem as BO.Station;
-            stationDetailsGrid.DataContext = station;
-            linesInStationDataGrid.DataContext = station.Lines;
+
+            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationViewSource.Source = [generic data source]
         }
     }
 }
+

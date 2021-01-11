@@ -123,6 +123,10 @@ namespace PL
             {
                 MessageBox.Show(ex.Message + ": " + ex.lineId + " " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch(BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);

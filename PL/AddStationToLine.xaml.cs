@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             line = _line;
-            CBPrevStation.DisplayMemberPath = "Name";//show only specific Property of object
+            //show only specific Property of object
             CBNewStation.DisplayMemberPath = "Name";
             //CBPrevStation.SelectedValuePath = "StationCode";//selection return only specific Property of object
             // CBNewStation.SelectedValuePath = "StationCode";//selection return only specific Property of object

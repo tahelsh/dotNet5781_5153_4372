@@ -294,9 +294,9 @@ namespace DL
             DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted==false));
             if (lStatFind == null)
                 throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
-            lStatFind.IsDeleted = true;
+            lStatFind.IsDeleted = true;//delete
             DO.LineStation NextFind;
-            if (lStatFind.LineStationIndex>1)
+            if (lStatFind.LineStationIndex>1)//if its not the first station
             {
                 DO.LineStation PrevFind= DataSource.ListLineStations.Find(prev => (prev.LineId == lineId && prev.LineStationIndex == lStatFind.LineStationIndex - 1 && prev.IsDeleted == false));
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId  && next.LineStationIndex == lStatFind.LineStationIndex+1 && next.IsDeleted == false));
@@ -306,7 +306,7 @@ namespace DL
                     NextFind.PrevStationCode = PrevFind.StationCode;
                 }
             }
-            else
+            else//if its the first station
             {
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == lStatFind.LineStationIndex + 1 && next.IsDeleted == false));
                 if (NextFind != null)
@@ -315,7 +315,7 @@ namespace DL
                 }
             }
             int index;
-            while (NextFind != null)
+            while (NextFind != null)//update all the indexes of all the next stations
             {
                 index = NextFind.LineStationIndex;
                 NextFind.LineStationIndex = NextFind.LineStationIndex - 1;

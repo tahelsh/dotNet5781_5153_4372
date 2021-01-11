@@ -342,11 +342,7 @@ namespace BL
             try
             {    //AdjacentStation
                 DO.LineStation stat = dl.GetLineStation(lineId, stationCode);
-                //if (stat == null)
-                //    throw new BO.BadLineStationException(lineId, stationCode, "The station does not exist in this line");
                 BO.Line line = GetLine(lineId);
-                //if (line == null)
-                //    //throw new BO.B("The line does not exist");
                 if(line.Stations[0].StationCode!=stationCode && line.Stations[line.Stations.Count-1].StationCode!=stationCode)//if its not the first or the last station
                 {
                     BO.StationInLine prev = line.Stations[stat.LineStationIndex - 2];

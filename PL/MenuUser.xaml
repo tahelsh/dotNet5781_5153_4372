@@ -33,7 +33,11 @@
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Label Content="Content goes here..." />
+                <Grid>
+                    <ComboBox Name="CBSourceStation" HorizontalAlignment="Left" Margin="87,58,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox Name="CBDestinationStation" HorizontalAlignment="Left" Margin="87,125,0,0" VerticalAlignment="Top" Width="120"/>
+
+                </Grid>
             </TabItem>
 
             <TabItem Header="Lines" >

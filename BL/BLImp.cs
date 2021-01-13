@@ -198,18 +198,17 @@ namespace BL
             lineDo.LastStation = sc2;
             try
             {
-                if (!dl.IsExistAdjacentStations(sc1, sc2))
+                if (!dl.IsExistAdjacentStations(sc1, sc2))//add to adjcenct stations if its not exists
                 {
                     DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
                     dl.AddAdjacentStations(adj);
                 }
 
-                dl.AddLine(lineDo);
-                DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
-                DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
-                dl.AddLineStation(first);
-                dl.AddLineStation(last);
-
+                dl.AddLine(lineDo);//add line
+                DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false, PrevStationCode=0, NextStationCode=sc2 };
+                DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false, PrevStationCode=sc1, NextStationCode=0 };
+                dl.AddLineStation(first);//add first line station
+                dl.AddLineStation(last);//add last line ststion
             }
             catch (BO.BadLineIdException ex)
             {
@@ -401,19 +400,19 @@ namespace BL
                 //עידכון תחנה קודמת והבאה וגם את התחנה הראשונה והאחרונה של היישות קו
                 DO.LineStation prev;
                 DO.LineStation next;
-                if (sDO.LineStationIndex > 1)//its not the first station
+                if (sDO.LineStationIndex > 1)//its not the first station, update the prev station
                 {
                     prev = lSList[sDO.LineStationIndex - 2];
                     prev.NextStationCode = sDO.StationCode;
                     sDO.PrevStationCode = prev.StationCode;
                 }
-                else//if its the first station-we need to update the first ans last station in the DO.Line
+                else//if its the first station-we need to update the first station in the DO.Line
                 {
                     DO.Line line = dl.GetLine(sDO.LineId);
                     line.FirstStation = sDO.StationCode;
                     dl.UpdateLine(line);
                 }
-                if (sDO.LineStationIndex != indexlast+1)//if its not the last station
+                if (sDO.LineStationIndex != indexlast+1)//if its not the last station, update the next station
                 {
                     next = lSList[sDO.LineStationIndex];
                     next.PrevStationCode = sDO.StationCode;
@@ -425,7 +424,7 @@ namespace BL
                     line.LastStation = sDO.StationCode;
                     dl.UpdateLine(line);
                 }
-                foreach (DO.LineStation item in lSList)
+                foreach (DO.LineStation item in lSList)//update the line station list after all the changes
                 {
                     dl.UpdateLineStation(item);
                 }
@@ -467,11 +466,12 @@ namespace BL
         {
             try
             {  
-                //AdjacentStation
                 DO.LineStation statDel = dl.GetLineStation(lineId, stationCode);//the station that we want to delete
                 BO.Line line = GetLine(lineId);
-                if (line.Stations.Count <= 2)
+                if (line.Stations.Count <= 2)//אם יש 2 תחנות בקו אי אפשר למחוק
                     throw new BO.BadInputException("The Station cannot be deleted, there is only 2 stations in the line route");
+
+                //AdjacentStation
                 if (line.Stations[0].StationCode != stationCode && line.Stations[line.Stations.Count - 1].StationCode != stationCode)//if its not the first or the last station
                 {
                     BO.StationInLine prev = line.Stations[statDel.LineStationIndex - 2];
@@ -577,15 +577,12 @@ namespace BL
             {
                 throw new BO.BadUserNameException(ex.userName, ex.Message);
             }
-            catch (Exception ex)
-            {
-                throw new Exception("ERROR");
-            }
             return userBO;
         }
 
 
         #endregion
+
         #region LineTrip
         public void DeleteDepTime(int lineId, TimeSpan dep)
         {

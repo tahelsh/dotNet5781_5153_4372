@@ -37,6 +37,9 @@ namespace PL
             System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource lineInStationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineInStationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineInStationViewSource.Source = [generic data source]
         }
 
         public void RefreshAllStationsList()
@@ -52,7 +55,8 @@ namespace PL
         {
             BO.Station station = (sender as ListBox).SelectedItem as BO.Station;
             gridDetailsStation.DataContext = station;
-            DGLinesInStation.DataContext = station.Lines;
+            //DGLinesInStation.DataContext = station.Lines;
+            lineInStationDataGrid.DataContext = station.Lines;
         }
 
         private void AddNewStation_Click(object sender, RoutedEventArgs e)

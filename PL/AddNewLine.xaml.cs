@@ -48,12 +48,17 @@ namespace PL
             {
                 BO.Station firstStation = (firstStationComboBox.SelectedItem) as BO.Station;
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
+                if(firstStation.Code==lastStation.Code)
+                {
+                    MessageBox.Show("The first station and the last station are the same", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if (bl.IsExistAdjacentStations(firstStation.Code, lastStation.Code))
                 {
                     int lineNum = int.Parse(lineNumTextBox.Text);
                     BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), areaComboBox.SelectedItem.ToString());
-                    BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area };
-                    BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
+                    BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area, Stations = new List<BO.StationInLine>() };
+                    BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code};
                     newline.Stations.Add(temp1);
                     BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
                     newline.Stations.Add(temp2);
@@ -96,7 +101,6 @@ namespace PL
                 bl.AddNewLine(newline);
                 MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
-                //good
             }
             catch (BO.BadLineIdException ex)
             {

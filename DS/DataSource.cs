@@ -115,16 +115,16 @@ namespace DS
                     DisabledAccess = true,
                     IsDeleted = false
                 },
-                new Station
-                {
-                    Code = 89,
-                    Name = "דרך בית לחם הישה/ואדי קדום",
-                    Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
-                    Latitude = 31.765863,
-                    Longitude = 35.247198,
-                    DisabledAccess = true,
-                    IsDeleted = false
-                },
+                //new Station
+                //{
+                //    Code = 89,
+                //    Name = "דרך בית לחם הישה/ואדי קדום",
+                //    Address = " רחוב:דרך בית לחם הישנה  עיר: ירושלים ",
+                //    Latitude = 31.765863,
+                //    Longitude = 35.247198,
+                //    DisabledAccess = true,
+                //    IsDeleted = false
+                //},
                 new Station
                 {
                     Code = 90,

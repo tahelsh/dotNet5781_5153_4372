@@ -172,6 +172,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\BO.Bus.datasource" />
     <None Include="Properties\DataSources\BO.Line.datasource" />
+    <None Include="Properties\DataSources\BO.LineInStation.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />
     <None Include="Properties\DataSources\BO.StationInLine.datasource" />
     <None Include="Properties\DataSources\BO.User.datasource" />

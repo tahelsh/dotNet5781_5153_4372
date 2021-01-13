@@ -45,22 +45,30 @@ namespace PL
                 string name = nameTextBox.Text;
                 string userName = userNameTextBox.Text;
                 //Check if the username doesnt already exist, only if it doesnt, continue input
-                int passcode = int.Parse(passcodeTextBox.Text);
-                //int passcode = int.Parse(PBPasscode.Password);
+                int passcode;
+                bool success;
+                success = int.TryParse(passcodeTextBox.Text, out passcode);
+                if (!success)
+                {
+                    passcodeTextBox.BorderBrush = Brushes.Red;
+                    MessageBox.Show("The passcode needs to be only with digits", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 bool isAdmin = (adminAccessCheckBox.IsChecked == true);
                 BO.User user = new BO.User() { AdminAccess = isAdmin, Name = name, Passcode = passcode, UserName = userName };
                 bl.AddUser(user);
                 MessageBox.Show("The user was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                passcodeTextBox.BorderBrush = Brushes.Black;
+                userNameTextBox.BorderBrush = Brushes.Black;
             }
-            catch(BO.BadUserNameException ex)
+            catch (BO.BadUserNameException ex)
             {
+                userNameTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(ex.Message + ": " + ex.userName, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)

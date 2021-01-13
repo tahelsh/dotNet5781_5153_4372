@@ -319,42 +319,44 @@ namespace DL
                    where predicate(lTrip)
                    select lTrip.Clone();
         }
-         public DO.LineTrip GetLineTrip(int lineTripId)
+         public DO.LineTrip GetLineTrip(int lineId, TimeSpan time)
         {
-            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt==time && l.IsDeleted == false);
 
             if (lineTrip != null)
                 return lineTrip.Clone();
             else
-                throw new Exception();
+                throw new BadLineTripException(lineId, time, "The line trip does not exist");
         }
         public void AddLineTrip(DO.LineTrip lineTrip)
         {
-            if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineTripId == lineTrip.LineTripId && l.IsDeleted == false) != null)
-                throw new Exception();
+            if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineId == lineTrip.LineId && l.StartAt == lineTrip.StartAt && l.IsDeleted == false) != null)
+                throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "The line trip is already exist");
             DataSource.ListLineTrips.Add(lineTrip.Clone());
         }
         public void UpdateLineTrip(DO.LineTrip lineTrip)
         {
-            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTrip.LineTripId && l.IsDeleted == false);
+            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineId == lineTrip.LineId && l.StartAt == lineTrip.StartAt && l.IsDeleted == false);
             if (lTripFind == null)
-                throw new Exception();
+                throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "The line trip does not exist");
             DO.LineTrip newLTrip = lineTrip.Clone();//copy of the bus that the function got
-            lTripFind = newLTrip;//update
+            DataSource.ListLineTrips.Remove(lTripFind);
+            DataSource.ListLineTrips.Add(newLTrip);
+            //lTripFind = newLTrip;//update
         }
-        public void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update)
+        public void UpdateLineTrip(int lineId, TimeSpan time, Action<DO.LineTrip> update)
         {
-            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
+            DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == time && l.IsDeleted == false);
             if (lTripFind == null)
-                throw new Exception();
+                throw new BadLineTripException(lineId, time, "The line trip does not exist");
             update(lTripFind);
         }
-        public void DeleteLineTrip(int lineTripId)
+        public void DeleteLineTrip(int lineId, TimeSpan time)
         {
 
-            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineTripId == lineTripId && l.IsDeleted == false);
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == time && l.IsDeleted == false);
             if (lineTrip == null)
-                throw new Exception();
+                throw new BadLineTripException(lineId, time, "The line trip does not exist");
             lineTrip.IsDeleted = true;
         }
 

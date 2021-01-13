@@ -53,5 +53,50 @@ namespace PL
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
+        private void Refuel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BO.Bus bus = (sender as Button).DataContext as BO.Bus;
+                bl.RefuelBus(bus);
+                RefreshAllBusesList();
+                MessageBox.Show("The bus was refueled successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void Treatment_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BO.Bus bus = (sender as Button).DataContext as BO.Bus;
+                bl.TreatBus(bus);
+                RefreshAllBusesList();
+                MessageBox.Show("The bus was treated successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }

@@ -10,78 +10,129 @@
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
+        <DataTemplate x:Key="lineInStationTemplate"
+                  DataType="local:LineInStation" x:Name="lineInStation">
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                   Text="{Binding Path=LineNum}"  />
+                <TextBlock Grid.Column="2"
+                   Text="{Binding Path=NameLastStation}" />
+
+            </Grid>
+        </DataTemplate>
+        <CollectionViewSource x:Key="stationInLineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:StationInLine}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
         <TabControl>            <TabItem Header="General">                <Label Content="Content goes here..." />            </TabItem>            <TabItem Header="Lines" >
-                <Grid x:Name="linesGrid"  HorizontalAlignment="Left" Height="330" Margin="0,7,0,0" VerticalAlignment="Top" Width="787" DataContext="{StaticResource lineViewSource}">
+                <Grid x:Name="linesGrid" HorizontalAlignment="Left" Margin="0,7,0,25" Width="787" DataContext="{StaticResource lineViewSource}">
                     <Label Content="stations in line:" HorizontalAlignment="Left" Height="27" Margin="179,141,0,0" VerticalAlignment="Top" Width="121"/>
-                    <DataGrid x:Name="DGstationsInLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="128" Margin="179,168,0,0" VerticalAlignment="Top" Width="386"/>
-
+                    <ListBox Name="LBFrequency" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="144" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" />
                     <ComboBox x:Name="CBLines" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="26,21,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBLines_SelectionChanged"/>
-                    <Grid x:Name="LineDetailsGrid" HorizontalAlignment="Left" Margin="217,22,0,0" VerticalAlignment="Top" Height="100" Width="124">
+                    <Grid x:Name="LineDetailsGrid" HorizontalAlignment="Left" Margin="217,22,0,0" VerticalAlignment="Top" Height="73" Width="124">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3,0,3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="areaTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Area}" VerticalAlignment="Center"/>
-                        <Label Content="Line Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                            <Label.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="-1.246"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Label.RenderTransform>
-                        </Label>
-                        <TextBlock x:Name="lineIdTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding LineId}" VerticalAlignment="Center"/>
-                        <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="lineNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding LineNum}" VerticalAlignment="Center"/>
+                        <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="areaTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,8.2,-39.2,8.6" Grid.Row="1" Text="{Binding Area}" VerticalAlignment="Center" Width="50"/>
+                        <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="lineNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding LineNum}" VerticalAlignment="Center"/>
                     </Grid>
+                    <DataGrid x:Name="stationInLineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="145,173,10,29" RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="lineStationIndexColumn1" Header="Line Station Index" Width="SizeToHeader">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LineStationIndex}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="stationCodeColumn" Header="Station Code" Width="SizeToHeader">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StationCode}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="nameColumn" Header="Name Of The Station" Width="SizeToHeader">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn x:Name="disabledAccessColumn" Binding="{Binding DisabledAccess}" Header="Disabled Access" Width="SizeToHeader"/>
+                            <DataGridTemplateColumn x:Name="distanceColumn" Header="Distance" Width="SizeToHeader">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Distance}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+
+                            <DataGridTemplateColumn x:Name="timeColumn" Header="Time from the previous station" Width="SizeToHeader">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Time}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="SignOut_Button"  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="676,10,0,0" VerticalAlignment="Top" Width="83" Click="SignOut_Button_Click"/>
+                    <Label Content="frequency" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="109"/>
                 </Grid>
 
-            </TabItem>            <TabItem Header="Stations" >                <Grid x:Name="StationsGrid"  HorizontalAlignment="Left" Height="369" Margin="0,4,-2,0" VerticalAlignment="Top" Width="790" DataContext="{StaticResource stationViewSource}">
+            </TabItem>            <TabItem Header="Stations" >                <Grid x:Name="StationsGrid"  HorizontalAlignment="Left" Height="389" Margin="0,4,-2,-1" VerticalAlignment="Top" Width="790" DataContext="{StaticResource stationViewSource}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <DataGrid x:Name="linesInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="212,217,137,40" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid x:Name="linesInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="111.4,217,333,40" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="lineIdColumn" Binding="{Binding LineId}" Header="Line Id" Width="SizeToHeader"/>
-                            <DataGridTextColumn x:Name="lineNumColumn" Binding="{Binding LineNum}" Header="Line Num" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="lineNumColumn" Binding="{Binding LineNum}" Header="Line Number" Width="SizeToHeader"/>
                             <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="38,20,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged"/>
-                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="241,13,0,0" VerticalAlignment="Top">
+                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged"/>
+                    <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}" HorizontalAlignment="Left" Height="141" Margin="532,62,0,0" VerticalAlignment="Top" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14"/>
+                    <Label Content="Code:"  HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" />
+                    <TextBlock x:Name="codeTextBlock" HorizontalAlignment="Left" Margin="609,37,0,320" Text="{Binding}" VerticalAlignment="Center" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" />
+                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="22,52,0,0" VerticalAlignment="Top" Height="134" Width="435">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Address}" VerticalAlignment="Center"/>
-                        <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="codeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding Code}" VerticalAlignment="Center"/>
-                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                        <CheckBox x:Name="disabledAccessCheckBox" IsEnabled="False" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                        <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="latitudeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding Latitude}" VerticalAlignment="Center"/>
-                        <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="longitudeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding Longitude}" VerticalAlignment="Center"/>
-                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" Text="{Binding Name}" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,-278.2,10.4" Grid.Row="0" Text="{Binding Address}" VerticalAlignment="Center" Width="327"/>
+
+                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-277.4,8.6" Grid.Row="2" Text="{Binding Name}" VerticalAlignment="Center" Width="327"/>
                     </Grid>
+                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="687,10,0,0" VerticalAlignment="Top" Width="84" Click="SignOut_Button_Click"/>
+
+
                 </Grid>            </TabItem>
         </TabControl>
     </Grid>

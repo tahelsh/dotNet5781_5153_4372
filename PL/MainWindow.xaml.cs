@@ -46,6 +46,7 @@ namespace PL
                 string userName = userNameTextBox.Text;
                 //Check if the username doesnt already exist, only if it doesnt, continue input
                 int passcode = int.Parse(passcodeTextBox.Text);
+                //int passcode = int.Parse(PBPasscode.Password);
                 bool isAdmin = (adminAccessCheckBox.IsChecked == true);
                 BO.User user = new BO.User() { AdminAccess = isAdmin, Name = name, Passcode = passcode, UserName = userName };
                 bl.AddUser(user);
@@ -67,7 +68,7 @@ namespace PL
             try
             {
                 string userName = userNameSignTextBox.Text;
-                int passcode = int.Parse(PasscodeSignTextBox.Text);
+                int passcode = int.Parse(PBPasscode.Password);
                 BO.User user = bl.SignIn(userName, passcode);
                 if (user.AdminAccess)
                 {

@@ -728,6 +728,13 @@ namespace DS
                     AdminAccess=false,
                     IsDeleted= false
                 },
+                 new User //11
+                {
+                    UserName= "1",
+                    Passcode=1,
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
             };
             #endregion
 
@@ -923,6 +930,26 @@ namespace DS
             };
             #endregion
 
+            #region ListLineTrip
+            ListLineTrips = new List<LineTrip>()
+            {
+                new LineTrip
+                {
+                    LineId=0,
+                    StartAt=new TimeSpan(5,0,0),
+                },
+                new LineTrip
+                {
+                    LineId=0,
+                    StartAt=new TimeSpan(5,20,0),
+                },
+                new LineTrip
+                {
+                    LineId=0,
+                    StartAt=new TimeSpan(5,10,0),
+                },
+            };
+            #endregion
         }
 
 

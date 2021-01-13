@@ -20,6 +20,8 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
         void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);
+        void RefuelBus(BO.Bus busBO);
+        void TreatBus(BO.Bus busBO);
         #endregion
 
         #region Line
@@ -60,6 +62,12 @@ namespace BLAPI
         #region User
         void AddUser(BO.User userBO);
         BO.User SignIn(string username, int passcode);
+        #endregion
+
+        #region LineTrip
+        void DeleteDepTime(int lineId, TimeSpan dep);
+        void AddDepTime(int lineId, TimeSpan dep);
+
         #endregion
 
     }

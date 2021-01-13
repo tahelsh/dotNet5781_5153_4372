@@ -6,8 +6,33 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Buses" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="busTemplate"
+                  DataType="local:Bus" x:Name="bus">
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+            
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                   Text="{Binding Path=LicenseNum}"  />
+                <TextBlock Grid.Column="1"
+                   Text="{Binding Path=TotalTrip}" />
+                <Button Grid.Column="2"
+                   Content="Refuel" Click="Refuel_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
+                <Button Grid.Column="3"
+                   Content="Treatment" Click="Treatment_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True"  />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <ListBox Name="LBBuses" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="275" Margin="34,57,0,0" VerticalAlignment="Top" Width="709" MouseDoubleClick="Bus_MouseDoubleClick"/>
+        <ListBox Name="LBBuses" ItemTemplate="{StaticResource busTemplate}" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="275" Margin="34,57,0,0" VerticalAlignment="Top" Width="709" MouseDoubleClick="Bus_MouseDoubleClick"/>
         <Button Content="Add New Bus" HorizontalAlignment="Left" Height="44" Margin="237,354,0,0" VerticalAlignment="Top" Width="192" Click="Button_Click" />
 
     </Grid>

@@ -11,5 +11,7 @@ namespace BO
         public int LineId { get; set; }
         public int LineNum { get; set; }
         public int LineStationIndex { get; set; }
+        public string NameLastStation { get; set; }
+        public Area area { get; set; }
     }
 }

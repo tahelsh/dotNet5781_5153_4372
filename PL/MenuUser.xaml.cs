@@ -35,6 +35,7 @@ namespace PL
             CBLines.SelectedIndex = 0;
             CBLines.DisplayMemberPath = "LineNum";
             CBLines.DataContext = bl.GetAllLines();
+            
         }
 
 
@@ -43,6 +44,8 @@ namespace PL
             BO.Station station = CBStations.SelectedItem as BO.Station;
             StationDetailsGrid.DataContext = station;
             linesInStationDataGrid.DataContext = station.Lines;
+            LBYellowSign.DataContext = station.Lines;
+            codeTextBlock.Text = station.Code.ToString();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -60,7 +63,11 @@ namespace PL
         {
             BO.Line line = CBLines.SelectedItem as BO.Line;
             LineDetailsGrid.DataContext = line;
-            DGstationsInLine.DataContext = line.Stations;
+            //DGstationsInLine.DataContext = line.Stations;
+            stationInLineDataGrid.DataContext = line.Stations;
+            LBFrequency.DataContext = line.DepTimes;
+
+
         }
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
@@ -72,6 +79,14 @@ namespace PL
             System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource stationInLineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationInLineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationInLineViewSource.Source = [generic data source]
+        }
+
+        private void SignOut_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

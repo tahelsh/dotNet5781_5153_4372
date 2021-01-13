@@ -12,7 +12,8 @@ namespace BO
        public int LineNum { get; set; }
        public Area Area { get; set; }
        public List<StationInLine> Stations { get; set; }
-       public override string ToString()
+        public List<TimeSpan> DepTimes { get; set; }//departure time זמן יציאה
+        public override string ToString()
        {
             return "Line ID: " + LineId + " Line number: " + LineNum;
        }

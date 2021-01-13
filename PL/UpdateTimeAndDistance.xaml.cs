@@ -28,6 +28,8 @@ namespace PL
             bl = _bl;
             first = _first;
             second = _second;
+            TBTime.Text = first.Time.ToString();
+            TBDistance.Text = first.Distance.ToString();
         }
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)

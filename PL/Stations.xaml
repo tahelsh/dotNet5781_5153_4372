@@ -12,7 +12,7 @@
     </Window.Resources>
     <Grid Margin="0,0,-0.4,7">
         <ListBox Name="LBStations" HorizontalAlignment="Left" Height="376" Margin="85,10,0,0" VerticalAlignment="Top" Width="135" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"/>
-        <DataGrid Name="DGLinesInStation" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="230" Margin="342,215,0,0" ItemsSource="{Binding}" IsReadOnly="True"/>
+        <DataGrid Name="DGLinesInStation" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="406" Margin="342,215,0,0" ItemsSource="{Binding}" IsReadOnly="True"/>
         <Button Name="AddNewStation" Content="AddNewStation" HorizontalAlignment="Left" Height="45" Margin="615,341,0,0" VerticalAlignment="Top" Width="133" Click="AddNewStation_Click"/>
         <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Height="45" Margin="451,341,0,0" VerticalAlignment="Top" Width="121" Click="DeleteButton_Click"/>
         <Button Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Height="45" Margin="330,341,0,0" VerticalAlignment="Top" Width="81" Click="UpdateButton_Click"/>

@@ -29,19 +29,36 @@
 
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                   Text="{Binding Path=StationCode}"  />
+                   Text="{Binding Path=LineStationIndex}"  />
                 <TextBlock Grid.Column="2"
-                   Text="{Binding Path=LineStationIndex}" />
+                   Text="{Binding Path=StationCode}" />
                 <TextBlock Grid.Column="4"
                    Text="{Binding Path=Name}" Name="TBName" />
                 <TextBlock Grid.Column="6"
-                   Text="{Binding Path=Distance}" Name="TBDistance" />
+                   Text="{Binding Path=Time}" Name="TBTime" />
                 <CheckBox Grid.Column="7"
                    Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" />
                 <Button Grid.Column="8"
                    Content="Delete" Click="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
                 <Button Grid.Column="9"
                    Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True"  />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="frequencyTemplate"
+                  DataType="local:TimeSpan" x:Name="timespan">
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                   Text="{Binding}"  />
+                <Button Grid.Column="1"
+                   Content="Delete" Click="Delete_Frequency_Button_Click" Name="DeleteFrequencyButton" Margin="13,0,0,0" IsEnabled="True"  />
+
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -52,7 +69,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="147" Width="203" Grid.ColumnSpan="2">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="99" Width="203" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -76,9 +93,14 @@
             <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
         <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="571" Grid.ColumnSpan="2"/>
-        <Button Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="177,285,0,0" Height="45" Click="Button_Click_Add_Station" Grid.ColumnSpan="2"/>
-        <Button Content="Update" HorizontalAlignment="Left" Height="45" Margin="332,285,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click_Update" Grid.ColumnSpan="2"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="45" Margin="545,285,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click_Delete" Grid.ColumnSpan="2"/>
+        <Button Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Margin="316,280,0,0" Height="45" Click="Button_Click_Add_Station" Grid.ColumnSpan="2"/>
+        <Button Content="Update" HorizontalAlignment="Left" Height="45" Margin="466,280,0,0" VerticalAlignment="Top" Width="142" Click="Button_Click_Update" Grid.ColumnSpan="2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="45" Margin="627,280,0,0" VerticalAlignment="Top" Width="117" Click="Button_Click_Delete" Grid.ColumnSpan="2"/>
+        <ListBox Name="LBFrequency" ItemsSource="{Binding}" ItemTemplate="{StaticResource frequencyTemplate}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="126" Margin="19,153,0,0" VerticalAlignment="Top" Width="131" />
+        <Label Grid.ColumnSpan="2" Content="frequency" HorizontalAlignment="Left" Height="27" Margin="18,121,0,0" VerticalAlignment="Top" Width="113"/>
+        <Button Grid.ColumnSpan="2" Content="Add" HorizontalAlignment="Left" Height="28" Margin="136,334,0,0" VerticalAlignment="Top" Width="36" Click="Add_Dep_Time_Button_Click" RenderTransformOrigin="3.689,-0.621"/>
+        <TextBox Name="TBNewDepTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="19,330,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="98"/>
+        <Label Grid.ColumnSpan="2" Content="add departure time" HorizontalAlignment="Left" Height="29" Margin="19,296,0,0" VerticalAlignment="Top" Width="131"/>
 
     </Grid>
 </Window>

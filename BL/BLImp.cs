@@ -110,6 +110,40 @@ namespace BL
             }
             return counter;
         }
+
+        public void RefuelBus(BO.Bus busBO)
+        {
+            try
+            {
+                DO.Bus busDO = dl.GetBus(busBO.LicenseNum);
+                if (busDO.FuelRemain == 1200)
+                    throw new BO.BadInputException("The fuel remain of the bus ia already full");
+                busDO.FuelRemain = 1200;
+                dl.UpdateBus(busDO);
+
+            }
+            catch(DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(busBO.LicenseNum, ex.Message);
+            }
+        }
+        public void TreatBus(BO.Bus busBO)
+        {
+            try
+            {
+                DO.Bus busDO = dl.GetBus(busBO.LicenseNum);
+                if (busDO.DateLastTreat.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    throw new BO.BadInputException("The bus is already treated today");
+                busDO.DateLastTreat = DateTime.Now;
+                busDO.KmLastTreat = busDO.TotalTrip;
+                dl.UpdateBus(busDO);
+
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(busBO.LicenseNum, ex.Message);
+            }
+        }
         #endregion
 
         #region Line
@@ -119,9 +153,6 @@ namespace BL
             BO.Line lineBO = new BO.Line();
             int lineId = lineDO.LineId;
             lineDO.CopyPropertiesTo(lineBO);
-            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
-            //                                         let station = dl.GetStation(stat.StationCode)//station
-            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
             List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
                                                let station = dl.GetStation(stat.StationCode)//station
                                                select station.CopyToStationInLine(stat)).ToList();
@@ -138,6 +169,8 @@ namespace BL
                 }
             }
             lineBO.Stations = stations;
+            lineBO.DepTimes= (from lineTrip in dl.GetAllLineTripsBy(lineTrip => lineTrip.LineId == lineId && lineTrip.IsDeleted == false)//LineTrip
+                              select lineTrip.StartAt).OrderBy(s=>s.TotalMinutes).ToList();
             return lineBO;
 
         }
@@ -236,14 +269,17 @@ namespace BL
             BO.Station stationBO = new BO.Station();
             int stationCode = stationDO.Code;
             stationDO.CopyPropertiesTo(stationBO);
-            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
-            //                                         let station = dl.GetStation(stat.StationCode)//station
-            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
             stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
                                let line = dl.GetLine(stat.LineId)//line
                                select line.CopyToLineInStation(stat)).ToList();
-            //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            //stationBO. = stations.OrderBy(s => s.LineStationIndex);
+            
+            foreach (BO.LineInStation item in stationBO.Lines)//לאתחל תחנה סופית
+            {
+                var line = dl.GetLine(item.LineId);
+                var station = dl.GetStation(line.LastStation);
+                item.NameLastStation = station.Name;
+                item.area = (BO.Area)Enum.Parse(typeof(BO.Area), line.Area.ToString());
+            }
             return stationBO;
         }
         public IEnumerable<BO.Station> GetAllStations()
@@ -352,6 +388,7 @@ namespace BL
             {
                 if (IsExistLineStation(sDO))
                     throw new BO.BadLineStationException(sDO.LineId, sDO.StationCode, "The station is already exist in the line");
+                //עידכון של כל האינדקסים של התחנות הבאות בקו
                 List<DO.LineStation> lSList = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
                 int indexlast = lSList[lSList.Count - 1].LineStationIndex;
                 if (sDO.LineStationIndex != indexlast+1)//if we didnt add a last station
@@ -361,7 +398,7 @@ namespace BL
                         lSList[i - 1].LineStationIndex++;
                     }
                 }
-                //update prev and next
+                //עידכון תחנה קודמת והבאה וגם את התחנה הראשונה והאחרונה של היישות קו
                 DO.LineStation prev;
                 DO.LineStation next;
                 if (sDO.LineStationIndex > 1)//its not the first station
@@ -370,11 +407,23 @@ namespace BL
                     prev.NextStationCode = sDO.StationCode;
                     sDO.PrevStationCode = prev.StationCode;
                 }
+                else//if its the first station-we need to update the first ans last station in the DO.Line
+                {
+                    DO.Line line = dl.GetLine(sDO.LineId);
+                    line.FirstStation = sDO.StationCode;
+                    dl.UpdateLine(line);
+                }
                 if (sDO.LineStationIndex != indexlast+1)//if its not the last station
                 {
                     next = lSList[sDO.LineStationIndex];
                     next.PrevStationCode = sDO.StationCode;
                     sDO.NextStationCode = next.StationCode;
+                }
+                else//if its the last station we need to update the last station in the DO.Line
+                {
+                    DO.Line line = dl.GetLine(sDO.LineId);
+                    line.LastStation = sDO.StationCode;
+                    dl.UpdateLine(line);
                 }
                 foreach (DO.LineStation item in lSList)
                 {
@@ -536,6 +585,31 @@ namespace BL
         }
 
 
+        #endregion
+        #region LineTrip
+        public void DeleteDepTime(int lineId, TimeSpan dep)
+        {
+            try
+            {
+                dl.DeleteLineTrip(lineId, dep);
+            }
+            catch(DO.BadLineTripException ex)
+            {
+                throw new DO.BadLineTripException(ex.lineId, ex.depTime, ex.Message);
+            }
+        }
+        public void AddDepTime(int lineId, TimeSpan dep)
+        {
+            try
+            {
+                
+                dl.AddLineTrip(new DO.LineTrip() { LineId = lineId,StartAt= dep, IsDeleted=false});
+            }
+            catch (DO.BadLineTripException ex)
+            {
+                throw new DO.BadLineTripException(ex.lineId, ex.depTime, ex.Message);
+            }
+        }
         #endregion
 
 

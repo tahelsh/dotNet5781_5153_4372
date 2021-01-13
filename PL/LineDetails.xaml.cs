@@ -31,6 +31,7 @@ namespace PL
             areaComboBox.ItemsSource= Enum.GetValues(typeof(BO.Area));
             LBStations.DataContext = line.Stations;
             areaComboBox.Text = line.Area.ToString();
+            LBFrequency.DataContext = line.DepTimes;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,8 +46,7 @@ namespace PL
             line = bl.GetLine(line.LineId);
             grid1.DataContext = line;
             LBStations.DataContext = line.Stations;
-            //List<BO.Bus> buses = bl.GetAllBuses().ToList();
-            //LBBuses.DataContext = buses;
+            LBFrequency.DataContext = line.DepTimes;
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -147,6 +147,37 @@ namespace PL
             win.ShowDialog();
 
         }
-      
+        private void Delete_Frequency_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TimeSpan t = (TimeSpan)(sender as Button).DataContext;
+                bl.DeleteDepTime(line.LineId, t);
+                RefreshAllLine();
+            }
+
+            catch (BO.BadLineTripException ex)
+            {
+                MessageBox.Show(ex.Message+": "+ex.depTime, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Add_Dep_Time_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TimeSpan t = TimeSpan.Parse(TBNewDepTime.Text);
+                bl.AddDepTime(line.LineId, t);
+                RefreshAllLine();
+            }
+
+            catch (BO.BadLineTripException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.depTime, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+           
+
+        }
     }
 }

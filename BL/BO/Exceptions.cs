@@ -92,4 +92,22 @@ namespace BO
             return Message;
         }
     }
+    public class BadLineTripException : Exception
+    {
+        public int lineId;
+        public TimeSpan depTime;//departure time
+        public BadLineTripException(int _lineId, TimeSpan _depTime) : base() { lineId = _lineId; depTime = _depTime; }
+        public BadLineTripException(int _lineId, TimeSpan _depTime, string message) :
+            base(message)
+        { lineId = _lineId; depTime = _depTime; }
+        public BadLineTripException(int _lineId, TimeSpan _depTime, string message, Exception innerException) :
+            base(message, innerException)
+        { lineId = _lineId; depTime = _depTime; }
+
+        //public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+        public override string ToString()
+        {
+            return Message;
+        }
+    }
 }

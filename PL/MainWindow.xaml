@@ -19,14 +19,13 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Label Content="sign in" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.93,1.601" Margin="650,25,0,0" Height="30" Width="91"/>
-        <Label Content="register" HorizontalAlignment="Left" Height="26" Margin="64,33,0,0" VerticalAlignment="Top" Width="104"/>
-        <Label Content="user name" HorizontalAlignment="Left" Height="26" Margin="484,78,0,0" VerticalAlignment="Top" Width="69"/>
-        <Label Content="passcode" HorizontalAlignment="Left" Height="28" Margin="484,109,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox Name="userNameSignTextBox" HorizontalAlignment="Left" Height="26" Margin="583,78,0,0" TextWrapping="Wrap" Text="Shira123" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="PasscodeSignTextBox" HorizontalAlignment="Left" Height="23" Margin="583,118,0,0" TextWrapping="Wrap" Text="123" VerticalAlignment="Top" Width="120"/>
+        <Label Content="sign in" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.93,1.601" Margin="525,76,0,0" Height="54" Width="134" FontFamily="Jokerman" FontSize="30"/>
+        <Label Content="new user?" HorizontalAlignment="Left" Height="58" Margin="70,80,0,0" VerticalAlignment="Top" Width="185" FontFamily="Jokerman" FontSize="30"/>
+        <Label Content="user name:" HorizontalAlignment="Left" Height="38" Margin="461,142,0,0" VerticalAlignment="Top" Width="98" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"/>
+        <Label Content="passcode:" HorizontalAlignment="Left" Height="39" Margin="466,191,0,0" VerticalAlignment="Top" Width="92" FontFamily="Segoe Print" FontSize="16" FontWeight="Bold"/>
+        <TextBox Name="userNameSignTextBox" HorizontalAlignment="Left" Height="26" Margin="571,149,0,0" TextWrapping="Wrap" Text="Shira123" VerticalAlignment="Top" Width="120" FontFamily="SimSun" FontSize="16" FontWeight="Bold"/>
 
-        <Grid x:Name="grid1" DataContext="{StaticResource userViewSource}" HorizontalAlignment="Left" Margin="64,75,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid1" DataContext="{StaticResource userViewSource}" HorizontalAlignment="Left" Margin="45,142,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -37,18 +36,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Admin Access:" Grid.Column="0" Margin="3,3,3.8,3" Grid.Row="0" VerticalAlignment="Center"/>
-            <CheckBox x:Name="adminAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AdminAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Passcode:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="passcodeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="User Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="admin Access:" Grid.Column="0" Margin="3,3,3.8,3" Grid.Row="3" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe Print" FontWeight="Bold"/>
+            <CheckBox x:Name="adminAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AdminAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Content="name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
+            <Label Content="passcode:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe Print" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="passcodeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
+            <Label Content="user Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontFamily="Segoe Print" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0" Grid.Row="0" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
         </Grid>
-        <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="64,268,0,0" VerticalAlignment="Top" Width="158" Click="Submit_Click" Height="69"/>
-        <Button Name="SignInButton" Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="550,219,0,0" Height="39" Click="SignInButton_Click"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="354,241,0,0" VerticalAlignment="Top" Width="113" Height="45"/>
+        <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="83,351,0,0" VerticalAlignment="Top" Width="158" Click="Submit_Click" Height="37" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Button x:Name="SignInButton" Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="550,243,0,0" Height="39" Click="SignInButton_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <PasswordBox Name="PBPasscode" HorizontalAlignment="Left" Margin="571,199,0,0" VerticalAlignment="Top" Width="113" Height="27" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
+        <Label Content="Welcome" HorizontalAlignment="Left" Height="75" Margin="237,1,0,0" VerticalAlignment="Top" Width="313" FontFamily="Ravie" FontSize="48" Background="#00000000" Foreground="#FFF1AA11"/>
+        <Image Margin="619,308,18,10" Source="logo.JPG" Stretch="Fill"/>
 
     </Grid>
 </Window>

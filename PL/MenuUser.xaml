@@ -118,13 +118,14 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="lineNumColumn" Binding="{Binding LineNum}" Header="Line Number" Width="SizeToHeader"/>
                             <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
+                            <DataGridTextColumn x:Name="AreaColumn" Binding="{Binding Area}" Header="      Area      " Width="SizeToHeader"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <ComboBox x:Name="CBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged"/>
                     <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}" HorizontalAlignment="Left" Height="141" Margin="532,62,0,0" VerticalAlignment="Top" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14"/>
                     <Label Content="Code:"  HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" />
                     <TextBlock x:Name="codeTextBlock" HorizontalAlignment="Left" Margin="609,37,0,320" Text="{Binding}" VerticalAlignment="Center" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" />
-                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="22,52,0,0" VerticalAlignment="Top" Height="134" Width="435">
+                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="22,52,0,0" VerticalAlignment="Top" Height="108" Width="435">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -134,13 +135,13 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,-278.2,10.4" Grid.Row="0" Text="{Binding Address}" VerticalAlignment="Center" Width="327"/>
+                        <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,-278.2,10.4" Grid.Row="1" Text="{Binding Address}" VerticalAlignment="Center" Width="327"/>
 
-                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                        <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-277.4,8.6" Grid.Row="2" Text="{Binding Name}" VerticalAlignment="Center" Width="327"/>
+                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-277.4,8.6" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="327"/>
                     </Grid>
                     <Button  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="687,10,0,0" VerticalAlignment="Top" Width="84" Click="SignOut_Button_Click"/>
 

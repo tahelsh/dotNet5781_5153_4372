@@ -28,7 +28,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message,ex);
             }
         }
 
@@ -47,7 +47,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message, ex);
             }
             return busDoBoAdapter(busDO);
         }
@@ -67,7 +67,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message, ex);
             }
             catch (DO.BadInputException ex)
             {
@@ -97,7 +97,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message, ex);
             }
         }
         private int LengthLicenseNum(int licenseNum)
@@ -124,7 +124,7 @@ namespace BL
             }
             catch(DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(busBO.LicenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message, ex);
             }
         }
         public void TreatBus(BO.Bus busBO)
@@ -141,7 +141,7 @@ namespace BL
             }
             catch (DO.BadLicenseNumException ex)
             {
-                throw new BO.BadLicenseNumException(busBO.LicenseNum, ex.Message);
+                throw new BO.BadLicenseNumException(ex.Message, ex);
             }
         }
         #endregion
@@ -149,7 +149,6 @@ namespace BL
         #region Line
         BO.Line lineDoBoAdapter(DO.Line lineDO)
         {
-
             BO.Line lineBO = new BO.Line();
             int lineId = lineDO.LineId;
             lineDO.CopyPropertiesTo(lineBO);
@@ -183,7 +182,7 @@ namespace BL
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.Message, ex);
             }
             return lineDoBoAdapter(lineDO);
         }
@@ -191,7 +190,16 @@ namespace BL
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
-            lineDo.LineId = DO.Config.LineId++;
+            lineDo.FirstStation = lineBo.Stations[0].StationCode;
+            lineDo.LastStation = lineBo.Stations[lineBo.Stations.Count-1].StationCode;
+            
+            //בודק אם יש קו עם אותו מספר באותו איזור
+            List<DO.Line> ltemp = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.Area == lineDo.Area).ToList();
+            if(ltemp.Count()!=0)
+                throw new BO.BadInputException($"There is already a line with the number {lineDo.LineNum} in {lineDo.Area}");
+            dl.AddLine(lineDo);//add line
+            //עידכונים של תחנות עוקבות ותחנות קו
+            lineDo.LineId = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.Area == lineDo.Area).FirstOrDefault().LineId;
             int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first station
             int sc2 = lineBo.Stations[1].StationCode;//station Code of the last station
             lineDo.FirstStation = sc1;
@@ -203,16 +211,14 @@ namespace BL
                     DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
                     dl.AddAdjacentStations(adj);
                 }
-
-                dl.AddLine(lineDo);//add line
                 DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false, PrevStationCode=0, NextStationCode=sc2 };
                 DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false, PrevStationCode=sc1, NextStationCode=0 };
                 dl.AddLineStation(first);//add first line station
                 dl.AddLineStation(last);//add last line ststion
             }
-            catch (BO.BadLineIdException ex)
+            catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.Message, ex);
             }
 
         }
@@ -232,13 +238,15 @@ namespace BL
         {
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
+            lineDO.FirstStation = line.Stations[0].StationCode;
+            lineDO.LastStation = line.Stations[line.Stations.Count - 1].StationCode;
             try
             {
                 dl.UpdateLine(lineDO);
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.Message, ex);
             }
         }
 
@@ -256,7 +264,7 @@ namespace BL
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.Message, ex);
             }
 
         }
@@ -277,7 +285,7 @@ namespace BL
                 var line = dl.GetLine(item.LineId);
                 var station = dl.GetStation(line.LastStation);
                 item.NameLastStation = station.Name;
-                item.area = (BO.Area)Enum.Parse(typeof(BO.Area), line.Area.ToString());
+                //item.area = (BO.Area)Enum.Parse(typeof(BO.Area), line.Area.ToString());
             }
             return stationBO;
         }
@@ -297,12 +305,8 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+                throw new BO.BadStationCodeException(ex.Message, ex);
             }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
 
         }
         public void DeleteStation(int code)
@@ -312,7 +316,7 @@ namespace BL
                 DO.Station statDO = dl.GetStation(code);
                 BO.Station statBO = StationDoBoAdapter(statDO);
                 if (statBO.Lines.Count != 0)//if there are lines that stop in the station
-                    throw new BO.BadStationCodeException(code, "station cant be deleted because other buses stop there");
+                    throw new BO.BadStationCodeException(code,"station cant be deleted because other buses stop there");
                 dl.DeleteStation(code);
                 List<DO.AdjacentStations> listAdj = dl.GetAllAdjacentStations().ToList();
                 foreach (DO.AdjacentStations s in listAdj)//delete from adjacent Station list
@@ -324,12 +328,8 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+                throw new BO.BadStationCodeException(ex.Message, ex);
             }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
         }
         public void UpdateStation(BO.Station statBO)
         {
@@ -342,7 +342,7 @@ namespace BL
             }
             catch (BO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+                throw new BO.BadStationCodeException(ex.Message, ex);
             }
         }
 
@@ -358,11 +358,11 @@ namespace BL
             }
             catch (DO.BadAdjacentStationsException ex)
             {
-                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
+                throw new BO.BadAdjacentStationsException( ex.Message, ex);
             }
-            {
-                throw new Exception("Error, it cannot be update");
-            }
+            //{
+            //    throw new Exception("Error, it cannot be update");
+            //}
         }
         #endregion
 
@@ -455,11 +455,11 @@ namespace BL
             }
             catch (DO.BadLineStationException ex)
             {
-                throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
+                throw new BO.BadLineStationException( ex.Message, ex);
             }
             catch (DO.BadAdjacentStationsException ex)
             {
-                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2, ex.Message);
+                throw new BO.BadAdjacentStationsException(ex.Message, ex);
             }
         }
         public void DeleteLineStation(int lineId, int stationCode)
@@ -524,15 +524,15 @@ namespace BL
             }
             catch (DO.BadLineStationException ex)
             {
-                throw new BO.BadLineStationException(ex.lineId, ex.stationCode, ex.Message);
+                throw new BO.BadLineStationException(ex.Message, ex);
             }
             catch (BO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.Message, ex);
             }
             catch (DO.BadAdjacentStationsException ex)
             {
-                throw new BO.BadAdjacentStationsException(ex.stationCode1, ex.stationCode2);
+                throw new BO.BadAdjacentStationsException(ex.Message, ex);
             }
         }
         #endregion
@@ -559,7 +559,7 @@ namespace BL
             }
             catch (DO.BadUserNameException ex)
             {
-                throw new BO.BadUserNameException(ex.userName, ex.Message);
+                throw new BO.BadUserNameException(ex.Message, ex);
             }
         }
         public BO.User SignIn(string username, int passcode)
@@ -575,7 +575,7 @@ namespace BL
             }
             catch (DO.BadUserNameException ex)
             {
-                throw new BO.BadUserNameException(ex.userName, ex.Message);
+                throw new BO.BadUserNameException(ex.Message, ex);
             }
             return userBO;
         }
@@ -592,19 +592,18 @@ namespace BL
             }
             catch(DO.BadLineTripException ex)
             {
-                throw new DO.BadLineTripException(ex.lineId, ex.depTime, ex.Message);
+                throw new BO.BadLineTripException( ex.Message, ex);
             }
         }
         public void AddDepTime(int lineId, TimeSpan dep)
         {
             try
             {
-                
                 dl.AddLineTrip(new DO.LineTrip() { LineId = lineId,StartAt= dep, IsDeleted=false});
             }
             catch (DO.BadLineTripException ex)
             {
-                throw new DO.BadLineTripException(ex.lineId, ex.depTime, ex.Message);
+                throw new BO.BadLineTripException(ex.Message, ex);
             }
         }
         #endregion

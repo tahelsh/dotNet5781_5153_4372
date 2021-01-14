@@ -56,7 +56,6 @@ namespace PL
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
             }
 
         }

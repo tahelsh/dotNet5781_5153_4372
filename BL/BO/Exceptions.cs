@@ -10,12 +10,8 @@ namespace BO
     public class BadLicenseNumException : Exception
     {
         public int licenseNum;
-        public BadLicenseNumException(int ln) : base() => licenseNum = ln;
-        public BadLicenseNumException(int ln, string message) :
-            base(message) => licenseNum = ln;
-        public BadLicenseNumException(int ln, string message, Exception innerException) :
-            base(message, innerException) => licenseNum = ln;
-
+        public BadLicenseNumException(string message, Exception innerException) :
+         base(message, innerException) => licenseNum = ((DO.BadLicenseNumException)innerException).licenseNum;
         public override string ToString() => base.ToString() + $", bad license number: {licenseNum}";
     }
     public class BadInputException : Exception
@@ -26,49 +22,43 @@ namespace BO
     public class BadLineIdException : Exception
     {
         public int ID;
-        public BadLineIdException(int id) : base() => ID = id;
-        public BadLineIdException(int id, string message) :
-            base(message) => ID = id;
-        public BadLineIdException(int id, string message, Exception innerException) :
-            base(message, innerException) => ID = id;
-
+        public BadLineIdException(string message, Exception innerException) :
+            base(message, innerException) => ID = ((DO.BadLineIdException)innerException).ID;
         public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
     }
     public class BadStationCodeException : Exception
     {
         public int stationCode;
-        public BadStationCodeException(int code) : base() => stationCode = code;
+        public BadStationCodeException(string message, Exception innerException) :
+            base(message, innerException) => stationCode = ((DO.BadStationCodeException)innerException).stationCode;
         public BadStationCodeException(int code, string message) :
-            base(message) => stationCode = code;
-        public BadStationCodeException(int code, string message, Exception innerException) :
-            base(message, innerException) => stationCode = code;
-
+           base(message) => stationCode = code;
         public override string ToString() => base.ToString() + $", bad station code number: {stationCode}";
     }
     public class BadUserNameException : Exception
     {
         public string userName;
-        public BadUserNameException(string name) : base() => userName = name;
+        public BadUserNameException(string message, Exception innerException) :
+           base(message, innerException) => userName = ((DO.BadUserNameException)innerException).userName;
         public BadUserNameException(string name, string message) :
             base(message) => userName = name;
-        public BadUserNameException(string name, string message, Exception innerException) :
-            base(message, innerException) => userName = name;
-
         public override string ToString() => base.ToString() + $", bad station code number: {userName}";
     }
     public class BadLineStationException : Exception
     {
         public int lineId;
         public int stationCode;
-        public BadLineStationException(int _lineId, int _stationCode) : base() { lineId = _lineId; stationCode = _stationCode; }
+
+        public BadLineStationException(string message, Exception innerException) :
+          base(message, innerException)
+        {
+            lineId = ((DO.BadLineStationException)innerException).lineId;
+            stationCode = ((DO.BadLineStationException)innerException).stationCode;
+        }
         public BadLineStationException(int _lineId, int _stationCode, string message) :
             base(message)
         { lineId = _lineId; stationCode = _stationCode; }
-        public BadLineStationException(int _lineId, int _stationCode, string message, Exception innerException) :
-            base(message, innerException)
-        { lineId = _lineId; stationCode = _stationCode; }
-
-        //public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+        
         public override string ToString()
         {
             return Message;
@@ -78,15 +68,12 @@ namespace BO
     {
         public int stationCode1;
         public int stationCode2;
-        public BadAdjacentStationsException(int _stationCode1, int _stationCode2) : base() { stationCode1 = _stationCode1; stationCode2 = _stationCode2; }
-        public BadAdjacentStationsException(int _stationCode1, int _stationCode2, string message) :
-            base(message)
-        { stationCode1 = _stationCode1; stationCode2 = _stationCode2; }
-        public BadAdjacentStationsException(int _stationCode1, int _stationCode2, string message, Exception innerException) :
-            base(message, innerException)
-        { stationCode1 = _stationCode1; stationCode2 = _stationCode2; }
-
-        //public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+        public BadAdjacentStationsException(string message, Exception innerException) :
+          base(message, innerException)
+        {
+            stationCode1 = ((DO.BadAdjacentStationsException)innerException).stationCode1;
+            stationCode2 = ((DO.BadAdjacentStationsException)innerException).stationCode2;
+        }
         public override string ToString()
         {
             return Message;
@@ -96,15 +83,12 @@ namespace BO
     {
         public int lineId;
         public TimeSpan depTime;//departure time
-        public BadLineTripException(int _lineId, TimeSpan _depTime) : base() { lineId = _lineId; depTime = _depTime; }
-        public BadLineTripException(int _lineId, TimeSpan _depTime, string message) :
-            base(message)
-        { lineId = _lineId; depTime = _depTime; }
-        public BadLineTripException(int _lineId, TimeSpan _depTime, string message, Exception innerException) :
-            base(message, innerException)
-        { lineId = _lineId; depTime = _depTime; }
-
-        //public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+        public BadLineTripException(string message, Exception innerException) :
+         base(message, innerException)
+        {
+            lineId = ((DO.BadLineTripException)innerException).lineId;
+            depTime = ((DO.BadLineTripException)innerException).depTime;
+        }
         public override string ToString()
         {
             return Message;

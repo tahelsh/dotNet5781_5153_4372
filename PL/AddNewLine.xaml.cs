@@ -75,6 +75,10 @@ namespace PL
             {
                 MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch(BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -105,6 +109,10 @@ namespace PL
             catch (BO.BadLineIdException ex)
             {
                 MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {

@@ -162,7 +162,7 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            //line.LineId = Config.LineId++;
+            line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
                 throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
             DataSource.ListLines.Add(line.Clone());
@@ -391,7 +391,7 @@ namespace DL
         {
             DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == user.UserName && u.IsDeleted == false);
             if (userFind == null)
-                throw new Exception();
+                throw new BadUserNameException(user.UserName, "The user does not exist");
             DO.User newUser = user.Clone();//copy of the bus that the function got
             userFind = newUser;//update
         }
@@ -399,7 +399,7 @@ namespace DL
         {
             DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
             if (userFind == null)
-                throw new Exception();
+                throw new BadUserNameException(userName, "The user does not exist");
             update(userFind);
         }
         public void DeleteUser(string userName)
@@ -407,7 +407,7 @@ namespace DL
             DO.User user = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
 
             if (user == null)
-                throw new Exception();
+                throw new BadUserNameException(user.UserName, "The user does not exist");
             user.IsDeleted = true;
         }
 

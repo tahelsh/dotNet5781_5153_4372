@@ -28,6 +28,7 @@ namespace PL
             bl = _bl;
             line = _line;
             //show only specific Property of object
+            CBPrevStation.DisplayMemberPath = "Name";
             CBNewStation.DisplayMemberPath = "Name";
             //CBPrevStation.SelectedValuePath = "StationCode";//selection return only specific Property of object
             // CBNewStation.SelectedValuePath = "StationCode";//selection return only specific Property of object

@@ -42,6 +42,7 @@ namespace BL
             BO.LineInStation lineInStation = new BO.LineInStation();
             l.CopyPropertiesTo(lineInStation);
             lineInStation.LineStationIndex = s.LineStationIndex;
+            lineInStation.Area = (BO.Area)Enum.Parse(typeof(BO.Area), l.Area.ToString());
             return lineInStation;
         }
         //public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)

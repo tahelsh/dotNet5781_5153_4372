@@ -12,6 +12,6 @@ namespace BO
         public int LineNum { get; set; }
         public int LineStationIndex { get; set; }
         public string NameLastStation { get; set; }
-        public Area area { get; set; }
+        public Area Area { get; set; }
     }
 }

@@ -419,44 +419,44 @@ namespace DL
         #region LineStation
         public IEnumerable<DO.LineStation> GetAllLineStations()
         {
-            throw new NotImplementedException();
-            //return from lStat in DataSource.ListLineStations
-            //       select lStat.Clone();
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            return from lStat in ListLineStations
+                   where lStat.IsDeleted==false
+                   select lStat;
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
-            throw new NotImplementedException();
-            //return from lStat in DataSource.ListLineStations
-            //       where predicate(lStat)
-            //       select lStat.Clone();
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            return from lStat in ListLineStations
+                   where predicate(lStat)
+                   select lStat;
         }
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
-            throw new NotImplementedException();
-            //DO.LineStation lineStation = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode));
-
-            //if (lineStation != null)
-            //    return lineStation.Clone();
-            //else
-            //    throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            DO.LineStation lineStation = ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
+            if (lineStation != null)
+                return lineStation;
+            else
+                throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
         }
         public void AddLineStation(DO.LineStation lineStation)
         {
-            throw new NotImplementedException();
-            //if (DataSource.ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false)) != null)//if this line station already exists in the list
-            //    throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The new line station is already exist");
-
-            //DataSource.ListLineStations.Add(lineStation.Clone());
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            if (ListLineStations.FirstOrDefault(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false)) != null)//if this line station already exists in the list
+                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The new line station is already exist");
+            ListLineStations.Add(lineStation);
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            throw new NotImplementedException();
-            //DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false));
-            //if (lStatFind == null)
-            //    throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The station line does not exist");
-            //DO.LineStation newLineStation = lineStation.Clone();//copy of the bus that the function got
-            //DataSource.ListLineStations.Remove(lStatFind);
-            //DataSource.ListLineStations.Add(newLineStation);
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            DO.LineStation lStatFind = ListLineStations.Find(lStat => (lStat.LineId == lineStation.LineId && lStat.StationCode == lineStation.StationCode && lStat.IsDeleted == false));
+            if (lStatFind == null)
+                throw new DO.BadLineStationException(lineStation.LineId, lineStation.StationCode, "The station line does not exist");
+            ListLineStations.Remove(lStatFind);
+            ListLineStations.Add(lineStation);
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
         }
         public void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update)
         {
@@ -468,11 +468,12 @@ namespace DL
         }
         public void DeleteLineStation(int lineId, int stationCode)
         {
-            throw new NotImplementedException();
-            //DO.LineStation lStatFind = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
-            //if (lStatFind == null)
-            //    throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
-            //lStatFind.IsDeleted = true;//delete
+            List<DO.LineStation> ListLineStations = XMLTools.LoadListFromXMLSerializer<DO.LineStation>(lineStationsPath);
+            DO.LineStation lStatFind = ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
+            if (lStatFind == null)
+                throw new DO.BadLineStationException(lineId, stationCode, "The station line does not exist");
+            lStatFind.IsDeleted = true;//delete
+            XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);
 
         }
 

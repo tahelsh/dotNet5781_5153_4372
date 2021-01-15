@@ -197,6 +197,7 @@ namespace DL
         public IEnumerable<DO.LineStation> GetAllLineStations()
         {
             return from lStat in DataSource.ListLineStations
+                   where lStat.IsDeleted == false
                    select lStat.Clone();
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
@@ -207,7 +208,7 @@ namespace DL
         }
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
-            DO.LineStation lineStation = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode));
+            DO.LineStation lineStation = DataSource.ListLineStations.Find(lStat => (lStat.LineId == lineId && lStat.StationCode == stationCode && lStat.IsDeleted == false));
 
             if (lineStation != null)
                 return lineStation.Clone();

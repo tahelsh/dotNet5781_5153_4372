@@ -22,7 +22,7 @@ namespace DL
 
         #region DS XML Files
 
-        string usersPath = @"UserXml.xml"; //XElement
+        string tripsPath = @"UserXml.xml"; //XElement
 
         string busesPath = @"BusesXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
@@ -30,14 +30,14 @@ namespace DL
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
         string lineTripsPath = @"LineTripsXml.xml"; //XMLSerializer
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
-        string tripsPath = @"TripsXml.xml"; //XMLSerializer
+        string usersPath = @"TripsXml.xml"; //XMLSerializer
         string runningNumberPath = @"TripsXml.xml"; //XMLSerializer
         #endregion
 
         #region User
         public IEnumerable<DO.User> GetAllUsers()
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
 
             return (from u in usersRootElem.Elements()
                     where bool.Parse(u.Element("IsDeleted").Value) == false
@@ -53,7 +53,7 @@ namespace DL
         }
         public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate)
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
 
             return from u in usersRootElem.Elements()
                    let u1 = new User()
@@ -88,7 +88,7 @@ namespace DL
         }
         public void AddUser(DO.User user)
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
 
             XElement user1 = (from u in usersRootElem.Elements()
                               where u.Element("UserName").Value == user.UserName && bool.Parse(u.Element("IsDeleted").Value) == false
@@ -104,11 +104,11 @@ namespace DL
                                    new XElement("AdminAccess", user.AdminAccess.ToString()),
                                    new XElement("IsDeleted", user.IsDeleted.ToString()));
             usersRootElem.Add(userElem);
-            XMLTools.SaveListToXMLElement(usersRootElem, usersPath);
+            XMLTools.SaveListToXMLElement(usersRootElem, tripsPath);
         }
         public void UpdateUser(DO.User user)
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
 
             XElement userElem = (from u in usersRootElem.Elements()
                                  where u.Element("UserName").Value == user.UserName && bool.Parse(u.Element("IsDeleted").Value) == false
@@ -121,7 +121,7 @@ namespace DL
                 userElem.Element("Passcode").Value = user.Passcode.ToString();
                 userElem.Element("AdminAccess").Value = user.AdminAccess.ToString();
                 userElem.Element("IsDeleted").Value = user.IsDeleted.ToString();
-                XMLTools.SaveListToXMLElement(usersRootElem, usersPath);
+                XMLTools.SaveListToXMLElement(usersRootElem, tripsPath);
             }
             else
                 throw new BadUserNameException(user.UserName, "The user does not exist");
@@ -136,7 +136,7 @@ namespace DL
         }
         public void DeleteUser(string userName)
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
             XElement user = (from u in usersRootElem.Elements()
                              where u.Element("UserName").Value == userName && bool.Parse(u.Element("IsDeleted").Value) == false
                              select u).FirstOrDefault();
@@ -144,7 +144,7 @@ namespace DL
             if (user != null)
             {
                 user.Element("IsDeleted").Value = true.ToString();
-                XMLTools.SaveListToXMLElement(usersRootElem, usersPath);
+                XMLTools.SaveListToXMLElement(usersRootElem, tripsPath);
             }
             else
                 throw new BadUserNameException(userName, "The user does not exist");
@@ -337,8 +337,8 @@ namespace DL
             XElement adjStationssRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
 
             XElement adj = (from a in adjStationssRootElem.Elements()
-                             where int.Parse(a.Element("StationCode1").Value) == stationCode1 && int.Parse(a.Element("StationCode2").Value) == stationCode2 && bool.Parse(a.Element("IsDeleted").Value)==false
-                             select a).FirstOrDefault();
+                            where int.Parse(a.Element("StationCode1").Value) == stationCode1 && int.Parse(a.Element("StationCode2").Value) == stationCode2 && bool.Parse(a.Element("IsDeleted").Value) == false
+                            select a).FirstOrDefault();
 
             if (adj != null)
             {
@@ -607,42 +607,105 @@ namespace DL
         #region Trip
         public IEnumerable<DO.Trip> GetAllTrips()
         {
-            throw new NotImplementedException();
-            //return from trip in DataSource.ListTrips
-            //       select trip.Clone();
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
+
+            return (from t in tripsRootElem.Elements()
+                    where bool.Parse(t.Element("IsDeleted").Value) == false
+                    select new Trip()
+                    {
+                        TripId = Int32.Parse(t.Element("TripId").Value),
+                        UserName = t.Element("UserName").Value,
+                        GetOnStation = Int32.Parse(t.Element("GetOnStation").Value),
+                        GetOnTime = TimeSpan.Parse(t.Element("GetOnTime").Value),
+                        GetOutStation = Int32.Parse(t.Element("GetOutStation").Value),
+                        GetOutTime = TimeSpan.Parse(t.Element("GetOutTime").Value),
+                        IsDeleted = bool.Parse(t.Element("IsDeleted").Value)
+                    }
+                   );
         }
         public IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate)
         {
-            throw new NotImplementedException();
-            //return from trip in DataSource.ListTrips
-            //       where predicate(trip)
-            //       select trip.Clone();
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
 
+            return from t in tripsRootElem.Elements()
+                   let t1 = new Trip()
+                   {
+                       TripId = Int32.Parse(t.Element("TripId").Value),
+                       UserName = t.Element("UserName").Value,
+                       GetOnStation = Int32.Parse(t.Element("GetOnStation").Value),
+                       GetOnTime = TimeSpan.Parse(t.Element("GetOnTime").Value),
+                       GetOutStation = Int32.Parse(t.Element("GetOutStation").Value),
+                       GetOutTime = TimeSpan.Parse(t.Element("GetOutTime").Value),
+                       IsDeleted = bool.Parse(t.Element("IsDeleted").Value)
+                   }
+                   where predicate(t1)
+                   select t1;
         }
         public DO.Trip GetTrip(int tripId)
         {
-            throw new NotImplementedException();
-            //DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId && t.IsDeleted == false);
-            //if (trip != null)
-            //    return trip.Clone();
-            //else
-            //    throw new Exception();
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
+            Trip trip = (from t in tripsRootElem.Elements()
+                         where int.Parse(t.Element("TripId").Value) == tripId && bool.Parse(t.Element("IsDeleted").Value) == false
+                         select new Trip()
+                         {
+                             TripId = Int32.Parse(t.Element("TripId").Value),
+                             UserName = t.Element("UserName").Value,
+                             GetOnStation = Int32.Parse(t.Element("GetOnStation").Value),
+                             GetOnTime = TimeSpan.Parse(t.Element("GetOnTime").Value),
+                             GetOutStation = Int32.Parse(t.Element("GetOutStation").Value),
+                             GetOutTime = TimeSpan.Parse(t.Element("GetOutTime").Value),
+                             IsDeleted = bool.Parse(t.Element("IsDeleted").Value)
+                         }
+                       ).FirstOrDefault();
+
+            if (trip == null)
+                throw new DO.BadTripIdException(tripId, "This trip id does not exist");
+            return trip;
         }
         public void AddTrip(DO.Trip trip)
         {
-            throw new NotImplementedException();
-            //if (DataSource.ListTrips.FirstOrDefault(t => t.TripId == trip.TripId && t.IsDeleted == false) != null)
-            //    throw new Exception();
-            //DataSource.ListTrips.Add(trip.Clone());
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
+
+            XElement trip1 = (from t in tripsRootElem.Elements()
+                              where int.Parse(t.Element("TripId").Value) == trip.TripId && bool.Parse(t.Element("IsDeleted").Value) == false
+                              select t).FirstOrDefault();
+
+            if (trip1 != null)
+                throw new BadTripIdException(trip.TripId, "This trip is already exist");
+
+            XElement tripElem = new XElement("Trip",
+                                   new XElement("TripId", trip.TripId.ToString()),
+                                   new XElement(" UserName", trip.UserName),
+                                   new XElement("GetOnStation", trip.GetOnStation.ToString()),
+                                   new XElement("GetOnTime", trip.GetOnTime.ToString()),
+                                   new XElement("GetOutStation", trip.GetOutStation.ToString()),
+                                   new XElement("GetOutTime", trip.GetOutTime.ToString()),
+                                   new XElement("IsDeleted", trip.IsDeleted.ToString())
+                                   );
+            tripsRootElem.Add(tripElem);
+            XMLTools.SaveListToXMLElement(tripsRootElem, tripsPath);
         }
         public void UpdateTrip(DO.Trip trip)
         {
-            throw new NotImplementedException();
-            //DO.Trip tripFind = DataSource.ListTrips.Find(t => t.TripId == trip.TripId && t.IsDeleted == false);
-            //if (tripFind == null)
-            //    throw new Exception();
-            //DO.Trip newTrip = trip.Clone();//copy of the bus that the function got
-            //tripFind = newTrip;//update
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
+
+            XElement tripElem = (from t in tripsRootElem.Elements()
+                                 where int.Parse(t.Element("TripId").Value) == trip.TripId && bool.Parse(t.Element("IsDeleted").Value) == false
+                                 select t).FirstOrDefault();
+
+            if (tripElem != null)
+            {
+                tripElem.Element("TripId").Value = trip.TripId.ToString();
+                tripElem.Element(" UserName").Value = trip.UserName;
+                tripElem.Element("GetOnStation").Value = trip.GetOnStation.ToString();
+                tripElem.Element("GetOnTime").Value = trip.GetOnTime.ToString();
+                tripElem.Element("GetOutStation").Value = trip.GetOutStation.ToString();
+                tripElem.Element("GetOutTime").Value = trip.GetOutTime.ToString();
+                tripElem.Element("IsDeleted").Value = trip.IsDeleted.ToString();
+                XMLTools.SaveListToXMLElement(tripsRootElem, tripsPath);
+            }
+            else
+                throw new BadTripIdException(trip.TripId, "The trip does not exist");
         }
         public void UpdateTrip(int tripId, Action<DO.Trip> update)
         {
@@ -654,11 +717,18 @@ namespace DL
         }
         public void DeleteTrip(int tripId)
         {
-            throw new NotImplementedException();
-            //DO.Trip trip = DataSource.ListTrips.Find(t => t.TripId == tripId && t.IsDeleted == false);
-            //if (trip == null)
-            //    throw new Exception();
-            //trip.IsDeleted = true;
+            XElement tripsRootElem = XMLTools.LoadListFromXMLElement(tripsPath);
+            XElement trip = (from t in tripsRootElem.Elements()
+                             where int.Parse(t.Element("TripId").Value) == tripId && bool.Parse(t.Element("IsDeleted").Value) == false
+                             select t).FirstOrDefault();
+
+            if (trip != null)
+            {
+                trip.Element("IsDeleted").Value = true.ToString();
+                XMLTools.SaveListToXMLElement(tripsRootElem, tripsPath);
+            }
+            else
+                throw new BadTripIdException(tripId, "The user does not exist");
         }
 
         #endregion

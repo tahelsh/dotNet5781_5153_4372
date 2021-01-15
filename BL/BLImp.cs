@@ -180,7 +180,7 @@ namespace BL
             {
                 lineDO = dl.GetLine(lineId);
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadTripIdException ex)
             {
                 throw new BO.BadLineIdException(ex.Message, ex);
             }
@@ -216,7 +216,7 @@ namespace BL
                 dl.AddLineStation(first);//add first line station
                 dl.AddLineStation(last);//add last line ststion
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadTripIdException ex)
             {
                 throw new BO.BadLineIdException(ex.Message, ex);
             }
@@ -244,7 +244,7 @@ namespace BL
             {
                 dl.UpdateLine(lineDO);
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadTripIdException ex)
             {
                 throw new BO.BadLineIdException(ex.Message, ex);
             }
@@ -262,7 +262,7 @@ namespace BL
                     dl.DeleteLineStation(s.LineId, s.StationCode);
                 }
             }
-            catch (DO.BadLineIdException ex)
+            catch (DO.BadTripIdException ex)
             {
                 throw new BO.BadLineIdException(ex.Message, ex);
             }

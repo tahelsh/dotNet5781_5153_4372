@@ -10,7 +10,7 @@ namespace DO
     {
         public int TripId { get; set; }
         public string UserName { get; set; }
-        public int LineId { get; set; }
+       // public int UserName { get; set; }
         public int GetOnStation { get; set; }
         public TimeSpan GetOnTime { get; set; }
         public int GetOutStation { get; set; }

@@ -23,7 +23,7 @@ namespace BO
     {
         public int ID;
         public BadLineIdException(string message, Exception innerException) :
-            base(message, innerException) => ID = ((DO.BadLineIdException)innerException).ID;
+            base(message, innerException) => ID = ((DO.BadTripIdException)innerException).ID;
         public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
     }
     public class BadStationCodeException : Exception

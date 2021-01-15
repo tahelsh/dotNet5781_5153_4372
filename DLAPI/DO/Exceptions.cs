@@ -23,13 +23,13 @@ namespace DO
         public BadInputException(string message) : base(message) { }
         public override string ToString() => base.ToString();
     }
-     public class BadLineIdException : Exception
+     public class BadTripIdException : Exception
     {
         public int ID;
-        public BadLineIdException(int id) : base() => ID = id;
-        public BadLineIdException(int id, string message) :
+        public BadTripIdException(int id) : base() => ID = id;
+        public BadTripIdException(int id, string message) :
             base(message) => ID = id;
-        public BadLineIdException(int id, string message, Exception innerException) :
+        public BadTripIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
 
         public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
@@ -120,5 +120,16 @@ namespace DO
         { xmlFilePath = xmlPath; }
 
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
+    }
+    public class BadLineIdException : Exception
+    {
+        public int ID;
+        public BadLineIdException(int id) : base() => ID = id;
+        public BadLineIdException(int id, string message) :
+            base(message) => ID = id;
+        public BadLineIdException(int id, string message, Exception innerException) :
+            base(message, innerException) => ID = id;
+
+        public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
     }
 }

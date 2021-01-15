@@ -193,10 +193,10 @@ namespace BL
             lineDo.FirstStation = lineBo.Stations[0].StationCode;
             lineDo.LastStation = lineBo.Stations[lineBo.Stations.Count-1].StationCode;
             
-            //בודק אם יש קו עם אותו מספר באותו איזור
-            List<DO.Line> ltemp = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.Area == lineDo.Area).ToList();
+            //בודק אם יש קו עם אותו מספר עם אוה תחנה סופית באותו איזור
+            List<DO.Line> ltemp = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.LastStation==lineDo.LastStation && s.Area==lineDo.Area).ToList();
             if(ltemp.Count()!=0)
-                throw new BO.BadInputException($"There is already a line with the number {lineDo.LineNum} in {lineDo.Area}");
+                throw new BO.BadInputException($"There is already a line with the number {lineDo.LineNum} in {lineDo.Area} with last station {lineDo.LastStation}");
             dl.AddLine(lineDo);//add line
             //עידכונים של תחנות עוקבות ותחנות קו
             lineDo.LineId = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.Area == lineDo.Area).FirstOrDefault().LineId;

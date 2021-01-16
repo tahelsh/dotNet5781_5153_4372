@@ -104,7 +104,7 @@ namespace PL
 
         private void Delete_Station_Button_Click(object sender, RoutedEventArgs e)
         {
-            BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
+            BO.StationInLine station = (sender as Image).DataContext as BO.StationInLine;
             try
             {
                 bl.DeleteLineStation(line.LineId, station.StationCode);
@@ -151,7 +151,7 @@ namespace PL
         {
             try
             {
-                TimeSpan t = (TimeSpan)(sender as Button).DataContext;
+                TimeSpan t = (TimeSpan)(sender as Image).DataContext;
                 bl.DeleteDepTime(line.LineId, t);
                 RefreshAllLine();
             }

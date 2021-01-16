@@ -33,9 +33,13 @@
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Grid>
-                    <ComboBox Name="CBSourceStation" HorizontalAlignment="Left" Margin="87,58,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox Name="CBDestinationStation" HorizontalAlignment="Left" Margin="87,125,0,0" VerticalAlignment="Top" Width="120"/>
+                <Grid Margin="21,0,60,0">
+                    <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="96,58,0,0" VerticalAlignment="Top" Width="136" Height="39"/>
+                    <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="96,147,0,0" VerticalAlignment="Top" Width="136" Height="42"/>
+                    <Button Content="Search" HorizontalAlignment="Left" Margin="96,256,0,0" VerticalAlignment="Top" Width="136" Click="Search_Button_Click" Height="44"/>
+                    <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="185" Margin="384,25,0,0"/>
+                    <Label Content="Source station" HorizontalAlignment="Left" Height="28" Margin="96,16,0,0" VerticalAlignment="Top" Width="101"/>
+                    <Label Content="Destination station" HorizontalAlignment="Left" Height="26" Margin="96,116,0,0" VerticalAlignment="Top" Width="118"/>
 
                 </Grid>
             </TabItem>
@@ -125,7 +129,7 @@
                     <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}" HorizontalAlignment="Left" Height="141" Margin="532,62,0,0" VerticalAlignment="Top" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14"/>
                     <Label Content="Code:"  HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" />
                     <TextBlock x:Name="codeTextBlock" HorizontalAlignment="Left" Margin="609,37,0,320" Text="{Binding}" VerticalAlignment="Center" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" />
-                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="22,52,0,0" VerticalAlignment="Top" Height="108" Width="435">
+                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="38,62,0,0" VerticalAlignment="Top" Height="108" Width="435">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -144,7 +148,7 @@
                         <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-277.4,8.6" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="327"/>
                     </Grid>
                     <Button  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="687,10,0,0" VerticalAlignment="Top" Width="84" Click="SignOut_Button_Click"/>
-
+                    <Image Source="disableAccess.png" Margin="155,132,579.4,227" />
 
                 </Grid>
 

@@ -33,6 +33,7 @@ namespace BLAPI
         void UpdateLineDetails(BO.Line line);
         void DeleteLine(int LineId);
         void AddBus(BO.Bus bus);
+        List<BO.Line> FindRoute(int stationCode1, int stationCode2);
         #endregion
 
         #region Station

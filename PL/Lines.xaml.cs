@@ -55,5 +55,25 @@ namespace PL
             win.ShowDialog();
 
         }
+        private void Button_Click_DeleteLine(object sender, RoutedEventArgs e)
+        {
+            BO.Line line = (sender as Image).DataContext as BO.Line;
+            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                bl.DeleteLine(line.LineId);
+                RefreshAllLinesList();
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

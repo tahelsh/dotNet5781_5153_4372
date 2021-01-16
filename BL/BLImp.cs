@@ -268,6 +268,47 @@ namespace BL
             }
 
         }
+
+
+        private int IsStationFound(BO.Line line, int stationCode)
+        {
+            foreach (BO.StationInLine stat in line.Stations)
+            {
+                if (stat.StationCode == stationCode)
+                    return stat.LineStationIndex;
+            }
+            return -1;
+        }
+        private TimeSpan OrderByTimeTravel(BO.Line line, int stationCode1, int stationCode2)
+        {
+            int index1 = IsStationFound(line, stationCode1);
+            int index2 = IsStationFound(line, stationCode2);
+            TimeSpan sum = TimeSpan.Zero;
+            for(int i=index1-1; i<index2-1; i++)
+            {
+                sum += line.Stations[i].Time;
+            }
+            return sum;
+        }
+        public List<BO.Line> FindRoute(int stationCode1, int stationCode2)
+        {
+            List<BO.Line> linesInRoute = new List<BO.Line>();
+            List<BO.Line> allLines = GetAllLines().ToList();
+            foreach (BO.Line line in allLines)
+            {
+
+                int index1 = IsStationFound(line, stationCode1);
+                int index2 = IsStationFound(line, stationCode2);
+                if (index1 != -1 && index2 != -1 && index1 < index2)
+                {
+                    linesInRoute.Add(line);
+                }
+            }
+            if (linesInRoute.Count == 0)
+                throw new BO.BadInputException("There are no lines in this route");
+            linesInRoute = linesInRoute.OrderBy(l => OrderByTimeTravel(l, stationCode1, stationCode2)).ToList();
+            return linesInRoute;
+        }
         #endregion
 
         #region Station

@@ -30,8 +30,6 @@ namespace PL
             //show only specific Property of object
             CBPrevStation.DisplayMemberPath = "Name";
             CBNewStation.DisplayMemberPath = "Name";
-            //CBPrevStation.SelectedValuePath = "StationCode";//selection return only specific Property of object
-            // CBNewStation.SelectedValuePath = "StationCode";//selection return only specific Property of object
             CBPrevStation.SelectedIndex = 0; //index of the object to be selected
             CBNewStation.SelectedIndex = 0; //index of the object to be selected
             CBPrevStation.DataContext = line.Stations.ToList();

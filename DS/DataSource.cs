@@ -1658,9 +1658,10 @@ namespace DS
             };
 #endregion
 
-#region ListLineTrip
-ListLineTrips = new List<LineTrip>()
+        #region ListLineTrip
+            ListLineTrips = new List<LineTrip>()
             {
+                //line Id 0
                 new LineTrip
                 {
                     LineId=0,
@@ -1675,6 +1676,60 @@ ListLineTrips = new List<LineTrip>()
                 {
                     LineId=0,
                     StartAt=new TimeSpan(5,10,0),
+                },
+                //line Id 1
+                new LineTrip
+                {
+                    LineId=1,
+                    StartAt=new TimeSpan(5,8,0),
+                },
+                //line Id 2
+                new LineTrip
+                {
+                    LineId=2,
+                    StartAt=new TimeSpan(9,8,0),
+                },
+                 //line Id 3
+                new LineTrip
+                {
+                    LineId=3,
+                    StartAt=new TimeSpan(14,8,0),
+                },
+                 //line Id 4
+                new LineTrip
+                {
+                    LineId=4,
+                    StartAt=new TimeSpan(18,8,0),
+                },
+                 //line Id 5
+                new LineTrip
+                {
+                    LineId=5,
+                    StartAt=new TimeSpan(10,3,0),
+                },
+                 //line Id 6
+                new LineTrip
+                {
+                    LineId=6,
+                    StartAt=new TimeSpan(8,3,0),
+                },
+                 //line Id 7
+                new LineTrip
+                {
+                    LineId=7,
+                    StartAt=new TimeSpan(16,2,0),
+                },
+                 //line Id 8
+                new LineTrip
+                {
+                    LineId=8,
+                    StartAt=new TimeSpan(13,2,0),
+                },
+                 //line Id 9
+                new LineTrip
+                {
+                    LineId=9,
+                    StartAt=new TimeSpan(14,45,0),
                 },
             };
             #endregion

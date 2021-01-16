@@ -6,9 +6,33 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Lines" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="linesTemplate"
+                  DataType="local:Line" x:Name="line">
+            <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                   Text="{Binding Path=LineNum}" FontFamily="Segoe Print"  FontSize="20 px" Margin="10,0,0,0"/>
+                <TextBlock Grid.Column="1"
+                   Text="{Binding Path=Area}" Margin="13,0,0,0" FontFamily="Segoe Print" FontSize="20 px"/>
+                <Image Grid.Column="2"
+                   Source="delete.png" MouseDown="Button_Click_DeleteLine"  Margin="13,0,0,0" IsEnabled="True"  />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        <ListBox Name="LBLines" ItemsSource="{Binding}"  HorizontalAlignment="Left" Height="243" VerticalAlignment="Top" Width="464" Margin="28,28,0,0" MouseDoubleClick="Line_MouseClick"/>
-        <Button Content="Add new line" HorizontalAlignment="Left" VerticalAlignment="Top" Width="148" Margin="177,329,0,0" Height="41" Click="Button_Click_AddNewLine"/>
+        <ListBox Name="LBLines" ItemsSource="{Binding}" ItemTemplate="{StaticResource linesTemplate}"  HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="784" Margin="0,64,0,0" MouseDoubleClick="Line_MouseClick"/>
+        <Button Content="Add new line" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Margin="279,350,0,0" Height="55" Click="Button_Click_AddNewLine" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Line Number" HorizontalAlignment="Left" Height="42" Margin="10,17,0,0" VerticalAlignment="Top" Width="148" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Area" HorizontalAlignment="Left" Height="42" Margin="178,17,0,0" VerticalAlignment="Top" Width="95" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
 
 
     </Grid>

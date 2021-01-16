@@ -15,7 +15,7 @@ namespace BO
         public List<TimeSpan> DepTimes { get; set; }//departure time זמן יציאה
         public override string ToString()
        {
-            return "Line ID: " + LineId + " Line number: " + LineNum;
+            return " Line number: " + LineNum + " Area: "+ Area;
        }
 
 

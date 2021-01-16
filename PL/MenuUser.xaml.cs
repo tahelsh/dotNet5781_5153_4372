@@ -35,7 +35,14 @@ namespace PL
             CBLines.SelectedIndex = 0;
             CBLines.DisplayMemberPath = "LineNum";
             CBLines.DataContext = bl.GetAllLines();
-            
+            //לשונית של ביצוע נסיעה
+            CBSourceStation.DisplayMemberPath = "Name";
+            CBDestinationStation.DisplayMemberPath = "Name";
+            CBSourceStation.SelectedIndex = 0; //index of the object to be selected
+            CBDestinationStation.SelectedIndex = 0; //index of the object to be selected
+            CBSourceStation.DataContext = bl.GetAllStations().ToList();
+            CBDestinationStation.DataContext = bl.GetAllStations().ToList();
+
         }
 
 
@@ -87,6 +94,25 @@ namespace PL
         private void SignOut_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
+        {
+            BO.Station source = (CBSourceStation.SelectedItem) as BO.Station;
+            BO.Station dest = (CBDestinationStation.SelectedItem) as BO.Station;
+            try
+            {
+                List<BO.Line> listLinesInRoute = bl.FindRoute(source.Code, dest.Code);
+                LBLinesInRoute.DataContext = listLinesInRoute;
+            }
+            catch(BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception)
+            {
+
+            }
         }
     }
 }

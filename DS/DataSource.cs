@@ -653,6 +653,7 @@ namespace DS
                 {
                     UserName= "Shira123",
                     Passcode=123,
+                    Name="Shira",
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -661,6 +662,7 @@ namespace DS
                 {
                     UserName= "ayala6521",
                     Passcode= 54333,
+                    Name="Ayala",
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -669,6 +671,7 @@ namespace DS
                 {
                     UserName= "tahel87",
                     Passcode= 8765456,
+                    Name="Tahel",
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -677,6 +680,7 @@ namespace DS
                 {
                     UserName= "dav983",
                     Passcode= 876865,
+                    Name="Dav",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -685,6 +689,7 @@ namespace DS
                 {
                     UserName= "duc45",
                     Passcode= 765,
+                    Name="Shira",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -693,6 +698,7 @@ namespace DS
                 {
                     UserName= "cut765",
                     Passcode= 678,
+                    Name="Shira",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -701,6 +707,7 @@ namespace DS
                 {
                     UserName= "dog555",
                     Passcode= 567,
+                    Name="Noa",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -709,6 +716,7 @@ namespace DS
                 {
                     UserName= "fug897",
                     Passcode= 567,
+                    Name="Reut",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -717,6 +725,7 @@ namespace DS
                 {
                     UserName= "noa8642",
                     Passcode= 345,
+                    Name="Noa",
                     AdminAccess=true,
                     IsDeleted= false
                 },
@@ -725,6 +734,7 @@ namespace DS
                 {
                     UserName= "classb",
                     Passcode= 45656,
+                    Name="Rina",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -732,6 +742,7 @@ namespace DS
                 {
                     UserName= "1",
                     Passcode=1,
+                    Name="Shifi",
                     AdminAccess=false,
                     IsDeleted= false
                 },
@@ -1549,7 +1560,7 @@ namespace DS
                     StationCode1 = 93,
                     StationCode2 = 116,
                     Distance = 6,
-                    Time = new TimeSpan(0, 5, 0),
+                    Time = new TimeSpan(0, 10, 0),
                     IsDeleted = false,
                 },
                 #endregion

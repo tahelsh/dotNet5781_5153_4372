@@ -16,21 +16,42 @@ namespace DL
         #region singelton
         static readonly DLXML instance = new DLXML();
         static DLXML() { }// static ctor to ensure instance init is done just before first usage
-        DLXML() { } // default => private
+        DLXML()
+        {
+            //if (!File.Exists(stationsPath))
+            //    DL.XMLTools.SaveListToXMLSerializer<DO.Station>(DS.DataSource.ListStations, stationsPath);
+
+            ////if (!File.Exists(linesPath))
+            ////    DL.XMLTools.SaveListToXMLSerializer<DO.Line>(DS.DataSource.ListLines, linesPath);
+
+            //if (!File.Exists(adjacentStationsPath))
+            //    DL.XMLTools.SaveListToXMLSerializer<DO.AdjacentStations>(DS.DataSource.ListAdjacentStations, adjacentStationsPath);
+
+            ////if (!File.Exists(lineStationsPath))
+            ////    DL.XMLTools.SaveListToXMLSerializer<DO.LineStation>(DS.DataSource.ListLineStations, lineStationsPath);
+
+            //if (!File.Exists(busesPath))
+            //    DL.XMLTools.SaveListToXMLSerializer<DO.Bus>(DS.DataSource.ListBuses, busesPath);
+
+            //if (!File.Exists(usersPath))
+            //    DL.XMLTools.SaveListToXMLSerializer<DO.User>(DS.DataSource.ListUsers, usersPath);
+
+        } // default => private
         public static DLXML Instance { get => instance; }// The public Instance property to use
         #endregion
 
         #region DS XML Files
 
-        string lineTripsPath = @"UserXml.xml"; //XElement
+        string lineTripsPath = @"LineTripsXml.xml"; //XElement
 
         string busesPath = @"BusesXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
         string linesPath = @"LinesXml.xml"; //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
         //string lineTripsPath = @"LineTripsXml.xml"; //XMLSerializer
+
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
-        string usersPath = @"TripsXml.xml"; //XMLSerializer
+        string usersPath = @"UsersXml.xml"; //XMLSerializer
         string runningNumberPath = @"TripsXml.xml"; //XMLSerializer
         #endregion
 
@@ -539,8 +560,8 @@ namespace DL
                 throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "This user name is already exist");
 
             XElement lineTripElem = new XElement("LineTrip",
-                                    new XElement("LineId", lineTrip.LineId).ToString(),
-                                    new XElement("StartAt", lineTrip.StartAt).ToString(),
+                                    new XElement("LineId", lineTrip.LineId.ToString()),
+                                    new XElement("StartAt", lineTrip.StartAt.ToString()),
                                     new XElement("IsDeleted", lineTrip.IsDeleted.ToString()));
             lineTripsRootElem.Add(lineTripElem);
             XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);

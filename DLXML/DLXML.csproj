@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,6 +50,10 @@
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{43d2514a-6521-4966-9f1d-ac816599ee58}</Project>
       <Name>DLAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DS\DS.csproj">
+      <Project>{33d0cef3-3025-4dd6-b1af-66a5887cd2d5}</Project>
+      <Name>DS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

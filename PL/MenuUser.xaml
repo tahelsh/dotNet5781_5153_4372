@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.MenuUser"
         mc:Ignorable="d"
-        Title="MenuUser" Height="450" Width="800" Loaded="Window_Loaded_1">
+        Title="Menu User" Height="450" Width="800" Loaded="Window_Loaded_1">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
@@ -28,41 +28,34 @@
 
             </Grid>
         </DataTemplate>
+        <Style x:Key="TextStyle" TargetType="Control">
+            <Setter Property="FontFamily" Value="Segoe Print"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
         <CollectionViewSource x:Key="stationInLineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:StationInLine}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="General">
-                <Grid Margin="21,0,60,0">
-                    <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="96,58,0,0" VerticalAlignment="Top" Width="136" Height="39"/>
-                    <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="96,147,0,0" VerticalAlignment="Top" Width="136" Height="42"/>
-                    <Button Content="Search" HorizontalAlignment="Left" Margin="96,256,0,0" VerticalAlignment="Top" Width="136" Click="Search_Button_Click" Height="44"/>
+                <Grid Margin="10,8,-7,16">
+                    <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="37,91,0,0" VerticalAlignment="Top" Width="170" Height="39"/>
+                    <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="45,193,0,0" VerticalAlignment="Top" Width="162" Height="42"/>
+                    <Button Content="Search" HorizontalAlignment="Left" Margin="96,292,0,0" VerticalAlignment="Top" Width="136" Click="Search_Button_Click" Height="44" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
                     <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="185" Margin="384,25,0,0"/>
-                    <Label Content="Source station" HorizontalAlignment="Left" Height="28" Margin="96,16,0,0" VerticalAlignment="Top" Width="101"/>
-                    <Label Content="Destination station" HorizontalAlignment="Left" Height="26" Margin="96,116,0,0" VerticalAlignment="Top" Width="118"/>
-
+                    <Label Content="Source station:" HorizontalAlignment="Left" Height="40" Margin="29,47,0,0" VerticalAlignment="Top" Width="151" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+                    <Label Content="Destination station:" HorizontalAlignment="Left" Height="39" Margin="38,146,0,0" VerticalAlignment="Top" Width="202" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="671,7,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Label Name="labelNameOfUser" Content="{Binding}" HorizontalAlignment="Left" Height="37" Margin="27,7,0,0" VerticalAlignment="Top" Width="148" FontFamily="Segoe Print" FontSize="20"/>
                 </Grid>
             </TabItem>
 
             <TabItem Header="Lines" >
                 <Grid x:Name="linesGrid" HorizontalAlignment="Left" Margin="0,7,0,25" Width="787" DataContext="{StaticResource lineViewSource}">
-                    <Label Content="stations in line:" HorizontalAlignment="Left" Height="27" Margin="179,141,0,0" VerticalAlignment="Top" Width="121"/>
-                    <ListBox Name="LBFrequency" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="144" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" />
-                    <ComboBox x:Name="CBLines" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="26,21,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBLines_SelectionChanged"/>
-                    <Grid x:Name="LineDetailsGrid" HorizontalAlignment="Left" Margin="217,22,0,0" VerticalAlignment="Top" Height="73" Width="124">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="areaTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,8.2,-39.2,8.6" Grid.Row="1" Text="{Binding Area}" VerticalAlignment="Center" Width="50"/>
-                        <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="lineNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding LineNum}" VerticalAlignment="Center"/>
-                    </Grid>
+                    <Label Content="stations in line:" HorizontalAlignment="Left" Height="38" Margin="158,132,0,0" VerticalAlignment="Top" Width="136" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+                    <Label Content="Lines:" HorizontalAlignment="Left" Height="52" Margin="11,-3,0,0" VerticalAlignment="Top" Width="135" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11"/>
+                    <ListBox Name="LBFrequency" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="144" Margin="10,95,0,0" VerticalAlignment="Top" Width="109" FontFamily="Segoe Print" FontWeight="Bold" FontSize="12"/>
+                    <ComboBox x:Name="CBLines" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBLines_SelectionChanged" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
                     <DataGrid x:Name="stationInLineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="145,173,10,29" RowDetailsVisibilityMode="VisibleWhenSelected">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn x:Name="lineStationIndexColumn1" Header="Line Station Index" Width="SizeToHeader">
@@ -106,8 +99,23 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="SignOut_Button"  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="676,10,0,0" VerticalAlignment="Top" Width="83" Click="SignOut_Button_Click"/>
-                    <Label Content="frequency" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="109"/>
+                    <Button Name="SignOut_Button"  Content="התנתק" HorizontalAlignment="Left" Height="39" Margin="660,10,0,0" VerticalAlignment="Top" Width="99" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Label Content="frequency:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="109" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+                    <Grid x:Name="LineDetailsGrid" HorizontalAlignment="Left" Margin="251,43,0,0" VerticalAlignment="Top" Height="82" Width="171">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+                        <TextBlock x:Name="areaTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,8.4,-53,8.2" Grid.Row="1" Text="{Binding Area}" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" Width="68"/>
+                        <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+                        <TextBlock x:Name="lineNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding LineNum}" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+                    </Grid>
                 </Grid>
 
             </TabItem>
@@ -125,11 +133,11 @@
                             <DataGridTextColumn x:Name="AreaColumn" Binding="{Binding Area}" Header="      Area      " Width="SizeToHeader"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged"/>
+                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="38,20,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged" FontFamily="Segoe Print" FontWeight="Bold" FontSize="13" />
                     <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}" HorizontalAlignment="Left" Height="141" Margin="532,62,0,0" VerticalAlignment="Top" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14"/>
                     <Label Content="Code:"  HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" />
                     <TextBlock x:Name="codeTextBlock" HorizontalAlignment="Left" Margin="609,37,0,320" Text="{Binding}" VerticalAlignment="Center" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" />
-                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="38,62,0,0" VerticalAlignment="Top" Height="108" Width="435">
+                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="38,62,0,0" VerticalAlignment="Top" Height="141" Width="439">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -139,16 +147,16 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,-278.2,10.4" Grid.Row="1" Text="{Binding Address}" VerticalAlignment="Center" Width="327"/>
+                        <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+                        <TextBlock x:Name="addressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,-245.8,11" Grid.Row="1" Text="{Binding Address}" VerticalAlignment="Center" Width="297" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
 
-                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                        <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
                         <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-277.4,8.6" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="327"/>
+                        <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource TextStyle}" />
+                        <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-246.6,9.2" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="297" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
                     </Grid>
-                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="34" Margin="687,10,0,0" VerticalAlignment="Top" Width="84" Click="SignOut_Button_Click"/>
-                    <Image Source="disableAccess.png" Margin="155,132,579.4,227" />
+                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="682,10,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Image Source="disableAccess.png" Margin="180,157,554.4,202" />
 
                 </Grid>
 

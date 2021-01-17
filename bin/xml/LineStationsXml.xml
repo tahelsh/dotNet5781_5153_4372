@@ -1,43 +1,19 @@
 <?xml version="1.0"?>
 <ArrayOfLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LineStation>
-    <LineId>1</LineId>
-    <StationCode>91</StationCode>
+    <LineId>4</LineId>
+    <StationCode>95</StationCode>
     <LineStationIndex>1</LineStationIndex>
     <PrevStationCode>0</PrevStationCode>
-    <NextStationCode>97</NextStationCode>
+    <NextStationCode>103</NextStationCode>
     <IsDeleted>false</IsDeleted>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationCode>108</StationCode>
-    <LineStationIndex>3</LineStationIndex>
-    <PrevStationCode>91</PrevStationCode>
-    <NextStationCode>90</NextStationCode>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <StationCode>105</StationCode>
-    <LineStationIndex>4</LineStationIndex>
-    <PrevStationCode>97</PrevStationCode>
-    <NextStationCode>90</NextStationCode>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <StationCode>90</StationCode>
-    <LineStationIndex>5</LineStationIndex>
-    <PrevStationCode>108</PrevStationCode>
-    <NextStationCode>0</NextStationCode>
-    <IsDeleted>false</IsDeleted>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <StationCode>97</StationCode>
+    <LineId>4</LineId>
+    <StationCode>103</StationCode>
     <LineStationIndex>2</LineStationIndex>
-    <PrevStationCode>91</PrevStationCode>
-    <NextStationCode>105</NextStationCode>
+    <PrevStationCode>95</PrevStationCode>
+    <NextStationCode>0</NextStationCode>
     <IsDeleted>false</IsDeleted>
   </LineStation>
 </ArrayOfLineStation>

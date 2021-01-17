@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <User>
     <UserName>Shira123</UserName>
@@ -76,5 +76,12 @@
     <Passcode>1</Passcode>
     <AdminAccess>false</AdminAccess>
     <IsDeleted>false</IsDeleted>
+  </User>
+  <User>
+    <UserName>tahel</UserName>
+    <Name>tahel</Name>
+    <Passcode>123</Passcode>
+    <AdminAccess>False</AdminAccess>
+    <IsDeleted>False</IsDeleted>
   </User>
 </ArrayOfUser>

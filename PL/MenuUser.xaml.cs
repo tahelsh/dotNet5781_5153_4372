@@ -36,6 +36,7 @@ namespace PL
             CBLines.DisplayMemberPath = "LineNum";
             CBLines.DataContext = bl.GetAllLines();
             //לשונית של ביצוע נסיעה
+            labelNameOfUser.Content = "Hi "+user.Name+",";
             CBSourceStation.DisplayMemberPath = "Name";
             CBDestinationStation.DisplayMemberPath = "Name";
             CBSourceStation.SelectedIndex = 0; //index of the object to be selected
@@ -109,9 +110,9 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch(Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

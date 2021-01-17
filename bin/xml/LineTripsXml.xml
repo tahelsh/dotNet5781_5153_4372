@@ -1,13 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LineTripsXml.xml>
-  <LineTrip>
-    <LineId>1</LineId>
-    <StartAt>00:10:00</StartAt>
-    <IsDeleted>True</IsDeleted>
-  </LineTrip>
-  <LineTrip>
-    <LineId>1</LineId>
-    <StartAt>00:00:00</StartAt>
-    <IsDeleted>True</IsDeleted>
-  </LineTrip>
-</LineTripsXml.xml>
+<LineTripsXml.xml />

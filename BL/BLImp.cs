@@ -455,7 +455,7 @@ namespace BL
                 }
                 if (sDO.LineStationIndex != indexlast+1)//if its not the last station, update the next station
                 {
-                    next = lSList[sDO.LineStationIndex];
+                    next = lSList[sDO.LineStationIndex-1];
                     next.PrevStationCode = sDO.StationCode;
                     sDO.NextStationCode = next.StationCode;
                 }

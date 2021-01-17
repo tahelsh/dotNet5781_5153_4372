@@ -109,7 +109,7 @@ namespace DL
         }
         public void AddUser(DO.User user)
         {
-            XElement usersRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+            XElement usersRootElem = XMLTools.LoadListFromXMLElement(usersPath);
 
             XElement user1 = (from u in usersRootElem.Elements()
                               where u.Element("UserName").Value == user.UserName && bool.Parse(u.Element("IsDeleted").Value) == false

@@ -160,6 +160,10 @@ namespace PL
             {
                 MessageBox.Show(ex.Message+": "+ex.depTime, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Add_Dep_Time_Button_Click(object sender, RoutedEventArgs e)
@@ -175,8 +179,12 @@ namespace PL
             {
                 MessageBox.Show(ex.Message + ": " + ex.depTime, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-           
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
 
         }
     }

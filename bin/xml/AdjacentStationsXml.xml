@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AdjacentStationsXml.xml>
+  <AdjacentStations>
+    <StationCode1>91</StationCode1>
+    <StationCode2>105</StationCode2>
+    <Distance>4.5</Distance>
+    <Time>00:15:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>105</StationCode1>
+    <StationCode2>90</StationCode2>
+    <Distance>7.2</Distance>
+    <Time>00:05:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>91</StationCode1>
+    <StationCode2>108</StationCode2>
+    <Distance>0</Distance>
+    <Time>00:00:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>108</StationCode1>
+    <StationCode2>105</StationCode2>
+    <Distance>6.5</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>91</StationCode1>
+    <StationCode2>97</StationCode2>
+    <Distance>4.2</Distance>
+    <Time>00:15:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>97</StationCode1>
+    <StationCode2>108</StationCode2>
+    <Distance>12</Distance>
+    <Time>00:02:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+</AdjacentStationsXml.xml>

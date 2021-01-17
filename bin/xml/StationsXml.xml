@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Station>
+    <Code>73</Code>
+    <Name>שדרות גולדה מאיר/המשורר אצ''ג</Name>
+    <Longitude>35.188624</Longitude>
+    <Latitude>31.825302</Latitude>
+    <Address>רחוב:שדרות גולדה מאיר  עיר: ירושלים </Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>76</Code>
+    <Name>בית ספר צור באהר בנות/אלמדינה אלמונוורה</Name>
+    <Longitude>35.228765</Longitude>
+    <Latitude>31.738425</Latitude>
+    <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>77</Code>
+    <Name>בית ספר אבן רשד/אלמדינה אלמונוורה</Name>
+    <Longitude>35.226704</Longitude>
+    <Latitude>31.738676</Latitude>
+    <Address>רחוב:אל מדינה אל מונאוורה  עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>78</Code>
+    <Name>שרי ישראל/יפו</Name>
+    <Longitude>35.206146</Longitude>
+    <Latitude>31.789128</Latitude>
+    <Address>רחוב:שדרות שרי ישראל 15 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>83</Code>
+    <Name>בטן אלהווא/חוש אל מרג</Name>
+    <Longitude>35.240417</Longitude>
+    <Latitude>31.766358</Latitude>
+    <Address>רחוב:בטן אל הווא  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>84</Code>
+    <Name>מלכי ישראל/הטורים</Name>
+    <Longitude>35.209791</Longitude>
+    <Latitude>31.790758</Latitude>
+    <Address> רחוב:מלכי ישראל 77 עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>85</Code>
+    <Name>בית ספר לבנים/אלמדארס</Name>
+    <Longitude>35.238509</Longitude>
+    <Latitude>31.768643</Latitude>
+    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>86</Code>
+    <Name>מגרש כדורגל/אלמדארס</Name>
+    <Longitude>35.23973</Longitude>
+    <Latitude>31.769899</Latitude>
+    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>88</Code>
+    <Name>בית ספר לבנות/בטן אלהוא</Name>
+    <Longitude>35.238443</Longitude>
+    <Latitude>31.767064</Latitude>
+    <Address> רחוב:בטן אל הווא  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>90</Code>
+    <Name>גולדה/הרטום</Name>
+    <Longitude>35.213021</Longitude>
+    <Latitude>31.799804</Latitude>
+    <Address>רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>91</Code>
+    <Name>דרך בית לחם הישה/ואדי קדום</Name>
+    <Longitude>35.247102</Longitude>
+    <Latitude>31.765717</Latitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>93</Code>
+    <Name>חוש סלימה 1</Name>
+    <Longitude>35.246594</Longitude>
+    <Latitude>31.767265</Latitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>94</Code>
+    <Name>דרך בית לחם הישנה ב</Name>
+    <Longitude>35.246655</Longitude>
+    <Latitude>31.767084</Latitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>95</Code>
+    <Name>דרך בית לחם הישנה א</Name>
+    <Longitude>31.768759</Longitude>
+    <Latitude>31.768759</Latitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>97</Code>
+    <Name>שכונת בזבז 2</Name>
+    <Longitude>35.24348</Longitude>
+    <Latitude>31.77002</Latitude>
+    <Address> רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>102</Code>
+    <Name>גולדה/שלמה הלוי</Name>
+    <Longitude>35.208257</Longitude>
+    <Latitude>31.8003</Latitude>
+    <Address> רחוב:שדרות גולדה מאיר  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>103</Code>
+    <Name>גולדה/הרטום</Name>
+    <Longitude>35.214106</Longitude>
+    <Latitude>31.8</Latitude>
+    <Address> רחוב:שדרות גולדה מאיר  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>105</Code>
+    <Name>גבעת משה</Name>
+    <Longitude>35.217133</Longitude>
+    <Latitude>31.797708</Latitude>
+    <Address> רחוב:גבעת משה 2 עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>106</Code>
+    <Name>גבעת משה</Name>
+    <Longitude>35.217057</Longitude>
+    <Latitude>31.797535</Latitude>
+    <Address> רחוב:גבעת משה 3 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>108</Code>
+    <Name>עזרת תורה/עלי הכהן</Name>
+    <Longitude>35.213728</Longitude>
+    <Latitude>31.797535</Latitude>
+    <Address>  רחוב:עזרת תורה 25 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>109</Code>
+    <Name>עזרת תורה/דורש טוב</Name>
+    <Longitude>35.212936</Longitude>
+    <Latitude>31.796818</Latitude>
+    <Address>  רחוב:עזרת תורה 21 עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>110</Code>
+    <Name>עזרת תורה/דורש טוב</Name>
+    <Longitude>35.212698</Longitude>
+    <Latitude>31.796129</Latitude>
+    <Address> רחוב:עזרת תורה 12 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>111</Code>
+    <Name>יעקובזון/עזרת תורה</Name>
+    <Longitude>35.21161</Longitude>
+    <Latitude>31.794631</Latitude>
+    <Address>  רחוב:יעקובזון 1 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>112</Code>
+    <Name>יעקובזון/עזרת תורה</Name>
+    <Longitude>35.211684</Longitude>
+    <Latitude>31.79508</Latitude>
+    <Address> רחוב:יעקובזון  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>113</Code>
+    <Name>זית רענן/אוהל יהושע</Name>
+    <Longitude>35.211065</Longitude>
+    <Latitude>31.796255</Latitude>
+    <Address>  רחוב:זית רענן 1 עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>115</Code>
+    <Name>זית רענן/תורת חסד</Name>
+    <Longitude>35.209575</Longitude>
+    <Latitude>31.798423</Latitude>
+    <Address> רחוב:זית רענן  עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>116</Code>
+    <Name>זית רענן/תורת חסד</Name>
+    <Longitude>35.208878</Longitude>
+    <Latitude>31.798689</Latitude>
+    <Address>  רחוב:הרב סורוצקין 48 עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>117</Code>
+    <Name>קרית הילד/סורוצקין</Name>
+    <Longitude>35.206918</Longitude>
+    <Latitude>31.799165</Latitude>
+    <Address>  רחוב:הרב סורוצקין  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>119</Code>
+    <Name>סורוצקין/שנירר</Name>
+    <Longitude>35.205601</Longitude>
+    <Latitude>31.797829</Latitude>
+    <Address>  רחוב:הרב סורוצקין 31 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1485</Code>
+    <Name>שדרות נווה יעקוב/הרב פרדס </Name>
+    <Longitude>35.240062</Longitude>
+    <Latitude>31.840063</Latitude>
+    <Address>רחוב: שדרות נווה יעקוב  עיר:ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1486</Code>
+    <Name>מרכז קהילתי /שדרות נווה יעקוב</Name>
+    <Longitude>35.23972</Longitude>
+    <Latitude>31.838481</Latitude>
+    <Address>רחוב:שדרות נווה יעקוב ירושלים עיר:ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1487</Code>
+    <Name> מסוף 700 /שדרות נווה יעקוב </Name>
+    <Longitude>35.231598</Longitude>
+    <Latitude>31.837748</Latitude>
+    <Address>חוב:שדרות נווה יעקב 7 עיר: ירושלים  </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1488</Code>
+    <Name> הרב פרדס/אסטורהב </Name>
+    <Longitude>35.246272</Longitude>
+    <Latitude>31.840279</Latitude>
+    <Address>רחוב:מעגלות הרב פרדס  עיר: ירושלים רציף  </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1490</Code>
+    <Name>הרב פרדס/צוקרמן </Name>
+    <Longitude>35.243639</Longitude>
+    <Latitude>31.843598</Latitude>
+    <Address>רחוב:מעגלות הרב פרדס 24 עיר: ירושלים   </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1491</Code>
+    <Name>ברזיל </Name>
+    <Longitude>35.173</Longitude>
+    <Latitude>31.766256</Latitude>
+    <Address>רחוב:ברזיל 14 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1492</Code>
+    <Name>בית וגן/הרב שאג </Name>
+    <Longitude>35.184771</Longitude>
+    <Latitude>31.76736</Latitude>
+    <Address>רחוב:בית וגן 61 עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1493</Code>
+    <Name>בית וגן/עוזיאל </Name>
+    <Longitude>35.183999</Longitude>
+    <Latitude>31.770543</Latitude>
+    <Address>רחוב:בית וגן 21 עיר: ירושלים    </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1494</Code>
+    <Name> קרית יובל/שמריהו לוין </Name>
+    <Longitude>35.178701</Longitude>
+    <Latitude>31.768465</Latitude>
+    <Address>רחוב:ארתור הנטקה  עיר: ירושלים    </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1510</Code>
+    <Name> קורצ'אק / רינגלבלום </Name>
+    <Longitude>35.173688</Longitude>
+    <Latitude>31.759534</Latitude>
+    <Address>רחוב:יאנוש קורצ'אק 7 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1511</Code>
+    <Name> טהון/גולומב </Name>
+    <Longitude>35.175929</Longitude>
+    <Latitude>31.761447</Latitude>
+    <Address>רחוב:יעקב טהון  עיר: ירושלים     </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1512</Code>
+    <Name>הרב הרצוג/שח''ל </Name>
+    <Longitude>35.199936</Longitude>
+    <Latitude>31.761447</Latitude>
+    <Address>רחוב:הרב הרצוג  עיר: ירושלים רציף</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1514</Code>
+    <Name>פרץ ברנשטיין/נזר דוד </Name>
+    <Longitude>35.189336</Longitude>
+    <Latitude>31.759186</Latitude>
+    <Address>רחוב:הרב הרצוג  עיר: ירושלים רציף</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1518</Code>
+    <Name>פרץ ברנשטיין/נזר דוד</Name>
+    <Longitude>35.189178</Longitude>
+    <Latitude>31.759121</Latitude>
+    <Address> רחוב:פרץ ברנשטיין 56 עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1522</Code>
+    <Name>מוזיאון ישראל/רופין</Name>
+    <Longitude>35.204882</Longitude>
+    <Latitude>31.774484</Latitude>
+    <Address>  רחוב:דרך רופין  עיר: ירושלים </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1523</Code>
+    <Name>הרצוג/טשרניחובסקי</Name>
+    <Longitude>35.208248</Longitude>
+    <Latitude>31.769652</Latitude>
+    <Address>   רחוב:הרב הרצוג  עיר: ירושלים  </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>1524</Code>
+    <Name>רופין/שד' הזז</Name>
+    <Longitude>35.208248</Longitude>
+    <Latitude>31.769652</Latitude>
+    <Address>    רחוב:הרב הרצוג  עיר: ירושלים   </Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>121</Code>
+    <Name>מרכז סולם/סורוצקין </Name>
+    <Longitude>35.206094</Longitude>
+    <Latitude>31.796033</Latitude>
+    <Address> רחוב:הרב סורוצקין 13 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>123</Code>
+    <Name>אוהל דוד/סורוצקין </Name>
+    <Longitude>35.205216</Longitude>
+    <Latitude>31.794958</Latitude>
+    <Address>  רחוב:הרב סורוצקין 9 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>122</Code>
+    <Name>מרכז סולם/סורוצקין </Name>
+    <Longitude>35.206158</Longitude>
+    <Latitude>31.79617</Latitude>
+    <Address>  רחוב:הרב סורוצקין 28 עיר: ירושלים</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>555</Code>
+    <Name>בדבבבבב</Name>
+    <Longitude>33.1</Longitude>
+    <Latitude>31.2</Latitude>
+    <Address>יןגיןםגג</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>true</IsDeleted>
+  </Station>
+</ArrayOfStation>

@@ -103,7 +103,7 @@ namespace PL
             BO.Station dest = (CBDestinationStation.SelectedItem) as BO.Station;
             try
             {
-                List<BO.Line> listLinesInRoute = bl.FindRoute(source.Code, dest.Code);
+                List<string> listLinesInRoute = bl.FindRoute(source.Code, dest.Code);
                 LBLinesInRoute.DataContext = listLinesInRoute;
             }
             catch(BO.BadInputException ex)

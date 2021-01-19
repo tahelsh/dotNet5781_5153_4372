@@ -43,16 +43,13 @@ namespace DL
         #region DS XML Files
 
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
-
         string busesPath = @"BusesXml.xml"; //XMLSerializer
-        string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
+        string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XElement
         string linesPath = @"LinesXml.xml"; //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
-        //string lineTripsPath = @"LineTripsXml.xml"; //XMLSerializer
-
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
         string usersPath = @"UsersXml.xml"; //XMLSerializer
-        string runningNumberPath = @"TripsXml.xml"; //XMLSerializer
+        string runningNumberPath = @"RunningNumberPathXml.xml"; //XMLSerializer
         #endregion
 
         #region User

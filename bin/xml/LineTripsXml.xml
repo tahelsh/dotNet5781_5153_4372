@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LineTripsXml.xml />
+<LineTripsXml.xml>
+  <LineTrip>
+    <LineId>0</LineId>
+    <StartAt>17:01:00</StartAt>
+    <IsDeleted>False</IsDeleted>
+  </LineTrip>
+</LineTripsXml.xml>

@@ -279,7 +279,7 @@ namespace BL
             }
             return -1;
         }
-        private TimeSpan OrderByTimeTravel(BO.Line line, int stationCode1, int stationCode2)
+        private TimeSpan TimeTravel(BO.Line line, int stationCode1, int stationCode2)
         {
             int index1 = IsStationFound(line, stationCode1);
             int index2 = IsStationFound(line, stationCode2);
@@ -290,10 +290,11 @@ namespace BL
             }
             return sum;
         }
-        public List<BO.Line> FindRoute(int stationCode1, int stationCode2)
+        public List<string> FindRoute(int stationCode1, int stationCode2)
         {
-            List<BO.Line> linesInRoute = new List<BO.Line>();
-            List<BO.Line> allLines = GetAllLines().ToList();
+            List<string> linesInRoute = new List<string>();//list of lines with line number and time travel
+            List<BO.Line> linesInRouteTemp = new List<BO.Line>();//list of lines that pass on the two stations-temp list
+            List<BO.Line> allLines = GetAllLines().ToList();//all lines
             foreach (BO.Line line in allLines)
             {
 
@@ -301,12 +302,16 @@ namespace BL
                 int index2 = IsStationFound(line, stationCode2);
                 if (index1 != -1 && index2 != -1 && index1 < index2)
                 {
-                    linesInRoute.Add(line);
+                    linesInRouteTemp.Add(line);
                 }
             }
-            if (linesInRoute.Count == 0)
+            if (linesInRouteTemp.Count == 0)
                 throw new BO.BadInputException("There are no lines in this route");
-            linesInRoute = linesInRoute.OrderBy(l => OrderByTimeTravel(l, stationCode1, stationCode2)).ToList();
+            linesInRouteTemp = linesInRouteTemp.OrderBy(l => TimeTravel(l, stationCode1, stationCode2)).ToList();
+            foreach (BO.Line line in linesInRouteTemp)
+            {
+                linesInRoute.Add(line.LineNum + "\t" + TimeTravel(line, stationCode1, stationCode2));
+            }
             return linesInRoute;
         }
         #endregion

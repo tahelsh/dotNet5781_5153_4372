@@ -32,8 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		bin\xml\LineStationsXml.xml = bin\xml\LineStationsXml.xml
 		bin\xml\LinesXml.xml = bin\xml\LinesXml.xml
 		bin\xml\LineTripsXml.xml = bin\xml\LineTripsXml.xml
+		bin\xml\RunningNumberPathXml.xml = bin\xml\RunningNumberPathXml.xml
 		bin\xml\StationsXml.xml = bin\xml\StationsXml.xml
-		bin\xml\TripsXml.xml = bin\xml\TripsXml.xml
 		bin\xml\UsersXml.xml = bin\xml\UsersXml.xml
 	EndProjectSection
 EndProject

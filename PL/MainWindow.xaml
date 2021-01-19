@@ -41,13 +41,13 @@
             <Label Content="name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
             <Label Content="passcode:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe Print" FontSize="16" FontWeight="Bold"/>
-            <TextBox x:Name="passcodeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
+            <TextBox x:Name="passcodeTextBox"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
             <Label Content="user Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontFamily="Segoe Print" FontSize="16" FontWeight="Bold"/>
             <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0" Grid.Row="0" Text="{Binding UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
         </Grid>
         <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="83,351,0,0" VerticalAlignment="Top" Width="158" Click="Submit_Click" Height="37" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
         <Button x:Name="SignInButton" Content="Sign In" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="550,243,0,0" Height="39" Click="SignInButton_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-        <PasswordBox Name="PBPasscode" HorizontalAlignment="Left" Margin="571,199,0,0" VerticalAlignment="Top" Width="113" Height="27" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
+        <PasswordBox Name="PBPasscode"  HorizontalAlignment="Left" Margin="571,199,0,0" VerticalAlignment="Top" Width="113" Height="27" FontFamily="SimSun" FontWeight="Bold" FontSize="16"/>
         <Label Content="Welcome" HorizontalAlignment="Left" Height="75" Margin="237,1,0,0" VerticalAlignment="Top" Width="313" FontFamily="Ravie" FontSize="48" Background="#00000000" Foreground="#FFF1AA11"/>
         <Image Margin="619,308,18,10" Source="logo.JPG" Stretch="Fill"/>
 

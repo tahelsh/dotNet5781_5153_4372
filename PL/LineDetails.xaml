@@ -97,7 +97,7 @@
             <Label VerticalAlignment="Bottom" Grid.Row="0" Margin="3,0,0,3.6" HorizontalAlignment="Left" Grid.Column="0" Content="Line Id:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
             <TextBlock x:Name="lineIdTextBlock" VerticalAlignment="Center" Text="{Binding LineId}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Number:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <TextBox x:Name="lineNumTextBox" Width="120" KeyDown="keyCheck" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
         </Grid>
         <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="619" Grid.ColumnSpan="2"/>
         <Button Content="Add station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="302,280,0,0" Height="45" Click="Button_Click_Add_Station" Grid.ColumnSpan="2" FontSize="16"/>

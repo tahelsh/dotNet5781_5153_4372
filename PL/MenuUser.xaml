@@ -42,7 +42,7 @@
                     <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="37,91,0,0" VerticalAlignment="Top" Width="170" Height="39"/>
                     <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="45,193,0,0" VerticalAlignment="Top" Width="162" Height="42"/>
                     <Button Content="Search" HorizontalAlignment="Left" Margin="96,292,0,0" VerticalAlignment="Top" Width="136" Click="Search_Button_Click" Height="44" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
-                    <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="185" Margin="384,25,0,0"/>
+                    <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="185" Margin="384,25,0,0" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Label Content="Source station:" HorizontalAlignment="Left" Height="40" Margin="29,47,0,0" VerticalAlignment="Top" Width="151" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
                     <Label Content="Destination station:" HorizontalAlignment="Left" Height="39" Margin="38,146,0,0" VerticalAlignment="Top" Width="202" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
                     <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="671,7,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
@@ -157,10 +157,13 @@
                     </Grid>
                     <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="682,10,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Image Source="disableAccess.png" Margin="180,157,554.4,202" />
-
                 </Grid>
-
             </TabItem>
+
+            <TabItem Header="Lines in Area">
+                
+            </TabItem>
+            
 
         </TabControl>
     </Grid>

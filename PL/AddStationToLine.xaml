@@ -13,7 +13,6 @@
         <Button Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144" Margin="31,341,0,0" Height="48" Click="Button_Click_Submit"/>
         <Label  Content="Prev Station" HorizontalAlignment="Left" Height="35" Margin="135,46,0,0" VerticalAlignment="Top" Width="130"/>
         <Label Content="New Station" HorizontalAlignment="Left" Height="39" Margin="152,151,0,0" VerticalAlignment="Top" Width="104"/>
-        <TextBox Name="TBDisNext" Visibility="{Binding ElementName=TBTimeNext, Path=Visibility}" HorizontalAlignment="Left" Height="25" Margin="531,356,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="91"/>
 
     </Grid>
 </Window>

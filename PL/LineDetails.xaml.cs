@@ -187,5 +187,10 @@ namespace PL
 
 
         }
+        private void keyCheck(object sender, KeyEventArgs e)
+        {
+            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.Enter && e.Key != Key.Escape && e.Key != Key.Back)
+                e.Handled = true;
+        }
     }
 }

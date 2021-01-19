@@ -1,11 +1,19 @@
 <?xml version="1.0"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
-    <LineId>4</LineId>
+    <LineId>0</LineId>
+    <LineNum>23</LineNum>
+    <Area>Center</Area>
+    <FirstStation>112</FirstStation>
+    <LastStation>94</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>1</LineId>
     <LineNum>12</LineNum>
-    <Area>General</Area>
-    <FirstStation>95</FirstStation>
-    <LastStation>103</LastStation>
+    <Area>South</Area>
+    <FirstStation>97</FirstStation>
+    <LastStation>116</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
 </ArrayOfLine>

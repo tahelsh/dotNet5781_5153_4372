@@ -47,6 +47,7 @@ namespace PL
                 try
                 {
                     bl.AddLineStation(newS);
+                    Close();
                 }
                 catch (BO.BadLineStationException ex)
                 {
@@ -74,6 +75,7 @@ namespace PL
                 try
                 {
                     bl.AddLineStation(newS);
+                    Close();
                 }
                 catch (BO.BadLineStationException ex)
                 {
@@ -88,7 +90,7 @@ namespace PL
                     MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            Close();
+            
         }
     }
 }

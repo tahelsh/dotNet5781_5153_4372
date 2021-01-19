@@ -45,7 +45,7 @@ namespace PL
                 int passcode;
                 bool success;
                 success = int.TryParse(passcodeTextBox.Text, out passcode);
-                if (!success)
+                if (!success || passcode < 0)
                 {
                     passcodeTextBox.BorderBrush = Brushes.Red;
                     MessageBox.Show("The passcode needs to be only with digits", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -96,7 +96,7 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+     
 
-       
     }
 }

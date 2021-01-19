@@ -10,7 +10,7 @@
         <Label Content="Enter Time" HorizontalAlignment="Left" Height="47" Margin="72,42,0,0" VerticalAlignment="Top" Width="199"/>
         <TextBox Name="TBTime" HorizontalAlignment="Left" Height="47" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="120" Margin="72,89,0,0"/>
         <Label Content="Enter Distance" HorizontalAlignment="Left" Height="42" Margin="72,160,0,0" VerticalAlignment="Top" Width="136"/>
-        <TextBox Name="TBDistance" HorizontalAlignment="Left" Height="45" Margin="57,220,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="151"/>
+        <TextBox Name="TBDistance" KeyDown="keyCheck" HorizontalAlignment="Left" Height="45" Margin="57,220,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="151"/>
         <Button  Content="Save" HorizontalAlignment="Left" Height="54" Margin="72,303,0,0" VerticalAlignment="Top" Width="136" Click="Save_Button_Click"/>
 
     </Grid>

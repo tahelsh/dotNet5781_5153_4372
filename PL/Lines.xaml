@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Lines" Height="450" Width="800">
+        Title="Lines" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="linesTemplate"
                   DataType="local:Line" x:Name="line">
@@ -32,7 +32,7 @@
         <ListBox Name="LBLines" ItemsSource="{Binding}" ItemTemplate="{StaticResource linesTemplate}"  HorizontalAlignment="Left" Height="235" VerticalAlignment="Top" Width="784" Margin="0,99,0,0" MouseDoubleClick="Line_MouseClick"/>
         <Button Content="Add new line" HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Margin="279,350,0,0" Height="55" Click="Button_Click_AddNewLine" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
         <Label Content="Line Number" HorizontalAlignment="Left" Height="42" Margin="10,54,0,0" VerticalAlignment="Top" Width="148" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
-        <Label Content="Area" HorizontalAlignment="Left" Height="42" Margin="178,57,0,0" VerticalAlignment="Top" Width="95" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Area" HorizontalAlignment="Left" Height="42" Margin="178,56,0,0" VerticalAlignment="Top" Width="95" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
         <Label Content="Lines" HorizontalAlignment="Left" Height="52" Margin="279,10,0,0" VerticalAlignment="Top" Width="135" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11"/>
 
 

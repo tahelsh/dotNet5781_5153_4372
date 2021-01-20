@@ -115,6 +115,13 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void Simulate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            BO.Station station = StationDetailsGrid.DataContext as BO.Station;
+            SimulateOneStationWindow win = new SimulateOneStationWindow(bl, station);
+            win.ShowDialog();
+        }
     }
 }
 

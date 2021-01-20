@@ -93,7 +93,7 @@
     <StationCode>105</StationCode>
     <LineStationIndex>2</LineStationIndex>
     <PrevStationCode>97</PrevStationCode>
-    <NextStationCode>95</NextStationCode>
+    <NextStationCode>117</NextStationCode>
     <IsDeleted>false</IsDeleted>
   </LineStation>
   <LineStation>
@@ -102,20 +102,20 @@
     <LineStationIndex>3</LineStationIndex>
     <PrevStationCode>105</PrevStationCode>
     <NextStationCode>117</NextStationCode>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <StationCode>117</StationCode>
-    <LineStationIndex>4</LineStationIndex>
-    <PrevStationCode>95</PrevStationCode>
+    <LineStationIndex>3</LineStationIndex>
+    <PrevStationCode>105</PrevStationCode>
     <NextStationCode>85</NextStationCode>
     <IsDeleted>false</IsDeleted>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <StationCode>85</StationCode>
-    <LineStationIndex>5</LineStationIndex>
+    <LineStationIndex>4</LineStationIndex>
     <PrevStationCode>117</PrevStationCode>
     <NextStationCode>1488</NextStationCode>
     <IsDeleted>false</IsDeleted>
@@ -123,7 +123,7 @@
   <LineStation>
     <LineId>1</LineId>
     <StationCode>1488</StationCode>
-    <LineStationIndex>6</LineStationIndex>
+    <LineStationIndex>5</LineStationIndex>
     <PrevStationCode>85</PrevStationCode>
     <NextStationCode>116</NextStationCode>
     <IsDeleted>false</IsDeleted>
@@ -131,8 +131,24 @@
   <LineStation>
     <LineId>1</LineId>
     <StationCode>116</StationCode>
-    <LineStationIndex>7</LineStationIndex>
+    <LineStationIndex>6</LineStationIndex>
     <PrevStationCode>1488</PrevStationCode>
+    <NextStationCode>0</NextStationCode>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <StationCode>95</StationCode>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStationCode>0</PrevStationCode>
+    <NextStationCode>94</NextStationCode>
+    <IsDeleted>false</IsDeleted>
+  </LineStation>
+  <LineStation>
+    <LineId>2</LineId>
+    <StationCode>94</StationCode>
+    <LineStationIndex>2</LineStationIndex>
+    <PrevStationCode>95</PrevStationCode>
     <NextStationCode>0</NextStationCode>
     <IsDeleted>false</IsDeleted>
   </LineStation>

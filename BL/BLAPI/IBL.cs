@@ -42,6 +42,7 @@ namespace BLAPI
         void AddStation(BO.Station stat);
         void DeleteStation(int code);
         void UpdateStation(BO.Station stationBO);
+        IEnumerable<BO.LineTiming> GetLineTimingPerStation(BO.Station station, TimeSpan tsCurrentTime);
 
         #endregion
 

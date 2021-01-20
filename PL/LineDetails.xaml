@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LineDetails"
         mc:Ignorable="d"
-        Title="Line Details" Height="450" Width="848" Loaded="Window_Loaded">
+        Title="Line Details" Height="450" Width="848" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
         <DataTemplate x:Key="stationInLineTemplate"

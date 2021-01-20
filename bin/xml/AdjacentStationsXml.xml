@@ -256,7 +256,7 @@
     <StationCode1>103</StationCode1>
     <StationCode2>108</StationCode2>
     <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Time>00:01:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -284,7 +284,7 @@
     <StationCode1>97</StationCode1>
     <StationCode2>85</StationCode2>
     <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Time>00:01:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -305,7 +305,7 @@
     <StationCode1>1512</StationCode1>
     <StationCode2>1524</StationCode2>
     <Distance>0</Distance>
-    <Time>00:13:00</Time>
+    <Time>00:00:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -319,7 +319,7 @@
     <StationCode1>108</StationCode1>
     <StationCode2>123</StationCode2>
     <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Time>00:05:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -339,8 +339,8 @@
   <AdjacentStations>
     <StationCode1>97</StationCode1>
     <StationCode2>105</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>4.5</Distance>
+    <Time>00:03:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -360,15 +360,15 @@
   <AdjacentStations>
     <StationCode1>117</StationCode1>
     <StationCode2>85</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>3</Distance>
+    <Time>00:09:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
     <StationCode1>85</StationCode1>
     <StationCode2>1488</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>5</Distance>
+    <Time>00:12:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -376,6 +376,20 @@
     <StationCode2>116</StationCode2>
     <Distance>0</Distance>
     <Time>00:00:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>105</StationCode1>
+    <StationCode2>117</StationCode2>
+    <Distance>5</Distance>
+    <Time>00:04:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>95</StationCode1>
+    <StationCode2>94</StationCode2>
+    <Distance>1.9</Distance>
+    <Time>00:12:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
 </AdjacentStationsXml.xml>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddStationToLine" Height="450" Width="800">
+        Title="AddStationToLine" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox Name="CBPrevStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="51" Margin="84,86,0,0" VerticalAlignment="Top" Width="228" />
         <ComboBox Name="CBNewStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="58" Margin="84,195,0,0" VerticalAlignment="Top" Width="228"/>

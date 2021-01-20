@@ -5,10 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MenuAdmin" Height="450" Width="800">
+        Title="MenuAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="ButtonsStyle" TargetType="Control">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="Segoe Print"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FFEDBF33"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="backGround.png"/>
+    </Window.Background>
     <Grid>
-        <Button Content="Buses" HorizontalAlignment="Left" Height="61" Margin="223,336,0,0" VerticalAlignment="Top" Width="245" Click="Button_Click_Buses"/>
-        <Button Content="Lines" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" Margin="223,230,0,0" Height="66" Click="Button_Click_Lines"/>
-        <Button Content="Station" HorizontalAlignment="Left" Height="72" Margin="223,129,0,0" VerticalAlignment="Top" Width="245" Click="Button_Click_Stations"/>
+        <Button Content="Buses" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Margin="27,241,0,0" VerticalAlignment="Top"  Click="Button_Click_Buses" Width="232"/>
+        <Button Content="Lines" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="284,241,0,0"  Click="Button_Click_Lines" Width="232"/>
+        <Button Content="Station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left"  Margin="536,241,0,0" VerticalAlignment="Top"  Click="Button_Click_Stations" Width="232"/>
+        <Label Name="LabelUserName" Content="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,129,0,0" Height="73" Width="546" FontFamily="Segoe Print" FontSize="20"/>
     </Grid>
 </Window>

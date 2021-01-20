@@ -27,6 +27,7 @@ namespace PL
             InitializeComponent();
             bl = _bl;
             user = _user;
+            LabelUserName.Content = "Hi "+user.Name+", you can choose from the folowing options";
         }
         private void Button_Click_Buses(object sender, RoutedEventArgs e)
         {

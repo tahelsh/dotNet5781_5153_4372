@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.Stations"
         mc:Ignorable="d"
-        Title="Stations" Height="562" Width="843.2" Loaded="Window_Loaded">
+        Title="Stations" Height="562" Width="843.2" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
         <CollectionViewSource x:Key="lineInStationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:LineInStation}, CreateList=True}"/>

@@ -61,6 +61,9 @@
     <Compile Include="MenuUser.xaml.cs">
       <DependentUpon>MenuUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimulateOneStationWindow.xaml.cs">
+      <DependentUpon>SimulateOneStationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Stations.xaml.cs">
       <DependentUpon>Stations.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SimulateOneStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Stations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="disableAccess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

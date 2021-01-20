@@ -18,12 +18,16 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad license number: {licenseNum}";
     }
+
+    [Serializable]
     public class BadInputException : Exception
     {
         public BadInputException(string message) : base(message) { }
         public override string ToString() => base.ToString();
     }
-     public class BadTripIdException : Exception
+
+    [Serializable]
+    public class BadTripIdException : Exception
     {
         public int ID;
         public BadTripIdException(int id) : base() => ID = id;
@@ -34,6 +38,8 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
     }
+
+    [Serializable]
     public class BadStationCodeException : Exception
     {
         public int stationCode;
@@ -45,6 +51,8 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station code number: {stationCode}";
     }
+
+    [Serializable]
     public class BadUserNameException : Exception
     {
         public string userName;
@@ -56,6 +64,8 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad station code number: {userName}";
     }
+
+    [Serializable]
     public class BadLineStationException : Exception
     {
         public int lineId;
@@ -72,6 +82,8 @@ namespace DO
             return Message;
         }
     }
+
+    [Serializable]
     public class BadAdjacentStationsException : Exception
     {
         public int stationCode1;
@@ -90,6 +102,8 @@ namespace DO
             return Message;
         }
     }
+
+    [Serializable]
     public class BadLineTripException : Exception
     {
         public int lineId;
@@ -108,6 +122,8 @@ namespace DO
             return Message;
         }
     }
+
+    [Serializable]
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;
@@ -121,6 +137,8 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
+
+    [Serializable]
     public class BadLineIdException : Exception
     {
         public int ID;

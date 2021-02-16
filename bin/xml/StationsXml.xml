@@ -55,15 +55,6 @@
     <IsDeleted>true</IsDeleted>
   </Station>
   <Station>
-    <Code>85</Code>
-    <Name>בית ספר לבנים/אלמדארס</Name>
-    <Longitude>35.238509</Longitude>
-    <Latitude>31.768643</Latitude>
-    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
-    <DisabledAccess>true</DisabledAccess>
-    <IsDeleted>false</IsDeleted>
-  </Station>
-  <Station>
     <Code>86</Code>
     <Name>מגרש כדורגל/אלמדארס</Name>
     <Longitude>35.23973</Longitude>
@@ -80,15 +71,6 @@
     <Address> רחוב:בטן אל הווא  עיר: ירושלים</Address>
     <DisabledAccess>true</DisabledAccess>
     <IsDeleted>true</IsDeleted>
-  </Station>
-  <Station>
-    <Code>90</Code>
-    <Name>גולדה/הרטום</Name>
-    <Longitude>35.213021</Longitude>
-    <Latitude>31.799804</Latitude>
-    <Address>רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
-    <DisabledAccess>true</DisabledAccess>
-    <IsDeleted>false</IsDeleted>
   </Station>
   <Station>
     <Code>91</Code>
@@ -449,5 +431,23 @@
     <Address>יןגיןםגג</Address>
     <DisabledAccess>false</DisabledAccess>
     <IsDeleted>true</IsDeleted>
+  </Station>
+  <Station>
+    <Code>85</Code>
+    <Name>בית ספר לבנים/אלמדארס</Name>
+    <Longitude>35.238509</Longitude>
+    <Latitude>31.768643</Latitude>
+    <Address>רחוב:אלמדארס  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>90</Code>
+    <Name>גולדה/הרטום</Name>
+    <Longitude>35.213021</Longitude>
+    <Latitude>31.799804</Latitude>
+    <Address>רחוב:דרך בית לחם הישנה  עיר: ירושלים</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
   </Station>
 </ArrayOfStation>

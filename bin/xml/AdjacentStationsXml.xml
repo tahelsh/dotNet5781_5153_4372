@@ -332,8 +332,8 @@
   <AdjacentStations>
     <StationCode1>112</StationCode1>
     <StationCode2>103</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>10.5</Distance>
+    <Time>00:08:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>

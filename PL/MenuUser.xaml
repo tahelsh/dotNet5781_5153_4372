@@ -36,16 +36,16 @@
         <CollectionViewSource x:Key="stationInLineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:StationInLine}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
-        <TabControl>
+        <TabControl Margin="0,1,-0.4,-1">
             <TabItem Header="Search route">
-                <Grid Margin="10,8,-7,16">
+                <Grid Margin="10,1,-5,16">
                     <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="37,91,0,0" VerticalAlignment="Top" Width="170" Height="39"/>
                     <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="45,193,0,0" VerticalAlignment="Top" Width="162" Height="42"/>
                     <Button Content="Search" HorizontalAlignment="Left" Margin="96,292,0,0" VerticalAlignment="Top" Width="136" Click="Search_Button_Click" Height="44" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
                     <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="305" VerticalAlignment="Top" Width="185" Margin="384,25,0,0" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Label Content="Source station:" HorizontalAlignment="Left" Height="40" Margin="29,47,0,0" VerticalAlignment="Top" Width="151" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
                     <Label Content="Destination station:" HorizontalAlignment="Left" Height="39" Margin="38,146,0,0" VerticalAlignment="Top" Width="202" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
-                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="671,7,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Button  Content="Exist" HorizontalAlignment="Left" Height="40" Margin="680,8,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Label Name="labelNameOfUser" Content="{Binding}" HorizontalAlignment="Left" Height="37" Margin="27,7,0,0" VerticalAlignment="Top" Width="148" FontFamily="Segoe Print" FontSize="20"/>
                 </Grid>
             </TabItem>
@@ -97,7 +97,7 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="SignOut_Button"  Content="התנתק" HorizontalAlignment="Left" Height="39" Margin="660,10,0,0" VerticalAlignment="Top" Width="99" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Button  Content="Exist" HorizontalAlignment="Left" Height="40" Margin="690,0,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Label Content="frequency:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="109" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
                     <Grid x:Name="LineDetailsGrid" HorizontalAlignment="Left" Margin="251,43,0,0" VerticalAlignment="Top" Height="82" Width="171">
                         <Grid.ColumnDefinitions>
@@ -119,7 +119,7 @@
             </TabItem>
 
             <TabItem Header="Stations" >
-                <Grid x:Name="StationsGrid"  HorizontalAlignment="Left" Height="389" Margin="0,4,-2,-1" VerticalAlignment="Top" Width="790" DataContext="{StaticResource stationViewSource}" >
+                <Grid x:Name="StationsGrid"  HorizontalAlignment="Left" Height="391" Margin="0,2,0,-1" VerticalAlignment="Top" Width="788" DataContext="{StaticResource stationViewSource}" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -153,14 +153,14 @@
                         <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource TextStyle}" />
                         <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-246.6,9.2" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="297" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
                     </Grid>
-                    <Button  Content="התנתק" HorizontalAlignment="Left" Height="40" Margin="682,10,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+                    <Button  Content="Exist" HorizontalAlignment="Left" Height="40" Margin="689,5,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                     <Image Source="disableAccess.png" Margin="180,157,554.4,202" />
                     <Button Content="Simulate" Click="Simulate_Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="141" Margin="552,285,0,0" Height="53" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
                 </Grid>
             </TabItem>
 
             <TabItem Header="Lines in Area">
-                
+
 
             </TabItem>
 

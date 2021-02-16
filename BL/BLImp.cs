@@ -276,7 +276,6 @@ namespace BL
 
         }
 
-
         private int IsStationFound(BO.Line line, int stationCode)
         {
             foreach (BO.StationInLine stat in line.Stations)
@@ -400,6 +399,7 @@ namespace BL
                 throw new BO.BadStationCodeException(ex.Message, ex);
             }
         }
+        #region Simulator
 
         public IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime)
         {
@@ -407,19 +407,20 @@ namespace BL
             List<BO.Line> listLines = (from l in GetAllLines()
                                       where l.Stations.Find(s => s.StationCode == stationBO.Code) != null
                                       select l).ToList();
-
-            List<LineTiming> times = new List<LineTiming>();
+           
+            List<LineTiming> times = new List<LineTiming>();//list of the lines that the function will return
             TimeSpan hour = new TimeSpan(1, 0, 0);//help to find the times that in the range of one hour from currentTime                           
-
             for (int i = 0; i < listLines.Count(); i++)//for all the lines that pass in the station
             {//calculate the times 
-                TimeSpan tmp;//= TimeSpan.Zero;
-                int currentLineid = listLines[i].LineId;
+                TimeSpan tmp;//the current time
+                int currentLineid = listLines[i].LineId;// line id of the current line
                 List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip=>trip.LineId==currentLineid && trip.IsDeleted==false ).ToList();// times of the current Line
                 TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
-                for (int j = 0; j < lineSchedual.Count ; j++)//for all the times in line sSchedual
-                {//check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
-
+                int numOfTimes = 0;
+                List<int> timesOfCurrentLine = new List<int>();
+                for (int j = 0; j < lineSchedual.Count && numOfTimes < 3 ; j++)//for all the times in line sSchedual
+                {
+                    //check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
                     if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour
                         && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
                     //check if the bus already passed the statioin   
@@ -430,23 +431,39 @@ namespace BL
                         }
                         else//if the line didnt get out from the station
                             tmp = timeTilStatin+ (lineSchedual[j].StartAt - currentTime);
-                        //creat LineTiming and add to the list
-                        times.Add(new LineTiming
-                        {
-                            LineId = currentLineid,
-                            LineNum = listLines[i].LineNum,
-                            DestinationCode = listLines[i].Stations[listLines[i].Stations.Count() - 1].StationCode,
-                            SourceCode = listLines[i].Stations[0].StationCode,
-                            EstimatedTime =TimeSpan.Parse( tmp.ToString().Substring(0, 8))
-                        }) ; 
-
+                    
+                        timesOfCurrentLine.Add(tmp.Minutes);
+                        //timesString = timesString + tmp.Minutes+ ", ";                                                                                                  
+                        numOfTimes++;
                     }
                 }
+
+                if (timesOfCurrentLine.Count != 0)
+                {
+                    string timesString = "";//the string of times
+                    timesOfCurrentLine = timesOfCurrentLine.OrderBy(s => s).ToList();//order the times in ascending order
+                    for (int k=0; k< timesOfCurrentLine.Count-1; k++)
+                    {
+                        timesString = timesString + timesOfCurrentLine[k] + ", ";
+                    }
+                    timesString= timesString + timesOfCurrentLine[timesOfCurrentLine.Count - 1] ;//add the last one without ","
+                    times.Add(new LineTiming
+                    {
+                        LineId = currentLineid,
+                        LineNum = listLines[i].LineNum,
+                        DestinationStation = listLines[i].Stations[listLines[i].Stations.Count() - 1].Name,
+                        Stringtimes = timesString,                                     
+                    }) ;
+
+                }
+                numOfTimes = 0;
+                //timesString = "";
             }
-            times = times.OrderBy(lt => lt.EstimatedTime).ToList();
+            times = times.OrderBy(lt => lt.LineNum).ToList();//order the list by the number of the lines in ascending order
             return times;
 
         }
+
         private TimeSpan travelTime(int stationCode, int lineID)
         {//func that return the time from first station in line to specific station
             TimeSpan sumTime = TimeSpan.Zero;
@@ -463,6 +480,73 @@ namespace BL
             }
             return sumTime;
         }
+
+        //public IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime)
+        //{
+        //    //list of lines that pass in the station
+        //    List<BO.Line> listLines = (from l in GetAllLines()
+        //                               where l.Stations.Find(s => s.StationCode == stationBO.Code) != null
+        //                               select l).ToList();
+
+        //    List<LineTiming> times = new List<LineTiming>();
+        //    TimeSpan hour = new TimeSpan(1, 0, 0);//help to find the times that in the range of one hour from currentTime                           
+
+        //    for (int i = 0; i < listLines.Count(); i++)//for all the lines that pass in the station
+        //    {//calculate the times 
+        //        TimeSpan tmp;//= TimeSpan.Zero;
+        //        int currentLineid = listLines[i].LineId;// line id of the current line
+        //        List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList();// times of the current Line
+        //        TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
+        //        for (int j = 0; j < lineSchedual.Count; j++)//for all the times in line sSchedual
+        //        {//check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
+
+        //            if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour
+        //                && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
+        //            //check if the bus already passed the statioin   
+        //            {
+        //                if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station
+        //                {
+        //                    tmp = timeTilStatin - (currentTime - lineSchedual[j].StartAt);
+        //                }
+        //                else//if the line didnt get out from the station
+        //                    tmp = timeTilStatin + (lineSchedual[j].StartAt - currentTime);
+        //                //creat LineTiming and add to the list
+        //                times.Add(new LineTiming
+        //                {
+        //                    LineId = currentLineid,
+        //                    LineNum = listLines[i].LineNum,
+        //                    DestinationCode = listLines[i].Stations[listLines[i].Stations.Count() - 1].StationCode,
+        //                    SourceCode = listLines[i].Stations[0].StationCode,
+        //                    EstimatedTime = TimeSpan.Parse(tmp.ToString().Substring(0, 8))
+        //                });
+
+        //            }
+        //        }
+        //    }
+        //    times = times.OrderBy(lt => lt.EstimatedTime).ToList();
+        //    return times;
+
+        //}
+
+        //private TimeSpan travelTime(int stationCode, int lineID)
+        //{//func that return the time from first station in line to specific station
+        //    TimeSpan sumTime = TimeSpan.Zero;
+        //    BO.Line line = GetLine(lineID);
+        //    foreach (var s in line.Stations)
+        //    {
+        //        if (s.StationCode != stationCode)
+        //            sumTime += s.Time;
+        //        else
+        //        {
+        //            //sumTime += s.TimeFromPrevStation;
+        //            break;
+        //        }
+        //    }
+        //    return sumTime;
+        //}
+
+
+        #endregion
 
         #endregion
 

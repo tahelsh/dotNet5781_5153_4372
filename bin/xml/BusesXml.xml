@@ -11,16 +11,6 @@
     <IsDeleted>false</IsDeleted>
   </Bus>
   <Bus>
-    <LicenseNum>1524897</LicenseNum>
-    <FromDate>2017-12-01T00:00:00</FromDate>
-    <TotalTrip>10000</TotalTrip>
-    <FuelRemain>900</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-12-01T00:00:00</DateLastTreat>
-    <KmLastTreat>9500</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
     <LicenseNum>47589646</LicenseNum>
     <FromDate>2019-11-11T00:00:00</FromDate>
     <TotalTrip>10000</TotalTrip>
@@ -97,6 +87,16 @@
     <FuelRemain>1000</FuelRemain>
     <Status>Available</Status>
     <DateLastTreat>2021-01-17T11:34:36.5771097+02:00</DateLastTreat>
+    <KmLastTreat>10000</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>1524897</LicenseNum>
+    <FromDate>2017-12-01T00:00:00</FromDate>
+    <TotalTrip>10000</TotalTrip>
+    <FuelRemain>900</FuelRemain>
+    <Status>Available</Status>
+    <DateLastTreat>2021-02-16T14:45:38.5725432+02:00</DateLastTreat>
     <KmLastTreat>10000</KmLastTreat>
     <IsDeleted>false</IsDeleted>
   </Bus>

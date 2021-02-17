@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddStationToLine" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Add a station to line" Height="444.4" Width="372.8" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ComboBox Name="CBPrevStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="51" Margin="84,86,0,0" VerticalAlignment="Top" Width="228" />
-        <ComboBox Name="CBNewStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="58" Margin="84,195,0,0" VerticalAlignment="Top" Width="228"/>
-        <CheckBox Name="CBIsFirst" Content="Is it the first station?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="313,34,0,0" Height="34" Width="140"/>
-        <Button Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144" Margin="31,341,0,0" Height="48" Click="Button_Click_Submit"/>
-        <Label  Content="Prev Station" HorizontalAlignment="Left" Height="35" Margin="135,46,0,0" VerticalAlignment="Top" Width="130"/>
-        <Label Content="New Station" HorizontalAlignment="Left" Height="39" Margin="152,151,0,0" VerticalAlignment="Top" Width="104"/>
+        <ComboBox Name="CBPrevStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="51" Margin="84,133,0,0" VerticalAlignment="Top" Width="228" FontFamily="Segoe Print" FontSize="14" />
+        <ComboBox Name="CBNewStation" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="58" Margin="84,254,0,0" VerticalAlignment="Top" Width="228" FontFamily="Segoe Print" FontSize="14"/>
+        <CheckBox Name="CBIsFirst" Content="Is it the first station?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="84,28,0,0" Height="36" Width="191" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+        <Button Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144" Margin="106,341,0,0" Height="48" Click="Button_Click_Submit" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Label  Content="Choose previous station:" HorizontalAlignment="Left" Height="35" Margin="104,80,0,0" VerticalAlignment="Top" Width="202" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Choose new station:" HorizontalAlignment="Left" Height="35" Margin="115,203,0,0" VerticalAlignment="Top" Width="188" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
 
     </Grid>
 </Window>

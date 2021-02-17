@@ -6,14 +6,19 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.BusDetails"
         mc:Ignorable="d"
-        Title="BusDetails" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Bus details" Height="450" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
+        <Style x:Key="TextStyle" TargetType="Control">
+            <Setter Property="FontFamily" Value="Segoe Print"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Button Content="עדכן פרטים" HorizontalAlignment="Left" Margin="464,338,0,0" VerticalAlignment="Top" Width="168" Height="48" Click="ButtonUpdate_Click"/>
-        <Button Content="מחק אוטובוס" HorizontalAlignment="Left" Height="48" Margin="153,338,0,0" VerticalAlignment="Top" Width="135" Click="ButtonRemove_Click"/>
-        <Grid x:Name="grid2" DataContext="{StaticResource busViewSource}" HorizontalAlignment="Left" Margin="253,43,0,0" VerticalAlignment="Top">
+        <Button Content="Update" HorizontalAlignment="Left" Margin="202,353,0,0" VerticalAlignment="Top" Width="135" Height="48" Click="ButtonUpdate_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="48" Margin="46,352,0,0" VerticalAlignment="Top" Width="135" Click="ButtonRemove_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Grid x:Name="grid2" DataContext="{StaticResource busViewSource}" HorizontalAlignment="Left" Margin="47,28,0,0" VerticalAlignment="Top" Width="337">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -27,26 +32,26 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="License Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding LicenseNum}" VerticalAlignment="Center"/>
-            <Label Content="From Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="fromDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding FromDate}" VerticalAlignment="Center"/>
-            <Label Content="Fuel Remain:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Km Last Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Date Last Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1" SelectedItem="{Binding BusStatus}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="120">
+            <Label Content="License number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,13,0,12.6" Grid.Row="0" Text="{Binding LicenseNum}" VerticalAlignment="Center" Width="71" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <Label Content="From date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBlock x:Name="fromDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.4,8.6,-13.4,8" Grid.Row="1" Text="{Binding FromDate}" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" Width="190" />
+            <Label Content="Fuel remain:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <Label Content="Km last treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <Label Content="Date last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <ComboBox x:Name="statusComboBox" Grid.Column="1" SelectedItem="{Binding BusStatus}" Style="{StaticResource TextStyle}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Total Trip:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Total trip:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
         </Grid>
 
     </Grid>

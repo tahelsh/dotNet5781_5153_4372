@@ -16,6 +16,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20"/>
+        </Grid.Background>
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="23,25,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="214" Width="278">
             <Grid.RowDefinitions>

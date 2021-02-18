@@ -16,6 +16,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20"/>
+        </Grid.Background>
         <Button Content="Update" HorizontalAlignment="Left" Margin="202,353,0,0" VerticalAlignment="Top" Width="135" Height="48" Click="ButtonUpdate_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
         <Button Content="Delete" HorizontalAlignment="Left" Height="48" Margin="46,352,0,0" VerticalAlignment="Top" Width="135" Click="ButtonRemove_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
         <Grid x:Name="grid2" DataContext="{StaticResource busViewSource}" HorizontalAlignment="Left" Margin="47,28,0,0" VerticalAlignment="Top" Width="337">

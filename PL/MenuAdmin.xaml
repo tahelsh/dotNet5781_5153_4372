@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MenuAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MenuAdmin" Height="590" Width="939" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="ButtonsStyle" TargetType="Control">
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -23,9 +23,9 @@
         <ImageBrush ImageSource="backGround.png"/>
     </Window.Background>
     <Grid>
-        <Button Content="Buses" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Margin="27,241,0,0" VerticalAlignment="Top"  Click="Button_Click_Buses" Width="232"/>
-        <Button Content="Lines" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="284,241,0,0"  Click="Button_Click_Lines" Width="232"/>
-        <Button Content="Station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left"  Margin="536,241,0,0" VerticalAlignment="Top"  Click="Button_Click_Stations" Width="232"/>
-        <Label Name="LabelUserName" Content="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,129,0,0" Height="73" Width="546" FontFamily="Segoe Print" FontSize="20"/>
+        <Button Content="Buses" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Margin="64,317,0,0" VerticalAlignment="Top"  Click="Button_Click_Buses" Width="232"/>
+        <Button Content="Lines" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="368,317,0,0"  Click="Button_Click_Lines" Width="232"/>
+        <Button Content="Station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left"  Margin="660,317,0,0" VerticalAlignment="Top"  Click="Button_Click_Stations" Width="232"/>
+        <Label Name="LabelUserName" Content="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,197,0,0" Height="73" Width="875" FontFamily="Segoe Print" FontSize="30"/>
     </Grid>
 </Window>

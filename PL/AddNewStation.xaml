@@ -16,6 +16,9 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Height="250" Width="309">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="128"/>

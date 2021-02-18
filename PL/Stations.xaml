@@ -75,7 +75,7 @@
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Image Margin="484,151,0,0" Source="disableAccess.png" Stretch="Fill" HorizontalAlignment="Stretch" Width="44" Height="40" VerticalAlignment="Top"/>
+        <Image Margin="478,146,315.2,0" Source="disableAccess.png" Stretch="Fill" HorizontalAlignment="Stretch" Width="44" Height="40" VerticalAlignment="Top" RenderTransformOrigin="-0.6,0.26"/>
         <Label Content="Stations:" HorizontalAlignment="Left" Height="47" Margin="29,14,601.2,0" VerticalAlignment="Top" Width="207" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11">
         </Label>
 

@@ -15,7 +15,7 @@ namespace BO
         public List<TimeSpan> DepTimes { get; set; }//departure time זמני יציאה
         public override string ToString()
        {
-            return " Line number: " + LineNum + " Area: "+ Area;
+            return " Line number:    " + LineNum + "    Last Station:    "+ Stations[Stations.Count-1].Name;
        }
 
 

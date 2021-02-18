@@ -16,6 +16,9 @@
         </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource busViewSource}">
+        <Grid.Background>
+            <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Button Content="save" HorizontalAlignment="Left" Height="50" Margin="103,342,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="15,24,0,0" VerticalAlignment="Top" Height="294" Width="342" >
             <Grid.ColumnDefinitions>

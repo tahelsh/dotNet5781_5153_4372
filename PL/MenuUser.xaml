@@ -142,7 +142,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Stations:" HorizontalAlignment="Left" Height="52" Margin="10,-2,0,0" VerticalAlignment="Top" Width="199" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11"/>
-                    <DataGrid x:Name="linesInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="38,222,0,0" RowDetailsVisibilityMode="VisibleWhenSelected" Style="{StaticResource TextStyle}" HorizontalAlignment="Left" Width="461" Height="272" VerticalAlignment="Top">
+                    <DataGrid x:Name="linesInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="38,222,419.4,28" RowDetailsVisibilityMode="VisibleWhenSelected" Style="{StaticResource TextStyle}">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="lineNumColumn" Binding="{Binding LineNum}" Header="Line Number" Width="SizeToHeader"/>
                             <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
@@ -153,7 +153,7 @@
                     <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}" HorizontalAlignment="Right" Height="141" Margin="0,0,196.4,319" VerticalAlignment="Bottom" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14"/>
                     <Label Content="Code:"  HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" />
                     <TextBlock x:Name="codeTextBlock" HorizontalAlignment="Left" Margin="604,36,0,454" Text="{Binding}" VerticalAlignment="Center" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" />
-                    <Grid x:Name="StationDetailsGrid" HorizontalAlignment="Left" Margin="38,62,0,0" VerticalAlignment="Top" Height="141" Width="439">
+                    <Grid x:Name="StationDetailsGrid" Margin="38,62,441.4,319">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
@@ -172,7 +172,7 @@
                         <TextBlock x:Name="nameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,9,-246.6,9.2" Grid.Row="0" Text="{Binding Name}" VerticalAlignment="Center" Width="297" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
                     </Grid>
                     <Button  Content="Exist" HorizontalAlignment="Left" Height="40" Margin="819,0,0,0" VerticalAlignment="Top" Width="89" Click="SignOut_Button_Click" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-                    <Image Source="disableAccess.png" Margin="208,157,0,319" HorizontalAlignment="Left" />
+                    <Image Source="disableAccess.png" Margin="208,157,664.4,319" />
                     <Button Content="Simulate" Click="Simulate_Button_Click" VerticalAlignment="Bottom" Margin="0,0,211.4,51" Height="53" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Width="141"/>
                 </Grid>
             </TabItem>

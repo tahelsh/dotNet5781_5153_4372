@@ -18,8 +18,8 @@
             <Setter Property="BorderThickness" Value="5"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Width" Value="160"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="192"/>
+            <Setter Property="Height" Value="59"/>
         </Style>
         <Style x:Key="TextStyle" TargetType="Control">
             <Setter Property="FontFamily" Value="Segoe Print"/>
@@ -27,11 +27,11 @@
             <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,-0.4,7" DataContext="{StaticResource lineInStationViewSource}">
-        <ListBox Name="LBStations" HorizontalAlignment="Left" Height="305" Margin="24,61,0,0" VerticalAlignment="Top" Width="135" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"  FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-        <Button Name="AddNewStation" Style="{StaticResource ButtonsStyle}" Content="AddNewStation" HorizontalAlignment="Left"  Margin="555,470,0,0" VerticalAlignment="Top" Click="AddNewStation_Click"/>
-        <Button Name="DeleteButton" Style="{StaticResource ButtonsStyle}" Content="Delete" HorizontalAlignment="Left"  Margin="330,470,0,0" VerticalAlignment="Top"  Click="DeleteButton_Click"/>
-        <Button Name="UpdateButton" Style="{StaticResource ButtonsStyle}" Content="Update" HorizontalAlignment="Left"  Margin="97,470,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click"/>
+    <Grid Margin="0,0,-0.4,7" DataContext="{StaticResource lineInStationViewSource}" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <ListBox Name="LBStations" HorizontalAlignment="Left" Height="370" Margin="25,66,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" MouseDoubleClick="Station_MouseDoubleClick"  FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" Width="143"/>
+        <Button Name="AddNewStation" Style="{StaticResource ButtonsStyle}" Content="AddNewStation" HorizontalAlignment="Left"  Margin="555,451,0,0" VerticalAlignment="Top" Click="AddNewStation_Click" />
+        <Button Name="DeleteButton" Style="{StaticResource ButtonsStyle}" Content="Delete" HorizontalAlignment="Left"  Margin="330,451,0,0" VerticalAlignment="Top"  Click="DeleteButton_Click" />
+        <Button Name="UpdateButton" Style="{StaticResource ButtonsStyle}" Content="Update" HorizontalAlignment="Left"  Margin="104,451,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click"/>
         <Grid x:Name="gridDetailsStation"  DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="322,18,0,0" VerticalAlignment="Top" Height="257" Width="393">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -67,7 +67,7 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3.2,9.8,-123,4.2" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="251" Style="{StaticResource TextStyle}"/>
         </Grid>
-        <DataGrid x:Name="lineInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="257,291,138.2,106" RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.515,0.668">
+        <DataGrid x:Name="lineInStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="225,280,142.2,101" RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.515,0.668" Style="{StaticResource TextStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="lineNumColumn" Binding="{Binding LineNum}" Header="Line Num" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameLastStationColumn" Binding="{Binding NameLastStation}" Header="Name Last Station" Width="SizeToHeader"/>
@@ -75,8 +75,8 @@
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Image Margin="484,151,309.2,334" Source="disableAccess.png" Stretch="Fill"/>
-        <Label Content="Stations:" HorizontalAlignment="Left" Height="47" Margin="5,9,0,0" VerticalAlignment="Top" Width="207" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11">
+        <Image Margin="484,151,0,0" Source="disableAccess.png" Stretch="Fill" HorizontalAlignment="Stretch" Width="44" Height="40" VerticalAlignment="Top"/>
+        <Label Content="Stations:" HorizontalAlignment="Left" Height="47" Margin="29,14,601.2,0" VerticalAlignment="Top" Width="207" FontFamily="Ravie" FontSize="30" Background="#00000000" Foreground="#FFF1AA11">
         </Label>
 
     </Grid>

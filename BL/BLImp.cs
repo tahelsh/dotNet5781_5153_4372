@@ -241,6 +241,15 @@ namespace BL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea()
+        {
+            IEnumerable<IGrouping<BO.Area, BO.Line>> result = from n in GetAllLines()
+                                                              group n by n.Area into gs
+                                                              select gs;
+            return result;
+
+        }
+
         public void UpdateLineDetails(BO.Line line)
         {
             DO.Line lineDO = new DO.Line();

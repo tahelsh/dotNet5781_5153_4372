@@ -43,6 +43,9 @@ namespace PL
             CBDestinationStation.SelectedIndex = 0; //index of the object to be selected
             CBSourceStation.DataContext = bl.GetAllStations().ToList();
             CBDestinationStation.DataContext = bl.GetAllStations().ToList();
+            //לשונית של חיפוש קווים לפי איזור
+            CBAreas.DataContext = Enum.GetValues(typeof(BO.Area));
+            CBAreas.SelectedIndex = 0;
 
         }
 
@@ -121,6 +124,23 @@ namespace PL
             BO.Station station = StationDetailsGrid.DataContext as BO.Station;
             SimulateOneStationWindow win = new SimulateOneStationWindow(bl, station);
             win.ShowDialog();
+        }
+
+   
+        private void CBAreas_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), CBAreas.SelectedItem.ToString());
+            IEnumerable<IGrouping<BO.Area, BO.Line>> linesInArea = bl.GetAllLinesByArea();
+            foreach (var group in linesInArea)
+            {
+                if (group.Key == area)
+                {
+                    LBLines.DataContext = group;
+                    LabelNoLinesInArea.Visibility = Visibility.Hidden;
+                    return;
+                }
+                LabelNoLinesInArea.Visibility = Visibility.Visible;
+            }
         }
     }
 }

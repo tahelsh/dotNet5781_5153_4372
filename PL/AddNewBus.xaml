@@ -42,7 +42,7 @@
             <Label Content="Date of last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4.6,0,4" Grid.Row="4" VerticalAlignment="Center" Height="33" Width="178" Style="{StaticResource TextStyle}"/>
             <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="2.4,8.6,0,10" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="23" Width="127" Style="{StaticResource TextStyle}"/>
             <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7.6" Grid.Row="5" VerticalAlignment="Center" Height="30" Width="149" Style="{StaticResource TextStyle}"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="23" ItemsSource="{Binding}" Margin="2.4,5,0,13.6" Grid.Row="5" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="statusComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="29" ItemsSource="{Binding}" Margin="2.4,5,0,7.6" Grid.Row="5" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>

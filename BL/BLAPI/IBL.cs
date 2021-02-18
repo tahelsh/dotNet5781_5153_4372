@@ -28,8 +28,8 @@ namespace BLAPI
         void AddNewLine(BO.Line lineBo);
         BO.Line GetLine(int lineId);
         IEnumerable<BO.Line> GetAllLines();
-        //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
         IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
+        IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea();
         void UpdateLineDetails(BO.Line line);
         void DeleteLine(int LineId);
         void AddBus(BO.Bus bus);

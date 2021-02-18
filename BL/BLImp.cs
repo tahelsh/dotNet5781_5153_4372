@@ -21,7 +21,7 @@ namespace BL
         #endregion
 
         #region Bus
-        BO.Bus busDoBoAdapter(DO.Bus busDO)
+        BO.Bus busDoBoAdapter(DO.Bus busDO)//turns a DO bus to a BO bus object
         {
             BO.Bus busBO = new BO.Bus();
             busDO.CopyPropertiesTo(busBO);
@@ -107,7 +107,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.Message, ex);
             }
         }
-        private int LengthLicenseNum(int licenseNum)
+        private int LengthLicenseNum(int licenseNum)//returns the length of the license number it gets
         {
             int counter = 0;
             while (licenseNum != 0)
@@ -334,7 +334,7 @@ namespace BL
         #endregion
 
         #region Station
-        public BO.Station StationDoBoAdapter(DO.Station stationDO)
+        public BO.Station StationDoBoAdapter(DO.Station stationDO)//turns a DO station to a BO station object
         {
             BO.Station stationBO = new BO.Station();
             int stationCode = stationDO.Code;

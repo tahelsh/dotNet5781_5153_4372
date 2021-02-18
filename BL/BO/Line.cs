@@ -12,7 +12,7 @@ namespace BO
        public int LineNum { get; set; }
        public Area Area { get; set; }
        public List<StationInLine> Stations { get; set; }
-        public List<TimeSpan> DepTimes { get; set; }//departure time זמני יציאה
+        public List<TimeSpan> DepTimes { get; set; }//departure time 
         public override string ToString()
        {
             return " Line number: " + LineNum + " Area: "+ Area;

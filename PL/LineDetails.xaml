@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LineDetails"
         mc:Ignorable="d"
-        Title="Line Details" Height="450" Width="848" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Line Details" Height="592.6" Width="1163.2" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
         <DataTemplate x:Key="stationInLineTemplate"
@@ -17,14 +17,15 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="210" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="230" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
@@ -37,11 +38,13 @@
                 <TextBlock Grid.Column="6"
                    Text="{Binding Path=Time}" Name="TBTime" FontFamily="Segoe Print" FontWeight="Bold"  />
                 <CheckBox Grid.Column="7"
-                   Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible"  Margin="13,0,0,0"/>
+                   Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" Margin="45,0,0,0" />
                 <Image Grid.Column="8"
-                     Source="delete.png" MouseDown="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True"  />
-                <Button Grid.Column="9"
-                   Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True" BorderThickness="2" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"  />
+                     Source="disableAccess.png" Margin="0,0,0,0" />
+                <Image Grid.Column="9"
+                     Source="delete.png" MouseDown="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="20,0,0,0" IsEnabled="True"  />
+                <Button Grid.Column="10"
+                   Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="20,0,0,0" IsEnabled="True" BorderThickness="2" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"  />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="frequencyTemplate"
@@ -51,7 +54,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
@@ -70,13 +73,13 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
+    <Grid Margin="0,0,4,0.2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="117" Width="203" Grid.ColumnSpan="2">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="30,28,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="172" Width="271" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -86,28 +89,28 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Area:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <ComboBox x:Name="areaComboBox" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3.2,5,0,9.6" ItemsSource="{Binding}" Height="27" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Grid.Column="1">
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Area:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+            <ComboBox x:Name="areaComboBox" Width="140" VerticalAlignment="Center" Grid.Row="2" Margin="2.8,10.2,-15.6,-0.2" ItemsSource="{Binding}" Height="42" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" HorizontalAlignment="Left" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label VerticalAlignment="Bottom" Grid.Row="0" Margin="3,0,0,3.6" HorizontalAlignment="Left" Grid.Column="0" Content="Line Id:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <TextBlock x:Name="lineIdTextBlock" VerticalAlignment="Center" Text="{Binding LineId}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Number:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <TextBox x:Name="lineNumTextBox" Width="120" KeyDown="keyCheck" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <Label VerticalAlignment="Bottom" Grid.Row="0" Margin="3,0,0,3.6" HorizontalAlignment="Left" Grid.Column="0" Content="Line Id:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+            <TextBlock x:Name="lineIdTextBlock" VerticalAlignment="Center" Text="{Binding LineId}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Number:" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+            <TextBox x:Name="lineNumTextBox" Width="120" KeyDown="keyCheck" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="2.8,10.2,0,9.6" Height="33" HorizontalAlignment="Left" Grid.Column="1" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
         </Grid>
-        <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="194" Margin="213,46,0,0" VerticalAlignment="Top" Width="619" Grid.ColumnSpan="2"/>
-        <Button Content="Add station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Margin="302,280,0,0" Height="45" Click="Button_Click_Add_Station" Grid.ColumnSpan="2" FontSize="16"/>
-        <Button Content="Update" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Height="45" Margin="457,280,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click_Update" Grid.ColumnSpan="2" FontSize="16"/>
-        <Button Content="Delete" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Height="45" Margin="621,280,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click_Delete" Grid.ColumnSpan="2" FontSize="16"/>
-        <ListBox Name="LBFrequency" ItemsSource="{Binding}" ItemTemplate="{StaticResource frequencyTemplate}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="160" Margin="19,172,0,0" VerticalAlignment="Top" Width="131" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" />
-        <Label Grid.ColumnSpan="2" Content="frequency:" HorizontalAlignment="Left" Height="34" Margin="18,138,0,0" VerticalAlignment="Top" Width="113" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-        <Button Style="{StaticResource ButtonsStyle}" Grid.ColumnSpan="2" Content="Add" HorizontalAlignment="Left" Height="32" Margin="131,378,0,0" VerticalAlignment="Top" Width="44" Click="Add_Dep_Time_Button_Click" RenderTransformOrigin="3.689,-0.621" FontSize="14"/>
-        <TextBox Name="TBNewDepTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="27,378,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="77" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-        <Label Grid.ColumnSpan="2" Content="add departure time:" HorizontalAlignment="Left" Height="29" Margin="19,332,0,0" VerticalAlignment="Top" Width="156" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" />
+        <ListBox Name="LBStations" ItemsSource="{Binding}" ItemTemplate="{StaticResource stationInLineTemplate}" HorizontalAlignment="Left" Height="364" Margin="283,44,0,0" VerticalAlignment="Top" Width="860" Grid.ColumnSpan="2" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"/>
+        <Button Content="Add station" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Margin="375,444,0,0" Height="60" Click="Button_Click_Add_Station" Grid.ColumnSpan="2" FontSize="20"/>
+        <Button Content="Update" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Height="60" Margin="582,445,0,0" VerticalAlignment="Top" Width="139" Click="Button_Click_Update" Grid.ColumnSpan="2" FontSize="20"/>
+        <Button Content="Delete" Style="{StaticResource ButtonsStyle}" HorizontalAlignment="Left" Height="60" Margin="770,445,0,0" VerticalAlignment="Top" Width="131" Click="Button_Click_Delete" Grid.ColumnSpan="2" FontSize="20"/>
+        <ListBox Name="LBFrequency" ItemsSource="{Binding}" ItemTemplate="{StaticResource frequencyTemplate}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="160" Margin="19,263,0,0" VerticalAlignment="Top" Width="216" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+        <Label Grid.ColumnSpan="2" Content="frequency:" HorizontalAlignment="Left" Height="43" Margin="19,205,0,0" VerticalAlignment="Top" Width="113" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+        <Button Style="{StaticResource ButtonsStyle}" Grid.ColumnSpan="2" Content="Add" HorizontalAlignment="Left" Height="37" Margin="157,482,0,0" VerticalAlignment="Top" Width="59" Click="Add_Dep_Time_Button_Click" RenderTransformOrigin="3.689,-0.621" FontSize="18"/>
+        <TextBox Name="TBNewDepTime" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="30,486,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Width="113" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Label Grid.ColumnSpan="2" Content="add departure time:" HorizontalAlignment="Left" Height="47" Margin="19,433,0,0" VerticalAlignment="Top" Width="216" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
 
     </Grid>
 </Window>

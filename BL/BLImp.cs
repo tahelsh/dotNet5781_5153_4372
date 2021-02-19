@@ -118,7 +118,7 @@ namespace BL
             return counter;
         }
 
-        public void RefuelBus(BO.Bus busBO)
+        public void RefuelBus(BO.Bus busBO)//refuel the bus
         {
             try
             {
@@ -134,12 +134,12 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.Message, ex);
             }
         }
-        public void TreatBus(BO.Bus busBO)
+        public void TreatBus(BO.Bus busBO)//treat the bus
         {
             try
             {
                 DO.Bus busDO = dl.GetBus(busBO.LicenseNum);
-                if (busDO.DateLastTreat.ToShortDateString() == DateTime.Now.ToShortDateString())
+                if (busDO.DateLastTreat.ToShortDateString() == DateTime.Now.ToShortDateString())//if the bus is already treated
                     throw new BO.BadInputException("The bus is already treated today");
                 busDO.DateLastTreat = DateTime.Now;
                 busDO.KmLastTreat = busDO.TotalTrip;
@@ -154,16 +154,16 @@ namespace BL
         #endregion
 
         #region Line
-        BO.Line lineDoBoAdapter(DO.Line lineDO)
+        BO.Line lineDoBoAdapter(DO.Line lineDO)//adapter of DO.Line=> BO.line
         {
-            BO.Line lineBO = new BO.Line();
-            int lineId = lineDO.LineId;
+            BO.Line lineBO = new BO.Line();//the BO.line that will return
+            int lineId = lineDO.LineId;//the line id of the DO.Line
             lineDO.CopyPropertiesTo(lineBO);
             List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
                                                let station = dl.GetStation(stat.StationCode)//station
                                                select station.CopyToStationInLine(stat)).ToList();
-            stations = (stations.OrderBy(s => s.LineStationIndex)).ToList();
-            foreach (StationInLine s in stations)
+            stations = (stations.OrderBy(s => s.LineStationIndex)).ToList();//the stations of the line order by their index
+            foreach (StationInLine s in stations)//the distance and time between each adjacent stations
             {
                 if (s.LineStationIndex != stations[stations.Count - 1].LineStationIndex)
                 {
@@ -174,7 +174,7 @@ namespace BL
                     s.Time = adjStat.Time;
                 }
             }
-            lineBO.Stations = stations;
+            lineBO.Stations = stations;//enter the list of stations with the time and the distance to the BO.Line
             lineBO.DepTimes= (from lineTrip in dl.GetAllLineTripsBy(lineTrip => lineTrip.LineId == lineId && lineTrip.IsDeleted == false)//LineTrip
                               select lineTrip.StartAt).OrderBy(s=>s.TotalMinutes).ToList();
             return lineBO;
@@ -195,19 +195,18 @@ namespace BL
         }
         public void AddNewLine(BO.Line lineBo)
         {
-            DO.Line lineDo = new DO.Line();
+            DO.Line lineDo = new DO.Line();//the DO.Line
             lineBo.CopyPropertiesTo(lineDo);
-            lineDo.FirstStation = lineBo.Stations[0].StationCode;
-            lineDo.LastStation = lineBo.Stations[lineBo.Stations.Count-1].StationCode;
-            
-            //בודק אם יש קו עם אותו מספר עם אוה תחנה סופית באותו איזור
+            lineDo.FirstStation = lineBo.Stations[0].StationCode;//code of the first station
+            lineDo.LastStation = lineBo.Stations[lineBo.Stations.Count-1].StationCode;//code of the last station
+            //בודק אם יש קו עם אותו מספר עם או תחנה סופית באותו איזור
             List<DO.Line> ltemp = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.LastStation==lineDo.LastStation && s.Area==lineDo.Area).ToList();
             if(ltemp.Count()!=0)
                 throw new BO.BadInputException($"There is already a line with the number {lineDo.LineNum} in {lineDo.Area} with last station {lineDo.LastStation}");
             dl.AddLine(lineDo);//add line
             //עידכונים של תחנות עוקבות ותחנות קו
             lineDo.LineId = dl.GetAllLinesBy(s => s.LineNum == lineDo.LineNum && s.Area == lineDo.Area).FirstOrDefault().LineId;
-            int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first station
+            int sc1 = lineBo.Stations[0].StationCode;//station Code of the first station
             int sc2 = lineBo.Stations[1].StationCode;//station Code of the last station
             lineDo.FirstStation = sc1;
             lineDo.LastStation = sc2;
@@ -241,7 +240,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea()
+        public IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea()//return groups of lines by their area
         {
             IEnumerable<IGrouping<BO.Area, BO.Line>> result = from n in GetAllLines()
                                                               group n by n.Area into gs
@@ -286,6 +285,7 @@ namespace BL
         }
 
         private int IsStationFound(BO.Line line, int stationCode)
+            //return the index of station in a route of line, if the station does not exists in the route it return -1
         {
             foreach (BO.StationInLine stat in line.Stations)
             {
@@ -294,7 +294,7 @@ namespace BL
             }
             return -1;
         }
-        private TimeSpan TimeTravel(BO.Line line, int stationCode1, int stationCode2)
+        private TimeSpan TimeTravel(BO.Line line, int stationCode1, int stationCode2)//return the travel time between two stations
         {
             int index1 = IsStationFound(line, stationCode1);
             int index2 = IsStationFound(line, stationCode2);
@@ -305,7 +305,7 @@ namespace BL
             }
             return sum;
         }
-        public List<string> FindRoute(int stationCode1, int stationCode2)
+        public List<string> FindRoute(int stationCode1, int stationCode2)//find lines in a route between two stations
         {
             if(stationCode1==stationCode2)
                 throw new BO.BadInputException("The source station and the destination station must be different");
@@ -322,10 +322,10 @@ namespace BL
                     linesInRouteTemp.Add(line);
                 }
             }
-            if (linesInRouteTemp.Count == 0)
-                throw new BO.BadInputException("There are no lines in this route");
+            if (linesInRouteTemp.Count == 0)//if the list of the lines in the route is empty
+                throw new BO.BadInputException("There are no stations in this route");
             linesInRouteTemp = linesInRouteTemp.OrderBy(l => TimeTravel(l, stationCode1, stationCode2)).ToList();
-            foreach (BO.Line line in linesInRouteTemp)
+            foreach (BO.Line line in linesInRouteTemp)//adapt the list to list of strings
             {
                 linesInRoute.Add(line.LineNum + "\t" + TimeTravel(line, stationCode1, stationCode2));
             }
@@ -348,7 +348,6 @@ namespace BL
                 var line = dl.GetLine(item.LineId);
                 var station = dl.GetStation(line.LastStation);
                 item.NameLastStation = station.Name;
-                //item.area = (BO.Area)Enum.Parse(typeof(BO.Area), line.Area.ToString());
             }
             return stationBO;
         }

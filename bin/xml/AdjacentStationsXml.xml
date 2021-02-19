@@ -276,8 +276,8 @@
   <AdjacentStations>
     <StationCode1>105</StationCode1>
     <StationCode2>97</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>12.8</Distance>
+    <Time>00:12:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -290,8 +290,8 @@
   <AdjacentStations>
     <StationCode1>85</StationCode1>
     <StationCode2>1512</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>6</Distance>
+    <Time>00:05:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -304,8 +304,8 @@
   <AdjacentStations>
     <StationCode1>1512</StationCode1>
     <StationCode2>1524</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>3</Distance>
+    <Time>00:02:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -325,8 +325,8 @@
   <AdjacentStations>
     <StationCode1>123</StationCode1>
     <StationCode2>105</StationCode2>
-    <Distance>0</Distance>
-    <Time>00:00:00</Time>
+    <Distance>4</Distance>
+    <Time>00:01:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
   <AdjacentStations>
@@ -390,6 +390,97 @@
     <StationCode2>94</StationCode2>
     <Distance>1.9</Distance>
     <Time>00:12:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>103</StationCode1>
+    <StationCode2>123</StationCode2>
+    <Distance>20</Distance>
+    <Time>00:08:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>123</StationCode1>
+    <StationCode2>93</StationCode2>
+    <Distance>10</Distance>
+    <Time>00:02:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>93</StationCode1>
+    <StationCode2>105</StationCode2>
+    <Distance>15</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>94</StationCode1>
+    <StationCode2>86</StationCode2>
+    <Distance>13</Distance>
+    <Time>00:12:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>94</StationCode1>
+    <StationCode2>97</StationCode2>
+    <Distance>0</Distance>
+    <Time>00:00:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>95</StationCode1>
+    <StationCode2>113</StationCode2>
+    <Distance>2</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>113</StationCode1>
+    <StationCode2>94</StationCode2>
+    <Distance>21</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>94</StationCode1>
+    <StationCode2>1487</StationCode2>
+    <Distance>4</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>1487</StationCode1>
+    <StationCode2>97</StationCode2>
+    <Distance>20</Distance>
+    <Time>00:07:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>105</StationCode1>
+    <StationCode2>1493</StationCode2>
+    <Distance>0</Distance>
+    <Time>00:00:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>1493</StationCode1>
+    <StationCode2>95</StationCode2>
+    <Distance>20</Distance>
+    <Time>00:08:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>105</StationCode1>
+    <StationCode2>102</StationCode2>
+    <Distance>5</Distance>
+    <Time>00:03:00</Time>
+    <IsDeleted>False</IsDeleted>
+  </AdjacentStations>
+  <AdjacentStations>
+    <StationCode1>102</StationCode1>
+    <StationCode2>1493</StationCode2>
+    <Distance>15</Distance>
+    <Time>00:08:00</Time>
     <IsDeleted>False</IsDeleted>
   </AdjacentStations>
 </AdjacentStationsXml.xml>

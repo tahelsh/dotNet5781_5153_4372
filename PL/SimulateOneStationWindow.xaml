@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SimulateOneStationWindow"
         mc:Ignorable="d"
-        Title="SimulateOneStationWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Simulate" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
         <DataTemplate x:Key="lineTimingTemplate"
@@ -36,7 +36,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid x:Name="gridOneStation"  DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="6,16,0,0" VerticalAlignment="Top" Height="295" Width="331">
+        <Grid x:Name="gridOneStation"  DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="6,16,0,0" VerticalAlignment="Top" Height="217" Width="331">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -47,32 +47,21 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.2,11.4,-61.4,10.2" Grid.Row="2" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="195" Style="{StaticResource TextStyle}" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.05"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
             <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,3" Grid.Row="0" VerticalAlignment="Bottom" Style="{StaticResource TextStyle}"/>
             <TextBlock  x:Name="codeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Code}" VerticalAlignment="Center"  FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" />
-            <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3.2,14,0,3.4" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="29"/>
-            <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBlock x:Name="latitudeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,0,8" Grid.Row="4" Text="{Binding Latitude}" VerticalAlignment="Center" Width="89"  FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
-            <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBlock x:Name="longitudeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,0,8" Grid.Row="5" Text="{Binding Longitude}" VerticalAlignment="Center" Width="98" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <Label Content="Disabled Access:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3.2,14,0,3.4" Grid.Row="2" VerticalAlignment="Center" Height="25" Width="29"/>
+            <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBlock x:Name="latitudeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,0,8" Grid.Row="3" Text="{Binding Latitude}" VerticalAlignment="Center" Width="89"  FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
+            <TextBlock x:Name="longitudeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8,0,8" Grid.Row="4" Text="{Binding Longitude}" VerticalAlignment="Center" Width="98" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="3.2,13.8,-64.6,6.6" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="199" Style="{StaticResource TextStyle}"/>
         </Grid>
-        <ListBox Name="LBLineTiming" HorizontalAlignment="Left" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineTimingTemplate}"  Height="255" Margin="342,45,0,0" VerticalAlignment="Top" Width="442" Foreground="#FFEDEE73" Background="#FF565454" FontSize="15"/>
+        <ListBox Name="LBLineTiming" HorizontalAlignment="Left" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineTimingTemplate}"  Height="337" Margin="342,45,0,0" VerticalAlignment="Top" Width="442" Foreground="#FFEDEE73" Background="#FF565454" FontSize="15"/>
         <TextBlock Name="timerTextBlock" Text="{Binding}" HorizontalAlignment="Left" Margin="458,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="211" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20"/>
+        <Image Source="disableAccess.png" Margin="155,117,0,0" Height="34" VerticalAlignment="Top"  Width="36" HorizontalAlignment="Left" />
 
     </Grid>
 </Window>

@@ -21,8 +21,8 @@
         </Grid.Background>
         <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="31,31,0,0" VerticalAlignment="Top" Height="250" Width="309">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="128"/>
-                <ColumnDefinition Width="Auto" MinWidth="133.6"/>
+                <ColumnDefinition Width="Auto" MinWidth="116"/>
+                <ColumnDefinition Width="Auto" MinWidth="192.8"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -33,18 +33,19 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.8,0,2.8" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="36" Width="70"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="2.2,8.8,-45.8,8.8" Grid.Row="2" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="178" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="1,8.8,0,8.8" Grid.Row="2" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="178" Style="{StaticResource TextStyle}"/>
             <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3.6" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="48"/>
-            <TextBox x:Name="codeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.2,9,-42.6,9.6" Grid.Row="0" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="178" Style="{StaticResource TextStyle}"/>
-            <Label Content="Disabled access:" Grid.Column="0" HorizontalAlignment="Left" Margin="2,3.2,0,3.4" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="122"/>
-            <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="2,9.2,0,8.4" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="24" Width="19"/>
+            <TextBox x:Name="codeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1,9,0,9.6" Grid.Row="0" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="86" Style="{StaticResource TextStyle}"/>
+            <Label Content="Disabled access:" Grid.Column="0" HorizontalAlignment="Left" Margin="2,3.2,0,3.4" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="122" Grid.ColumnSpan="2"/>
+            <CheckBox x:Name="disabledAccessCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DisabledAccess, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="15,9.2,0,8.4" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="24" Width="19"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.4,0,3.2" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="54"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.2,9.4,-45,9.2" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="178" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1,9.4,0,9.2" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="178" Style="{StaticResource TextStyle}"/>
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,3" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="83"/>
-            <TextBox x:Name="longitudeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.2,9.6,-31.8,9" Grid.Row="4"  VerticalAlignment="Center" Width="168" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="longitudeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1,9.6,0,9" Grid.Row="4"  VerticalAlignment="Center" Width="168" Style="{StaticResource TextStyle}"/>
             <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3.6" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextStyle}" Height="35" Width="74"/>
-            <TextBox x:Name="latitudeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.2,9,-34.2,9.6" Grid.Row="5"  VerticalAlignment="Center" Width="168" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="latitudeTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="1,9,0,9.6" Grid.Row="5"  VerticalAlignment="Center" Width="168" Style="{StaticResource TextStyle}"/>
         </Grid>
         <Button Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="99,299,0,0" VerticalAlignment="Top" Width="113" Height="53" Click="Submit_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Image Margin="182,160,131.4,0" Source="disableAccess.png" Stretch="Fill" HorizontalAlignment="Stretch" Height="33" VerticalAlignment="Top" RenderTransformOrigin="-0.6,0.26"/>
     </Grid>
 </Window>

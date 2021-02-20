@@ -103,7 +103,7 @@
   <LineTrip>
     <LineId>0</LineId>
     <StartAt>10:00:00</StartAt>
-    <IsDeleted>False</IsDeleted>
+    <IsDeleted>True</IsDeleted>
   </LineTrip>
   <LineTrip>
     <LineId>0</LineId>

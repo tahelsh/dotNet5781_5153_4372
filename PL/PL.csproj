@@ -212,5 +212,8 @@
   <ItemGroup>
     <Resource Include="backGroundLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="map.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

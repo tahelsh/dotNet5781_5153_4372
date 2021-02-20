@@ -8,10 +8,10 @@ namespace BO
 {
     public class StationInLine
     {
-        public int StationCode { get; set; }
-        public int LineStationIndex { get; set; }
-        public string Name { get; set; }
-        public bool DisabledAccess { get; set; }
+        public int StationCode { get; set; }//code of the station
+        public int LineStationIndex { get; set; }//the index of the station in the route of the line
+        public string Name { get; set; }//name of the station
+        public bool DisabledAccess { get; set; }//disable access
         public double Distance { get; set; }//fron the next station
         public TimeSpan Time { get; set; }//from the next station
         public override string ToString()

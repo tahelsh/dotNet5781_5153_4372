@@ -41,19 +41,31 @@ namespace PL
             {
                 string name = nameTextBox.Text;
                 string userName = userNameTextBox.Text;
+                if(userName=="")
+                {
+                    userNameTextBox.BorderBrush = Brushes.Red;
+                    MessageBox.Show("Username was not entered", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (Name == "")
+                {
+                    MessageBox.Show("you need to enter a name", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 //Check if the username doesnt already exist, only if it doesnt, continue input
                 int passcode;
                 bool success;
                 success = int.TryParse(passcodeTextBox.Text, out passcode);
-                if (!success || passcode < 0)
+                if (!success || passcode <= 0)
                 {
                     passcodeTextBox.BorderBrush = Brushes.Red;
                     MessageBox.Show("The passcode needs to be only with digits", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
                 bool isAdmin = (adminAccessCheckBox.IsChecked == true);
                 BO.User user = new BO.User() { AdminAccess = isAdmin, Name = name, Passcode = passcode, UserName = userName };
                 bl.AddUser(user);
-                MessageBox.Show("The user was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The user was added successfully, good luck:)", "Good Luck!", MessageBoxButton.OK, MessageBoxImage.Information);
                 passcodeTextBox.BorderBrush = Brushes.Black;
                 userNameTextBox.BorderBrush = Brushes.Black;
             }
@@ -96,7 +108,12 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-     
+        private void keyCheck(object sender, KeyEventArgs e)
+        {
+            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
+                e.Handled = true;
+        }
+
 
     }
 }

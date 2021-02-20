@@ -42,8 +42,7 @@ namespace PL
                 {
                     MessageBox.Show("invalid distance", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
-                }
-                //BO.AdjacentStation adj = new BO.AdjacentStation() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = distance, Time = time }; 
+                } 
                 first.Distance = distance;
                 first.Time = time;
                 bl.UpdateTimeAndDistance(first,second);

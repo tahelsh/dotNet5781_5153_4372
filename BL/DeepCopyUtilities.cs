@@ -45,13 +45,6 @@ namespace BL
             lineInStation.Area = (BO.Area)Enum.Parse(typeof(BO.Area), l.Area.ToString());
             return lineInStation;
         }
-        //public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
-        //{
-        //    BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
-        //    // propertys' names changed? copy them here...
-        //    result.Grade = sic.Grade;
-        //    return result;
-        //}
     }
 }
 

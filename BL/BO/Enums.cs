@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum BusStatus
+    public enum BusStatus//status of bus
     {
         Available, InTravel, Refueling, Treatment
     }

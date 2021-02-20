@@ -13,9 +13,9 @@ namespace BO
         public double TotalTrip { get; set; }//total km
         public double FuelRemain { get; set; }//fuel tank
         public BusStatus Status { get; set; }//status
-        public DateTime DateLastTreat { get; set; }
-        public double KmLastTreat { get; set; }
-        public bool IsDeleted { get; set; }
+        public DateTime DateLastTreat { get; set; }//data of last treatment
+        public double KmLastTreat { get; set; }//kilometers when the bus did its last treatment
+        public bool IsDeleted { get; set; }//flag of deleting
         public override string ToString()
         {
             return "License Number: " + LicenseNum + " Total KM: " + TotalTrip;

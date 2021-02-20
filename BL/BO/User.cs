@@ -9,9 +9,9 @@ namespace BO
     public class User
     {
         public string UserName { get; set; }//unique username
-        public bool AdminAccess { get; set; }
-        public string Name { get; set; }
-        public int Passcode { get; set; }
+        public bool AdminAccess { get; set; }//if the user is admin or not
+        public string Name { get; set; }//name
+        public int Passcode { get; set; }//passcode
 
     }
 }

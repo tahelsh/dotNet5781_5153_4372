@@ -14,17 +14,5 @@ namespace DO
         public static int TripId = 0;
         public static int LineTripId=0;
 
-        //static Config()
-        //{
-        //    LineId = 0;
-        //    //public static int StationCode = 0;
-        //    TripId = 0;
-        //    LineTripId = 0;
-        //}
-
-        //for consts
-        //public static int MAX_LICENSE_NUM = 8;
-        //...
-
     }
 }

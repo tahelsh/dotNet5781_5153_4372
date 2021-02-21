@@ -41,14 +41,6 @@
     <IsDeleted>false</IsDeleted>
   </Line>
   <Line>
-    <LineId>5</LineId>
-    <LineNum>12</LineNum>
-    <Area>General</Area>
-    <FirstStation>97</FirstStation>
-    <LastStation>95</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
     <LineId>6</LineId>
     <LineNum>169</LineNum>
     <Area>North</Area>
@@ -62,6 +54,30 @@
     <Area>Jerusalem</Area>
     <FirstStation>94</FirstStation>
     <LastStation>86</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>5</LineId>
+    <LineNum>12</LineNum>
+    <Area>General</Area>
+    <FirstStation>1289</FirstStation>
+    <LastStation>95</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>8</LineId>
+    <LineNum>239</LineNum>
+    <Area>Center</Area>
+    <FirstStation>94</FirstStation>
+    <LastStation>86</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>9</LineId>
+    <LineNum>548</LineNum>
+    <Area>General</Area>
+    <FirstStation>95</FirstStation>
+    <LastStation>105</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
 </ArrayOfLine>

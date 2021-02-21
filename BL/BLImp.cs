@@ -86,7 +86,7 @@ namespace BL
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
             try
-            { 
+            {    //input check
                 if (busDO.FromDate > DateTime.Now)
                     throw new BO.BadInputException("The date of start operation is not valid");
                 if (busDO.TotalTrip < 0)
@@ -100,7 +100,7 @@ namespace BL
                     throw new BO.BadInputException("The date of last treatment is not valid");
                 if (busDO.KmLastTreat < 0 || busDO.KmLastTreat > busDO.TotalTrip)
                     throw new BO.BadInputException("The kilometrage of last treatment is not valid");
-                dl.AddBus(busDO);
+                dl.AddBus(busDO);//add the bus
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -341,14 +341,14 @@ namespace BL
         #region Station
         public BO.Station StationDoBoAdapter(DO.Station stationDO)//turns a DO station to a BO station object
         {
-            BO.Station stationBO = new BO.Station();
-            int stationCode = stationDO.Code;
+            BO.Station stationBO = new BO.Station();//station BO
+            int stationCode = stationDO.Code;//station code
             stationDO.CopyPropertiesTo(stationBO);
             stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
                                let line = dl.GetLine(stat.LineId)//line
                                select line.CopyToLineInStation(stat)).ToList();
             
-            foreach (BO.LineInStation item in stationBO.Lines)//לאתחל תחנה סופית
+            foreach (BO.LineInStation item in stationBO.Lines)//restart the last station for each line 
             {
                 var line = dl.GetLine(item.LineId);
                 var station = dl.GetStation(line.LastStation);
@@ -366,6 +366,14 @@ namespace BL
             DO.Station statDO = new DO.Station();
             stat.CopyPropertiesTo(statDO);
             statDO.IsDeleted = false;
+            if (statDO.Longitude < 31 || statDO.Longitude > 33.3)//check input
+            {
+                throw new BO.BadInputException("The value of longitude is wrong, longitude must be between 31 and 33.3");
+            }
+            if (statDO.Latitude < 34.3 || statDO.Latitude > 35.5)//check input
+            {
+                throw new BO.BadInputException("The value of latitude is wrong, latitude must be between 34.3 and 35.5");
+            }
             try
             {
                 dl.AddStation(statDO);
@@ -492,72 +500,6 @@ namespace BL
             }
             return sumTime;
         }
-
-        //public IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime)
-        //{
-        //    //list of lines that pass in the station
-        //    List<BO.Line> listLines = (from l in GetAllLines()
-        //                               where l.Stations.Find(s => s.StationCode == stationBO.Code) != null
-        //                               select l).ToList();
-
-        //    List<LineTiming> times = new List<LineTiming>();
-        //    TimeSpan hour = new TimeSpan(1, 0, 0);//help to find the times that in the range of one hour from currentTime                           
-
-        //    for (int i = 0; i < listLines.Count(); i++)//for all the lines that pass in the station
-        //    {//calculate the times 
-        //        TimeSpan tmp;//= TimeSpan.Zero;
-        //        int currentLineid = listLines[i].LineId;// line id of the current line
-        //        List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList();// times of the current Line
-        //        TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
-        //        for (int j = 0; j < lineSchedual.Count; j++)//for all the times in line sSchedual
-        //        {//check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
-
-        //            if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour
-        //                && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
-        //            //check if the bus already passed the statioin   
-        //            {
-        //                if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station
-        //                {
-        //                    tmp = timeTilStatin - (currentTime - lineSchedual[j].StartAt);
-        //                }
-        //                else//if the line didnt get out from the station
-        //                    tmp = timeTilStatin + (lineSchedual[j].StartAt - currentTime);
-        //                //creat LineTiming and add to the list
-        //                times.Add(new LineTiming
-        //                {
-        //                    LineId = currentLineid,
-        //                    LineNum = listLines[i].LineNum,
-        //                    DestinationCode = listLines[i].Stations[listLines[i].Stations.Count() - 1].StationCode,
-        //                    SourceCode = listLines[i].Stations[0].StationCode,
-        //                    EstimatedTime = TimeSpan.Parse(tmp.ToString().Substring(0, 8))
-        //                });
-
-        //            }
-        //        }
-        //    }
-        //    times = times.OrderBy(lt => lt.EstimatedTime).ToList();
-        //    return times;
-
-        //}
-
-        //private TimeSpan travelTime(int stationCode, int lineID)
-        //{//func that return the time from first station in line to specific station
-        //    TimeSpan sumTime = TimeSpan.Zero;
-        //    BO.Line line = GetLine(lineID);
-        //    foreach (var s in line.Stations)
-        //    {
-        //        if (s.StationCode != stationCode)
-        //            sumTime += s.Time;
-        //        else
-        //        {
-        //            //sumTime += s.TimeFromPrevStation;
-        //            break;
-        //        }
-        //    }
-        //    return sumTime;
-        //}
-
-
         #endregion
 
         #endregion
@@ -597,7 +539,7 @@ namespace BL
             try
             {
                 if (IsExistLineStation(sDO))
-                    throw new BO.BadLineStationException(sDO.LineId, sDO.StationCode, "The station is already exist in the line");
+                    throw new BO.BadLineStationException(sDO.LineId, sDO.StationCode, "The station is already exist in this line");
                 //עידכון של כל האינדקסים של התחנות הבאות בקו
                 List<DO.LineStation> lSList = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
                 int indexlast = lSList[lSList.Count - 1].LineStationIndex;
@@ -679,10 +621,10 @@ namespace BL
             {  
                 DO.LineStation statDel = dl.GetLineStation(lineId, stationCode);//the station that we want to delete
                 BO.Line line = GetLine(lineId);
-                if (line.Stations.Count <= 2)//אם יש 2 תחנות בקו אי אפשר למחוק
-                    throw new BO.BadInputException("The Station cannot be deleted, there is only 2 stations in the line route");
+                if (line.Stations.Count <= 2)//if there are only 2 station in the line so more stations cannot be deleted
+                    throw new BO.BadInputException("The station cannot be deleted, there is only 2 stations in the line route");
 
-                //AdjacentStation
+                //Adjacent Station
                 if (line.Stations[0].StationCode != stationCode && line.Stations[line.Stations.Count - 1].StationCode != stationCode)//if its not the first or the last station
                 {
                     BO.StationInLine prev = line.Stations[statDel.LineStationIndex - 2];
@@ -779,7 +721,7 @@ namespace BL
             try
             {
                 DO.User userDO = dl.GetUser(username);
-                if (passcode != userDO.Passcode)
+                if (passcode != userDO.Passcode)//if the passcode does not match
                     throw new BO.BadUserNameException(username, "The passcode is wrong");
                 userBO = new BO.User();
                 userDO.CopyPropertiesTo(userBO);

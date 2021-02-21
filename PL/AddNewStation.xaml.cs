@@ -39,22 +39,12 @@ namespace PL
         {
             try
             {
-                string address = addressTextBox.Text;
-                int code = int.Parse(codeTextBox.Text);
-                bool disAccess = (disabledAccessCheckBox.IsChecked==true);
-                string name = nameTextBox.Text;
-                double longitude = double.Parse(longitudeTextBox.Text);
-                if (longitude < 31 || longitude > 33.3)
-                {
-                    MessageBox.Show("The value of longitude is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                double latitude = double.Parse(latitudeTextBox.Text);
-                if (latitude < 34.3 || latitude > 35.5)
-                {
-                    MessageBox.Show("The value of latitude is wrong", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                string address = addressTextBox.Text;//address
+                int code = int.Parse(codeTextBox.Text);//code 
+                bool disAccess = (disabledAccessCheckBox.IsChecked==true);//disable access
+                string name = nameTextBox.Text;//name of station
+                double longitude = double.Parse(longitudeTextBox.Text);//longitude
+                double latitude = double.Parse(latitudeTextBox.Text);//latitude
                 BO.Station stat = new BO.Station() { Address = address, Code = code, DisabledAccess = disAccess, Name = name, Latitude=latitude, Longitude=longitude };
                 bl.AddStation(stat);
                 Close();
@@ -69,7 +59,7 @@ namespace PL
             }
 
         }
-        private void keyCheck(object sender, KeyEventArgs e)
+        private void keyCheck(object sender, KeyEventArgs e)//the function enable to emter only digits and point
         {
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;

@@ -58,11 +58,13 @@ namespace PL
                     int lineNum = int.Parse(lineNumTextBox.Text);
                     BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), areaComboBox.SelectedItem.ToString());
                     BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area, Stations = new List<BO.StationInLine>() };
+                    //the first station
                     BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code};
                     newline.Stations.Add(temp1);
+                    //the second station
                     BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
                     newline.Stations.Add(temp2);
-                    bl.AddNewLine(newline);
+                    bl.AddNewLine(newline);//add the new line
                     Close();
                     MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -97,12 +99,14 @@ namespace PL
                 BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area };
                 TimeSpan time = TimeSpan.Parse(travelTimeTextBox.Text);
                 double distance = double.Parse(travelDistanceTextBox.Text);
+                //the first station
                 BO.StationInLine temp1 = new BO.StationInLine() { Distance = distance, Time = time, DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
                 newline.Stations = new List<BO.StationInLine>();
                 newline.Stations.Add(temp1);
+                //the second station
                 BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
                 newline.Stations.Add(temp2);
-                bl.AddNewLine(newline);
+                bl.AddNewLine(newline);//add the new line
                 MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

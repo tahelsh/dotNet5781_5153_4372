@@ -450,4 +450,22 @@
     <DisabledAccess>false</DisabledAccess>
     <IsDeleted>false</IsDeleted>
   </Station>
+  <Station>
+    <Code>1289</Code>
+    <Name>אריאל/קריתי</Name>
+    <Longitude>32.5</Longitude>
+    <Latitude>35</Latitude>
+    <Address>אריאל 13 תל אביב</Address>
+    <DisabledAccess>false</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
+  <Station>
+    <Code>13469</Code>
+    <Name>רבי עקיבא/הרב קוק </Name>
+    <Longitude>31</Longitude>
+    <Latitude>35</Latitude>
+    <Address>רבי עקיבא 153 בני ברק</Address>
+    <DisabledAccess>true</DisabledAccess>
+    <IsDeleted>false</IsDeleted>
+  </Station>
 </ArrayOfStation>

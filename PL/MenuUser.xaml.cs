@@ -36,7 +36,7 @@ namespace PL
             CBLines.DisplayMemberPath = "LineNum";
             CBLines.DataContext = bl.GetAllLines();
             //לשונית של ביצוע נסיעה
-            labelNameOfUser.Content = "Hi "+user.Name+",";
+            labelNameOfUser.Content = "Hi " + user.Name + ",";
             CBSourceStation.DisplayMemberPath = "Name";
             CBDestinationStation.DisplayMemberPath = "Name";
             CBSourceStation.SelectedIndex = 0; //index of the object to be selected
@@ -59,6 +59,7 @@ namespace PL
             codeTextBlock.Text = station.Code.ToString();
         }
 
+        #region Load Window
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -69,18 +70,6 @@ namespace PL
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
         }
-
-        private void CBLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BO.Line line = CBLines.SelectedItem as BO.Line;
-            LineDetailsGrid.DataContext = line;
-            //DGstationsInLine.DataContext = line.Stations;
-            stationInLineDataGrid.DataContext = line.Stations;
-            LBFrequency.DataContext = line.DepTimes;
-
-
-        }
-
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
 
@@ -94,6 +83,18 @@ namespace PL
             // Load data by setting the CollectionViewSource.Source property:
             // stationInLineViewSource.Source = [generic data source]
         }
+        #endregion
+
+        private void CBLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BO.Line line = CBLines.SelectedItem as BO.Line;
+            LineDetailsGrid.DataContext = line;
+            //DGstationsInLine.DataContext = line.Stations;
+            stationInLineDataGrid.DataContext = line.Stations;
+            LBFrequency.DataContext = line.DepTimes;
+
+
+        }
 
         private void SignOut_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -102,14 +103,14 @@ namespace PL
 
         private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            BO.Station source = (CBSourceStation.SelectedItem) as BO.Station;
-            BO.Station dest = (CBDestinationStation.SelectedItem) as BO.Station;
+            BO.Station source = (CBSourceStation.SelectedItem) as BO.Station; //source station from the first combobox
+            BO.Station dest = (CBDestinationStation.SelectedItem) as BO.Station; //last station from the second combobox
             try
             {
                 List<string> listLinesInRoute = bl.FindRoute(source.Code, dest.Code);
                 LBLinesInRoute.DataContext = listLinesInRoute;
             }
-            catch(BO.BadInputException ex)
+            catch (BO.BadInputException ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -126,22 +127,27 @@ namespace PL
             win.ShowDialog();
         }
 
-   
+
         private void CBAreas_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), CBAreas.SelectedItem.ToString());
-            IEnumerable<IGrouping<BO.Area, BO.Line>> linesInArea = bl.GetAllLinesByArea();
-            foreach (var group in linesInArea)
+            try
             {
-                if (group.Key == area)
-                {
-                    LBLines.DataContext = group;
-                    LabelNoLinesInArea.Visibility = Visibility.Hidden;
-                    return;
-                }
+                BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), CBAreas.SelectedItem.ToString());
+                IGrouping<BO.Area, BO.Line> linesInArea = bl.GetAllLinesByArea(area);
+                LBLines.DataContext = linesInArea;
+                LabelNoLinesInArea.Visibility = Visibility.Hidden;
+            }
+            catch (BO.BadInputException)
+            {
                 LabelNoLinesInArea.Visibility = Visibility.Visible;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }
+
 

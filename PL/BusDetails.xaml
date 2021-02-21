@@ -6,22 +6,22 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.BusDetails"
         mc:Ignorable="d"
-        Title="Bus details" Height="450" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Bus details" Height="521.2" Width="704" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
         <Style x:Key="TextStyle" TargetType="Control">
             <Setter Property="FontFamily" Value="Segoe Print"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20"/>
         </Grid.Background>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="202,353,0,0" VerticalAlignment="Top" Width="135" Height="48" Click="ButtonUpdate_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="48" Margin="46,352,0,0" VerticalAlignment="Top" Width="135" Click="ButtonRemove_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-        <Grid x:Name="grid2" DataContext="{StaticResource busViewSource}" HorizontalAlignment="Left" Margin="47,28,0,0" VerticalAlignment="Top" Width="337">
+        <Button Content="Update" HorizontalAlignment="Left" Margin="202,412,0,0" VerticalAlignment="Top" Width="135" Height="48" Click="ButtonUpdate_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="48" Margin="47,412,0,0" VerticalAlignment="Top" Width="135" Click="ButtonRemove_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+        <Grid x:Name="busDetailsGrid" DataContext="{StaticResource busViewSource}" HorizontalAlignment="Left" Margin="47,28,0,0" VerticalAlignment="Top" Width="379" Height="350">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -36,17 +36,17 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="License number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,13,0,12.6" Grid.Row="0" Text="{Binding LicenseNum}" VerticalAlignment="Center" Width="71" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14"/>
+            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,13,0,13.4" Grid.Row="0" Text="{Binding LicenseNum}" VerticalAlignment="Center" Width="146" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
             <Label Content="From date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBlock x:Name="fromDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.4,8.6,-13.4,8" Grid.Row="1" Text="{Binding FromDate}" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="14" Width="190" />
+            <TextBlock x:Name="fromDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3.2,8.6,0,9" Grid.Row="1" Text="{Binding FromDate}" VerticalAlignment="Center" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Width="110" />
             <Label Content="Fuel remain:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="3.2,4,0,12.8" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="151" Style="{StaticResource TextStyle}"/>
             <Label Content="Km last treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="3.2,3.6,0,12.4" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="151" Style="{StaticResource TextStyle}"/>
             <Label Content="Date last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
             <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
             <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1" SelectedItem="{Binding BusStatus}" Style="{StaticResource TextStyle}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="statusComboBox" Grid.Column="1" SelectedItem="{Binding BusStatus}" Style="{StaticResource TextStyle}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3.2,4.6,0,4.4" Grid.Row="5" VerticalAlignment="Center" Width="155">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -54,8 +54,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label Content="Total trip:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="3.2,12.6,0,3.4" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="151" Style="{StaticResource TextStyle}"/>
         </Grid>
+        <Button Name="BRefuel" Content="Refuel" HorizontalAlignment="Left" Height="58" Margin="448,170,0,0" VerticalAlignment="Top" Width="176" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Click="BRefuel_Click"/>
+        <Button Name="BTreat" Content="Treatment" HorizontalAlignment="Left" Height="58" Margin="448,267,0,0" VerticalAlignment="Top" Width="176" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Click="BTreat_Click"/>
+        <ProgressBar Name="pbRefuel" Visibility="Hidden"  HorizontalAlignment="Left" Height="58" Margin="448,170,0,0" VerticalAlignment="Top" Width="176"/>
+        <ProgressBar Name="pbTreat" Visibility="Hidden" HorizontalAlignment="Left" Height="58" Margin="448,267,0,0" VerticalAlignment="Top" Width="176"/>
 
     </Grid>
 </Window>

@@ -158,20 +158,20 @@ namespace DL
             if (line != null)
                 return line.Clone();
             else
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "The line does not exist");
         }
         public void AddLine(DO.Line line)
         {
             line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
-                throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
+                throw new BadLineIdException(line.LineId, $"The line {line.LineNum} is already exist");
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == line.LineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(line.LineId, "The Line ID does not exist");
+                throw new BadLineIdException(line.LineId, $"The line {line.LineNum} does not exist");
             DO.Line newLine = line.Clone();//copy of the bus that the function got
             DataSource.ListLines.Remove(lineFind);
             DataSource.ListLines.Add(newLine);
@@ -180,14 +180,14 @@ namespace DL
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "The line does not exist");
             update(lineFind);
         }
         public void DeleteLine(int lineId)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "The line does not exist");
             lineFind.IsDeleted = true;
         }
 
@@ -386,14 +386,14 @@ namespace DL
         public void AddUser(DO.User user)
         {
             if (DataSource.ListUsers.FirstOrDefault(u => u.UserName == user.UserName && u.IsDeleted == false) != null)
-                throw new BadUserNameException(user.UserName, "This user name is already exist");
+                throw new BadUserNameException(user.UserName, $"the username: {user.UserName} is already exist");
             DataSource.ListUsers.Add(user.Clone());
         }
         public void UpdateUser(DO.User user)
         {
             DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == user.UserName && u.IsDeleted == false);
             if (userFind == null)
-                throw new BadUserNameException(user.UserName, "The user does not exist");
+                throw new BadUserNameException(user.UserName, $"the username: {user.UserName} does not exist");
             DO.User newUser = user.Clone();//copy of the bus that the function got
             userFind = newUser;//update
         }
@@ -401,7 +401,7 @@ namespace DL
         {
             DO.User userFind = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
             if (userFind == null)
-                throw new BadUserNameException(userName, "The user does not exist");
+                throw new BadUserNameException(userName, $"the username: {userName} does not exist");
             update(userFind);
         }
         public void DeleteUser(string userName)
@@ -409,7 +409,7 @@ namespace DL
             DO.User user = DataSource.ListUsers.Find(u => u.UserName == userName && u.IsDeleted == false);
 
             if (user == null)
-                throw new BadUserNameException(user.UserName, "The user does not exist");
+                throw new BadUserNameException(user.UserName, $"the username: {user.UserName} does not exist");
             user.IsDeleted = true;
         }
 

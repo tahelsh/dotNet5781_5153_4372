@@ -101,7 +101,7 @@ namespace DL
                        ).FirstOrDefault();
 
             if (user == null)
-                throw new DO.BadUserNameException(userName, "This user name does not exist");
+                throw new DO.BadUserNameException(userName, $"the username: {userName} does not exist");
             return user;
         }
         public void AddUser(DO.User user)
@@ -113,7 +113,7 @@ namespace DL
                               select u).FirstOrDefault();
 
             if (user1 != null)
-                throw new BadUserNameException(user.UserName, "This user name is already exist");
+                throw new BadUserNameException(user.UserName, $"the username: {user.UserName} is already exist");
 
             XElement userElem = new XElement("User",
                                    new XElement("UserName", user.UserName),
@@ -142,7 +142,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(usersRootElem, lineTripsPath);
             }
             else
-                throw new BadUserNameException(user.UserName, "The user does not exist");
+                throw new BadUserNameException(user.UserName, $"the username: {user.UserName} does not exist");
         }
         public void UpdateUser(string userName, Action<DO.User> update)
         {
@@ -165,7 +165,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(usersRootElem, lineTripsPath);
             }
             else
-                throw new BadUserNameException(userName, "The user does not exist");
+                throw new BadUserNameException(userName, $"the username: {userName} does not exist");
         }
 
         #endregion
@@ -204,7 +204,6 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListBuses, busesPath);
         }
 
-
         public void UpdateBus(DO.Bus bus)
         {
             List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);
@@ -230,9 +229,7 @@ namespace DL
             DO.Bus bus = ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
             if (bus == null)
                 throw new BadLicenseNumException(licenseNum, "The bus does not exist");
-            //ListBuses.Remove(bus);
             bus.IsDeleted = true;//delete
-            //ListBuses.Add(bus);
             XMLTools.SaveListToXMLSerializer(ListBuses, busesPath);
         }
         #endregion
@@ -345,10 +342,6 @@ namespace DL
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
             throw new NotImplementedException();
-            //DO.AdjacentStations adjFind = DataSource.ListAdjacentStations.Find(adj => (adj.StationCode1 == stationCode1 && adj.StationCode2 == stationCode2 && adj.IsDeleted == false));
-            //if (adjFind == null)
-            //    throw new BadAdjacentStationsException(stationCode1, stationCode2, "The adjacent stations does not exist");
-            //update(adjFind);
         }
         public void DeleteAdjacentStations(int stationCode1, int stationCode2)
         {
@@ -376,7 +369,6 @@ namespace DL
             return from line in ListLines
                    where line.IsDeleted == false
                    select line;
-
         }
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
@@ -393,14 +385,14 @@ namespace DL
             if (line != null)
                 return line;
             else
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, $"The line does not exist");
         }
         public void AddLine(DO.Line line)
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
             line.LineId = XMLTools.GetRunningNumber(runningNumberPath);
             if (ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
-                throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
+                throw new BadLineIdException(line.LineId, $"The line {line.LineNum} is already exist exist");
             ListLines.Add(line);
             XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
         }
@@ -409,7 +401,7 @@ namespace DL
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
             DO.Line lineFind = ListLines.Find(l => l.LineId == line.LineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(line.LineId, "The Line ID does not exist");
+                throw new BadLineIdException(line.LineId, $"The line {line.LineNum} does not exist");
             ListLines.Remove(lineFind);
             ListLines.Add(line);
             XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
@@ -427,7 +419,7 @@ namespace DL
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
             DO.Line lineFind = ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "The line does not exist");
             lineFind.IsDeleted = true;
             XMLTools.SaveListToXMLSerializer(ListLines, linesPath);
         }

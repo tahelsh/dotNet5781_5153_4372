@@ -32,9 +32,9 @@ namespace BL
         public static BO.StationInLine CopyToStationInLine(this DO.Station st, DO.LineStation s)
         {
             BO.StationInLine stationInLine = new BO.StationInLine();
-            st.CopyPropertiesTo(stationInLine);
-            stationInLine.LineStationIndex = s.LineStationIndex;
-            stationInLine.StationCode = s.StationCode;
+            st.CopyPropertiesTo(stationInLine);//copy details from DO.Station to BO.StationInLine
+            stationInLine.LineStationIndex = s.LineStationIndex;//copy index from DO.LineStation
+            stationInLine.StationCode = s.StationCode;//copy station code from DO.LineStation
             return stationInLine;
         }
         public static BO.LineInStation CopyToLineInStation(this DO.Line l, DO.LineStation s)

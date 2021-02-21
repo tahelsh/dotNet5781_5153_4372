@@ -35,22 +35,20 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-            currentStation = station;
+            currentStation = station;//current station
             gridOneStation.DataContext = currentStation;
             stopwatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
             timerworker.ProgressChanged += Worker_ProgressChanged;
-            timerworker.WorkerReportsProgress = true;
-            tsStartTime = DateTime.Now.TimeOfDay;
+            timerworker.WorkerReportsProgress = true;//מדווח על שינויים למסך
+            tsStartTime = DateTime.Now.TimeOfDay;//השעה של עכשיו
             stopwatch.Restart();
-            isTimerRun = true;
+            isTimerRun = true;//if the stopwatch run
 
-            //הוספנו מעצמינו
-            LBLineTiming.DataContext = lineTimingList;
+            LBLineTiming.DataContext = lineTimingList;// הכנסת פרטים לדאטה גריד בחלון של הפרטים של הקו
             this.Closing += Window_Closing;
-
-            timerworker.RunWorkerAsync();
+            timerworker.RunWorkerAsync();//the thread start 
             
         }
 
@@ -62,10 +60,10 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;
-            string timmerText = tsCurrentTime.ToString().Substring(0, 8);
-            this.timerTextBlock.Text = timmerText;
-            //לממש את הפונקציה!
+            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;//the current time
+            string timmerText = tsCurrentTime.ToString().Substring(0, 8);//string of the current time
+            this.timerTextBlock.Text = timmerText;//update the label of the the current clock
+            //get all the lines that pass in this station in the closer hour
             LBLineTiming.DataContext = bl.GetLineTimingPerStation(currentStation, tsCurrentTime).ToList();
             lineTimingList = new ObservableCollection<BO.LineTiming>( bl.GetLineTimingPerStation(currentStation, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
         }

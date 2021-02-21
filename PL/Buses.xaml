@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Buses" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Buses" Height="487.6" Width="808.8" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="busTemplate"
                   DataType="local:Bus" x:Name="bus">
@@ -14,28 +14,31 @@
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="170" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                    <!--<ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />-->
 
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
                    Text="{Binding Path=LicenseNum}"  FontSize="20 px"/>
                 <TextBlock Grid.Column="1"
                    Text="{Binding Path=TotalTrip}" Margin="13,0,0,0" FontSize="20 px"/>
-                <Button Grid.Column="2"
+                <Image Grid.Column="2"
+                   Source="delete.png" MouseDown="Button_Click_DeleteBus"  Margin="13,0,0,0" IsEnabled="True"  />
+                <!--<Button Grid.Column="2"
                    Content="Refuel" Click="Refuel_Button_Click" Name="DeleteStationButton" Margin="13,0,0,0" IsEnabled="True" Background="White" FontFamily="Sylfaen" FontSize="20 px"  />
                 <Button Grid.Column="3"
-                   Content="Treatment" Click="Treatment_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True" Background="White" FontFamily="Sylfaen" FontSize="20 px" />
+                   Content="Treatment" Click="Treatment_Button_Click" Name="UpdateTimeButton" Margin="13,0,0,0" IsEnabled="True" Background="White" FontFamily="Sylfaen" FontSize="20 px" />-->
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox Name="LBBuses" ItemTemplate="{StaticResource busTemplate}" HorizontalAlignment="Stretch" ItemsSource="{Binding}" Margin="0,51,-0.4,92" VerticalAlignment="Stretch" MouseDoubleClick="Bus_MouseDoubleClick" Background="#FFEDBF33"/>
-        <Button Content="Add New Bus" HorizontalAlignment="Left" Height="44" Margin="303,354,0,0" VerticalAlignment="Top" Width="192" Click="Button_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
-        <Label Content="License Number:" HorizontalAlignment="Left" Height="42" Margin="0,2,0,0" VerticalAlignment="Top" Width="164" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
-        <Label Content="Total Km:" HorizontalAlignment="Left" Height="36" Margin="172,4,0,0" VerticalAlignment="Top" Width="111" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
-
+        <ListBox Name="LBBuses" ItemTemplate="{StaticResource busTemplate}" HorizontalAlignment="Stretch" ItemsSource="{Binding}" Margin="0,88,-0.6,65.4" VerticalAlignment="Stretch" MouseDoubleClick="Bus_MouseDoubleClick" Background="#FFEDBF33"/>
+        <Button Content="Add New Bus" HorizontalAlignment="Left" Height="54" Margin="297,398,0,0" VerticalAlignment="Top" Width="198" Click="Button_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+        <Label Content="License Number:" HorizontalAlignment="Left" Height="42" Margin="0,47,0,0" VerticalAlignment="Top" Width="164" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+        <Label Content="Total Km:" HorizontalAlignment="Left" Height="36" Margin="252,49,0,0" VerticalAlignment="Top" Width="111" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" />
+        <Label Content="Buses"  Height="56" Margin="318,0,0,0" VerticalAlignment="Top" Width="209" FontFamily="Ravie" FontSize="40" Background="#00000000" Foreground="#FFF1AA11" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

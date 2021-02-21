@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
-    <LineId>0</LineId>
-    <LineNum>23</LineNum>
-    <Area>Center</Area>
-    <FirstStation>112</FirstStation>
-    <LastStation>94</LastStation>
-    <IsDeleted>false</IsDeleted>
-  </Line>
-  <Line>
     <LineId>1</LineId>
     <LineNum>12</LineNum>
     <Area>South</Area>
@@ -30,6 +22,46 @@
     <Area>South</Area>
     <FirstStation>105</FirstStation>
     <LastStation>97</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>0</LineId>
+    <LineNum>23</LineNum>
+    <Area>Center</Area>
+    <FirstStation>112</FirstStation>
+    <LastStation>94</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>4</LineId>
+    <LineNum>152</LineNum>
+    <Area>South</Area>
+    <FirstStation>91</FirstStation>
+    <LastStation>86</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>5</LineId>
+    <LineNum>12</LineNum>
+    <Area>General</Area>
+    <FirstStation>97</FirstStation>
+    <LastStation>95</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>6</LineId>
+    <LineNum>169</LineNum>
+    <Area>North</Area>
+    <FirstStation>108</FirstStation>
+    <LastStation>103</LastStation>
+    <IsDeleted>false</IsDeleted>
+  </Line>
+  <Line>
+    <LineId>7</LineId>
+    <LineNum>153</LineNum>
+    <Area>Jerusalem</Area>
+    <FirstStation>94</FirstStation>
+    <LastStation>86</LastStation>
     <IsDeleted>false</IsDeleted>
   </Line>
 </ArrayOfLine>

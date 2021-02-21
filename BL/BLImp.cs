@@ -92,10 +92,10 @@ namespace BL
                 if (busDO.TotalTrip < 0)
                     throw new BO.BadInputException("The total trip is not valid");
                 if (busDO.FuelRemain < 0 || bus.FuelRemain > 1200)
-                    throw new BO.BadInputException("The fuel remain is not valid");
+                    throw new BO.BadInputException("The value of fuel remain is not valid");
                 int lengthLicNum = LengthLicenseNum(busDO.LicenseNum);
                 if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && busDO.FromDate.Year >= 2018)))
-                    throw new BO.BadInputException("The license number and the date of start operation do not match");
+                    throw new BO.BadInputException("The license number and the date of start operation do not match.\tReminder:\tfor bus that ita start date in from 2018, the license number must be with 8 digits.\tOtherwise, 7 digits.");
                 if (busDO.DateLastTreat > DateTime.Now || busDO.DateLastTreat < busDO.FromDate)
                     throw new BO.BadInputException("The date of last treatment is not valid");
                 if (busDO.KmLastTreat < 0 || busDO.KmLastTreat > busDO.TotalTrip)
@@ -126,6 +126,7 @@ namespace BL
                 if (busDO.FuelRemain == 1200)
                     throw new BO.BadInputException("The fuel remain of the bus ia already full");
                 busDO.FuelRemain = 1200;
+                busDO.Status = DO.BusStatus.Available;
                 dl.UpdateBus(busDO);
 
             }
@@ -240,13 +241,17 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea()//return groups of lines by their area
+        public IGrouping<BO.Area, BO.Line> GetAllLinesByArea(BO.Area area)//return groups of lines by their area
         {
             IEnumerable<IGrouping<BO.Area, BO.Line>> result = from n in GetAllLines()
                                                               group n by n.Area into gs
                                                               select gs;
-            return result;
-
+            foreach (var group in result)//return the group with the area that the function got
+            {
+                if (group.Key == area)
+                    return group;
+            }
+            throw new BO.BadInputException("There are no lines in this area");
         }
 
         public void UpdateLineDetails(BO.Line line)
@@ -424,8 +429,8 @@ namespace BL
                 int currentLineid = listLines[i].LineId;// line id of the current line
                 List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip=>trip.LineId==currentLineid && trip.IsDeleted==false ).ToList();// times of the current Line
                 TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
-                int numOfTimes = 0;
-                List<int> timesOfCurrentLine = new List<int>();
+                int numOfTimes = 0;//רוצים רק 3 זמנים לקו כמו שזה במציאות
+                List<int> timesOfCurrentLine = new List<int>();//רשימת הזמנים
                 for (int j = 0; j < lineSchedual.Count && numOfTimes < 3 ; j++)//for all the times in line sSchedual
                 {
                     //check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
@@ -433,7 +438,8 @@ namespace BL
                         && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
                     //check if the bus already passed the statioin   
                     {
-                        if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station
+                        if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)
+                            //if the line already get out from the station
                         {
                             tmp = timeTilStatin - (currentTime - lineSchedual[j].StartAt);
                         }
@@ -446,7 +452,7 @@ namespace BL
                     }
                 }
 
-                if (timesOfCurrentLine.Count != 0)
+                if (timesOfCurrentLine.Count != 0)//אם יש זמנים לקו בטווח של שעה
                 {
                     string timesString = "";//the string of times
                     timesOfCurrentLine = timesOfCurrentLine.OrderBy(s => s).ToList();//order the times in ascending order
@@ -455,17 +461,16 @@ namespace BL
                         timesString = timesString + timesOfCurrentLine[k] + ", ";
                     }
                     timesString= timesString + timesOfCurrentLine[timesOfCurrentLine.Count - 1] ;//add the last one without ","
-                    times.Add(new LineTiming
+                    times.Add(new LineTiming//הוספת הקו לרשימה שהולכים להחזיר
                     {
                         LineId = currentLineid,
                         LineNum = listLines[i].LineNum,
                         DestinationStation = listLines[i].Stations[listLines[i].Stations.Count() - 1].Name,
                         Stringtimes = timesString,                                     
-                    }) ;
+                    });
 
                 }
-                numOfTimes = 0;
-                //timesString = "";
+                numOfTimes = 0;//איפוס המונה
             }
             times = times.OrderBy(lt => lt.LineNum).ToList();//order the list by the number of the lines in ascending order
             return times;
@@ -482,7 +487,6 @@ namespace BL
                     sumTime += s.Time;
                 else
                 {
-                    //sumTime += s.TimeFromPrevStation;
                     break;
                 }
             }
@@ -570,9 +574,6 @@ namespace BL
             {
                 throw new BO.BadAdjacentStationsException( ex.Message, ex);
             }
-            //{
-            //    throw new Exception("Error, it cannot be update");
-            //}
         }
         #endregion
 

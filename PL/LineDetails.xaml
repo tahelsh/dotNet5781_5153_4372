@@ -25,8 +25,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
 
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
@@ -41,9 +41,9 @@
                    Name="CBDisabledAccess" IsEnabled="False" IsChecked="{Binding Path=DisabledAccess}" Visibility="Visible" Margin="45,0,0,0" />
                 <Image Grid.Column="8"
                      Source="disableAccess.png" Margin="0,0,0,0" />
-                <Image Grid.Column="9"
+                <Image Grid.Column="10"
                      Source="delete.png" MouseDown="Delete_Station_Button_Click" Name="DeleteStationButton" Margin="20,0,0,0" IsEnabled="True"  />
-                <Button Grid.Column="10"
+                <Button Grid.Column="9"
                    Content="Update Time/Distance" Click="UpdateTimeDis_Button_Click" Name="UpdateTimeButton" Margin="20,0,0,0" IsEnabled="True" BorderThickness="2" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="16"  />
             </Grid>
         </DataTemplate>

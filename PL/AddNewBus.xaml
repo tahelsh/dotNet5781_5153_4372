@@ -6,24 +6,24 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.AddNewBus"
         mc:Ignorable="d"
-        Title="Add New Bus" Height="450" Width="373.6" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Add New Bus" Height="501.2" Width="425.6" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
         <Style x:Key="TextStyle" TargetType="Control">
             <Setter Property="FontFamily" Value="Segoe Print"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
     </Window.Resources>
     <Grid DataContext="{StaticResource busViewSource}">
         <Grid.Background>
             <ImageBrush ImageSource="BackGroundLogo.png" Opacity="0.20" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Button Content="save" HorizontalAlignment="Left" Height="50" Margin="103,342,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="15,24,0,0" VerticalAlignment="Top" Height="294" Width="342" >
+        <Button Content="save" HorizontalAlignment="Left" Height="50" Margin="111,377,0,0" VerticalAlignment="Top" Width="146" Click="Button_Click" BorderThickness="5" BorderBrush="#FFEDBF33" Background="White" FontFamily="Segoe Print" FontWeight="Bold" FontSize="25"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="15,24,0,0" VerticalAlignment="Top" Height="322" Width="394" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="200.8"/>
-                <ColumnDefinition Width="Auto" MinWidth="130.4"/>
+                <ColumnDefinition Width="Auto" MinWidth="232"/>
+                <ColumnDefinition Width="Auto" MinWidth="153.6"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -31,29 +31,29 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="46.4"/>
+                <RowDefinition Height="Auto" MinHeight="44"/>
             </Grid.RowDefinitions>
-            <Label Content="License number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2,0,6.4" Grid.Row="0" VerticalAlignment="Center" Height="34" Width="158" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="licenseNumTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.4,10,0,9.4" Grid.Row="0" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
-            <Label Content="Start date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.6,0,5" Grid.Row="1" VerticalAlignment="Center" Height="34" Width="110" Style="{StaticResource TextStyle}"/>
-            <DatePicker x:Name="fromDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="2.4,7.6,0,11" Grid.Row="1" SelectedDate="{Binding FromDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="23" Width="127" Style="{StaticResource TextStyle}"/>
-            <Label Content="Fuel Remain:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,8.2" Grid.Row="2" VerticalAlignment="Center" Height="32" Width="101" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="2.4,10,0,9.2" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
-            <Label Content="Km of last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="2,3.8,0,7.4" Grid.Row="3" VerticalAlignment="Center" Height="32" Width="178" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.4,11.8,0,8.4" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
-            <Label Content="Date of last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4.6,0,4" Grid.Row="4" VerticalAlignment="Center" Height="33" Width="178" Style="{StaticResource TextStyle}"/>
-            <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="2.4,8.6,0,10" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="23" Width="127" Style="{StaticResource TextStyle}"/>
-            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7.6" Grid.Row="5" VerticalAlignment="Center" Height="30" Width="149" Style="{StaticResource TextStyle}"/>
-            <ComboBox x:Name="statusComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="29" ItemsSource="{Binding}" Margin="2.4,5,0,7.6" Grid.Row="5" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}">
+            <Label Content="License number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2,0,10.4" Grid.Row="0" VerticalAlignment="Center" Height="34" Width="158" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="licenseNumTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="6.2,10,0,0.4" Grid.Row="0" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <Label Content="Start date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,8" Grid.Row="1" VerticalAlignment="Center" Height="34" Width="110" Style="{StaticResource TextStyle}"/>
+            <DatePicker x:Name="fromDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="6.2,8.6,0,0" Grid.Row="1" SelectedDate="{Binding FromDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="37" Width="138" Style="{StaticResource TextStyle}"/>
+            <Label Content="Fuel Remain:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,10.2" Grid.Row="2" VerticalAlignment="Center" Height="32" Width="101" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="fuelRemainTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="6.2,12,0,0.2" Grid.Row="2" Text="{Binding FuelRemain, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <Label Content="Km of last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="2,5.8,0,4.6" Grid.Row="3" VerticalAlignment="Center" Height="36" Width="221" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="kmLastTreatTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="6.2,13.8,0,45.2" Grid.Row="3" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}" Grid.RowSpan="2"/>
+            <Label Content="Date of last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0.4,0,5.2" Grid.Row="4" VerticalAlignment="Center" Height="40" Width="231" Style="{StaticResource TextStyle}" Grid.ColumnSpan="2"/>
+            <DatePicker x:Name="dateLastTreatDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="6.2,4.4,0,8.2" Grid.Row="4" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="33" Width="145" Style="{StaticResource TextStyle}"/>
+            <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.8,0,43.6" Grid.Row="5" VerticalAlignment="Center" Height="41" Width="149" Style="{StaticResource TextStyle}" Grid.RowSpan="2"/>
+            <ComboBox x:Name="statusComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="40" ItemsSource="{Binding}" Margin="6.2,6.8,0,43.6" Grid.Row="5" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}" Grid.RowSpan="2">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Total trip:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.4,0,0.4" Grid.Row="6" VerticalAlignment="Center" Height="35" Width="137" Style="{StaticResource TextStyle}"/>
-            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.4,7.4,0,10.4" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
+            <Label Content="Total trip:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6.4,0,2.6" Grid.Row="6" VerticalAlignment="Center" Height="35" Width="137" Style="{StaticResource TextStyle}"/>
+            <TextBox x:Name="totalTripTextBox" KeyDown="keyCheck" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="6.2,8.4,0,-0.4" Grid.Row="6" Text="{Binding TotalTrip, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Style="{StaticResource TextStyle}"/>
         </Grid>
     </Grid>
 </Window>

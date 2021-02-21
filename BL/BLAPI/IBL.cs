@@ -14,6 +14,7 @@ namespace BLAPI
         //Add Person to Course
         //get all courses for student
         //etc...
+        
         #region Bus
         BO.Bus GetBus(int licenseNum);
         IEnumerable<BO.Bus> GetAllBuses();
@@ -29,7 +30,7 @@ namespace BLAPI
         BO.Line GetLine(int lineId);
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
-        IEnumerable<IGrouping<BO.Area, BO.Line>> GetAllLinesByArea();
+        IGrouping<BO.Area, BO.Line> GetAllLinesByArea(BO.Area area);
         void UpdateLineDetails(BO.Line line);
         void DeleteLine(int LineId);
         void AddBus(BO.Bus bus);

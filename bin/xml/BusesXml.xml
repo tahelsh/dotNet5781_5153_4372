@@ -1,46 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Bus>
-    <LicenseNum>12345678</LicenseNum>
-    <FromDate>2018-12-01T00:00:00</FromDate>
-    <TotalTrip>10000</TotalTrip>
-    <FuelRemain>1200</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-12-01T00:00:00</DateLastTreat>
-    <KmLastTreat>8001</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <LicenseNum>47589646</LicenseNum>
-    <FromDate>2019-11-11T00:00:00</FromDate>
-    <TotalTrip>10000</TotalTrip>
-    <FuelRemain>800</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-09-02T00:00:00</DateLastTreat>
-    <KmLastTreat>9600</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <LicenseNum>1456982</LicenseNum>
-    <FromDate>2016-11-02T00:00:00</FromDate>
-    <TotalTrip>10000</TotalTrip>
-    <FuelRemain>800</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-12-02T00:00:00</DateLastTreat>
-    <KmLastTreat>9600</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <LicenseNum>1458795</LicenseNum>
-    <FromDate>2015-11-03T00:00:00</FromDate>
-    <TotalTrip>20000</TotalTrip>
-    <FuelRemain>1200</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-08-21T00:00:00</DateLastTreat>
-    <KmLastTreat>19600</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
     <LicenseNum>65984758</LicenseNum>
     <FromDate>2019-08-02T00:00:00</FromDate>
     <TotalTrip>30000</TotalTrip>
@@ -48,17 +8,7 @@
     <Status>Available</Status>
     <DateLastTreat>2020-05-15T00:00:00</DateLastTreat>
     <KmLastTreat>20000</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <LicenseNum>4569821</LicenseNum>
-    <FromDate>2014-11-20T00:00:00</FromDate>
-    <TotalTrip>10000</TotalTrip>
-    <FuelRemain>800</FuelRemain>
-    <Status>Available</Status>
-    <DateLastTreat>2020-06-10T00:00:00</DateLastTreat>
-    <KmLastTreat>9600</KmLastTreat>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </Bus>
   <Bus>
     <LicenseNum>2564875</LicenseNum>
@@ -97,6 +47,56 @@
     <FuelRemain>900</FuelRemain>
     <Status>Available</Status>
     <DateLastTreat>2021-02-16T14:45:38.5725432+02:00</DateLastTreat>
+    <KmLastTreat>10000</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>12345678</LicenseNum>
+    <FromDate>2018-12-01T00:00:00</FromDate>
+    <TotalTrip>10000</TotalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <Status>Refueling</Status>
+    <DateLastTreat>2020-12-01T00:00:00</DateLastTreat>
+    <KmLastTreat>8001</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>47589646</LicenseNum>
+    <FromDate>2019-11-11T00:00:00</FromDate>
+    <TotalTrip>10000</TotalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <Status>Available</Status>
+    <DateLastTreat>2020-09-02T00:00:00</DateLastTreat>
+    <KmLastTreat>9600</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>1456982</LicenseNum>
+    <FromDate>2016-11-02T00:00:00</FromDate>
+    <TotalTrip>10000</TotalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <Status>Available</Status>
+    <DateLastTreat>2020-12-02T00:00:00</DateLastTreat>
+    <KmLastTreat>9600</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>1458795</LicenseNum>
+    <FromDate>2015-11-03T00:00:00</FromDate>
+    <TotalTrip>20000</TotalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <Status>Treatment</Status>
+    <DateLastTreat>2021-02-21T14:22:38.8736801+02:00</DateLastTreat>
+    <KmLastTreat>20000</KmLastTreat>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNum>4569821</LicenseNum>
+    <FromDate>2014-11-20T00:00:00</FromDate>
+    <TotalTrip>10000</TotalTrip>
+    <FuelRemain>1200</FuelRemain>
+    <Status>Treatment</Status>
+    <DateLastTreat>2021-02-21T14:51:19.6113345+02:00</DateLastTreat>
     <KmLastTreat>10000</KmLastTreat>
     <IsDeleted>false</IsDeleted>
   </Bus>

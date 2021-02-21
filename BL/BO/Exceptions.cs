@@ -28,7 +28,10 @@ namespace BO
         public int ID;
         public BadLineIdException(string message, Exception innerException) :
             base(message, innerException) => ID = ((DO.BadTripIdException)innerException).ID;
-        public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
+        public override string ToString()
+        {
+            return Message;
+        }
     }
 
     [Serializable]
@@ -50,7 +53,7 @@ namespace BO
            base(message, innerException) => userName = ((DO.BadUserNameException)innerException).userName;
         public BadUserNameException(string name, string message) :
             base(message) => userName = name;
-        public override string ToString() => base.ToString() + $", bad station code number: {userName}";
+        public override string ToString() => base.ToString();
     }
 
     [Serializable]

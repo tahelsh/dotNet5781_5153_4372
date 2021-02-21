@@ -53,50 +53,73 @@ namespace PL
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
-        private void Refuel_Button_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click_DeleteBus(object sender, MouseButtonEventArgs e)
         {
+            BO.Bus bus = (sender as Image).DataContext as BO.Bus;
+            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
             try
             {
-                BO.Bus bus = (sender as Button).DataContext as BO.Bus;
-                bl.RefuelBus(bus);
+                bl.DeleteBus(bus.LicenseNum);
                 RefreshAllBusesList();
-                MessageBox.Show("The bus was refueled successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch(BO.BadLicenseNumException ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BadInputException ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private void Treatment_Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                BO.Bus bus = (sender as Button).DataContext as BO.Bus;
-                bl.TreatBus(bus);
-                RefreshAllBusesList();
-                MessageBox.Show("The bus was treated successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BadLicenseNumException ex)
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BadInputException ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
+
+
+        //private void Refuel_Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        BO.Bus bus = (sender as Button).DataContext as BO.Bus;
+        //        bl.RefuelBus(bus);
+        //        RefreshAllBusesList();
+        //        MessageBox.Show("The bus was refueled successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    }
+        //    catch(BO.BadLicenseNumException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (BO.BadInputException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
+        //private void Treatment_Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        BO.Bus bus = (sender as Button).DataContext as BO.Bus;
+        //        bl.TreatBus(bus);
+        //        RefreshAllBusesList();
+        //        MessageBox.Show("The bus was treated successfully", "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    }
+        //    catch (BO.BadLicenseNumException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (BO.BadInputException ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+
+        //}
     }
 }

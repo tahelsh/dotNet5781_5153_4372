@@ -68,7 +68,7 @@
                     </Grid.Background>
                     <ComboBox Name="CBSourceStation" ItemsSource="{Binding}" Margin="29,69.4,0,0" VerticalAlignment="Top" Height="65" HorizontalAlignment="Left" Width="264" Grid.Row="1"/>
                     <ComboBox Name="CBDestinationStation" ItemsSource="{Binding}" Margin="29,233.4,0,0" VerticalAlignment="Top" Height="67" Grid.Row="1" HorizontalAlignment="Left" Width="264"/>
-                    <Button Content="Search" HorizontalAlignment="Left" Margin="86,0,0,10" VerticalAlignment="Bottom" Width="158" Click="Search_Button_Click" Height="62" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="30" Grid.Row="1" />
+                    <Button Content="Search" HorizontalAlignment="Left" Margin="86,0,0,13" VerticalAlignment="Bottom" Width="158" Click="Search_Button_Click" Height="62" BorderBrush="#FFEDBF33" Background="White" BorderThickness="5" FontFamily="Segoe Print" FontWeight="Bold" FontSize="30" Grid.Row="1" />
                     <ListBox Name="LBLinesInRoute" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="185" Margin="448,29,0,0" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Grid.RowSpan="2"/>
                     <Label Content="Source station:" Height="59" Margin="30,92,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontWeight="Bold" FontSize="30" HorizontalAlignment="Left" Width="263" Grid.RowSpan="2" />
                     <Label Content="Destination station:" Height="62" Margin="27,156.4,0,0" VerticalAlignment="Top" FontFamily="Segoe Print" FontWeight="Bold" FontSize="30" Grid.Row="1" HorizontalAlignment="Left" Width="335" />
@@ -163,8 +163,8 @@
                             <DataGridTextColumn x:Name="AreaColumn" Binding="{Binding Area}" Header="      Area      " Width="SizeToHeader"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" Margin="226,16,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBStations_SelectionChanged" FontFamily="Segoe Print" FontWeight="Bold" FontSize="13" HorizontalAlignment="Left" />
-                    <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}"  Height="141" Margin="0,68,165.4,0" VerticalAlignment="Top" Width="190" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
+                    <ComboBox x:Name="CBStations" ItemsSource="{Binding}" Margin="226,16,0,0" VerticalAlignment="Top" Width="217" SelectionChanged="CBStations_SelectionChanged" FontFamily="Segoe Print" FontWeight="Bold" FontSize="13" HorizontalAlignment="Left" />
+                    <ListBox Name="LBYellowSign" ItemsSource="{Binding}" ItemTemplate="{StaticResource lineInStationTemplate}"  Height="141" Margin="0,68,154.4,0" VerticalAlignment="Top" Width="201" Background="#FFEDEE73" FontFamily="Candara" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right"/>
                     <Label Content="Code:" Margin="0,36,253.4,0" VerticalAlignment="Top" FontFamily="Bodoni MT Black" Height="33" Width="75" FontSize="20" HorizontalAlignment="Right" />
                     <TextBlock x:Name="codeTextBlock"  Margin="0,42,205.4,0" Text="{Binding}" VerticalAlignment="Top" Width="55" RenderTransformOrigin="1.361,0.788" FontFamily="Bodoni MT Black" FontSize="20" Height="32" HorizontalAlignment="Right" />
                     <Grid x:Name="StationDetailsGrid" Margin="22,62,369.4,0" Height="141" VerticalAlignment="Top" >

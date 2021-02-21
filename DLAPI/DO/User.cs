@@ -9,9 +9,9 @@ namespace DO
     public class User
     {
         public  string UserName { get; set; }//unique username
-        public string Name { get; set; }
-        public int Passcode { get; set; }
-        public bool AdminAccess { get; set; }
+        public string Name { get; set; }//name
+        public int Passcode { get; set; }//passcode
+        public bool AdminAccess { get; set; }//admon access
         public bool IsDeleted { get; set; }
     }
 }

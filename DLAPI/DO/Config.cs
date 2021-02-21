@@ -9,10 +9,7 @@ namespace DO
     public static class Config
     {
         //for running numbers
-        public static int LineId = 0;
-        //public static int StationCode = 0;
-        public static int TripId = 0;
-        public static int LineTripId=0;
-
+        public static int LineId = 0;//line id
+    
     }
 }
